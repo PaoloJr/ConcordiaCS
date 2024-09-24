@@ -12,9 +12,10 @@
         extern    printf              ; link to printf
 
         section  .data
-        msg:    db 'Hello World', 0           ; null-terminated string
+                msg:    db 'Hello World', 0           ; null-terminated string
 
-        section  .text
+        ;section  .text
+
 main:
         sub     rsp, 28h              ; allocate stack space
         lea     rcx, [msg]            ; load address of msg into rcx
