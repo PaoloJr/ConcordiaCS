@@ -3,19 +3,17 @@ import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.math.BigInteger;
 
-// code fragment 5.14 from textbook, pg. 217
-public class LinearFib {
+public class TRLinearFib {
 
-    public static BigInteger[] linearFibonacci(int n) {
+    private static BigInteger TRlinearFibonacci(int n, BigInteger a, BigInteger b) {
+        // base case
         if(n <= 1) {
-            BigInteger[] result = {BigInteger.valueOf(n), BigInteger.ZERO};
-            return result;
+            return b;
         } else {
-            // single recursive call
-            BigInteger[] temp = linearFibonacci(n - 1);
-            // return an array, 0th index = sum of values
-            BigInteger[] result = {temp[0].add(temp[1]), temp[0], temp[1]};
-            return result;
+            // single tail-recursive call
+            return  TRlinearFibonacci(n - 1, b, a.add(b));
+            // parameter `a` takes the value of (argument) `b` in the subsequent calls
+            // parameter `b` is the accumulated (sum) of `a` and `b`;  (n - 1) + (n - 2)
         }
     }
 
@@ -27,7 +25,7 @@ public class LinearFib {
         PrintStream out = null;
         try {
             // use PrintStream to output executions (calculation results and timings) to a file
-            out = new PrintStream("COMP5511/assignment1/LinearFib_out.txt");
+            out = new PrintStream("COMP5511/assignment1/TRLinearFib_out.txt");
             // every System output sent to file
             System.setOut(out);
 
@@ -36,14 +34,14 @@ public class LinearFib {
             for (int number : numbers) {
                 // each call will have a separate execution time calculation
                 long startTime = System.nanoTime();
-                BigInteger[] linearResult = linearFibonacci(number);
+                BigInteger linearResult = TRlinearFibonacci(number, BigInteger.ZERO, BigInteger.ONE);
                 long endTime = System.nanoTime();
 
                 // execution time (nanoseconds) convert to seconds
                 double duration = (endTime - startTime) / 1_000_000_000.0;
                 
-                out.println("\n linear Fibonacci of: " + number + " = " + linearResult[0]);
-                out.println("\t sum of these two numbers: " + linearResult[1] + " + " + linearResult[2]);
+                out.println("\n linear Fibonacci of: " + number + " = " + linearResult);
+                // out.println("\t sum of these two numbers: " + linearResult[1] + " + " + linearResult[2]);
                 out.println(String.format("\t execution time = %.9f",   duration) + " seconds");
             }
 

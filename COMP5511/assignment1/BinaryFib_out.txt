@@ -1,30 +1,30 @@
 
  binary Fibonnacci of: 5 = 5
-	 execution time =  0.000321700 seconds
+	 execution time =  0.000242900 seconds
 
  binary Fibonnacci of: 10 = 55
-	 execution time =  0.000097100 seconds
+	 execution time =  0.000102400 seconds
 
  binary Fibonnacci of: 15 = 610
-	 execution time =  0.000798000 seconds
+	 execution time =  0.000778000 seconds
 
  binary Fibonnacci of: 20 = 6765
-	 execution time =  0.002521500 seconds
+	 execution time =  0.001674900 seconds
 
  binary Fibonnacci of: 25 = 75025
-	 execution time =  0.013843200 seconds
+	 execution time =  0.013185400 seconds
 
  binary Fibonnacci of: 30 = 832040
-	 execution time =  0.084882300 seconds
+	 execution time =  0.084193700 seconds
 
  binary Fibonnacci of: 35 = 9227465
-	 execution time =  0.463678900 seconds
+	 execution time =  0.525241700 seconds
 
  binary Fibonnacci of: 40 = 102334155
-	 execution time =  4.097680300 seconds
+	 execution time =  4.316376800 seconds
 
  binary Fibonnacci of: 45 = 1134903170
-	 execution time =  71.794303000 seconds
+	 execution time =  49.804013700 seconds
 
 
- TOTAL execution time = 76.482486
+ TOTAL execution time = 54.7731972

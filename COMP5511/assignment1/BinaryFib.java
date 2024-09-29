@@ -30,6 +30,7 @@ public class BinaryFib {
 
             // set of testing values for binary fibonacci calculations
             // removed 60, 55 and 50, since it took over 10 minutes!
+            // with a max of 45 it should take under 1 minute
             int[] numbers = {5, 10, 15, 20, 25, 30, 35, 40, 45};
 
             for (long number : numbers) {
