@@ -1,21 +1,30 @@
-binary Fibonnacci of: 5 = 5
-execution time = 3.573E-4 seconds
-binary Fibonnacci of: 10 = 55
-execution time = 2.086E-4 seconds
-binary Fibonnacci of: 15 = 610
-execution time = 0.0016777 seconds
-binary Fibonnacci of: 20 = 6765
-execution time = 0.0050956 seconds
-binary Fibonnacci of: 25 = 75025
-execution time = 0.0207537 seconds
-binary Fibonnacci of: 30 = 832040
-execution time = 0.1614489 seconds
-binary Fibonnacci of: 35 = 9227465
-execution time = 1.0977263 seconds
-binary Fibonnacci of: 40 = 102334155
-execution time = 5.8235766 seconds
-binary Fibonnacci of: 45 = 1134903170
-execution time = 51.8317093 seconds
-binary Fibonnacci of: 50 = 12586269025
-execution time = 511.1611272 seconds
-TOTAL execution time = 570.1180776
+
+ binary Fibonnacci of: 5 = 5
+	 execution time =  0.000321700 seconds
+
+ binary Fibonnacci of: 10 = 55
+	 execution time =  0.000097100 seconds
+
+ binary Fibonnacci of: 15 = 610
+	 execution time =  0.000798000 seconds
+
+ binary Fibonnacci of: 20 = 6765
+	 execution time =  0.002521500 seconds
+
+ binary Fibonnacci of: 25 = 75025
+	 execution time =  0.013843200 seconds
+
+ binary Fibonnacci of: 30 = 832040
+	 execution time =  0.084882300 seconds
+
+ binary Fibonnacci of: 35 = 9227465
+	 execution time =  0.463678900 seconds
+
+ binary Fibonnacci of: 40 = 102334155
+	 execution time =  4.097680300 seconds
+
+ binary Fibonnacci of: 45 = 1134903170
+	 execution time =  71.794303000 seconds
+
+
+ TOTAL execution time = 76.482486

@@ -1,21 +1,43 @@
-linear Fibonacci of: 5 = 5 3
-execution time = 2.019E-4 seconds
-linear Fibonacci of: 10 = 55 34
-execution time = 5.2E-6 seconds
-linear Fibonacci of: 15 = 610 377
-execution time = 4.5E-6 seconds
-linear Fibonacci of: 20 = 6765 4181
-execution time = 6.9E-6 seconds
-linear Fibonacci of: 25 = 75025 46368
-execution time = 6.9E-6 seconds
-linear Fibonacci of: 30 = 832040 514229
-execution time = 8.1E-6 seconds
-linear Fibonacci of: 35 = 9227465 5702887
-execution time = 9.5E-6 seconds
-linear Fibonacci of: 40 = 102334155 63245986
-execution time = 1.14E-5 seconds
-linear Fibonacci of: 45 = 1134903170 701408733
-execution time = 1.23E-5 seconds
-linear Fibonacci of: 50 = 12586269025 7778742049
-execution time = 1.54E-5 seconds
-TOTAL execution time = 0.0105333
+
+ linear Fibonacci of: 5 = 5
+	 sum of these two numbers: 3 + 2
+	 execution time = 0.000230700 seconds
+
+ linear Fibonacci of: 10 = 55
+	 sum of these two numbers: 34 + 21
+	 execution time = 0.000011300 seconds
+
+ linear Fibonacci of: 15 = 610
+	 sum of these two numbers: 377 + 233
+	 execution time = 0.000012100 seconds
+
+ linear Fibonacci of: 20 = 6765
+	 sum of these two numbers: 4181 + 2584
+	 execution time = 0.000013700 seconds
+
+ linear Fibonacci of: 25 = 75025
+	 sum of these two numbers: 46368 + 28657
+	 execution time = 0.000014900 seconds
+
+ linear Fibonacci of: 30 = 832040
+	 sum of these two numbers: 514229 + 317811
+	 execution time = 0.000020000 seconds
+
+ linear Fibonacci of: 35 = 9227465
+	 sum of these two numbers: 5702887 + 3524578
+	 execution time = 0.000020800 seconds
+
+ linear Fibonacci of: 40 = 102334155
+	 sum of these two numbers: 63245986 + 39088169
+	 execution time = 0.000023200 seconds
+
+ linear Fibonacci of: 45 = 1134903170
+	 sum of these two numbers: 701408733 + 433494437
+	 execution time = 0.000029500 seconds
+
+ linear Fibonacci of: 50 = 12586269025
+	 sum of these two numbers: 7778742049 + 4807526976
+	 execution time = 0.000034400 seconds
+
+
+ TOTAL execution time = 0.0558816 seconds
