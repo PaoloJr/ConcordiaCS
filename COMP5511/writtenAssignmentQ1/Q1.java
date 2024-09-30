@@ -18,6 +18,8 @@ package COMP5511.writtenAssignmentQ1;
  ** }
  ** return count
  *
+ * What is the final output for input arrays A = [1, 2, 5, 9] and B = [2, 29, 40, 57]? Show the necessary steps.
+ * 
  */
 
 
@@ -25,9 +27,9 @@ public class Q1 {
 
     public static int  MyAlgorithm(int[] A, int[] B) {
         int count = 0;
-        for (int i = 0; i < A.length; i++) {
+        for (int i = 0; i < A.length - 1; i++) {
             int sum = 0;
-            for (int j = 0; j < A.length; j++) {
+            for (int j = 0; j < A.length - 1; j++) {
                 sum = sum + A[0];
                 for (int k = 1; k <= j; k++) {
                     sum = sum + A[k];
