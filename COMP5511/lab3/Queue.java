@@ -4,7 +4,7 @@ public class Queue {
 
     private int[] intArray;
     private int intArraySize;
-    private int front = 0;
+    // private int front = 0;
     private int back = intArraySize - 1;
 
     public Queue(){
@@ -17,7 +17,6 @@ public class Queue {
             intArray[back] = someInt;
             intArraySize--;
         }
-
     }
 
     public void dequeue(int someInt) {
@@ -36,6 +35,6 @@ public class Queue {
     }
 
     public static void main(String[] args) {
-        Queue q = new Queue();
+        // Queue q = new Queue();
     }
 }
