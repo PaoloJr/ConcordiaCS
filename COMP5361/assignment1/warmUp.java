@@ -4,13 +4,15 @@ import java.util.Scanner;
 
 // code version 2
 public class warmUp {
+    private static boolean input1;
+    private static boolean input2;
 
-
-    private static Boolean negation(String value) {
-        return !Boolean.valueOf(value);
+    private static Boolean negation(boolean value) {
+        return !value;
     }
 
-    private static String[] getValidBooleans(Scanner scanner) {
+    // user input values output to a String array
+    private static String[] getUserInput(Scanner scanner) {
         while (true) {
             System.out.print("Enter one or two (space-separated) truth values (True, False, T, F, 0, 1): ");
             String line = scanner.nextLine().trim();
@@ -18,40 +20,65 @@ public class warmUp {
             
             if (inputs.length == 1 || inputs.length == 2) {
                 try {
-                    String value1 = parseBoolean(inputs[0]);
                     if (inputs.length == 2) {
-                        String value2 = parseBoolean(inputs[1]);
-                        return new String[]{value1, value2};
+                        return new String[]{inputs[0], inputs[1]};
                     } else {
-                        return new String[]{value1};
+                        return new String[]{inputs[0]};
                     }
                 } catch (IllegalArgumentException e) {
                     System.out.println(e.getMessage());
                 }
             } else {
-                System.out.println("Invalid input. Please enter one or two (space-separated) truth values.");
+                System.out.println("Invalid input: " + line + "\nPlease enter one or two (space-separated) truth values.");
             }
         }
     }
 
-   private static String parseBoolean(String input) {
-        if (input.equalsIgnoreCase("true") || input.equalsIgnoreCase("t") || input.equals("1")) {
-            return input;
+   // helper to validate user input and return the value entered to the user
+   // otherwise throw exception
+//   private static String parseBoolean(String input) {
+//        if (input.equalsIgnoreCase("true") || input.equalsIgnoreCase("t") || input.equals("1")) {
+//            return input;
+//        } else if (input.equalsIgnoreCase("false") || input.equalsIgnoreCase("f") || input.equals("0")) {
+//            return input;
+//        } else {
+//            throw new IllegalArgumentException("Invalid input: " + input + "\nMust be 'True', 'False', 'T', 'F', '0', or '1'.");
+//        }
+//    }
+
+    private static boolean parseBoolean(String input) {
+        boolean result = false;
+        if(input.equalsIgnoreCase("true") || input.equalsIgnoreCase("t") || input.equals("1")) {
+            result = true;
         } else if (input.equalsIgnoreCase("false") || input.equalsIgnoreCase("f") || input.equals("0")) {
-            return input;
+            result = false;
+        }
+        return result;
+    }
+
+    // format the returned value to be the same as the user input format
+    private static String getFormat(String original, boolean value) {
+        if (original.equalsIgnoreCase("true") || original.equalsIgnoreCase("false")) {
+            return value ? "True" : "False";
+        } else if (original.equalsIgnoreCase("t") || original.equalsIgnoreCase("f")) {
+            return value ? "T" : "F";
+        } else if (original.equals("1") || original.equals("0")) {
+            return value ? "1" : "0";
         } else {
-            throw new IllegalArgumentException("Invalid input: " + input + "\nMust be 'True', 'False', 'T', 'F', '0', or '1'.");
+            throw new IllegalArgumentException("Unexpected format: " + original);
         }
     }
     
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        String[] values = getValidBooleans(scanner);
+        String[] values = getUserInput(scanner);
         
         if (values.length == 1) {
             System.out.println("You entered one valid value: " + values[0]);
-            Boolean negatedValue = negation(values[0]);
-            System.out.println("The negated value is: " + negatedValue);
+            boolean stringConvert = parseBoolean(values[0]);
+            String formatBoolean = getFormat(values[0], true);
+            boolean negatedValue = negation(input1);
+            System.out.println("The negated value is: " + formatBoolean);
 
         } else if (values.length == 2) {
             System.out.println("You entered two valid values: " + values[0] + " and " + values[1]);
