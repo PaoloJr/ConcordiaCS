@@ -6,12 +6,10 @@ import java.util.Scanner;
 
 // code version 2
 public class warmUp {
-    // private static boolean input1;
-    // private static boolean input2;
-
     private final Map<String, Boolean> truthMap;
 
     public warmUp() {
+        // setup for acceptable inputs Map
         truthMap = new HashMap<>();
         truthMap.put("true", true);
         truthMap.put("t", true);
@@ -32,6 +30,7 @@ public class warmUp {
             String line = scanner.nextLine().trim();
             String[] inputs = line.split("\\s+");
             
+            // check for length to be either 1 or 2
             if (inputs.length == 1 || inputs.length == 2) {
                 return inputs;
             } else {
@@ -40,12 +39,12 @@ public class warmUp {
         }
     }
 
-    private boolean parseBoolean(String input) {
-        Scanner scanner = new Scanner(System.in);
+    // find boolean value for string from HashMap
+    private String parseBoolean(String input, Scanner scanner) {
         while (true) {
             Boolean value = truthMap.get(input.toLowerCase());
             if (value != null) {
-                return value;
+                return input;
             } else {
                 System.out.println("Invalid input: " + input + "\nAll values must be either 'True', 'False', 'T', 'F', '0', or '1'.");
                 System.out.print("Please enter one or two (space-separated) truth values: ");
@@ -76,9 +75,12 @@ public class warmUp {
         // if only one value is entered execute negation only
         if (values.length == 1) {
             System.out.println("You entered one valid truth value: " + values[0]);
-            boolean stringConvert = wu.parseBoolean(values[0]);
-            boolean negatedValue = wu.negation(stringConvert);
-            String formatBoolean = wu.getFormat(values[0], negatedValue);
+
+            String validatedInput = wu.parseBoolean(values[0], scanner);
+            boolean parsedValue = wu.truthMap.get(validatedInput);
+            boolean negatedValue = wu.negation(parsedValue);
+            String formatBoolean = wu.getFormat(validatedInput, negatedValue);
+            
             System.out.println("The negated value is: " + formatBoolean);
 
         } else if (values.length == 2) {
