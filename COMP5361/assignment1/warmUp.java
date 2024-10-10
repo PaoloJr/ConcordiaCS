@@ -63,38 +63,6 @@ public class warmUp {
         }
     }
 
-    // find boolean value for string from HashMap
-    private String parseSingleBoolean(String input, Scanner scanner) {
-        while (true) {
-            Boolean value = truthMap.get(input.toLowerCase());
-            if (value != null) {
-                return input;
-            } else {
-                System.out.println("Invalid input: " + input + "\nAll values must be either 'True', 'False', 'T', 'F', '0', or '1'.");
-                // System.out.print("Please enter one or two (space-separated) truth values: ");
-                String[] newInputs = getUserInput(scanner);
-                input = newInputs[0]; // Update with the new single input
-            }
-        }
-    }
-
-    private String[] parseDoubleBoolean(String[] inputs, Scanner scanner) {
-        while (true) {
-            String[] validatedInputs = new String[2];
-            for (int i = 0; i < inputs.length; i++) {
-                Boolean value = truthMap.get(inputs[i].toLowerCase());
-                if (value != null) {
-                    validatedInputs[i] = inputs[i];
-                } else {
-                    System.out.println("Invalid input: " + inputs[i] + "\nAll values must be either 'True', 'False', 'T', 'F', '0', or '1'.");
-                    inputs = getUserInput(scanner); // Re-prompt for one or two values
-                    return parseBooleans(inputs, scanner); // Restart parsing with new input
-                }
-            }
-            return validatedInputs; // Return the validated inputs if both are correct
-        }
-    }
-
     // format the returned value to be the same as the user input format
     private String getFormat(String original, boolean value, Scanner scanner) {
         while(true) {
@@ -121,12 +89,12 @@ public class warmUp {
         
         // for negation; it requires a single input
         if (values.length == 1) {
-            String validatedInput = wu.parseSingleBoolean(values[0], scanner);
-            System.out.println("You entered one valid truth value: " + validatedInput);
+            // String validatedInput = wu.parseSingleBoolean(values[0], scanner);
+            System.out.println("You entered one valid truth value: " + validatedInputs[0]);
             
-            boolean parsedValue = wu.truthMap.get(validatedInput);
+            boolean parsedValue = wu.truthMap.get(validatedInputs);
             boolean negatedValue = wu.negation(parsedValue);
-            String formattedBoolean = wu.getFormat(validatedInput, negatedValue, scanner);
+            String formattedBoolean = wu.getFormat(validatedInputs[0], negatedValue, scanner);
             
             System.out.println("The negated (NOT) value is: " + formattedBoolean);
             
