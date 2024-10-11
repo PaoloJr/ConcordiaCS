@@ -109,6 +109,7 @@ public class warmUp {
         Scanner scanner = new Scanner(System.in);
         warmUp warmUp = new warmUp();
 
+        while (true) {    
         String[] values = warmUp.getUserInput(scanner);
         
         // for negation; it requires a single input
@@ -122,6 +123,7 @@ public class warmUp {
             
         // for all other functions; they require two inputs
         } else if (values.length == 2) {
+            System.out.println("Two valid truth values entered: " + warmUp.validatedInputs[0] + " " + warmUp.validatedInputs[1]);
 
             boolean boolValue1 = warmUp.boolEquivalents[0];
             boolean boolValue2 = warmUp.boolEquivalents[1];
@@ -138,14 +140,16 @@ public class warmUp {
             boolean biconditional = warmUp.biconditional(boolValue1, boolValue2);
             String formatBiconditional = warmUp.getFormat(warmUp.validatedInputs[0], biconditional, scanner);
 
-            System.out.println("Two valid truth values entered: " + warmUp.validatedInputs[0] + " " + warmUp.validatedInputs[1]);
             System.out.println("The conjunction (AND) of those values is: " + formatConjunction);
             System.out.println("The disjunction (OR) of those values is: " + formatDisjunction);
             System.out.println("The implication (NOT p OR q) of those values is: " + formatImplication);
             System.out.println("The biconditional ((p AND q) OR (NOT p AND NOT q)) of those values is: " + formatBiconditional);
         }
 
-            scanner.close();
+            System.out.println();
+            // keep scanner open for continuous re-prompt inside the while loop
+            // scanner.close();
         }
-
     }
+
+}
