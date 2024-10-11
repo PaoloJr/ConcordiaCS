@@ -45,7 +45,7 @@ public class warmUp {
     // user input values output to a String array with validation
     private String[] getUserInput(Scanner scanner) {
         while (true) {
-            System.out.print("Enter one or two (space-separated) truth values (True, False, T, F, 0, 1): ");
+            System.out.print("Enter one or two (space-separated) truth values, the same format (True, False, T, F, 0, 1): ");
             String line = scanner.nextLine().trim();
             String[] inputs = line.split("\\s+");
 
@@ -125,21 +125,25 @@ public class warmUp {
         } else if (values.length == 2) {
             System.out.println("Two valid truth values entered: " + warmUp.validatedInputs[0] + " " + warmUp.validatedInputs[1]);
 
-            boolean boolValue1 = warmUp.boolEquivalents[0];
-            boolean boolValue2 = warmUp.boolEquivalents[1];
+            boolean negation1 = warmUp.negation(warmUp.boolEquivalents[0]);
+            boolean negation2 = warmUp.negation(warmUp.boolEquivalents[1]);
 
-            boolean conjunction = warmUp.conjunction(boolValue1, boolValue2);
+            String formatNegation1 = warmUp.getFormat(warmUp.validatedInputs[0], negation1, scanner);
+            String formatNegation2 = warmUp.getFormat(warmUp.validatedInputs[1], negation2, scanner);
+
+            boolean conjunction = warmUp.conjunction(warmUp.boolEquivalents[0], warmUp.boolEquivalents[1]);
             String formatConjunction = warmUp.getFormat(warmUp.validatedInputs[0], conjunction, scanner);
 
-            boolean disjunction = warmUp.disjunction(boolValue1, boolValue2);
+            boolean disjunction = warmUp.disjunction(warmUp.boolEquivalents[0], warmUp.boolEquivalents[1]);
             String formatDisjunction = warmUp.getFormat(warmUp.validatedInputs[0], disjunction, scanner);
 
-            boolean implication = warmUp.implication(boolValue1, boolValue2);
+            boolean implication = warmUp.implication(warmUp.boolEquivalents[0], warmUp.boolEquivalents[1]);
             String formatImplication = warmUp.getFormat(warmUp.validatedInputs[0], implication, scanner);
 
-            boolean biconditional = warmUp.biconditional(boolValue1, boolValue2);
+            boolean biconditional = warmUp.biconditional(warmUp.boolEquivalents[0], warmUp.boolEquivalents[1]);
             String formatBiconditional = warmUp.getFormat(warmUp.validatedInputs[0], biconditional, scanner);
 
+            System.out.println("The negation (NOT) for each of those values are: " + formatNegation1 + " " + formatNegation2);
             System.out.println("The conjunction (AND) of those values is: " + formatConjunction);
             System.out.println("The disjunction (OR) of those values is: " + formatDisjunction);
             System.out.println("The implication (NOT p OR q) of those values is: " + formatImplication);
