@@ -8,6 +8,7 @@ import java.util.Scanner;
 public class warmUp {
     private final Map<String, Boolean> truthMap;
     String[] validatedInputs;
+    String[] invalidInputs;
     Boolean[] boolEquivalents;
 
     public warmUp() {
@@ -53,6 +54,7 @@ public class warmUp {
             if (inputs.length == 1 || inputs.length == 2) {
                 validatedInputs = new String[inputs.length];
                 boolEquivalents = new Boolean[inputs.length];
+                invalidInputs = new String[inputs.length];
 
                 // Validate each input
                 boolean allValid = true;
@@ -65,9 +67,11 @@ public class warmUp {
                 if (allValid) {
                     return inputs;
                 } else if (inputs.length == 2) {
-                    System.out.println("Invalid inputs detected: " + inputs[0] + " " +  inputs[1]);
+                    System.out.println("Invalid input(s) detected: " + inputs[0] + " " +  inputs[1]);
+                    // System.out.println("Invalid inputs found: " + invalidInputs);
                 } else {
                     System.out.println("Invalid input detected: " + inputs[0]);
+                    // System.out.println("Invalid input found: " + invalidInputs[0]);
                 }
             } else {
                 System.out.println("Too many entries: " + line + "\nPlease enter one or two (space-separated) truth values.");
@@ -83,6 +87,7 @@ public class warmUp {
             validatedInputs[index] = input;
             return true;
         } else {
+            invalidInputs[index] = input;
             return false;
         }
     }
@@ -111,9 +116,13 @@ public class warmUp {
         while (true) {    
         String[] values = warmUp.getUserInput(scanner);
         
+        // for (String entry : values) {
+        //     System.out.print("Your entries are: " + entry);    
+        // }
+        
         // for negation; it requires a single input
         if (values.length == 1) {
-            System.out.println("One valid truth value entered: " + warmUp.validatedInputs[0]);
+            System.out.println("\nOne valid truth value entered: " + warmUp.validatedInputs[0]);
             
             boolean negatedValue = warmUp.negation(warmUp.boolEquivalents[0]);
             String formattedBoolean = warmUp.getFormat(warmUp.validatedInputs[0], negatedValue, scanner);
@@ -122,7 +131,7 @@ public class warmUp {
             
         // for all other functions; they require two inputs
         } else if (values.length == 2) {
-            System.out.println("Two valid truth values entered: " + warmUp.validatedInputs[0] + " " + warmUp.validatedInputs[1]);
+            System.out.println("\nTwo valid truth values entered: " + warmUp.validatedInputs[0] + " " + warmUp.validatedInputs[1]);
 
             boolean negation1 = warmUp.negation(warmUp.boolEquivalents[0]);
             boolean negation2 = warmUp.negation(warmUp.boolEquivalents[1]);
