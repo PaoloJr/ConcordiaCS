@@ -45,7 +45,7 @@ public class warmUp {
     // user input values output to a String array with validation
     private String[] getUserInput(Scanner scanner) {
         while (true) {
-            System.out.print("Enter one or two (space-separated) truth values of the same format (True, False, T, F, 0, 1): ");
+            System.out.print("Enter one or two space-separated truth values of the same format (True, False, T, F, 0, 1): ");
             String line = scanner.nextLine().trim();
             String[] inputs = line.split("\\s+");
 
@@ -70,7 +70,7 @@ public class warmUp {
                     System.out.println("Invalid input detected: " + inputs[0]);
                 }
             } else {
-                System.out.println("Too many entries: " + line + "\nPlease enter one or two (space-separated) truth values.");
+                System.out.println("Too many entries: " + line + "\nPlease enter one or two space-separated truth values.");
             }
         }
     }
