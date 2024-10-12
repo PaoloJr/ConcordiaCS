@@ -10,10 +10,10 @@
 - when 2 inputs are sent, and after validation, all functions (including negation) are executed
 - the negation function will uniquely validate the individual inputs
     - ex: 'T' 'T' will output 'F' 'F'
-- user-inputs are validated against the HashMap containing the acceptable inputs as keys and their boolean-equivalents as values
+- user-inputs are validated against the HashMap containing the acceptable inputs as keys and their boolean-equivalents as values, using the `isValidInput` function
 - when validated, the user receives confirmation with a message
 - when the number of inputs is correct, but one of the values is invalid, the user receives an error message along with another prompt to retry
-- the program will return values (from the five functions) dependant on the format of the truth values submitted
+- the program will return values (from the five functions) dependant on the format of the truth values submitted using the `getFormat` function
     - ex: if 'T 0', then for negation the program will return 'F 1'
     - for the other functions, it will output in the format of the first input
 - the program can be terminated with 'CTRL-C'
