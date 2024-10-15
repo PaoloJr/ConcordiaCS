@@ -55,29 +55,29 @@ public class Q3 {
     static void generatePowerSet(char[] set) {
         Queue<List<Character>> queue = new LinkedList<>();
         queue.add(new ArrayList<>());  // Start with the empty set
-        int totalSubsets = 1;
         
         // Iterate through all elements in the set
         for (char element : set) {
             int currentSize = queue.size();
-
+            
             // For each subset already in the queue, create a new subset with the current element
             for (int i = 0; i < currentSize; i++) {
                 List<Character> subset = queue.poll();  // Get the current subset
-
+                
                 // Add the current subset back to the queue (excluding the element)
                 queue.add(new ArrayList<>(subset));
-
+                
                 // Create a new subset that includes the current element and add it to the queue
                 subset.add(element);
                 queue.add(new ArrayList<>(subset));
-                totalSubsets++;
             }
         }
-
+        
         // Print all subsets in the queue
+        int totalSubsets = 0;
         while (!queue.isEmpty()) {
             System.out.println(queue.poll());
+            totalSubsets++;
         }
         System.out.println("Power Set Cardinality: " + totalSubsets);
     }
