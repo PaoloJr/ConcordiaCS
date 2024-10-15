@@ -55,7 +55,7 @@ public class Q3 {
     static void generatePowerSet(char[] set) {
         Queue<List<Character>> queue = new LinkedList<>();
         queue.add(new ArrayList<>());  // Start with the empty set
-        int totalSubsets = 0;
+        int totalSubsets = 1;
         
         // Iterate through all elements in the set
         for (char element : set) {
