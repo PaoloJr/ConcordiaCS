@@ -1,3 +1,5 @@
+package COMP5511.lab1;
+
 import java.util.Scanner;
 
 public class Q3 {
@@ -23,5 +25,6 @@ public class Q3 {
         for (int i = 0; i < size; i++) {
             System.out.print(array[i] + " ");
         }
+        scanner.close();
     }
 }

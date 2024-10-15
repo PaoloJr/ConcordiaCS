@@ -1,3 +1,5 @@
+package COMP5511.lab1;
+
 import java.util.Scanner;
 
 public class Q1 {
@@ -19,5 +21,6 @@ public class Q1 {
         } else {
             System.out.println(num + " is not a prime number.");
         }
+        scanner.close();
     }
 }

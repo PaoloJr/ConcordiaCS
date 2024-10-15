@@ -11,6 +11,10 @@ public class Q2 {
         intArraySize = intArray.length;
     }
 
+    public int getIntArraySize() {
+        return intArraySize;
+    }
+
     public static void main(String[] args) {
         
     }

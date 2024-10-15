@@ -1,3 +1,5 @@
+package COMP5511.lab1;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;

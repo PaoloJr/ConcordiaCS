@@ -1,3 +1,4 @@
+package COMP5511.lab2;
 
 public class problem1 {
     // Method to calculate factorial recursively

@@ -1,3 +1,5 @@
+package COMP5511.lab2;
+
 public class problem2 {
     // Method to calculate the sum of natural numbers recursively
     public static int sum(int n) {
