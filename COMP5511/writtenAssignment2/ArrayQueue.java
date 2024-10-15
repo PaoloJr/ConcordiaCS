@@ -8,10 +8,13 @@ public class ArrayQueue<E> implements Queue<E> {
     // instance variables
     // generic array user for storage
     private E[] data;
+
     // index of the front element
     private int f = 0;
+
     // current number of elements
     private int sz = 0;
+    
     private static final int CAPACITY = 10;
 
     // constructors
@@ -33,6 +36,7 @@ public class ArrayQueue<E> implements Queue<E> {
         return (sz == 0);
     }
 
+    // inserts an element at the rear of the queue
     public void enqueue(E e) throws IllegalStateException {
         if (sz == data.length) throw new IllegalStateException("Queue is full");
         int avail = (f + sz) % data.length;
@@ -40,11 +44,13 @@ public class ArrayQueue<E> implements Queue<E> {
         sz++;
     }
 
+    // returns, but does not remove, the first element of the queue (null if empty)
     public E first() {
         if (isEmpty()) return null;
         return data[f];
     }
 
+    // removes and returns the first element of the queue (null if empty)
     public E dequeue() {
         if (isEmpty()) return null;
         E answer = data[f];
