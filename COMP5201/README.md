@@ -1,15 +1,43 @@
-#### Tutorials
-[NASM docs](https://www.nasm.us/xdoc/2.16.03/html/nasmdoc0.html)
-[NASM assembly code](https://labs.bilimedtech.com/nasm/index.html) \
-[NASM Tutorial](https://cratecode.com/info/nasm-tutorial)
+## Tutorials
+[NASM docs](https://www.nasm.us/xdoc/2.16.03/html/nasmdoc0.html) \
+[NASM assembly lab](https://labs.bilimedtech.com/nasm/index.html) \
+[NASM Tutorial](https://cratecode.com/info/nasm-tutorial) \
+[x86 instruction list](https://en.wikipedia.org/wiki/X86_instruction_listings) \
+[x86 Assembly Guide](https://www.cs.virginia.edu/~evans/cs216/guides/x86.html) \
+[gdb cheatsheet](https://gabriellesc.github.io/teaching/resources/GDB-cheat-sheet.pdf)
 
 
-#### NASM command
-_for building 32-bit object file `.obj`_ \
+## Linux
+_**NASM**_ \
+_for building ELF32 object file with debugging details `.o`_ \
+`nasm -f elf32 -g -F dwarf -o <output_objectFile> <input_asmFile>`
+
+_**gcc**_ \
+_32-bit_
+`gcc -m32 <object-file -o <output-file>`
+
+_**ld**_ \
+`ld -m elf_i386 -o <output_fileName> <input_objectFile>`
+
+_**gdb**_ \
+`gdb ./ELF_binary` - to start `gdb` with the executable \
+    1.`break <some line or function name>` - set a breakpoint \
+    2.`run` \
+    3. `si` - step in
+
+
+## Windows
+_**NASM**_ \
+_for building WinAPI 32-bit object file `.obj`_ \
 `nasm -f win32 <filePath>`
 
-#### Zig build-exe command
+_**zig build-exe**_ \
 `zig build-exe <objectFile> -target x86-windows-gnu -lc`
 
-#### gcc command (using MinGW - for .exe, on Windows)
+_**gcc using MinGW, for `.exe`**_ \
 `gcc <object-file> -o <output-file>.exe`
+
+
+
+
+
