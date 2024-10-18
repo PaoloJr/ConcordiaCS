@@ -3,7 +3,8 @@
 [NASM assembly lab](https://labs.bilimedtech.com/nasm/index.html) \
 [NASM Tutorial](https://cratecode.com/info/nasm-tutorial) \
 [x86 instruction list](https://en.wikipedia.org/wiki/X86_instruction_listings) \
-[x86 Assembly Guide](https://www.cs.virginia.edu/~evans/cs216/guides/x86.html)
+[x86 Assembly Guide](https://www.cs.virginia.edu/~evans/cs216/guides/x86.html) \
+[x86 Registers](https://en.wikibooks.org/wiki/X86_Assembly/X86_Architecture)
 
 
 ## Linux
