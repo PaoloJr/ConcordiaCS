@@ -3,23 +3,30 @@
 [NASM assembly lab](https://labs.bilimedtech.com/nasm/index.html) \
 [NASM Tutorial](https://cratecode.com/info/nasm-tutorial) \
 [x86 instruction list](https://en.wikipedia.org/wiki/X86_instruction_listings) \
-[x86 Assembly Guide](https://www.cs.virginia.edu/~evans/cs216/guides/x86.html) \
-[gdb cheatsheet](https://gabriellesc.github.io/teaching/resources/GDB-cheat-sheet.pdf)
+[x86 Assembly Guide](https://www.cs.virginia.edu/~evans/cs216/guides/x86.html)
 
 
 ## Linux
+_some libraries may be needed_
+- `build-essential`
+- `gcc-multilib` 
+
+[Linux SysCall Table for x86-64](https://blog.rchapman.org/posts/Linux_System_Call_Table_for_x86_64/) \
+[Linux SysCall Table for x86-32](https://syscalls32.paolostivanin.com/)
+
 _**NASM**_ \
 _for building ELF32 object file with debugging details `.o`_ \
 `nasm -f elf32 -g -F dwarf -o <output_objectFile> <input_asmFile>`
 
 _**gcc**_ \
-_32-bit_
+_32-bit_ \
 `gcc -m32 <object-file -o <output-file>`
 
 _**ld**_ \
 `ld -m elf_i386 -o <output_fileName> <input_objectFile>`
 
 _**gdb**_ \
+[gdb cheatsheet](https://gabriellesc.github.io/teaching/resources/GDB-cheat-sheet.pdf) \
 `gdb ./ELF_binary` - to start `gdb` with the executable \
     1.`break <some line or function name>` - set a breakpoint \
     2.`run` \
@@ -36,8 +43,3 @@ _**zig build-exe**_ \
 
 _**gcc using MinGW, for `.exe`**_ \
 `gcc <object-file> -o <output-file>.exe`
-
-
-
-
-
