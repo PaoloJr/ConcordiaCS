@@ -1,4 +1,4 @@
-package COMP5511.writtenAssignmentQ1;
+package COMP5511.writtenAssignment1;
 /*
  * pseudo-code
  * 
