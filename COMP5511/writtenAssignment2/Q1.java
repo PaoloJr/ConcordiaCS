@@ -15,27 +15,27 @@ public class Q1 {
             return;
         }
         
-        // move disks from first peg to last peg
-        System.out.println("First call");
+        // move disks from first peg to second peg
+        // System.out.println("First call");
         recursiveCallCount++;
-        System.out.println("recursiveCallCount: " + recursiveCallCount);
-        towerOfHanoi(disks - 1, firstPeg, secondPeg, thirdPeg, stepsCount);
+        // System.out.println("recursiveCallCount: " + recursiveCallCount);
+        towerOfHanoi(disks - 1, firstPeg, secondPeg, thirdPeg, stepsCount); // T(n - 1)
         System.out.println("Step #" + stepsCount + "\nMove disk " + disks + " from rod " + firstPeg + " to " + secondPeg); // O(1)
         stepsCount++; // O(1)
         
         // move disks from last peg to first peg
-        System.out.println("Second call");
+        // System.out.println("Second call");
         recursiveCallCount++;
-        System.out.println("recursiveCallCount: " + recursiveCallCount);
-        towerOfHanoi(disks - 1, thirdPeg, secondPeg, firstPeg, stepsCount);
+        // System.out.println("recursiveCallCount: " + recursiveCallCount);
+        towerOfHanoi(disks - 1, thirdPeg, secondPeg, firstPeg, stepsCount); // T(n - 1)
         System.out.println("Step #" + stepsCount + "\nMove disk " + disks + " from rod " + secondPeg + " to " + thirdPeg); // O(1)
         stepsCount++; // O(1)
         
         // move disks from first peg to last peg
-        System.out.println("Third call");
+        // System.out.println("Third call");
         recursiveCallCount++;
-        System.out.println("recursiveCallCount: " + recursiveCallCount);
-        towerOfHanoi(disks - 1, firstPeg, secondPeg, thirdPeg, stepsCount);        
+        // System.out.println("recursiveCallCount: " + recursiveCallCount);
+        towerOfHanoi(disks - 1, firstPeg, secondPeg, thirdPeg, stepsCount); // T(n - 1)        
     }
 
     public static void main(String[] args) {
