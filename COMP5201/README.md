@@ -3,6 +3,7 @@
 [NASM assembly lab](https://labs.bilimedtech.com/nasm/index.html) \
 [NASM Tutorial](https://cratecode.com/info/nasm-tutorial) \
 [x86 instruction list](https://en.wikipedia.org/wiki/X86_instruction_listings) \
+[x86 OpCode Reference](http://ref.x86asm.net/) \
 [x86 Assembly Guide](https://www.cs.virginia.edu/~evans/cs216/guides/x86.html) \
 [x86 Registers](https://en.wikibooks.org/wiki/X86_Assembly/X86_Architecture)
 
@@ -21,7 +22,8 @@ _for building ELF32 object file with debugging details `.o`_ \
 
 _**gcc**_ \
 _32-bit_ \
-`gcc -m32 <object-file -o <output-file>`
+`gcc -m32 -no-pie -nostdlib <object-file -o <output-file>`
+- `-nostdlib`, when not using C libraries
 
 _**ld**_ \
 `ld -m elf_i386 -o <output_fileName> <input_objectFile>`
@@ -29,9 +31,10 @@ _**ld**_ \
 _**gdb**_ \
 [gdb cheatsheet](https://gabriellesc.github.io/teaching/resources/GDB-cheat-sheet.pdf) \
 `gdb ./ELF_binary` - to start `gdb` with the executable \
-    1.`break <some line or function name>` - set a breakpoint \
-    2.`run` \
-    3. `si` - step in
+    1.`layout asm` - show each assembly line
+    2.`break <some line or function name>` - set a breakpoint \
+    3.`run` \
+    4. `si` - step in
 
 
 ## Windows
