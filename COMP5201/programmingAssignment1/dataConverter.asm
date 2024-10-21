@@ -25,7 +25,7 @@ section .bss ; unintialized data segment
     userInputInteger resd 1                 ; hold the converted value as signed integer (1 double word, 32-bits)
     sign resb 1                             ; reserve 1 byte for the sign
 
-    userInputIntDiv resd 1             ; 4 bytes to hold the halved value
+    userInputIntDiv resd 1                  ; 4 bytes to hold the halved value
     halvedString resb 6                     ; reserve 6 bytes, same as user input
 
     userInputIntMul resd 1                  ; 4 bytes to hold doubled value    
@@ -136,6 +136,7 @@ div_convert_loop:                           ; do-while loop to convert
     cmp eax, 0
     jnz div_convert_loop
 
+    pop eax
 
     ; Handle negative sign after conversion based on original input
     cmp byte [sign], 1                      ; Check original input
@@ -159,7 +160,6 @@ mul_convert_loop:                           ; do-while loop to convert
     add dl, '0'
     dec edi
     mov [edi], dl
-    mov ebx, eax                            ; move quotient back into ebx
     cmp eax, 0
     jnz mul_convert_loop
 
@@ -172,6 +172,7 @@ mul_convert_loop:                           ; do-while loop to convert
     dec edi 
 
 
+; printing section
 continue:
     ; print "The number entered is: "
     mov eax, 4                              ; sys_write
@@ -236,8 +237,10 @@ continue:
     mov edx, lenNewline
     int 0x80
 
+
+
+; program exit
 end:
-    ; program exit
     mov eax, 1                                 ; syscall number for exit
     mov ebx, 0                                 ; exit status
     int 0x80
