@@ -19,10 +19,10 @@ section .bss ; unintialized data segment
     userInputLength resd 1              ; 2 bytes for the length
 
     userInputInteger resd 1             ; hold the converted value as signed integer (1 double word, 32-bits)
-    userInputIntegerLength resd 1       ; 2 bytes for the length
     sign resb 1                         ; reserve 1 byte for the sign
 
     userInputIntDivision resb 6         ; reserve 6 bytes, same as user input
+    userInputIntDivLength resd 1        ; 2 bytes for the length
 
 section .text
 	global _start
@@ -74,7 +74,7 @@ first_digit:
 
 conversion_loop:                        ; (i = 2 to 0 in the formula)
     inc edx
-    cmp edx, ecx                          ; Has the first digit been accounted for yet?
+    cmp edx, ecx                        
     jge apply_sign                      ; If just first digit, apply the sign, else convert
 
     mov bl, [esi + edx]                 ; Get di
@@ -145,8 +145,8 @@ continue:
     mov eax, 4
     mov ebx, 1
     mov ecx, edi                    
-    mov edx, userInputIntDivision    
-    sub edx, edi                     ; Calculate the actual length of the string
+    mov edx, [userInputIntDivLength]   
+    sub edx, edi                    
     int 0x80
 
     ; Print newline after the output
