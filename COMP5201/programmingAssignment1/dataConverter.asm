@@ -25,7 +25,7 @@ section .bss ; unintialized data segment
     userInputInteger resd 1                 ; hold the converted value as signed integer (1 double word, 32-bits)
     sign resb 1                             ; reserve 1 byte for the sign
 
-    userInputIntDivision resd 1             ; 4 bytes to hold the halved value
+    userInputIntDiv resd 1             ; 4 bytes to hold the halved value
     halvedString resb 6                     ; reserve 6 bytes, same as user input
 
     userInputIntMul resd 1                  ; 4 bytes to hold doubled value    
@@ -97,27 +97,34 @@ apply_sign:
     jne store_int
 
 store_int:
+    ; eax and ebx will have the same value
+    ; eax will be used for division
+    ; ebx will be used for multiplication
     mov ebx, eax                            ; store in ebx
     mov [userInputInteger], eax             ; store in memory
 
-    ; division
-    mov eax, [userInputInteger]             ; load original value for division
+    ; division setup
     sar eax, 1                              ; divide eax by 2 (shift arithmetic right)
-    mov [userInputIntDivision], eax         ; store halved value
+    mov [userInputIntDiv], eax              ; store halved value
     mov edi, halvedString + 5               ; point to the end of buffer
-    mov byte [edi], 0
+    mov byte [edi], 0                       ; null terminate
     call convert_div_toString                  
 
-    ; multiplication
-    mov ebx, [userInputInteger]             ; reload value for multiplication
+    ; multiplication setup
     sal ebx, 1                              ; multiply ebx by 2 (shift arithmetic left)
-    mov [userInputIntMul], eax              ; store the doubled value
+    mov [userInputIntMul], ebx              ; store the doubled value
     mov edi, doubledString + 5              ; Point edi to the end of the buffer
     mov byte [edi], 0                       ; Null-terminate
     call convert_mul_toString           
 
 convert_div_toString:                      
-    push eax                            
+    push eax        
+
+    ; Check if the value is negative and handle it
+    cmp eax, 0
+    jge div_convert_loop                    ; If non-negative, proceed to conversion
+    neg eax                                 ; If negative, make it positive for conversion
+    mov byte [sign], 1                      ; Set the sign to indicate it's negative                    
 
 div_convert_loop:                           ; do-while loop to convert                           
     mov edx, 0
@@ -129,7 +136,6 @@ div_convert_loop:                           ; do-while loop to convert
     cmp eax, 0
     jnz div_convert_loop
 
-    pop eax
 
     ; Handle negative sign after conversion based on original input
     cmp byte [sign], 1                      ; Check original input
@@ -138,7 +144,13 @@ div_convert_loop:                           ; do-while loop to convert
     dec edi                                 ; Adjust edi for the sign
 
 convert_mul_toString:
-    push eax
+    push ebx
+
+    ; Check if the value is negative and handle it
+    cmp ebx, 0
+    jge mul_convert_loop                    ; If non-negative, proceed to conversion
+    neg ebx                                 ; If negative, make it positive for conversion
+    mov byte [sign], 1                      ; Set the sign to indicate it's negative
 
 mul_convert_loop:                           ; do-while loop to convert
     mov edx, 0
@@ -147,14 +159,18 @@ mul_convert_loop:                           ; do-while loop to convert
     add dl, '0'
     dec edi
     mov [edi], dl
+    mov ebx, eax                            ; move quotient back into ebx
     cmp eax, 0
     jnz mul_convert_loop
+
+    pop ebx
 
     ; Handle negative sign after conversion based on original input
     cmp byte [sign], 1                      ; Check original input
     jne continue                            ; If non-negative, skip sign
     mov byte [edi-1], '-'                   ; Prepend '-'
     dec edi 
+
 
 continue:
     ; print "The number entered is: "
@@ -188,9 +204,8 @@ continue:
     ; print halved signed integer
     mov eax, 4
     mov ebx, 1
-    mov ecx, edi                    
-    mov edx, halvedString
-    sub edx, [halvedString]                 
+    lea ecx, halvedString
+    mov edx, 6                              ; print 6 characters
     int 0x80
 
     ; Print newline after the output
@@ -210,8 +225,8 @@ continue:
     ; print doubled signed integer
     mov eax, 4
     mov ebx, 1
-    mov ecx, doubledString                    
-    mov edx, [doubledString] 
+    lea ecx, doubledString                    
+    mov edx, 6                               ; print 6 characters
     int 0x80
 
     ; Print newline after the output
