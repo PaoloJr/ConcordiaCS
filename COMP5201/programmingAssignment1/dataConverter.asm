@@ -1,130 +1,174 @@
 section .data ; initialized data segment
 	firstPrompt db "Enter an integer (+/-) up to four digits long: ", 0xA, 0
-    lenFirstPrompt equ $-firstPrompt    ; length of firstPrompt
+    lenFirstPrompt equ $-firstPrompt        ; length of firstPrompt
 
 	outMsg1 db "The number entered is: ", 0xA, 0
-    lenOutMsg1 equ $-outMsg1            ; length of outMsg1
+    lenOutMsg1 equ $-outMsg1                ; length of outMsg1
 
     outMsgDiv db "Half of the entered number is: ", 0xA, 0
     lenOutMsgDiv equ $-outMsgDiv
 
+    outMsgMul db "Double of the entered number is: ", 0xA, 0
+    lenOutMsgMul equ $-outMsgMul
+
     extraOutMsg db "The converted string is: ", 0xA, 0
-    lenOutMsg2 equ $-extraOutMsg        ; length of outMsg2
+    lenOutMsg2 equ $-extraOutMsg            ; length of outMsg2
 
     newline db 0xA, 0
     lenNewline equ $-newline
 
+
 section .bss ; unintialized data segment
-	userInput resb 6                    ; 6 bytes to hold the (ASCII string) plus newline
-    userInputLength resd 1              ; 2 bytes for the length
+	userInput resb 6                        ; 6 bytes to hold the (ASCII string) plus newline
+    userInputLength resd 1                  ; 4 bytes for the length
 
-    userInputInteger resd 1             ; hold the converted value as signed integer (1 double word, 32-bits)
-    sign resb 1                         ; reserve 1 byte for the sign
+    userInputInteger resd 1                 ; hold the converted value as signed integer (1 double word, 32-bits)
+    sign resb 1                             ; reserve 1 byte for the sign
 
-    userInputIntDivision resb 6         ; reserve 6 bytes, same as user input
-    userInputIntDivLength resd 1        ; 2 bytes for the length
+    userInputIntDivision resd 1             ; 4 bytes to hold the halved value
+    halvedString resb 6                     ; reserve 6 bytes, same as user input
+
+    userInputIntMul resd 1                  ; 4 bytes to hold doubled value    
+    doubledString resb 6                    ; doubled value, 6 bytes, same as user input
+
 
 section .text
 	global _start
 
+
 _start:
     ; print "Enter an integer..." to user
-    mov eax, 4                          ; syscall number for sys_write
-    mov ebx, 1                          ; stdout, default output device 
+    mov eax, 4                              ; syscall number for sys_write
+    mov ebx, 1                              ; stdout, default output device 
     mov ecx, firstPrompt
-    mov edx, lenFirstPrompt             ; length of firstPrompt
+    mov edx, lenFirstPrompt                 ; length of firstPrompt
     int 0x80
 
     ; read user input
-    mov eax, 3                          ; syscall number for sys_read
-    mov ebx, 0                          ; stdin, default input device
-    lea ecx, userInput                  ; load address of the buffer
-    mov edx, 6                          ; bytes to read (sign + 4 chars)
+    mov eax, 3                              ; syscall number for sys_read
+    mov ebx, 0                              ; stdin, default input device
+    lea ecx, userInput                      ; load address of the buffer
+    mov edx, 6                              ; bytes to read (sign + 4 chars)
     int 0x80
 
-    mov [userInputLength], eax          ; store the number of bytes read
+    mov [userInputLength], eax              ; store the number of bytes read
     cmp dword [userInputLength], 0
-    je end
-    dec dword [userInputLength]         ; subtract 1 to exclude newline
+    je end                                  ; jump if equal to
+    dec dword [userInputLength]             ; subtract 1 to exclude newline
 
 
     ; convert string input to integer value
     mov esi, userInput
-    mov ecx, [userInputLength]          ; initialize the loop counter
-    mov edx, 0                          ; edx will be used as index counter
-    mov eax, 0                          ; eax will accumulate final integer
-    mov byte [sign], 0                  ; initialize sign to be positive
+    mov ecx, [userInputLength]              ; initialize the loop counter
+    mov edx, 0                              ; edx will be used as index counter
+    mov eax, 0                              ; eax will accumulate final integer
+    mov byte [sign], 0                      ; initialize sign to be positive
 
     ; handle negative sign & decrement length
-    cmp byte [esi], '-'                 ; check value of first byte with '-'
-    jne first_digit                     ; if not negative jump
-    mov byte [sign], 1                  ; otherwise, change value of sign variable
+    cmp byte [esi], '-'                     ; check value of first byte with '-'
+    jne first_digit                         ; if not negative jump
+    mov byte [sign], 1                      ; otherwise, change value of sign variable
 
-    ; If number is negative, get and convert first digit *before* loop and increment index
-    mov bl, byte [esi + edx]            ; Retrieve first digit before incrementing index
+    ; If number is negative, get and convert first digit before loop and increment index
+    mov bl, byte [esi + edx]                ; Retrieve first digit before incrementing index
     sub bl, '0'
     movzx eax, bl
-    inc edx                             ; skip '-' if integer is negative
+    inc edx                                 ; skip '-' if integer is negative
 
 ; get the first digit
 first_digit:
-    mov bl, [esi + edx]                 ; get d3
-    sub bl, '0'                         ; d3 - 48
+    mov bl, [esi + edx]                     ; get d3
+    sub bl, '0'                             ; d3 - 48
     movzx eax, bl                       
 
-conversion_loop:                        ; (i = 2 to 0 in the formula)
+conversion_loop:                            ; (i = 2 to 0 in the formula)
     inc edx
     cmp edx, ecx                        
-    jge apply_sign                      ; If just first digit, apply the sign, else convert
+    jge apply_sign                          ; If just first digit, apply the sign, else convert
 
-    mov bl, [esi + edx]                 ; Get di
-    sub bl, '0'                         ; di - 48
-    imul eax, eax, 10                   ; value = value * 10
-    add eax, ebx                        ; value = value + (di - 48)
-    jmp conversion_loop                 ; Automatically decrements ecx and jumps if ecx > 0
+    mov bl, [esi + edx]                     ; Get di
+    sub bl, '0'                             ; di - 48
+    imul eax, eax, 10                       ; value = value * 10
+    add eax, ebx                            ; value = value + (di - 48)
+    jmp conversion_loop                     ; Automatically decrements ecx and jumps if ecx > 0
 
 apply_sign:
     cmp byte [sign], 1
     jne store_int
-    neg eax
 
 store_int:
-    mov ebx, eax                        ; store in ebx
-    mov [userInputInteger], eax         ; store in memory
-    sar eax, 1                          ; divide eax by 2 (shift arithmetic right)
+    mov ebx, eax                            ; store in ebx
+    mov [userInputInteger], eax             ; store in memory
 
-    ; convert halved integer to string
-    mov edi, userInputIntDivision
+    ; division
+    mov eax, [userInputInteger]             ; load original value for division
+    sar eax, 1                              ; divide eax by 2 (shift arithmetic right)
+    mov [userInputIntDivision], eax         ; store halved value
+    mov edi, halvedString + 5               ; point to the end of buffer
     mov byte [edi], 0
+    call convert_div_toString                  
 
-    cmp eax, 0                          ; if negative, store sign and negate
-    jge div_convert
-    mov byte [userInputIntDivision], '-'
-    neg eax
+    ; multiplication
+    mov ebx, [userInputInteger]             ; reload value for multiplication
+    sal ebx, 1                              ; multiply ebx by 2 (shift arithmetic left)
+    mov [userInputIntMul], eax              ; store the doubled value
+    mov edi, doubledString + 5              ; Point edi to the end of the buffer
+    mov byte [edi], 0                       ; Null-terminate
+    call convert_mul_toString           
 
-div_convert:                            ; do-while loop to convert
+convert_div_toString:                      
+    push eax                            
+
+div_convert_loop:                           ; do-while loop to convert                           
     mov edx, 0
-    mov ebx, 10
-    div ebx                             ; eax = quotient, edx = remainder
+    mov ecx, 10
+    idiv ecx                                ; eax = quotient, edx = remainder
     add dl, '0'
     dec edi
     mov [edi], dl
-    test eax, eax
-    jnz div_convert
+    cmp eax, 0
+    jnz div_convert_loop
+
+    pop eax
+
+    ; Handle negative sign after conversion based on original input
+    cmp byte [sign], 1                      ; Check original input
+    jne continue                            ; If non-negative, skip sign
+    mov byte [edi-1], '-'                   ; Prepend '-'
+    dec edi                                 ; Adjust edi for the sign
+
+convert_mul_toString:
+    push eax
+
+mul_convert_loop:                           ; do-while loop to convert
+    mov edx, 0
+    mov ecx, 10
+    idiv ecx                                ; eax = quotient, edx = remainder
+    add dl, '0'
+    dec edi
+    mov [edi], dl
+    cmp eax, 0
+    jnz mul_convert_loop
+
+    ; Handle negative sign after conversion based on original input
+    cmp byte [sign], 1                      ; Check original input
+    jne continue                            ; If non-negative, skip sign
+    mov byte [edi-1], '-'                   ; Prepend '-'
+    dec edi 
 
 continue:
     ; print "The number entered is: "
-    mov eax, 4                          ; sys_write
-    mov ebx, 1                          ; stdout
-    mov ecx, outMsg1                    ; address of of outMsg1
-    mov edx, lenOutMsg1                 ; length of outMsg1
+    mov eax, 4                              ; sys_write
+    mov ebx, 1                              ; stdout
+    mov ecx, outMsg1                        ; address of of outMsg1
+    mov edx, lenOutMsg1                     ; length of outMsg1
     int 0x80
 
     ; print the user-entered input (4-digit signed integer)
-    mov eax, 4                          ; sys_write
-    mov ebx, 1                          ; stdout
-    lea ecx, userInput                  ; address of the buffer
-    mov edx, [userInputLength]          ; bytes to write (up to userInputLength)
+    mov eax, 4                              ; sys_write
+    mov ebx, 1                              ; stdout
+    lea ecx, userInput                      ; address of the buffer
+    mov edx, [userInputLength]              ; bytes to write (up to userInputLength)
     int 0x80
 
     ; Print newline after the output
@@ -135,18 +179,18 @@ continue:
     int 0x80
 
     ; print "Half the entered..."
-    mov eax, 4                          ; sys_write
-    mov ebx, 1                          ; stdout
-    mov ecx, outMsgDiv                  ; address of of outMsgDiv
-    mov edx, lenOutMsgDiv               ; length of outMsgDiv
+    mov eax, 4                              ; sys_write
+    mov ebx, 1                              ; stdout
+    mov ecx, outMsgDiv                      ; address of of outMsgDiv
+    mov edx, lenOutMsgDiv                   ; length of outMsgDiv
     int 0x80
 
     ; print halved signed integer
     mov eax, 4
     mov ebx, 1
     mov ecx, edi                    
-    mov edx, [userInputIntDivLength]   
-    sub edx, edi                    
+    mov edx, halvedString
+    sub edx, [halvedString]                 
     int 0x80
 
     ; Print newline after the output
@@ -156,9 +200,29 @@ continue:
     mov edx, lenNewline
     int 0x80
 
+    ; print "Double of the entered..."
+    mov eax, 4
+    mov ebx, 1
+    mov ecx, outMsgMul
+    mov edx, lenOutMsgMul
+    int 0x80
+
+    ; print doubled signed integer
+    mov eax, 4
+    mov ebx, 1
+    mov ecx, doubledString                    
+    mov edx, [doubledString] 
+    int 0x80
+
+    ; Print newline after the output
+    mov eax, 4
+    mov ebx, 1
+    mov ecx, newline
+    mov edx, lenNewline
+    int 0x80
 
 end:
     ; program exit
-    mov eax, 1                          ; syscall number for exit
-    mov ebx, 0                          ; exit status
+    mov eax, 1                                 ; syscall number for exit
+    mov ebx, 0                                 ; exit status
     int 0x80
