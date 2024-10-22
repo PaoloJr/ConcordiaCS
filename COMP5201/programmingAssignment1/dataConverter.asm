@@ -26,10 +26,10 @@ section .bss ; unintialized data segment
     sign resb 1                             ; reserve 1 byte for the sign
 
     userInputIntDiv resd 1                  ; 4 bytes to hold the halved value
-    halvedString resb 6                     ; reserve 6 bytes, same as user input
+    halvedString resb 6                     ; halved value, reserve 6 bytes
 
     userInputIntMul resd 1                  ; 4 bytes to hold doubled value    
-    doubledString resb 6                    ; doubled value, 6 bytes, same as user input
+    doubledString resb 8                    ; doubled value, reserve 8 bytes
 
 
 section .text
@@ -94,7 +94,8 @@ conversion_loop:                            ; (i = 2 to 0 in the formula)
 
 apply_sign:
     cmp byte [sign], 1
-    jne store_int
+    jne store_int                           ; if sign != 1, skip negation
+    neg eax                                 ; else, negate eax
 
 store_int:
     ; eax and ebx will have the same value
@@ -106,16 +107,19 @@ store_int:
     ; division setup
     sar eax, 1                              ; divide eax by 2 (shift arithmetic right)
     mov [userInputIntDiv], eax              ; store halved value
-    mov edi, halvedString + 5               ; point to the end of buffer
-    mov byte [edi], 0                       ; null terminate
-    call convert_div_toString                  
+    mov edi, halvedString + 6               ; Point edi to the end of halvedString (6 bytes buffer)
+    mov byte [edi], 0                       ; Null-terminate
+    call convert_div_toString               ; Convert halved value to string
 
     ; multiplication setup
+    mov eax, ebx
     sal ebx, 1                              ; multiply ebx by 2 (shift arithmetic left)
     mov [userInputIntMul], ebx              ; store the doubled value
-    mov edi, doubledString + 5              ; Point edi to the end of the buffer
+    mov edi, doubledString + 8              ; Point edi to the end of doubledString (7 bytes buffer)
     mov byte [edi], 0                       ; Null-terminate
-    call convert_mul_toString           
+    call convert_mul_toString               ; Convert doubled value to string
+
+    jmp continue
 
 convert_div_toString:                      
     push eax        
@@ -124,7 +128,7 @@ convert_div_toString:
     cmp eax, 0
     jge div_convert_loop                    ; If non-negative, proceed to conversion
     neg eax                                 ; If negative, make it positive for conversion
-    mov byte [sign], 1                      ; Set the sign to indicate it's negative                    
+    mov byte [sign], 1                      ; Set the sign to indicate it's negative     
 
 div_convert_loop:                           ; do-while loop to convert                           
     mov edx, 0
@@ -136,22 +140,31 @@ div_convert_loop:                           ; do-while loop to convert
     cmp eax, 0
     jnz div_convert_loop
 
-    pop eax
-
     ; Handle negative sign after conversion based on original input
-    cmp byte [sign], 1                      ; Check original input
-    jne continue                            ; If non-negative, skip sign
-    mov byte [edi-1], '-'                   ; Prepend '-'
+    cmp byte [sign], 1                      ; compare first byte with stored sign variable
+    jne div_done                            ; if positive, skip prepend
     dec edi                                 ; Adjust edi for the sign
+    mov byte [edi], '-'                     ; Prepend '-'
+
+div_done:
+    pop eax                                 ; Restore original halved value
+    mov [halvedString], edi                 ; store string for printing
+    mov byte [edi + 6], 0
+    mov byte [sign], 0                      ; Reset sign
+    ret                                     ; Return to calling function
+
 
 convert_mul_toString:
     push ebx
 
     ; Check if the value is negative and handle it
     cmp ebx, 0
-    jge mul_convert_loop                    ; If non-negative, proceed to conversion
+    jge mul_convert_start                   ; If non-negative, proceed to conversion
     neg ebx                                 ; If negative, make it positive for conversion
     mov byte [sign], 1                      ; Set the sign to indicate it's negative
+
+mul_convert_start:
+    mov eax, ebx                            ; Load the doubled value into eax
 
 mul_convert_loop:                           ; do-while loop to convert
     mov edx, 0
@@ -163,13 +176,17 @@ mul_convert_loop:                           ; do-while loop to convert
     cmp eax, 0
     jnz mul_convert_loop
 
-    pop ebx
-
     ; Handle negative sign after conversion based on original input
-    cmp byte [sign], 1                      ; Check original input
-    jne continue                            ; If non-negative, skip sign
-    mov byte [edi-1], '-'                   ; Prepend '-'
+    cmp byte [sign], 1                      ; compare first byte with stored sign variable
+    jne mul_done                            ; if positive, skip prepend
     dec edi 
+    mov byte [edi], '-'                     ; Prepend '-'
+
+mul_done:
+    pop ebx                                 ; Restore ebx
+    mov [doubledString], edi                ; store string for printing
+    mov byte [sign], 0                      ; Reset sign
+    ret
 
 
 ; printing section
@@ -205,8 +222,8 @@ continue:
     ; print halved signed integer
     mov eax, 4
     mov ebx, 1
-    lea ecx, halvedString
-    mov edx, 6                              ; print 6 characters
+    lea ecx, [halvedString]
+    mov edx, 6                          
     int 0x80
 
     ; Print newline after the output
@@ -226,8 +243,9 @@ continue:
     ; print doubled signed integer
     mov eax, 4
     mov ebx, 1
-    lea ecx, doubledString                    
-    mov edx, 6                               ; print 6 characters
+    lea ecx, [doubledString]                    
+    mov edx, doubledString + 8
+    ; sub edx, ecx
     int 0x80
 
     ; Print newline after the output
