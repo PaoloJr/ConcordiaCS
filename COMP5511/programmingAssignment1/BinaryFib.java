@@ -1,4 +1,5 @@
-package COMP5511.assignment1;
+package COMP5511.programmingAssignment1;
+
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.math.BigInteger; 
