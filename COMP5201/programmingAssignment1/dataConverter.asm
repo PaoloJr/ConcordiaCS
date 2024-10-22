@@ -26,10 +26,10 @@ section .bss ; unintialized data segment
     sign resb 1                             ; reserve 1 byte for the sign
 
     userInputIntDiv resd 1                  ; 4 bytes to hold the halved value
-    halvedString resb 6                     ; halved value, reserve 6 bytes
+    halvedString resb 9                     ; halved value, reserve 8 bytes
 
     userInputIntMul resd 1                  ; 4 bytes to hold doubled value    
-    doubledString resb 8                    ; doubled value, reserve 8 bytes
+    doubledString resb 10                   ; doubled value, reserve 8 bytes
 
 
 section .text
@@ -107,7 +107,7 @@ store_int:
     ; division setup
     sar eax, 1                              ; divide eax by 2 (shift arithmetic right)
     mov [userInputIntDiv], eax              ; store halved value
-    mov edi, halvedString + 6               ; Point edi to the end of halvedString (6 bytes buffer)
+    mov edi, halvedString + 9               ; Point edi to the end of halvedString (6 bytes buffer)
     mov byte [edi], 0                       ; Null-terminate
     call convert_div_toString               ; Convert halved value to string
 
@@ -115,7 +115,7 @@ store_int:
     mov eax, ebx
     sal ebx, 1                              ; multiply ebx by 2 (shift arithmetic left)
     mov [userInputIntMul], ebx              ; store the doubled value
-    mov edi, doubledString + 8              ; Point edi to the end of doubledString (7 bytes buffer)
+    mov edi, doubledString + 10             ; Point edi to the end of doubledString (7 bytes buffer)
     mov byte [edi], 0                       ; Null-terminate
     call convert_mul_toString               ; Convert doubled value to string
 
@@ -223,7 +223,7 @@ continue:
     mov eax, 4
     mov ebx, 1
     lea ecx, [halvedString]
-    mov edx, 6                          
+    mov edx, 9                     
     int 0x80
 
     ; Print newline after the output
@@ -244,8 +244,7 @@ continue:
     mov eax, 4
     mov ebx, 1
     lea ecx, [doubledString]                    
-    mov edx, doubledString + 8
-    ; sub edx, ecx
+    mov edx, 10
     int 0x80
 
     ; Print newline after the output
