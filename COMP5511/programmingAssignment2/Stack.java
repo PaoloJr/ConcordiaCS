@@ -1,9 +1,17 @@
 package COMP5511.programmingAssignment2;
 
+import java.util.ArrayList;
+
 class Stack {
     private int[] arr;
     private int top;
     private int capacity;
+    private ArrayList<String> arrL;
+
+    // Constructor using ArrayList
+    public Stack() {
+        arrL = new ArrayList<String>();
+    }
 
     // Constructor to initialize the stack with a given capacity
     public Stack(int size) {
