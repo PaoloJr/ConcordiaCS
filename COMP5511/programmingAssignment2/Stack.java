@@ -2,50 +2,41 @@ package COMP5511.programmingAssignment2;
 
 import java.util.ArrayList;
 
-class Stack {
-    private int[] arr;
+class Stack<T> {
     private int top;
     private int capacity;
-    private ArrayList<String> arrL;
-
+    private ArrayList<T> arrL;
+    
     // Constructor using ArrayList
-    public Stack() {
-        arrL = new ArrayList<String>();
-    }
-
-    // Constructor to initialize the stack with a given capacity
     public Stack(int size) {
-        arr = new int[size];
-        capacity = size;
-        top = -1;
+        this.capacity = size;
+        arrL = new ArrayList<>(capacity);
+        this.top = -1;
     }
 
     // Push an element onto the stack
-    public void push(int value) {
+    public void push(T item) {
         if (isFull()) {
-            System.out.println("Stack Overflow! Unable to push " + value);
+            System.out.println("Stack is full! Unable to push " + item);
             return;
         }
-        arr[++top] = value;
+        arrL.add(++top, item);
     }
 
     // Pop an element from the stack
-    public int pop() {
+    public T pop() {
         if (isEmpty()) {
-            System.out.println("Stack Underflow!");
-            return -1;
+            System.out.println("Stack is empty! Unable to pop ");
         }
-        return arr[top--];
+        return arrL.remove(top--);
     }
 
     // Peek at the top element of the stack
-    public int peek() {
-        if (!isEmpty()) {
-            return arr[top];
-        } else {
-            System.out.println("Stack is empty!");
-            return -1;
+    public T peek() {
+        if (isEmpty()) {
+            throw new RuntimeException("Stack is empty");
         }
+        return arrL.get(top);
     }
 
     // Return the number of elements in the stack
@@ -71,7 +62,7 @@ class Stack {
         }
 
         for (int i = 0; i <= top; i++) {
-            System.out.print(arr[i] + " ");
+            System.out.print(arrL.get(i) + " ");
         }
         System.out.println();
     }
@@ -84,7 +75,7 @@ class Stack {
 
 
     public static void main(String[] args) {
-        Stack stack = new Stack(5);
+        Stack<Integer> stack = new Stack<>(5);
 
         stack.push(10);
         stack.push(20);
