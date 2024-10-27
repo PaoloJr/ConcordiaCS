@@ -8,18 +8,13 @@ class Stack<T> {
     private ArrayList<T> arrL;
     
     // Constructor using ArrayList
-    public Stack(int size) {
-        this.capacity = size;
+    public Stack() {
         arrL = new ArrayList<>(capacity);
         this.top = -1;
     }
 
     // Push an element onto the stack
     public void push(T item) {
-        if (isFull()) {
-            System.out.println("Stack is full! Unable to push " + item);
-            return;
-        }
         arrL.add(++top, item);
     }
 
@@ -27,6 +22,7 @@ class Stack<T> {
     public T pop() {
         if (isEmpty()) {
             System.out.println("Stack is empty! Unable to pop ");
+            return null;
         }
         return arrL.remove(top--);
     }
@@ -69,13 +65,14 @@ class Stack<T> {
 
     // Clear all elements from the stack
     public void clear() {
+        arrL.clear();
         top = -1;
         System.out.println("Stack cleared.");
     }
 
 
     public static void main(String[] args) {
-        Stack<Integer> stack = new Stack<>(5);
+        Stack<Integer> stack = new Stack<>();
 
         stack.push(10);
         stack.push(20);

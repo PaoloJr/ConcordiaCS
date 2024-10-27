@@ -1,5 +1,6 @@
 package COMP5511.programmingAssignment2;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -8,10 +9,11 @@ import java.io.File;
 import java.io.PrintStream;
 import COMP5511.programmingAssignment2.Stack;
 
+
 public class Arithmetic {
     private static Map<String, Integer> opsAndPreceMap;
     
-    public Arithmetic() {
+    static {
         opsAndPreceMap = new HashMap<String, Integer>();
         opsAndPreceMap.put("(", 1);
         opsAndPreceMap.put(")", 1);
@@ -27,7 +29,169 @@ public class Arithmetic {
         opsAndPreceMap.put("==", 6);
         opsAndPreceMap.put("!=", 6);
     }
+    public static void main(String[] args) {
+        String inputFileName = "COMP5511/programmingAssignment2/arithmeticIn.txt";
+        String outputFileName = "COMP5511/programmingAssignment2/arithmeticOut.txt";
+
+        ArrayList<String> expressions = readExpressionsFromFile(inputFileName);
+
+        try (PrintStream out = new PrintStream(new File(outputFileName))) {
+            for (String expression : expressions) {
+                evaluateExpressions(expression, out);
+            }
+        } catch (FileNotFoundException e) {
+            System.err.println("Error opening output file: " + outputFileName);
+        }
+    }
+
+    private static ArrayList<String> readExpressionsFromFile(String fileName) {
+        ArrayList<String> expressions = new ArrayList<>();
+        
+        try (Scanner scanner = new Scanner(new File(fileName))) {
+            while (scanner.hasNextLine()) {
+                expressions.add(scanner.nextLine());
+            }
+        } catch (FileNotFoundException e) {
+            System.err.println("File not found: " + fileName);
+        }
+        return expressions;
+    }    
     
+    public static void evaluateExpressions(String expression, PrintStream out) {
+        try {
+            // Tokenize the expression (ArrayList)
+            ArrayList<String> tokens = tokenizeExpression(expression);
+            for (String token : tokens) {
+                System.out.println(token);
+            }
+
+            // Evaluate the expression using two stacks (operands and operators)
+            int result = evaluateInfix(tokens);
+
+            // Output the result to file
+            out.println("Expression: " + expression);
+            out.println("Result: " + (isBooleanExpression(tokens) ? (result == 1 ? "true" : "false") : result));
+            out.println();
+        } catch (Exception e) {
+            out.println("Expression: " + expression);
+            out.println("Error: " + e.getMessage());
+            out.println();
+        }
+    }
+
+    private static boolean isBooleanExpression(ArrayList<String> tokens) {
+        for (String token : tokens) {
+            if (token.equals(">") || token.equals("<") || token.equals(">=") || token.equals("<=")
+                    || token.equals("==") || token.equals("!=")) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static ArrayList<String> tokenizeExpression(String expression) {
+        ArrayList<String> tokens = new ArrayList<>();
+        int i = 0;
+        while (i < expression.length()) {
+            char currentChar = expression.charAt(i);
+
+            // Skip whitespace
+            if (Character.isWhitespace(currentChar)) {
+                i++;
+                continue;
+            }
+
+            // Handle numbers
+            if (Character.isDigit(currentChar)) {
+                StringBuilder number = new StringBuilder();
+                while (i < expression.length() && Character.isDigit(currentChar)) {
+                    number.append(expression.charAt(i));
+                    i++;
+                }
+                tokens.add(number.toString());
+                continue;
+            }
+
+            // Handle multi-character operators
+            if (i + 1 < expression.length()) {
+                String twoCharOp = expression.substring(i, i + 2);
+                if (isOperator(twoCharOp)) {
+                    tokens.add(twoCharOp);
+                    i += 2;
+                    continue;
+                }
+            }
+
+            // Handle single-character operators and parentheses
+            String singleCharOp = Character.toString(currentChar);
+            if (isOperator(singleCharOp) || singleCharOp.equals("(") || singleCharOp.equals(")")) {
+                tokens.add(singleCharOp);
+                i++;
+                continue;
+            }
+
+            throw new IllegalArgumentException("Invalid character in expression: " + currentChar);
+        }
+        return tokens;
+    }
+
+    private static int evaluateInfix(ArrayList<String> tokens) {
+        Stack<Integer> operandStack = new Stack<>();
+        Stack<String> operatorStack = new Stack<>();
+
+        int i = 0;
+        while (i < tokens.size()) {
+            String token = tokens.get(i);
+
+            // If token is a number, push it to operand stack
+            if (token.matches("\\d+")) {
+                operandStack.push(Integer.parseInt(token));
+                i++;
+            }
+            // If token is '(', push it to operator stack
+            else if (token.equals("(")) {
+                operatorStack.push(token);
+                i++;
+            }
+            // If token is ')', solve the entire parenthesis
+            else if (token.equals(")")) {
+                while (!operatorStack.isEmpty() && !operatorStack.peek().equals("(")) {
+                    performOperation(operandStack, operatorStack);
+                }
+                if (operatorStack.isEmpty()) {
+                    throw new IllegalArgumentException("Mismatched parentheses");
+                }
+                 // Remove '('
+                operatorStack.pop();
+                i++;
+            }
+            // If token is an operator
+            else if (isOperator(token)) {
+                while (!operatorStack.isEmpty() && hasHigherPrecedence(operatorStack.peek(), token)) {
+                    performOperation(operandStack, operatorStack);
+                }
+                operatorStack.push(token);
+                i++;
+            } else {
+                throw new IllegalArgumentException("Unknown token: " + token);
+            }
+        }
+
+        // Apply remaining operators
+        while (!operatorStack.isEmpty()) {
+            if (operatorStack.peek().equals("(") || operatorStack.peek().equals(")")) {
+                throw new IllegalArgumentException("Mismatched parentheses");
+            }
+            performOperation(operandStack, operatorStack);
+        }
+
+        if (operandStack.size() != 1) {
+            throw new IllegalArgumentException("Invalid expression");
+        }
+
+        return operandStack.pop();
+    }
+
     private static int precedence(String op) {
         return opsAndPreceMap.getOrDefault(op, -1);
     }
@@ -36,107 +200,46 @@ public class Arithmetic {
         return opsAndPreceMap.containsKey(op);    
     }
 
-
-    // private static Stack readExpressionsFromFile(String fileName) {
-    //     Stack<String> expressions = new Stack(0);
-        
-        
-    //     return expressions;
-    // }
-
-    public static int evaluateExpressions(String expression) {
-        Stack<Integer> operandStack = new Stack<>(0);
-        Stack<String> operatorStack = new Stack<>(0);
-
-        for (int i = 0; i < expression.length(); i++) {
-            char token = expression.charAt(i);
-            String tokenStr = Character.toString(token);
-
-            // If the token is a whitespace, skip it
-            if (Character.isWhitespace(token)) {
-                continue;
-            }
-
-            // If the token is a digit, push it onto the operand stack
-            if (Character.isDigit(token)) {
-                int num = 0;
-                while (i < expression.length() && Character.isDigit(expression.charAt(i))) {
-                    num = num * 10 + (expression.charAt(i) - '0');
-                    i++;
-                }
-                i--; // Adjust for the outer loop increment
-                operandStack.push(num);
-            } 
-            // If the token is an opening parenthesis, push it onto the operator stack
-            else if (token == '(') {
-                operatorStack.push(tokenStr);
-            } 
-            // If the token is a closing parenthesis, solve the subexpression
-            else if (token == ')') {
-                while (!operatorStack.isEmpty() && operatorStack.peek() != "(") {
-                    operandStack.push(applyOperation(operatorStack.pop(), operandStack.pop(), operandStack.pop()));
-                }
-                operatorStack.pop(); // Pop the '('
-            } 
-            // If the token is an operator
-            else if (isOperator(tokenStr)) {
-                while (!operatorStack.isEmpty() && precedence(operatorStack.peek()) >= precedence(tokenStr)) {
-                    operandStack.push(applyOperation(operatorStack.pop(), operandStack.pop(), operandStack.pop()));
-                }
-                operatorStack.push(tokenStr);
-            }
+    private static void performOperation(Stack<Integer> operandStack, Stack<String> operatorStack) {
+        if (operandStack.size() < 1) {
+            throw new IllegalArgumentException("Insufficient operands");
         }
 
-        // Entire expression has been parsed, apply remaining operations
-        while (!operatorStack.isEmpty()) {
-            operandStack.push(applyOperation(operatorStack.pop(), operandStack.pop(), operandStack.pop()));
-        }
+        // pop first operand
+        int b = operandStack.pop();
+        // pop second operand
+        int a = operandStack.pop();
+        // pop associated operator
+        String op = operatorStack.pop();
 
-        // Result is the last operand in the stack
-        return operandStack.pop();
+        // use popped operands and operator and run calculation
+        int result = applyOperation(op, b, a);
+        operandStack.push(result);
     }
 
+    private static boolean hasHigherPrecedence(String op1, String op2) {
+        int p1 = precedence(op1);
+        int p2 = precedence(op2);
+        // Assuming left-to-right associativity
+        return p1 >= p2;
+    }
 
     private static int applyOperation(String op, int b, int a) {
         switch (op) {
-            case "+":
-                return a + b;
-            case "-":
-                return a - b;
-            case "*":
-                return a * b;
+            case "+": return a + b;
+            case "-": return a - b;
+            case "*": return a * b;
             case "/":
-                if (b == 0) {
-                    throw new UnsupportedOperationException("Cannot divide by zero");
-                }
+                if (b == 0) throw new UnsupportedOperationException("Cannot divide by zero");
                 return a / b;
-            case "^":
-                return (int) Math.pow(a, b);
+            case "^": return (int) Math.pow(a, b);
+            case ">": return a > b ? 1 : 0;
+            case "<": return a < b ? 1 : 0;
+            case ">=": return a >= b ? 1 : 0;
+            case "<=": return a <= b ? 1 : 0;
+            case "==": return a == b ? 1 : 0;
+            case "!=": return a != b ? 1 : 0;
+            default: throw new IllegalArgumentException("Invalid operator: " + op);
         }
-        return 0;
-    }
-
-    public static void main(String[] args) {
-        String inputFileName = "arithmeticIn.txt";
-        String outputFileName = "arithmeticOut.txt";
-
-        try {
-            // read from a file
-            Scanner in = new Scanner(new File(inputFileName));
-            // output results to a file
-            PrintStream out = new PrintStream(outputFileName);
-            // every System output sent to file
-            System.setOut(out);
-
-            while (in.hasNextLine()) {
-                String data = in.nextLine();
-                System.out.println("Line: " + data);
-            }
-
-            in.close();
-        } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-        
-    }
+    }  
 }
