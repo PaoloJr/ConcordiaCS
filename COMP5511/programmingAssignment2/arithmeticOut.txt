@@ -1,17 +1,14 @@
 Expression: Hello World!
 Error: Invalid character in expression: H
 
-Expression: 1 + 1
-Result: 2
-
-Expression: 3 * 3
-Result: 9
-
 Expression: 10 / 2
 Result: 5
 
 Expression: (9 - 4) + 3
 Result: 8
+
+Expression: 9 * 2^2^2
+Result: 144
 
 Expression: 1 == 1
 Result: true
@@ -22,24 +19,30 @@ Result: false
 Expression: 1 >= 2
 Result: false
 
-Expression: 2 > 1
-Result: true
-
-Expression: 3 < 7
-Result: true
+Expression: 1 / (1 - 1)
+Error: Cannot divide by zero
 
 Expression: ((3 + 4) - (5 * 2)) * 2^1
 Result: -6
 
-Expression: 1 / (1 - 1)
-Error: Cannot divide by zero
+Expression: ((16/2^2)^2)^2
+Result: 256
+
+Expression: (((2^2)^2)/2)
+Result: 8
 
 Expression: (1 / 1) + 2 != 3
+Result: false
+
+Expression: (((1 + 1) * 2) / (3)*(2)) >= 3
 Result: false
 
 Expression: (((1 + 1) * 2) / (3)(2)) >= 3
 Error: Invalid expression
 
-Expression: (((1 + 1) * 2) / (3^2)) >= 3
+Expression: (((1 + 1) * 2) / (3^2)) >= (3 * 3^2)/9
 Result: false
+
+Expression: (((1 + 1)^2 - (2 * 2)/4)^2) == 9
+Result: true
 
