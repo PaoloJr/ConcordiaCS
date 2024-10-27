@@ -7,8 +7,6 @@ import java.util.Scanner;
 import java.io.FileNotFoundException;
 import java.io.File;
 import java.io.PrintStream;
-import COMP5511.programmingAssignment2.Stack;
-
 
 public class Arithmetic {
     private static Map<String, Integer> opsAndPreceMap;
@@ -61,9 +59,6 @@ public class Arithmetic {
         try {
             // Tokenize the expression (ArrayList)
             ArrayList<String> tokens = tokenizeExpression(expression);
-            for (String token : tokens) {
-                System.out.println(token);
-            }
 
             // Evaluate the expression using two stacks (operands and operators)
             int result = evaluateInfix(tokens);
@@ -80,11 +75,9 @@ public class Arithmetic {
     }
 
     private static boolean isBooleanExpression(ArrayList<String> tokens) {
-        for (String token : tokens) {
-            if (token.equals(">") || token.equals("<") || token.equals(">=") || token.equals("<=")
-                    || token.equals("==") || token.equals("!=")) {
-                return true;
-            }
+        if (tokens.contains(">") || tokens.contains("<") || tokens.contains(">=") ||tokens.contains("<=") ||
+        tokens.contains("==") || tokens.contains("!=")) {
+            return true;
         }
         return false;
     }
@@ -104,7 +97,7 @@ public class Arithmetic {
             // Handle numbers
             if (Character.isDigit(currentChar)) {
                 StringBuilder number = new StringBuilder();
-                while (i < expression.length() && Character.isDigit(currentChar)) {
+                while (i < expression.length() && Character.isDigit(expression.charAt(i))) {
                     number.append(expression.charAt(i));
                     i++;
                 }
@@ -141,6 +134,7 @@ public class Arithmetic {
 
         int i = 0;
         while (i < tokens.size()) {
+            // current token
             String token = tokens.get(i);
 
             // If token is a number, push it to operand stack
