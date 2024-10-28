@@ -61,9 +61,9 @@ public class Arithmetic {
             // Tokenize the expression (ArrayList)
             ArrayList<String> tokens = tokenizeExpression(expression);
 
-            // for (String token : tokens) {
-            //     System.out.println(token);
-            // }
+            for (String token : tokens) {
+                System.out.println(token);
+            }
 
             // Evaluate the expression using two stacks (operands and operators)
             int result = evaluateInfix(tokens);
@@ -99,16 +99,45 @@ public class Arithmetic {
                 continue;
             }
 
-            // Handle numbers
-            if (Character.isDigit(currentChar)) {
-                StringBuilder number = new StringBuilder();
-                while (i < expression.length() && Character.isDigit(expression.charAt(i))) {
-                    number.append(expression.charAt(i));
-                    i++;
-                }
-                tokens.add(number.toString());
-                continue;
+            // // Handle numbers
+            // if (Character.isDigit(currentChar)) {
+            //     StringBuilder number = new StringBuilder();
+            //     while (i < expression.length() && Character.isDigit(expression.charAt(i))) {
+            //         number.append(expression.charAt(i));
+            //         i++;
+            //     }
+            //     tokens.add(number.toString());
+            //     continue;
+            // }
+
+             // Handle numbers (including negative numbers)
+            if (Character.isDigit(currentChar) || currentChar == '-') {
+                // Check if '-' is a unary minus
+                boolean isNegative = false;
+                if (currentChar == '-') {
+                    // Unary minus if at the start or after an operator or '('
+                    if (i == 0 || tokens.isEmpty() || tokens.get(tokens.size() - 1).equals("(") || isOperator(tokens.get(tokens.size() - 1))) {
+                        isNegative = true;
+                        i++;
+                    } else {
+                        // It's a binary minus operator
+                        tokens.add("-");
+                        i++;
+                        continue;
+                    }
             }
+
+            StringBuilder number = new StringBuilder();
+            if (isNegative) {
+                number.append('-');
+            }
+            while (i < expression.length() && Character.isDigit(expression.charAt(i))) {
+                number.append(expression.charAt(i));
+                i++;
+            }
+            tokens.add(number.toString());
+            continue;
+        }
 
             // Handle multi-character operators
             if (i + 1 < expression.length()) {
@@ -143,7 +172,7 @@ public class Arithmetic {
             String token = tokens.get(i);
 
             // If token is a number, push it to operand stack
-            if (token.matches("\\d+")) {
+            if (token.matches("-?\\d+")) {
                 operandStack.push(Integer.parseInt(token));
                 i++;
             }
@@ -207,7 +236,7 @@ public class Arithmetic {
     }
 
     private static void performOperation(Stack<Integer> operandStack, Stack<String> operatorStack) {
-        if (operandStack.size() < 2) {
+        if (operandStack.size() < 1) {
             throw new IllegalArgumentException("Insufficient operands");
         }
 

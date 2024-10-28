@@ -1,5 +1,8 @@
-Expression: Hello World!
-Error: Invalid character in expression: H
+Expression: -5 + 8
+Result: 3
+
+Expression: 3 + (-3) + 2
+Result: 2
 
 Expression: 10 / 2
 Result: 5
@@ -45,4 +48,10 @@ Result: false
 
 Expression: (((1 + 1)^2 - (2 * 2)/4)^2) == 9
 Result: true
+
+Expression: (((((((5^2/77-3^6^2*2)+3)/7)^2)*2)-10+6/2)/2/1*5)
+Result: -20
+
+Expression: (((((((5^2/77+(-3)^6^2*2)+3)/7)^2)*2)-10+6/2)/2/1*5)
+Result: -20
 
