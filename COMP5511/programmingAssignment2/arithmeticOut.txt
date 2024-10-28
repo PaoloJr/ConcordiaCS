@@ -1,20 +1,17 @@
+Expression: -3 + &4
+Error: Invalid character in expression: &
+
+Expression: 1 / (1 - 1)
+Error: Cannot divide by zero
+
 Expression: -5 + 8
 Result: 3
-
-Expression: 3 + (-3) + 2
-Result: 2
 
 Expression: 10 / 2
 Result: 5
 
-Expression: (9 - 4) + 3
-Result: 8
-
-Expression: 9 * 2^2^2
-Result: 144
-
-Expression: 1 == 1
-Result: true
+Expression: 80 * 10
+Result: 800
 
 Expression: 1 != 1
 Result: false
@@ -22,8 +19,17 @@ Result: false
 Expression: 1 >= 2
 Result: false
 
-Expression: 1 / (1 - 1)
-Error: Cannot divide by zero
+Expression: 9 * 2^2^2
+Result: 144
+
+Expression: 3 * (-3)^2 + 2
+Result: 29
+
+Expression: ((10 + 2)/ (2 - 3)) + 3
+Result: -9
+
+Expression: ((9 - 4^2) + (-4)^2)^2
+Result: 81
 
 Expression: ((3 + 4) - (5 * 2)) * 2^1
 Result: -6
@@ -37,7 +43,7 @@ Result: 8
 Expression: (1 / 1) + 2 != 3
 Result: false
 
-Expression: (((1 + 1) * 2) / (3)*(2)) >= 3
+Expression: (((1 + 1) * 2) / (3)*(2)) >= 10
 Result: false
 
 Expression: (((1 + 1) * 2) / (3)(2)) >= 3
@@ -49,9 +55,9 @@ Result: false
 Expression: (((1 + 1)^2 - (2 * 2)/4)^2) == 9
 Result: true
 
-Expression: (((((((5^2/77-3^6^2*2)+3)/7)^2)*2)-10+6/2)/2/1*5)
-Result: -20
-
 Expression: (((((((5^2/77+(-3)^6^2*2)+3)/7)^2)*2)-10+6/2)/2/1*5)
 Result: -20
+
+Expression: (((((((5^2/77+(-3)^6^2*2)+3)/7)^2)*2)-10+6/2)/2/1)
+Result: -4
 

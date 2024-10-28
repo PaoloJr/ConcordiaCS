@@ -44,11 +44,11 @@ public class Arithmetic {
     }
 
     private static ArrayList<String> readExpressionsFromFile(String fileName) {
-        ArrayList<String> expressions = new ArrayList<>();
+        ArrayList<String> expressions = new ArrayList<>(); // O(1)
         
         try (Scanner scanner = new Scanner(new File(fileName))) {
-            while (scanner.hasNextLine()) {
-                expressions.add(scanner.nextLine());
+            while (scanner.hasNextLine()) { // O(n)
+                expressions.add(scanner.nextLine()); // O(1)
             }
         } catch (FileNotFoundException e) {
             System.err.println("File not found: " + fileName);
@@ -59,11 +59,7 @@ public class Arithmetic {
     public static void evaluateExpressions(String expression, PrintStream out) {
         try {
             // Tokenize the expression (ArrayList)
-            ArrayList<String> tokens = tokenizeExpression(expression);
-
-            for (String token : tokens) {
-                System.out.println(token);
-            }
+            ArrayList<String> tokens = tokenizeExpression(expression); // O(n)
 
             // Evaluate the expression using two stacks (operands and operators)
             int result = evaluateInfix(tokens);
@@ -90,8 +86,8 @@ public class Arithmetic {
     private static ArrayList<String> tokenizeExpression(String expression) {
         ArrayList<String> tokens = new ArrayList<>();
         int i = 0;
-        while (i < expression.length()) {
-            char currentChar = expression.charAt(i);
+        while (i < expression.length()) { // O(n), size of expression element in ArrayList
+            char currentChar = expression.charAt(i); // O(1)
 
             // Skip whitespace
             if (Character.isWhitespace(currentChar)) {
@@ -127,6 +123,7 @@ public class Arithmetic {
                     }
             }
 
+            // build sequence of numbers
             StringBuilder number = new StringBuilder();
             if (isNegative) {
                 number.append('-');
@@ -139,7 +136,7 @@ public class Arithmetic {
             continue;
         }
 
-            // Handle multi-character operators
+            // Handle multi-character operators (ex: `<=`, `>=`, `!=`, `==`)
             if (i + 1 < expression.length()) {
                 String twoCharOp = expression.substring(i, i + 2);
                 if (isOperator(twoCharOp)) {
@@ -167,7 +164,7 @@ public class Arithmetic {
         Stack<String> operatorStack = new Stack<>();
 
         int i = 0;
-        while (i < tokens.size()) {
+        while (i < tokens.size()) { // O(n), size of ArrayList
             // current token
             String token = tokens.get(i);
 
@@ -236,22 +233,22 @@ public class Arithmetic {
     }
 
     private static void performOperation(Stack<Integer> operandStack, Stack<String> operatorStack) {
-        if (operandStack.size() < 1) {
+        if (operandStack.size() < 2) {
             throw new IllegalArgumentException("Insufficient operands");
         }
 
         // pop first operand
-        int b = operandStack.pop();
+        int b = operandStack.pop(); // O(1)
         // pop second operand
-        int a = operandStack.pop();
+        int a = operandStack.pop(); // O(1)
         // pop associated operator
-        String op = operatorStack.pop();
+        String op = operatorStack.pop(); // O(1)
 
         // use popped operands and operator and run calculation
         // b is first operand, a is second operand
-        int result = applyOperation(op, b, a);
+        int result = applyOperation(op, b, a); // O(1)
         // add resulting integer to the operandStack
-        operandStack.push(result);
+        operandStack.push(result); // O(1)
     }
 
     private static int applyOperation(String op, int b, int a) {
