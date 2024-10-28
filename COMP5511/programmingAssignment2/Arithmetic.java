@@ -32,7 +32,11 @@ public class Arithmetic {
         // String inputFileName = "COMP5511/programmingAssignment2/testIn.txt";
         String outputFileName = "COMP5511/programmingAssignment2/arithmeticOut.txt";
 
-        ArrayList<String> expressions = readExpressionsFromFile(inputFileName);
+        ArrayList<String> expressions = readExpressionsFromFile(inputFileName); // O(n)
+
+        // for (String item : expressions) {
+        //     System.out.println(item);
+        // }
 
         try (PrintStream out = new PrintStream(new File(outputFileName))) {
             for (String expression : expressions) {
@@ -62,7 +66,7 @@ public class Arithmetic {
             ArrayList<String> tokens = tokenizeExpression(expression); // O(n)
 
             // Evaluate the expression using two stacks (operands and operators)
-            int result = evaluateInfix(tokens);
+            int result = evaluateTokens(tokens); // O(n)
 
             // Output the result to file
             out.println("Expression: " + expression);
@@ -73,14 +77,6 @@ public class Arithmetic {
             out.println("Error: " + e.getMessage());
             out.println();
         }
-    }
-
-    private static boolean isBooleanExpression(ArrayList<String> tokens) {
-        if (tokens.contains(">") || tokens.contains("<") || tokens.contains(">=") ||tokens.contains("<=") ||
-        tokens.contains("==") || tokens.contains("!=")) {
-            return true;
-        }
-        return false;
     }
 
     private static ArrayList<String> tokenizeExpression(String expression) {
@@ -95,17 +91,6 @@ public class Arithmetic {
                 continue;
             }
 
-            // // Handle numbers
-            // if (Character.isDigit(currentChar)) {
-            //     StringBuilder number = new StringBuilder();
-            //     while (i < expression.length() && Character.isDigit(expression.charAt(i))) {
-            //         number.append(expression.charAt(i));
-            //         i++;
-            //     }
-            //     tokens.add(number.toString());
-            //     continue;
-            // }
-
              // Handle numbers (including negative numbers)
             if (Character.isDigit(currentChar) || currentChar == '-') {
                 // Check if '-' is a unary minus
@@ -116,7 +101,7 @@ public class Arithmetic {
                         isNegative = true;
                         i++;
                     } else {
-                        // It's a binary minus operator
+                        // It's a unary minus operator
                         tokens.add("-");
                         i++;
                         continue;
@@ -159,16 +144,18 @@ public class Arithmetic {
         return tokens;
     }
 
-    private static int evaluateInfix(ArrayList<String> tokens) {
-        Stack<Integer> operandStack = new Stack<>();
-        Stack<String> operatorStack = new Stack<>();
+    private static int evaluateTokens(ArrayList<String> tokens) {
+        // ArrayListStack<Integer> operandStack = new ArrayListStack<>();
+        // ArrayListStack<String> operatorStack = new ArrayListStack<>();
+        ArrayStack<Integer> operandStack = new ArrayStack<>();
+        ArrayStack<String> operatorStack = new ArrayStack<>();
 
         int i = 0;
         while (i < tokens.size()) { // O(n), size of ArrayList
             // current token
             String token = tokens.get(i);
 
-            // If token is a number, push it to operand stack
+            // If token is a number (or multiple sequence of numbers), push it to operand stack
             if (token.matches("-?\\d+")) {
                 operandStack.push(Integer.parseInt(token));
                 i++;
@@ -218,6 +205,14 @@ public class Arithmetic {
         return operandStack.pop();
     }
 
+    private static boolean isBooleanExpression(ArrayList<String> tokens) {
+        if (tokens.contains(">") || tokens.contains("<") || tokens.contains(">=") ||tokens.contains("<=") ||
+        tokens.contains("==") || tokens.contains("!=")) {
+            return true;
+        }
+        return false;
+    }
+
     private static int precedence(String op) {
         return opsAndPreceMap.getOrDefault(op, -1);
     }
@@ -232,7 +227,7 @@ public class Arithmetic {
         return p1 >= p2;
     }
 
-    private static void performOperation(Stack<Integer> operandStack, Stack<String> operatorStack) {
+    private static void performOperation(ArrayStack<Integer> operandStack, ArrayStack<String> operatorStack) {
         if (operandStack.size() < 2) {
             throw new IllegalArgumentException("Insufficient operands");
         }

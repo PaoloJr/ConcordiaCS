@@ -1,47 +1,62 @@
 Expression: -3 + &4
 Error: Invalid character in expression: &
 
+Expression: 11 % 2
+Error: Invalid character in expression: %
+
 Expression: 1 / (1 - 1)
 Error: Cannot divide by zero
 
-Expression: -5 + 8
-Result: 3
+Expression: (2)(2)
+Error: Invalid expression
 
-Expression: 10 / 2
-Result: 5
-
-Expression: 80 * 10
+Expression: (20 * 4) * (2 * 5)
 Result: 800
-
-Expression: 1 != 1
-Result: false
-
-Expression: 1 >= 2
-Result: false
 
 Expression: 9 * 2^2^2
 Result: 144
 
-Expression: 3 * (-3)^2 + 2
+Expression: 2 * 2^(4 + 4)
+Result: 512
+
+Expression: (2 * 2^((100/50)^2))/16 == (16^2)
+Result: false
+
+Expression: (2 * 2^(100 - 98) + (24^2) - (24^2)) / -8
+Result: -1
+
+Expression: (3 * (-3)^2) + 2
 Result: 29
 
-Expression: ((10 + 2)/ (2 - 3)) + 3
+Expression: (1 / 1) + 2 != 3
+Result: false
+
+Expression: (((2^2)^2)/2) != 8
+Result: false
+
+Expression: ((16/(2^2))^2)^2 == 256
+Result: true
+
+Expression: (3 * (2)^(2 * 2)) + 2
+Result: 50
+
+Expression: (((-2)^(2 * 2^1)) - (15 + 1) + (3 - 2)) / -1
+Result: -1
+
+Expression: ((10 + 2)/(2 - 3)) + 3
 Result: -9
 
 Expression: ((9 - 4^2) + (-4)^2)^2
 Result: 81
 
-Expression: ((3 + 4) - (5 * 2)) * 2^1
-Result: -6
+Expression: ((10 + 5)/(10 - 5)) * 2^1
+Result: 6
 
-Expression: ((16/2^2)^2)^2
-Result: 256
-
-Expression: (((2^2)^2)/2)
-Result: 8
-
-Expression: (1 / 1) + 2 != 3
+Expression: ((8/(2^(8/4))^2)^2)/(2*1) == 256
 Result: false
+
+Expression: ((8/(2^(8/4))^2)^2)/(2*1) <= ((8/(2^(8/4))^2)^2)/(2*1)
+Result: true
 
 Expression: (((1 + 1) * 2) / (3)*(2)) >= 10
 Result: false
@@ -49,15 +64,57 @@ Result: false
 Expression: (((1 + 1) * 2) / (3)(2)) >= 3
 Error: Invalid expression
 
-Expression: (((1 + 1) * 2) / (3^2)) >= (3 * 3^2)/9
+Expression: (((4 * 6)/8) / (3^2)) >= (3 * 3^2)/9
 Result: false
 
 Expression: (((1 + 1)^2 - (2 * 2)/4)^2) == 9
 Result: true
 
-Expression: (((((((5^2/77+(-3)^6^2*2)+3)/7)^2)*2)-10+6/2)/2/1*5)
-Result: -20
+Expression: ((3^2)/3)^2/(3*3) + 2^8 != 257
+Result: false
 
-Expression: (((((((5^2/77+(-3)^6^2*2)+3)/7)^2)*2)-10+6/2)/2/1)
-Result: -4
+Expression: ((((((((75/(5^2))+((-2)^3^(1*2)))+3)/-2)^2)*2)-10+(6/2))/2)/(1*5)
+Result: 244
+
+Expression: ((((((5^2/5)+(2^(2^(2*2)))-(2^16)+3)/4)^2)*2)-(10+4/2))/4
+Result: -1
+
+Expression: ((3^3) - 27) + ((4^2) - 16)
+Result: 0
+
+Expression: (2^5/4) * (8 - (2 * 2^2))
+Result: 0
+
+Expression: (10^2/5) - (6^2 - 3^2) + 4
+Result: -3
+
+Expression: ((8*2)/(2^2)) + (3 * (4^2) - 3^3) == 64
+Result: false
+
+Expression: ((2^(3 + 1))/(2*4)) + 3^2 >= 9
+Result: true
+
+Expression: ((((10/2) + 3) * (2^3))/4) <= (6^2/9)
+Result: false
+
+Expression: ((((5 * 3)^2)/(3 * 5)) + (10/2)) - ((4 * 3)/2)
+Result: 14
+
+Expression: (((4 * 5) - (2^4))^2 + (10^2/5) - (3^3))/(5*2) == (16*2/4) + (6 - 3^2)
+Result: false
+
+Expression: ((2 * (2^3) - 8)/(4 * 2) + ((5^2 - 3^2)/ (2*2))) != (64/(2^3))
+Result: true
+
+Expression: ((((2^3) * 4)/8) * (3^2 - 5)/3) == 2
+Result: false
+
+Expression: ((((3 * 3) + 4^2)/(2^2)) + (5 - 2)) != 20
+Result: true
+
+Expression: ((6^2/3)-(4*5)+(((2^3) + (2^4))/8)^2) >= (2^5 - 4 * 2^2)/(3+1) 
+Result: false
+
+Expression: 3 - 4 * -2 >= 4 * 3 + 2 / 4 == 1 - 2 < 3 * -4
+Result: true
 

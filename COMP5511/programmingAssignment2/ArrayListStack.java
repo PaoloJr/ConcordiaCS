@@ -2,13 +2,13 @@ package COMP5511.programmingAssignment2;
 
 import java.util.ArrayList;
 
-class Stack<T> {
+class ArrayListStack<T> {
     private int top;
     private int capacity;
     private ArrayList<T> arrL;
     
     // Constructor using ArrayList
-    public Stack() {
+    public ArrayListStack() {
         arrL = new ArrayList<>(capacity);
         this.top = -1;
     }
@@ -72,7 +72,7 @@ class Stack<T> {
 
 
     public static void main(String[] args) {
-        Stack<Integer> stack = new Stack<>();
+        ArrayListStack<Integer> stack = new ArrayListStack<>();
 
         stack.push(10);
         stack.push(20);
