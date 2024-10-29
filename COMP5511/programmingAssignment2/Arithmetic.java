@@ -32,7 +32,7 @@ public class Arithmetic {
         // String inputFileName = "COMP5511/programmingAssignment2/testIn.txt";
         String outputFileName = "COMP5511/programmingAssignment2/arithmeticOut.txt";
 
-        ArrayList<String> expressions = readExpressionsFromFile(inputFileName); // O(n)
+        ArrayList<String> expressions = readExpressionsFromFile(inputFileName); // O(m * n)
 
         // for (String item : expressions) {
         //     System.out.println(item);
@@ -40,7 +40,7 @@ public class Arithmetic {
 
         try (PrintStream out = new PrintStream(new File(outputFileName))) {
             for (String expression : expressions) {
-                evaluateExpressions(expression, out);
+                evaluateExpressions(expression, out); // O(n)
             }
         } catch (FileNotFoundException e) {
             System.err.println("Error opening output file: " + outputFileName);
