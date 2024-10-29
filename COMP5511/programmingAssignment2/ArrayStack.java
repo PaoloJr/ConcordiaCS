@@ -26,7 +26,7 @@ public class ArrayStack<T> implements ArrayStackInterface<T> {
             throw new IllegalStateException("Stack Underflow!");
         }
         T value = elements[top];
-        elements[top--] = null; // Avoid memory leaks
+        elements[top--] = null;
         return value;
     }
 
