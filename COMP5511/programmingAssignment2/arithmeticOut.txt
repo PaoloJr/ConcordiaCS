@@ -22,6 +22,18 @@ Result: 0
 Expression: 2+2
 Result: 4
 
+Expression: 100*100
+Result: 10000
+
+Expression: 1000*1000
+Result: 1000000
+
+Expression: 1000/1000
+Result: 1
+
+Expression: 10000 * -1
+Result: -10000
+
 Expression: (20 * 4) * (2 * 5)
 Result: 800
 
