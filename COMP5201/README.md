@@ -2,6 +2,7 @@
 [NASM docs](https://www.nasm.us/xdoc/2.16.03/html/nasmdoc0.html) \
 [NASM assembly lab](https://labs.bilimedtech.com/nasm/index.html) \
 [NASM Tutorial](https://cratecode.com/info/nasm-tutorial) \
+[NASM Tutorial_2](https://www.tutorialspoint.com/assembly_programming/index.htm) \
 [x86 instruction list](https://en.wikipedia.org/wiki/X86_instruction_listings) \
 [x86 OpCode Reference](http://ref.x86asm.net/) \
 [x86 Assembly Guide](https://www.cs.virginia.edu/~evans/cs216/guides/x86.html) \
