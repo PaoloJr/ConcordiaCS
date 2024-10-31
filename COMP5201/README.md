@@ -9,7 +9,6 @@
 [x86 Registers](https://en.wikibooks.org/wiki/X86_Assembly/X86_Architecture) \
 [makefile tutorial](https://makefiletutorial.com/)
 
-
 ## Linux
 _some libraries may be needed_
 - `build-essential`

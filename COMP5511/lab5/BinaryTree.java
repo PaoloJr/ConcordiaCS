@@ -1,7 +1,5 @@
 package COMP5511.lab5;
 
-import COMP5511.lab5.TreeNode;
-
 public class BinaryTree {
     TreeNode root;
 
