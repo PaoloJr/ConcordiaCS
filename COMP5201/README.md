@@ -6,8 +6,7 @@
 [x86 instruction list](https://en.wikipedia.org/wiki/X86_instruction_listings) \
 [x86 OpCode Reference](http://ref.x86asm.net/) \
 [x86 Assembly Guide](https://www.cs.virginia.edu/~evans/cs216/guides/x86.html) \
-[x86 Registers](https://en.wikibooks.org/wiki/X86_Assembly/X86_Architecture) \
-[makefile tutorial](https://makefiletutorial.com/)
+[x86 Registers](https://en.wikibooks.org/wiki/X86_Assembly/X86_Architecture)
 
 ## Linux
 _some libraries may be needed_
@@ -36,6 +35,17 @@ _**gdb**_ \
     2.`break <some line or function name>` - set a breakpoint \
     3.`run` \
     4. `si` - step in
+
+_**make**_ \
+[makefile tutorial](https://makefiletutorial.com/) \
+`make` - use MAKEFILE to compile `.asm` and link `.o` to  ELF file \
+`make clean` - using MAKEFILE `clean` command to remove object and ELF file
+
+_**file**_ \
+`file <filename>` - to view file details
+
+_**readelf**_ \
+`readelf -a` - to view all ELF binary file details (headers, sections, symbols etc.)  
 
 
 ## Windows
