@@ -1,4 +1,4 @@
-package COMP5361.assignment1;
+package COMP5361.programmingAssignment1;
 
 import java.util.HashMap;
 import java.util.Map;

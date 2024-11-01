@@ -17,11 +17,11 @@ public class Q1 {
         return result;
     }
 
-    private static boolean isMatchingPair(char open, char close) {
-        boolean result = false;
+    // private static boolean isMatchingPair(char open, char close) {
+    //     boolean result = false;
 
-        return result;
-    }
+    //     return result;
+    // }
 
     public static void main(String[] args) {
         String first = "{[()]}"; // balanced
