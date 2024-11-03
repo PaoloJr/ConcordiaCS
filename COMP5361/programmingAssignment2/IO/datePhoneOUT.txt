@@ -1,2 +1,9 @@
-Call me on Monday, April 9, 2020 at 999-999-9999
-My appointment is scheduled for 2020/02/02, and my phone number is (999) 999-9999
+Sentence: Call me on Monday, April 9, 2020 at 999-999-9999
+Detected phone number: 999-999-9999
+
+Sentence: Call me on Monday, April 9, 2020 at 999.999.9999
+Detected phone number: 999.999.9999
+
+Sentence: My appointment is scheduled for 2020/02/02, and my phone number is (999) 999-9999
+Detected phone number: (999) 999-9999
+
