@@ -27,8 +27,7 @@ public class GrammarRegex {
         months.put("October", 10); months.put("Oct", 10);
         months.put("November", 11); months.put("Nov", 11);
         months.put("December", 12); months.put("Dec", 12);
-    }
-    
+    }    
 
     public static void main(String[] args) {
     
@@ -41,9 +40,10 @@ public class GrammarRegex {
             for (String sentence : sentences) {
             //    out.println(sentence);
             String phone = phoneNumberRegex(sentence);
-            // String data = dateRegex(sentence);
+            String date = dateRegex(sentence);
                 out.println("Sentence: " + sentence);
                 out.println("Detected phone number: " + phone);
+                out.println("Detected date: " + date);
                 out.println();
             }
         } catch (FileNotFoundException e) {
@@ -75,11 +75,33 @@ public class GrammarRegex {
             } else {
                 return "Phone Match Not Found!";
             }
-        }
+    }
+
+    public static Integer getMonthNumber(String month) {
+        return months.get(month);
+    }
                 
     private static String dateRegex(String sentence) {
-            String dateRegex = ;
-        
+        // String dateRegex = "\\b(?:(?:Monday|Mon|Tuesday|Tue|Tues|Wednesday|Wed|Thursday|Thur|Friday|Fri|Saturday|Sat|Sunday|Sun)\\s+)?(?:(January|Jan|February|Feb|March|Mar|April|Apr|May|June|July|August|Aug|September|Sept|Sep|October|Oct|November|Nov|December|Dec),?\\s*)?(?:(?:\\d{1,4}[/.-])?\\d{1,2}[/.-]\\d{1,4}|(?:(January|Jan|February|Feb|March|Mar|April|Apr|May|June|July|August|Aug|September|Sept|Sep|October|Oct|November|Nov|December|Dec)|(?:Monday|Mon|Tuesday|Tue|Tues|Wednesday|Wed|Thursday|Thur|Friday|Fri|Saturday|Sat|Sunday|Sun)\\s+\\d{1,2}(?:st|rd|th|nd)?,?\\s*\\d{4})\\b";
+
+        // String dateRegex = "\\b(?:(?:Monday|Mon|Tuesday|Tue|Tues|Wednesday|Wed|Thursday|Thur|Friday|Fri|Saturday|Sat|Sunday|Sun)\\s+)?(?:January|Jan|February|Feb|March|Mar|April|Apr|May|June|July|August|Aug|September|Sept|Sep|October|Oct|November|Nov|December|Dec)?\\s*(?:(?:\\d{1,4}[/.-])?\\d{1,2}[/.-]\\d{1,4}|(?:January|Jan|February|Feb|March|Mar|April|Apr|May|June|July|August|Aug|September|Sept|Sep|October|Oct|November|Nov|December|Dec)\\s+\\d{1,2}(?:st|rd|th|nd)?,?\\s*\\d{4})\\b";
+
+        String dateRegex = "\\b(?:(?:Monday|Mon|Tuesday|Tue|Tues|Wednesday|Wed|Thursday|Thur|Friday|Fri|Saturday|Sat|Sunday|Sun)\\s+)?"
+        + "(?:(?:\\d{1,2}[/.-])?(January|Jan|February|Feb|March|Mar|April|Apr|May|June|July|August|Aug|September|Sept|Sep|October|Oct|November|Nov|December|Dec)?[/.-]?\\d{1,2}(?:st|nd|rd|th)?,?\\s*\\d{4}"
+        + "|(?:January|Jan|February|Feb|March|Mar|April|Apr|May|June|July|August|Aug|September|Sept|Sep|October|Oct|November|Nov|December|Dec)\\s+\\d{1,2}(?:st|nd|rd|th)?,?\\s*\\d{4}"
+        + "|(?:\\d{4}[/.-])?\\d{1,2}[/.-]\\d{1,4})\\b";
+
+
+
+
+        Pattern pattern = Pattern.compile(dateRegex);
+        Matcher matcher = pattern.matcher(sentence);
+
+        if (matcher.find()) {
+            return matcher.group().trim();
+        } else {
+        return "Date Match Not Found!";
         }
+    }
                     
 }
