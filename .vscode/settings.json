@@ -1,8 +1,8 @@
 {
     "java.project.referencedLibraries": [
-        "lib/stanford-corenlp-4.5.7.jar",
-        "lib/stanford-corenlp-4.5.7-models.jar",
-        "lib/stanford-corenlp-4.5.7-sources.jar",
-        "lib/stanford-corenlp-4.5.7-javadoc.jar",
+        // "lib/stanford-corenlp-4.5.7.jar",
+        // "lib/stanford-corenlp-4.5.7-models.jar",
+        // "lib/stanford-corenlp-4.5.7-sources.jar",
+        // "lib/stanford-corenlp-4.5.7-javadoc.jar",
     ]
 }

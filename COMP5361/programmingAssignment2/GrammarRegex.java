@@ -5,10 +5,29 @@ import java.io.FileNotFoundException;
 import java.io.File;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class GrammarRegex {
+
+       private static final Map<String, Integer> months = new HashMap<>();
+
+    static {
+        months.put("January", 1); months.put("Jan", 1);
+        months.put("February", 2); months.put("Feb", 2);
+        months.put("March", 3); months.put("Mar", 3);
+        months.put("April", 4); months.put("Apr", 4);
+        months.put("May", 5);
+        months.put("June", 6); months.put("Jun", 6);
+        months.put("July", 7); months.put("Jul", 7);
+        months.put("August", 8); months.put("Aug", 8);
+        months.put("September", 9); months.put("Sep", 9); months.put("Sept", 9);
+        months.put("October", 10); months.put("Oct", 10);
+        months.put("November", 11); months.put("Nov", 11);
+        months.put("December", 12); months.put("Dec", 12);
+    }
     
 
     public static void main(String[] args) {
@@ -47,7 +66,6 @@ public class GrammarRegex {
     
     
     private static String phoneNumberRegex(String sentence) {
-        // String phoneRegex = "\\+?1?[-.\\s]?\\(?[2-9]\\d{2}\\)?[-.\\s]?[2-9]\\d{2}[-.\\s]?\\d{4}";
         String phoneRegex = "[(|+]?[1-9]?\\s?[(]?\\d{3}\\)?[\\s.-]?\\d{3}[\\s.-]?\\d{4}";
         Pattern pattern = Pattern.compile(phoneRegex);
         Matcher matcher = pattern.matcher(sentence);
@@ -59,9 +77,9 @@ public class GrammarRegex {
             }
         }
                 
-    // private static String dateRegex(String sentence) {
-        //     String dateRegex
+    private static String dateRegex(String sentence) {
+            String dateRegex = ;
         
-        // }
+        }
                     
 }
