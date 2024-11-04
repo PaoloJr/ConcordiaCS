@@ -22,4 +22,7 @@ My birthday is on 02/02/1945
 My birthday is on 02/Dec/2020
 My birthday is on 2020/Dec/01
 My birthday is on 2020.Dec.01
+My birthday is on Dec.01.2020
 My birthday is on Tues Dec 01 2020
+My birthday is on Monday Dec 1 2020
+My birthday is on Monday Dec 1st 2020

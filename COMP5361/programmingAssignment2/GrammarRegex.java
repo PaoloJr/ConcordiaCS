@@ -80,19 +80,11 @@ public class GrammarRegex {
     public static Integer getMonthNumber(String month) {
         return months.get(month);
     }
-                
+    
     private static String dateRegex(String sentence) {
-        // String dateRegex = "\\b(?:(?:Monday|Mon|Tuesday|Tue|Tues|Wednesday|Wed|Thursday|Thur|Friday|Fri|Saturday|Sat|Sunday|Sun)\\s+)?(?:(January|Jan|February|Feb|March|Mar|April|Apr|May|June|July|August|Aug|September|Sept|Sep|October|Oct|November|Nov|December|Dec),?\\s*)?(?:(?:\\d{1,4}[/.-])?\\d{1,2}[/.-]\\d{1,4}|(?:(January|Jan|February|Feb|March|Mar|April|Apr|May|June|July|August|Aug|September|Sept|Sep|October|Oct|November|Nov|December|Dec)|(?:Monday|Mon|Tuesday|Tue|Tues|Wednesday|Wed|Thursday|Thur|Friday|Fri|Saturday|Sat|Sunday|Sun)\\s+\\d{1,2}(?:st|rd|th|nd)?,?\\s*\\d{4})\\b";
+        // String dateRegex = "\\b(?:\\w\\s+)?(?:\\w+,?\\s*)?(?:(?:(?:\\d{1,4}|\\w)[/.-])?\\d{1,2}[/.-]\\d{1,4}|\\w+\s+\\d{1,2}(?:st|rd|th|nd)?,?\\s*\\d{4})\\b";
 
-        // String dateRegex = "\\b(?:(?:Monday|Mon|Tuesday|Tue|Tues|Wednesday|Wed|Thursday|Thur|Friday|Fri|Saturday|Sat|Sunday|Sun)\\s+)?(?:January|Jan|February|Feb|March|Mar|April|Apr|May|June|July|August|Aug|September|Sept|Sep|October|Oct|November|Nov|December|Dec)?\\s*(?:(?:\\d{1,4}[/.-])?\\d{1,2}[/.-]\\d{1,4}|(?:January|Jan|February|Feb|March|Mar|April|Apr|May|June|July|August|Aug|September|Sept|Sep|October|Oct|November|Nov|December|Dec)\\s+\\d{1,2}(?:st|rd|th|nd)?,?\\s*\\d{4})\\b";
-
-        String dateRegex = "\\b(?:(?:Monday|Mon|Tuesday|Tue|Tues|Wednesday|Wed|Thursday|Thur|Friday|Fri|Saturday|Sat|Sunday|Sun)\\s+)?"
-        + "(?:(?:\\d{1,2}[/.-])?(January|Jan|February|Feb|March|Mar|April|Apr|May|June|July|August|Aug|September|Sept|Sep|October|Oct|November|Nov|December|Dec)?[/.-]?\\d{1,2}(?:st|nd|rd|th)?,?\\s*\\d{4}"
-        + "|(?:January|Jan|February|Feb|March|Mar|April|Apr|May|June|July|August|Aug|September|Sept|Sep|October|Oct|November|Nov|December|Dec)\\s+\\d{1,2}(?:st|nd|rd|th)?,?\\s*\\d{4}"
-        + "|(?:\\d{4}[/.-])?\\d{1,2}[/.-]\\d{1,4})\\b";
-
-
-
+        String dateRegex = "\\b(?:(?:Monday|Mon|Tuesday|Tue|Tues|Wednesday|Wed|Thursday|Thur|Friday|Fri|Saturday|Sat|Sunday|Sun)\\s+)?(?:(January|Jan|February|Feb|March|Mar|April|Apr|May|June|July|August|Aug|September|Sept|Sep|October|Oct|November|Nov|December|Dec),?\\s*)?(?:(?:(?:\\d{1,4}|\\w)[/.-])?\\d{1,2}[/.-]\\d{1,4}|\\w+\s+\\d{1,2}(?:st|rd|th|nd)?,?\\s*\\d{4})\\b";
 
         Pattern pattern = Pattern.compile(dateRegex);
         Matcher matcher = pattern.matcher(sentence);
