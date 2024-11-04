@@ -8,4 +8,5 @@ _**for external libraries in Java**_ \
 
 
 ## NLTK
-[NLTK Docs](https://www.nltk.org/)
+[NLTK Docs](https://www.nltk.org/) \
+[NLTK Book](https://www.nltk.org/book/)

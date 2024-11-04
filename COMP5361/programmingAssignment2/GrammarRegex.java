@@ -1,9 +1,10 @@
 package COMP5361.programmingAssignment2;
 
-import java.util.Scanner;
-import java.io.FileNotFoundException;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.PrintStream;
+import java.util.Scanner;
+// import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -82,12 +83,31 @@ public class GrammarRegex {
     }
     
     private static String dateRegex(String sentence) {
+        // Monday|Mon|Tuesday|Tue|Tues|Wednesday|Wed|Thursday|Thur|Thurs|Friday|Fri|Saturday|Sat|Sunday|Sun
+        // January|Jan|February|Feb|March|Mar|April|Apr|May|June|Jun|July|Jul|August|Aug|September|Sept|Sep|October|Oct|November|Nov|December|Dec
+        // Jan|Feb|Mar|Apr|May|Jun|June|Jul|July|Aug|Sep|Sept|Oct|Nov|Dec
+        
+        // the year can either be at the first or last (in numeric form only)
+        // the month can either be in the first or second (in numeric or alphabetic)
+        // the day can be in any of the three (in numeric form only)
+
+        // YYYY/MM/DD or YYYY/Month/DD
+        // MM/DD/YYYY or Month/DD/YYYY
+        // DD/MM/YYYY or DD/Month/YYYY
+        //including separators --> [./-\s*]
+        
+        // String monthRegex = "(0[1-9]|1[0-2])";  // For months 01-12
+        // String dayRegex = "(0?[1-9]|[12][0-9]|3[01])";  // For days 1-31
+
         // String dateRegex = "\\b(?:\\w\\s+)?(?:\\w+,?\\s*)?(?:(?:(?:\\d{1,4}|\\w)[/.-])?\\d{1,2}[/.-]\\d{1,4}|\\w+\s+\\d{1,2}(?:st|rd|th|nd)?,?\\s*\\d{4})\\b";
 
-        String dateRegex = "\\b(?:(?:Monday|Mon|Tuesday|Tue|Tues|Wednesday|Wed|Thursday|Thur|Friday|Fri|Saturday|Sat|Sunday|Sun)\\s+)?(?:(January|Jan|February|Feb|March|Mar|April|Apr|May|June|July|August|Aug|September|Sept|Sep|October|Oct|November|Nov|December|Dec),?\\s*)?(?:(?:(?:\\d{1,4}|\\w)[/.-])?\\d{1,2}[/.-]\\d{1,4}|\\w+\s+\\d{1,2}(?:st|rd|th|nd)?,?\\s*\\d{4})\\b";
+        String dateRegex = "\\b(?:Monday|Mon|Tuesday|Tue|Tues|Wednesday|Wed|Thursday|Thur|Thurs|Friday|Fri|Saturday|Sat|Sunday|Sun\\s+)?(?:\\w+,?\\s*)?(?:(?:(?:\\d{1,4}|\\w)[/.-])?\\d{1,2}[/.-]\\d{1,4}|\\w+\s+\\d{1,2}(?:st|rd|th|nd)?,?\\s*\\d{4})\\b";
 
         Pattern pattern = Pattern.compile(dateRegex);
         Matcher matcher = pattern.matcher(sentence);
+        
+        // String[] splitSentence = pattern.split(sentence);
+        // System.out.println(Arrays.toString(splitSentence));
 
         if (matcher.find()) {
             return matcher.group().trim();

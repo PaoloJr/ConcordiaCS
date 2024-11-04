@@ -18,6 +18,8 @@ My birthday is on Monday, February 12th 1945
 My birthday is on Tues February 12th, 1945
 My birthday is on Sat February 3rd, 1946
 My birthday is on Wednesday April 5 2021
+My birthday is on Wednesday, April 5, 2021
+My birthday is on Wednesday, April 5 2021
 My birthday is on 02/02/1945
 My birthday is on 02/Dec/2020
 My birthday is on 2020/Dec/01
