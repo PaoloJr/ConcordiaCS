@@ -32,35 +32,79 @@ Detected date: Monday, April 9, 2020
 
 Sentence: My appointment is scheduled for 2020/02/02, and my phone number is (999) 999-9999
 Detected phone number: (999) 999-9999
-Detected date: for 2020/02/02
+Detected date: 2020/02/02
+
+Sentence: My birthday is on 2020/12/31
+Detected phone number: Phone Match Not Found!
+Detected date: 2020/12/31
+
+Sentence: My birthday is on 2020/Dec/31
+Detected phone number: Phone Match Not Found!
+Detected date: 2020/Dec/31
+
+Sentence: My birthday is on 12/31/2020
+Detected phone number: Phone Match Not Found!
+Detected date: 12/31/2020
+
+Sentence: My birthday is on Dec/31/2020
+Detected phone number: Phone Match Not Found!
+Detected date: Dec/31/2020
+
+Sentence: My birthday is on 31/12/2020
+Detected phone number: Phone Match Not Found!
+Detected date: 31/12/2020
+
+Sentence: My birthday is on 31/Dec/2020
+Detected phone number: Phone Match Not Found!
+Detected date: 31/Dec/2020
 
 Sentence: My birthday is on 02/02/1945
 Detected phone number: Phone Match Not Found!
-Detected date: on 02/02/1945
-
-Sentence: My birthday is on 2020/01/01
-Detected phone number: Phone Match Not Found!
-Detected date: on 2020/01/01
+Detected date: 02/02/1945
 
 Sentence: My birthday is on 2020/1/1
 Detected phone number: Phone Match Not Found!
-Detected date: on 2020/1/1
+Detected date: 2020/1/1
+
+Sentence: My birthday is on 2020/Dec/01
+Detected phone number: Phone Match Not Found!
+Detected date: 2020/Dec/01
+
+Sentence: My birthday is on 02/Dec/2020
+Detected phone number: Phone Match Not Found!
+Detected date: 02/Dec/2020
+
+Sentence: My birthday is on Dec/02/2020
+Detected phone number: Phone Match Not Found!
+Detected date: Dec/02/2020
 
 Sentence: My birthday is on 2020.01.01
 Detected phone number: Phone Match Not Found!
-Detected date: on 2020.01.01
+Detected date: 2020.01.01
 
 Sentence: My birthday is on 02.01.2020
 Detected phone number: Phone Match Not Found!
-Detected date: on 02.01.2020
+Detected date: 02.01.2020
 
 Sentence: My birthday is on 2020-01-01
 Detected phone number: Phone Match Not Found!
-Detected date: on 2020-01-01
+Detected date: 2020-01-01
 
 Sentence: My birthday is on 02-01-2020
 Detected phone number: Phone Match Not Found!
-Detected date: on 02-01-2020
+Detected date: 02-01-2020
+
+Sentence: My birthday is on 02/02/1945
+Detected phone number: Phone Match Not Found!
+Detected date: 02/02/1945
+
+Sentence: My birthday is on 2020.Dec.01
+Detected phone number: Phone Match Not Found!
+Detected date: 2020.Dec.01
+
+Sentence: My birthday is on Dec.01.2020
+Detected phone number: Phone Match Not Found!
+Detected date: Dec.01.2020
 
 Sentence: My birthday is on Monday, February 12th 1945
 Detected phone number: Phone Match Not Found!
@@ -85,26 +129,6 @@ Detected date: Wednesday, April 5, 2021
 Sentence: My birthday is on Wednesday, April 5 2021
 Detected phone number: Phone Match Not Found!
 Detected date: Wednesday, April 5 2021
-
-Sentence: My birthday is on 02/02/1945
-Detected phone number: Phone Match Not Found!
-Detected date: on 02/02/1945
-
-Sentence: My birthday is on 02/Dec/2020
-Detected phone number: Phone Match Not Found!
-Detected date: Date Match Not Found!
-
-Sentence: My birthday is on 2020/Dec/01
-Detected phone number: Phone Match Not Found!
-Detected date: Date Match Not Found!
-
-Sentence: My birthday is on 2020.Dec.01
-Detected phone number: Phone Match Not Found!
-Detected date: Date Match Not Found!
-
-Sentence: My birthday is on Dec.01.2020
-Detected phone number: Phone Match Not Found!
-Detected date: Dec.01.2020
 
 Sentence: My birthday is on Tues Dec 01 2020
 Detected phone number: Phone Match Not Found!
