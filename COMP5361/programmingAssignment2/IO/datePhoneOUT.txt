@@ -106,6 +106,10 @@ Sentence: My birthday is on Dec.01.2020
 Detected phone number: Phone Match Not Found!
 Detected date: Dec.01.2020
 
+Sentence: My birthday is on December 31 2020
+Detected phone number: Phone Match Not Found!
+Detected date: December 31 2020
+
 Sentence: My birthday is on Monday, February 12th 1945
 Detected phone number: Phone Match Not Found!
 Detected date: Monday, February 12th 1945

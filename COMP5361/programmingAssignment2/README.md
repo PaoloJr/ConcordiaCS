@@ -1,0 +1,2 @@
+[Date Formats by Country](https://en.wikipedia.org/wiki/List_of_date_formats_by_country)\
+[Phone Number Formats by Country](https://en.wikipedia.org/wiki/National_conventions_for_writing_telephone_numbers#United_States,_Canada,_and_other_NANP_countries)

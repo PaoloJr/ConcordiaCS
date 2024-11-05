@@ -6,7 +6,6 @@ _**for external libraries in Java**_ \
 `javac -cp "standardLibraryPath" <pathToJavaSourceFile>` \
 `java -cp "standardLibraryPath" <pathToJavaClassFile>`
 
-
 ## NLTK
 [NLTK Docs](https://www.nltk.org/) \
 [NLTK Book](https://www.nltk.org/book/)
