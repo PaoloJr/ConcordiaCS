@@ -26,21 +26,9 @@ Sentence: Call me on Monday, April 9, 2020 at +1 999.999.9999
 Detected phone number: +1 999.999.9999
 Detected date: Monday, April 9, 2020
 
-Sentence: Call me on Monday, April 9, 2020 at 9999999999
-Detected phone number: 9999999999
-Detected date: Monday, April 9, 2020
-
 Sentence: My appointment is scheduled for 2020/02/02, and my phone number is (999) 999-9999
 Detected phone number: (999) 999-9999
 Detected date: 2020/02/02
-
-Sentence: My birthday is on 2020/12/31, so call me at +1 (514) 099-9999
-Detected phone number: Phone Match Not Found!
-Detected date: 2020/12/31
-
-Sentence: My birthday is on 2020/12/31, so call me at +1.514.099.9999
-Detected phone number: Phone Match Not Found!
-Detected date: 2020/12/31
 
 Sentence: My birthday is on 2020/Dec/31
 Detected phone number: Phone Match Not Found!
@@ -150,53 +138,21 @@ Sentence: My birthday is on Monday Dec 1st 2020
 Detected phone number: Phone Match Not Found!
 Detected date: Monday Dec 1st 2020
 
-Sentence: Sarah called me on December 25, 2025 at (555) 123-4567.
-Detected phone number: Phone Match Not Found!
-Detected date: December 25, 2025
-
-Sentence: The conference is scheduled for 15-03-2024; please RSVP at 312-555.8900.
-Detected phone number: 312-555.8900
-Detected date: 15-03-2024
-
-Sentence: I visited the museum on Sunday, August 07, 2008 and called the guide at 5558901234.
-Detected phone number: Phone Match Not Found!
-Detected date: Sunday, August 07, 2008
-
-Sentence: Please contact our support team at (206)   555-7890 before 31/1/2024.
-Detected phone number: (206)   555-7890
-Detected date: 31/1/2024
-
-Sentence: The wedding is set for Saturday, June 22nd, 2026 - the planner's number is 415.555.3456.
-Detected phone number: 415.555.3456
-Detected date: Saturday, June 22nd, 2026
-
-Sentence: I started my new job on 12.9 2022 and got my work phone: (702) 555-9012.
-Detected phone number: (702) 555-9012
-Detected date: Date Match Not Found!
-
 Sentence: The concert will be held on Thursday, April 18 2024; for tickets call 888-555-6543.
 Detected phone number: 888-555-6543
 Detected date: Thursday, April 18 2024
 
-Sentence: She graduated on 28-05-2019 and changed her number to 617-555-4321.
-Detected phone number: 617-555-4321
-Detected date: 28-05-2019
-
-Sentence: The package was delivered on 03.11.2023; tracking support: (800) 555-7654.
-Detected phone number: (800) 555-7654
-Detected date: 03.11.2023
-
-Sentence: Mark your calendar for Friday, July 26, 2029 and call the venue at 213.555.8765.
-Detected phone number: 213.555.8765
-Detected date: Friday, July 26, 2029
-
-Sentence: The interview is scheduled for 05-02-2024 at 2 PM; recruiter: (408) 555-2345.
-Detected phone number: (408) 555-2345
-Detected date: 05-02-2024
-
 Sentence: We moved to our new house on Monday, October 15, 2023 and got a landline: 925-555-6789.
 Detected phone number: 925-555-6789
 Detected date: Monday, October 15, 2023
+
+Sentence: Call me on Monday, April 9, 2020 at 999-999-9999
+Detected phone number: 999-999-9999
+Detected date: Monday, April 9, 2020
+
+Sentence: My appointment is scheduled for 2020/02/02, and my phone number is (999) 999-9999
+Detected phone number: (999) 999-9999
+Detected date: 2020/02/02
 
 Sentence: The grand opening is on 21/08/2027; information desk: (619) 555-1098.
 Detected phone number: (619) 555-1098
@@ -214,13 +170,33 @@ Sentence: She retired on Wednesday, December 31, 2020 and left her contact: 650-
 Detected phone number: 650-555-8901
 Detected date: Wednesday, December 31, 2020
 
+Sentence: She graduated on 28-05-2019 and changed her number to 617-555-4321.
+Detected phone number: 617-555-4321
+Detected date: 28-05-2019
+
+Sentence: The package was delivered on 03.11.2023; tracking support: (800) 555-7654.
+Detected phone number: (800) 555-7654
+Detected date: 03.11.2023
+
+Sentence: Mark your calendar for Friday, July 26, 2029 and call the venue at 213.555.8765.
+Detected phone number: 213.555.8765
+Detected date: Friday, July 26, 2029
+
+Sentence: The interview is scheduled for 05-02-2024 at 2 PM; recruiter: (408) 555-2345.
+Detected phone number: (408) 555-2345
+Detected date: 05-02-2024
+
+Sentence: The wedding is set for Saturday, June 22nd, 2026 - the planner's number is 415.555.3456.
+Detected phone number: 415.555.3456
+Detected date: Saturday, June 22nd, 2026
+
+Sentence: The conference is scheduled for 15-03-2024; please RSVP at 312-555.8900.
+Detected phone number: 312-555.8900
+Detected date: 15-03-2024
+
 Sentence: The charity event is on 08-09-2024; organizer's number: (415) 555-2468.
 Detected phone number: (415) 555-2468
 Detected date: 08-09-2024
-
-Sentence: I took my driving test on Tuesday, 17 July  2018; instructor's phone: 510 555-1357.
-Detected phone number: 510 555-1357
-Detected date: Date Match Not Found!
 
 Sentence: The art exhibition opens on 12/01/2024; gallery number: (212) 555-9876.
 Detected phone number: (212) 555-9876
@@ -230,11 +206,42 @@ Sentence: We celebrated our anniversary on Monday, June 30, 2023 and booked the 
 Detected phone number: 831-555-6420
 Detected date: Monday, June 30, 2023
 
-Sentence: Call me on Monday, April 9, 2020 at 999-999-9999
-Detected phone number: 999-999-9999
+Sentence: My birthday is on 2020/12/31, so call me at +1.514.299.9999
+Detected phone number: +1.514.299.9999
+Detected date: 2020/12/31
+
+Sentence: Call me on Monday, April 9, 2020 at 9999999999
+Detected phone number: 9999999999
 Detected date: Monday, April 9, 2020
 
-Sentence: My appointment is scheduled for 2020/02/02, and my phone number is (999) 999-9999
-Detected phone number: (999) 999-9999
-Detected date: 2020/02/02
+Sentence: I visited the museum on Sunday, August 07, 2008 and called the guide at 5558901234.
+Detected phone number: 5558901234
+Detected date: Sunday, August 07, 2008
+
+
+
+-----*****NON-ACCEPTABLE-FORMATS-BELOW*****-----
+Sentence: My birthday is on 2020/12/31, so call me at +1 (514) 099-9999
+Detected phone number: Phone Match Not Found!
+Detected date: 2020/12/31
+
+Sentence: I started my new job on 12.9 2022 and got my work phone: (702) 555-9012.
+Detected phone number: (702) 555-9012
+Detected date: Date Match Not Found!
+
+Sentence: I took my driving test on Tuesday, 17 July  2018; instructor's phone: 510 555-1357.
+Detected phone number: 510 555-1357
+Detected date: Date Match Not Found!
+
+Sentence: Please contact our support team at (206)   555-7890 before 31/1/2024.
+Detected phone number: Phone Match Not Found!
+Detected date: 31/1/2024
+
+Sentence: Sarah called me on December 25, 2025 at (555) 123-4567.
+Detected phone number: Phone Match Not Found!
+Detected date: December 25, 2025
+
+Sentence: Sarah called me on December 25, 2025 at (155) 223-4567.
+Detected phone number: Phone Match Not Found!
+Detected date: December 25, 2025
 

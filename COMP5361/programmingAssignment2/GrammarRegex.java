@@ -21,6 +21,12 @@ public class GrammarRegex {
         try (PrintStream out = new PrintStream(new File(outputFile))) {
             for (String sentence : sentences) {
             //    out.println(sentence);
+            if (sentence.contains("*****")){
+                out.print("\n");
+                out.print("\n");
+                out.println("-----*****NON-ACCEPTABLE-FORMATS-BELOW*****-----");
+                // out.print("\n");
+            } else {
             String phone = phoneNumberRegex(sentence);
             String date = dateRegex(sentence);
                 out.println("Sentence: " + sentence);
@@ -28,6 +34,7 @@ public class GrammarRegex {
                 out.println("Detected date: " + date);
                 out.println();
             }
+        }
         } catch (FileNotFoundException e) {
             System.err.println("Error opening output file: " + outputFile);
         }
@@ -48,12 +55,18 @@ public class GrammarRegex {
     
     
     private static String phoneNumberRegex(String sentence) {
-        // baseline
+        // String phoneRegex = 
+        // "(\\+1[-.\\s]?)?"
+        // + "(\\(?[2-9]\\d{2}\\)?"
+        // + "[-.\\s]?)?[2-9]\\d{2}[-.\\s]?"
+        // + "\\d{4}";
+
         String phoneRegex = 
-        "([+]?[1]\\s*)?" // +1
-        + "([(.-])?[2-9]{3}\\)?"
-        + "(\\s*|[.-])?[2-9]{3}\\s*[.-]?"
-        + "\\d{4}";
+        "(\\+1[-.\\s]?)?"                   // Optional +1 prefix, followed by single optional dash or period or whitespace
+        + "\\(?[2-9][0-9]{2}\\)?[-.\\s]?"   // Area code: optional open-parentheses, first digit 2-9, followed by any two digits, optional closed-parentheses followed by single optional dash or period or whitepace
+        + "[2-9][0-9]{2}[-.\\s]?"           // Exchange code: first digit 2-9, followed by any two digits and by a single optional dash or period or whitepace
+        + "[0-9]{4}";                       // Subscriber number: any four digits
+
             
         Pattern pattern = Pattern.compile(phoneRegex);
         Matcher matcher = pattern.matcher(sentence);
@@ -102,7 +115,7 @@ public class GrammarRegex {
         // String yearRegex = "((19|20)\\d{2})"; // for years from 1900-2099
         
         String dateRegex = 
-            "\\b" // assert position at word boundary
+            "\\b" // assert position at beginning of word boundary
             + "(?:" // match everything enclosed
             + "(?:((19|20)\\d{2})[-/.](0?[1-9]|1[0-2])[-/.](0?[1-9]|[12][0-9]|3[01]))"  // YYYY[/.-]MM[/.-]DD
             + "|((0?[1-9]|[12][0-9]|3[01])[-/.](0?[1-9]|1[0-2])[-/.]((19|20)\\d{2}))"  // DD[/.-]MM[/.-]YYYY
@@ -111,11 +124,11 @@ public class GrammarRegex {
             + "|((0?[1-9]|[12][0-9]|3[01])[-/.]?(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[-/.]((19|20)\\d{2}))"  // DD[/.-]MMM[/.-]YYYY
             + "|((Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[-/.]?(0?[1-9]|[12][0-9]|3[01])[-/.]((19|20)\\d{2}))"  // MMM[/.-]DD[/.-]YYYY
             + "|(?:" // match everything enclosed
-            + "(?:Monday|Mon|Tuesday|Tue|Tues|Wednesday|Wed|Thursday|Thur|Thurs|Friday|Fri|Saturday|Sat|Sunday|Sun),?\\s*)?"  // Optional weekday (0 or one times)
+            + "(?:Monday|Mon|Tuesday|Tue|Tues|Wednesday|Wed|Thursday|Thur|Thurs|Friday|Fri|Saturday|Sat|Sunday|Sun),?\\s*)?"  // Optional weekday (0 or one times) followed by optional comma and 0 to many whitespaces
             + "(?:January|Jan|February|Feb|March|Mar|April|Apr|May|June|Jun|July|Jul|August|Aug|September|Sept|Sep|October|Oct|November|Nov|December|Dec)\\s+"
             + "(\\d{1,2}(?:st|nd|rd|th)?)"  // 1 to 2 digit-Day with optional suffix
-            + ",?\\s*(\\d{4})"  // Optional comma, then 4-digit year
-            + ")\\b";
+            + ",?\\s*(\\d{4})"  // Optional comma, with 0 to multiple whitespaces then 4-digit year
+            + ")\\b"; // assert position at end of word boundary
 
         Pattern pattern = Pattern.compile(dateRegex);
         // System.out.println(pattern);
