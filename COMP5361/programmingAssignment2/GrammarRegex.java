@@ -48,12 +48,18 @@ public class GrammarRegex {
     
     
     private static String phoneNumberRegex(String sentence) {
-        String phoneRegex = "[(|+]?[1-9]?\\s?[(]?\\d{3}\\)?[\\s.-]?\\d{3}[\\s.-]?\\d{4}";
+        // baseline
+        String phoneRegex = 
+        "([+]?[1]\\s*)?" // +1
+        + "([(.-])?[2-9]{3}\\)?"
+        + "(\\s*|[.-])?[2-9]{3}\\s*[.-]?"
+        + "\\d{4}";
+            
         Pattern pattern = Pattern.compile(phoneRegex);
         Matcher matcher = pattern.matcher(sentence);
         
         if (matcher.find()) {
-            return matcher.group().trim();
+            return matcher.group();
             } else {
                 return "Phone Match Not Found!";
             }
@@ -97,7 +103,6 @@ public class GrammarRegex {
         
         String dateRegex = 
             "\\b" // assert position at word boundary
-            // + "(?:(?:Monday|Mon|Tuesday|Tue|Tues|Wednesday|Wed|Thursday|Thur|Thurs|Friday|Fri|Saturday|Sat|Sunday|Sun),?\\s*)?" // Optional weekday (0 or one times)
             + "(?:" // match everything enclosed
             + "(?:((19|20)\\d{2})[-/.](0?[1-9]|1[0-2])[-/.](0?[1-9]|[12][0-9]|3[01]))"  // YYYY[/.-]MM[/.-]DD
             + "|((0?[1-9]|[12][0-9]|3[01])[-/.](0?[1-9]|1[0-2])[-/.]((19|20)\\d{2}))"  // DD[/.-]MM[/.-]YYYY
@@ -115,12 +120,13 @@ public class GrammarRegex {
         Pattern pattern = Pattern.compile(dateRegex);
         // System.out.println(pattern);
         Matcher matcher = pattern.matcher(sentence);
+        // System.out.println(matcher);
         
         // String[] splitSentence = pattern.split(sentence);
         // System.out.println(Arrays.toString(splitSentence));
 
         if (matcher.find()) {
-            return matcher.group().trim();
+            return matcher.group();
         } else {
         return "Date Match Not Found!";
         }

@@ -29,6 +29,7 @@ _**ld**_ \
 `ld -m elf_i386 -o <output_fileName> <input_objectFile>`
 
 _**gdb**_ \
+[gdb tutorial](https://www.gdbtutorial.com/gdb_commands) \
 [gdb cheatsheet](https://gabriellesc.github.io/teaching/resources/GDB-cheat-sheet.pdf) \
 `gdb ./ELF_binary` - to start `gdb` with the executable \
     1.`layout asm` - show each assembly line
