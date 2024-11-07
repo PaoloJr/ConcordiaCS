@@ -1,6 +1,5 @@
 Call me on Monday, April 9, 2020 at 999-999-9999
 Call me on Mon Apr 9 2020 at 999.999.9999
-Call me on Monday April/09/2020 at +1 (999) 999.9999
 Call me on Monday, April 9, 2020 at +19999999999
 Call me on Monday, April 9, 2020 at +1 999 999 9999
 Call me on Monday, April 9, 2020 at +1 (999) 999-9999
@@ -54,9 +53,12 @@ My birthday is on 2020/12/31, so call me at +1.514.299.9999
 Call me on Monday, April 9, 2020 at 9999999999
 I visited the museum on Sunday, August 07, 2008 and called the guide at 5558901234.
 *****NON-ACCEPTABLE-FORMATS*****
-My birthday is on 2020/12/31, so call me at +1 (514) 099-9999
+My birthday is on 2020/12/31, so call me at +4 (514) 599-9999
+My birthday is on 2020/12/31, so call me at +10 (514) 599-9999
 I started my new job on 12.9 2022 and got my work phone: (702) 555-9012.
 I took my driving test on Tuesday, 17 July  2018; instructor's phone: 510 555-1357.
 Please contact our support team at (206)   555-7890 before 31/1/2024.
+Call me on Monday April/09/2020 at +1 (999) 999.9999
 Sarah called me on December 25, 2025 at (555) 123-4567.
 Sarah called me on December 25, 2025 at (155) 223-4567.
+My birthday is on 2020/12/31, so call me at +1 (514) 099-9999

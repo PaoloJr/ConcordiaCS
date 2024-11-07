@@ -2,7 +2,12 @@
 _**Phone Numbers**_
 - Follows the North America Numbering Plan (NANP)
     - in the format +1 (NXX, 3-digit area code) NXX-XXXX, where `N` represents digits `2` to `9`
-    - 
+    - the RegEx pattern sequence:   
+        - "(^\\+1[-.\\s]?)?"
+            - S --> +1( - + . + " ")   
+        - "\\(?[2-9][0-9]{2}\\)?[-.\\s]?"
+        - "[2-9][0-9]{2}[-.\\s]?"
+        - "[0-9]{4}";
 
 
 _**Dates**_

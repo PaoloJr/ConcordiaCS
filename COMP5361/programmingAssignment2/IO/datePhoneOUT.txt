@@ -6,10 +6,6 @@ Sentence: Call me on Mon Apr 9 2020 at 999.999.9999
 Detected phone number: 999.999.9999
 Detected date: Mon Apr 9 2020
 
-Sentence: Call me on Monday April/09/2020 at +1 (999) 999.9999
-Detected phone number: +1 (999) 999.9999
-Detected date: Date Match Not Found!
-
 Sentence: Call me on Monday, April 9, 2020 at +19999999999
 Detected phone number: +19999999999
 Detected date: Monday, April 9, 2020
@@ -221,8 +217,12 @@ Detected date: Sunday, August 07, 2008
 
 
 -----*****NON-ACCEPTABLE-FORMATS-BELOW*****-----
-Sentence: My birthday is on 2020/12/31, so call me at +1 (514) 099-9999
-Detected phone number: Phone Match Not Found!
+Sentence: My birthday is on 2020/12/31, so call me at +4 (514) 599-9999
+Detected phone number: (514) 599-9999
+Detected date: 2020/12/31
+
+Sentence: My birthday is on 2020/12/31, so call me at +10 (514) 599-9999
+Detected phone number: (514) 599-9999
 Detected date: 2020/12/31
 
 Sentence: I started my new job on 12.9 2022 and got my work phone: (702) 555-9012.
@@ -237,6 +237,10 @@ Sentence: Please contact our support team at (206)   555-7890 before 31/1/2024.
 Detected phone number: Phone Match Not Found!
 Detected date: 31/1/2024
 
+Sentence: Call me on Monday April/09/2020 at +1 (999) 999.9999
+Detected phone number: +1 (999) 999.9999
+Detected date: Date Match Not Found!
+
 Sentence: Sarah called me on December 25, 2025 at (555) 123-4567.
 Detected phone number: Phone Match Not Found!
 Detected date: December 25, 2025
@@ -244,4 +248,8 @@ Detected date: December 25, 2025
 Sentence: Sarah called me on December 25, 2025 at (155) 223-4567.
 Detected phone number: Phone Match Not Found!
 Detected date: December 25, 2025
+
+Sentence: My birthday is on 2020/12/31, so call me at +1 (514) 099-9999
+Detected phone number: Phone Match Not Found!
+Detected date: 2020/12/31
 

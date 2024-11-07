@@ -62,11 +62,19 @@ public class GrammarRegex {
         // + "\\d{4}";
 
         String phoneRegex = 
-        "(\\+1[-.\\s]?)?"                   // Optional +1 prefix, followed by single optional dash or period or whitespace
-        + "\\(?[2-9][0-9]{2}\\)?[-.\\s]?"   // Area code: optional open-parentheses, first digit 2-9, followed by any two digits, optional closed-parentheses followed by single optional dash or period or whitepace
-        + "[2-9][0-9]{2}[-.\\s]?"           // Exchange code: first digit 2-9, followed by any two digits and by a single optional dash or period or whitepace
-        + "[0-9]{4}";                       // Subscriber number: any four digits
+        "(\\+1[-.\\s]?)?"                   
+        + "\\(?"
+        + "[2-9][0-9]{2}"
+        + "\\)?"
+        + "[-.\\s]?"   
+        + "[2-9][0-9]{2}"
+        + "[-.\\s]?"           
+        + "[0-9]{4}";     
 
+        // Exchange code: first digit 2-9, followed by any two digits and by a single optional dash or period or whitepace
+        // anchored optional +1 prefix, followed by single optional dash or period or whitespace
+        // Area code: optional open-parentheses, first digit 2-9, followed by any two digits, optional closed-parentheses followed by single optional dash or period or whitepace
+        // Subscriber number: any four digits
             
         Pattern pattern = Pattern.compile(phoneRegex);
         Matcher matcher = pattern.matcher(sentence);
