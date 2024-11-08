@@ -1,5 +1,5 @@
 section .data
-    result_msg db "Result: %d", 0         ; message to be printed
+    result_msg db "Result: %d", 0       ; message to be printed
     result db 0                         ; buffer to hold the result as a string
     result_len equ 14                   ; length of the message and result string
 

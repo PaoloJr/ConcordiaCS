@@ -1,4 +1,5 @@
 ## Tutorials
+[PC Assembly Book](https://pacman128.github.io/pcasm/) \
 [NASM docs](https://www.nasm.us/xdoc/2.16.03/html/nasmdoc0.html) \
 [NASM assembly lab](https://labs.bilimedtech.com/nasm/index.html) \
 [NASM Tutorial](https://cratecode.com/info/nasm-tutorial) \
