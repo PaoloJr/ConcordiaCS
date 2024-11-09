@@ -1,12 +1,15 @@
-section .bss
-    buffer resb 6                                                               ; Reserve 6 bytes for input buffer (sign + 4-digits + newline)
-    int_str resb 6                                                              ; Buffer to store the integer string
 
 section .data
     prompt db "Enter an integer: ", 0
     lenPrompt equ $ - prompt
+    prompt2 db "Integer entered: ", 0
+    lenPrompt2 equ $ - prompt2
     newline db 10, 0
     lenNewline equ $ - newline
+
+section .bss
+    buffer resb 6                                                               ; Reserve 6 bytes for input buffer (sign + 4-digits + newline)
+    int_str resb 6                                                              ; Buffer to store the integer string
 
 section .text
     global _start
@@ -92,6 +95,13 @@ convert_to_string:
     mov byte [esi], '-'
 
 print_result:
+
+    mov eax, 4
+    mov ebx, 1
+    mov ecx, prompt2
+    mov edx, lenPrompt2
+    int 0x80
+
     ; Print the result
     mov eax, 4                                                                  ; sys_write
     mov ebx, 1                                                                  ; file descriptor (stdout)
@@ -99,14 +109,20 @@ print_result:
     mov edx, edi                                                                ; message length
     sub edx, esi                                                                ; calculate the length of the string
     int 0x80                                                                    ; call kernel
+    call prln
+    call end
 
+
+prln:
     ; Print newline
     mov eax, 4                                                                  ; sys_write
     mov ebx, 1                                                                  ; file descriptor (stdout)
     mov ecx, newline                                                            ; message to write
     mov edx, lenNewline                                                         ; message length
     int 0x80                                                                    ; call kernel
+    ret
 
+end:
     ; Exit
     mov eax, 1                                                                  ; sys_exit
     xor ebx, ebx                                                                ; exit code 0
