@@ -51,6 +51,11 @@ _start:
     mov edx, lenOutMsg
     call print
 
+    ; print user-input value
+    mov ecx, strIn                           
+    mov edx, [strInLen]                      
+    call print
+
     ; print the integer after converting to string
     call iprint
 
@@ -79,12 +84,8 @@ iread:
     ret
     
 iprint:
-    ; print the user-entered input (4-digit signed integer)
-    mov eax, 4                               ; sys_write
-    mov ebx, 1                               ; stdout
-    lea ecx, strIn                           ; address of the buffer
-    mov edx, [strInLen]                      ; bytes to write (up to strInLen)
-    int 0x80
+    ; convert integer in intOut to a string and print it
+    ; int to string conversion
     ret
 
 prln:

@@ -5,7 +5,7 @@ all: subDataConverter
 
 # for creating the executable
 # can add `@` symbol to suppress showing the command 
-# ex: @ld -m elf_i386 -o dataConverterSub dataConverterSub.o
+# ex: @ld -m elf_i386 -o <ELF binary> <objectFile>.o
 subDataConverter: subDataConverter.o
 	ld -m elf_i386 -o subDataConverter subDataConverter.o
 
