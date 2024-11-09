@@ -7,7 +7,9 @@
 [x86 instruction list](https://en.wikipedia.org/wiki/X86_instruction_listings) \
 [x86 OpCode Reference](http://ref.x86asm.net/) \
 [x86 Assembly Guide](https://www.cs.virginia.edu/~evans/cs216/guides/x86.html) \
-[x86 Registers](https://en.wikibooks.org/wiki/X86_Assembly/X86_Architecture)
+[x86 Registers](https://en.wikibooks.org/wiki/X86_Assembly/X86_Architecture) \
+[x86 Registers - uToronto](https://www.eecg.utoronto.ca/~amza/www.mindsec.com/files/x86regs.html) \
+[ASCII Table](https://www.ascii-code.com/)
 
 ## Linux
 _some libraries may be needed_
