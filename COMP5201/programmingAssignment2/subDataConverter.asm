@@ -24,12 +24,11 @@ section .data
 section .bss 
     ; unintialized data segment
 	
-    strIn resb 6                              ; 6 bytes to hold the (ASCII string) plus newline
-    strInLen resd 1                           ; 4 bytes for the length
+    strIn resb 6                              ; 6 bytes to hold sign + 4-digits + newline
+    strInLen resb 6                           ; 6 bytes for the length
 
     intOut resd 1                             ; hold the converted value as signed integer (1 double word, 32-bits)
     strOut resb 6                             ; 6 bytes to hold the returned ASCII string and newline
-    sign resb 1                               ; reserve 1 byte for the sign
 
 
 section .text
@@ -51,10 +50,8 @@ _start:
     mov edx, lenOutMsg
     call print
 
-    ; print user-input value
-    mov ecx, strIn                           
-    mov edx, [strInLen]                      
-    call print
+    ; Load the integer value into eax
+    mov eax, [intOut]
 
     ; print the integer after converting to string
     call iprint
@@ -62,16 +59,24 @@ _start:
     ; print newline
     call prln
 
-    ;exit
+    ; program exit
     call end
 
-
+;----------------------------------------
+; Subroutine: print
+; Prints the string pointed to by ECX of length EDX
+; ECX and EDX are setup before calling print
+;----------------------------------------
 print:
     mov eax, 4                                ; syscall number for sys_write
     mov ebx, 1                                ; stdout, default output device 
     int 0x80
     ret
 
+;----------------------------------------
+; Subroutine: iread
+; Reads a string from stdin, converts it to an integer, and stores it in [intOut]
+;----------------------------------------
 iread:
     ; read user input
     mov eax, 3                                ; syscall number for sys_read
@@ -81,13 +86,94 @@ iread:
     int 0x80
     mov [strInLen], eax
     ; ASCII to integer conversion, store result in intOut
-    ret
-    
-iprint:
-    ; convert integer in intOut to a string and print it
-    ; int to string conversion
+    mov esi, strIn
+    xor eax, eax
+    xor ebx, ebx
+    xor ecx, ecx
+    mov edi, 1
+
+    mov cl, [esi]
+    cmp cl, '-'
+    jne convert_to_int
+    mov edi, -1
+    inc esi
+    jmp convert_to_int
+
+convert_to_int:
+    mov cl, [esi]
+    cmp cl, 10
+    je done
+    sub cl, '0'
+    imul eax, eax, 10
+    add eax, ecx
+    inc esi
+    jmp convert_to_int
+
+done:
+    imul eax, edi
+    mov [intOut], eax
     ret
 
+;----------------------------------------
+; Subroutine: iprint
+; Converts the integer in EAX to a string and prints it
+;----------------------------------------
+iprint:
+    mov ebx, eax          ; Move integer to EBX
+    mov esi, strOut + 5   ; Point ESI to the end of strOut buffer
+    mov ecx, 10           ; Divisor for modulus
+    xor edi, edi          ; clear EDI (negative flag)  
+
+    ; Handle zero case
+    cmp ebx, 0
+    jne convert_number
+    mov byte [esi], '0'
+    dec esi
+    jmp finish_conversion
+
+convert_number:
+    ; Handle negative numbers
+    test ebx, ebx
+    jge conversion_loop
+    neg ebx               ; Make EBX positive
+    mov edi, 1            ; Negative flag
+    jmp conversion_loop
+
+positive_number:
+    mov edi, 0            ; Positive flag
+
+conversion_loop:
+    xor edx, edx          ; Clear EDX
+    mov eax, ebx          ; Move EBX to EAX for division
+    div ecx               ; Divide EAX by 10
+    add dl, '0'          ; Convert remainder to ASCII
+    dec esi
+    mov [esi], dl         ; Store character
+    mov ebx, eax          ; Update EBX with quotient
+    cmp ebx, 0
+    jne conversion_loop
+
+finish_conversion:
+    ; Add negative sign if necessary
+    cmp edi, 1
+    jne prepare_print
+    dec esi
+    mov byte [esi], '-'
+
+prepare_print:
+    ; Calculate length of the string
+    mov ecx, esi          ; Pointer to the start of the string
+    mov edx, [strOut]
+    sub edx, esi          ; edx = length of the string
+
+    call print
+
+    ret
+
+;----------------------------------------
+; Subroutine: prln
+; Prints a newline character
+;----------------------------------------
 prln:
     ; Print newline after the output
     mov eax, 4
@@ -97,9 +183,11 @@ prln:
     int 0x80
     ret
 
-
+;----------------------------------------
+; Subroutine: end
+; Exits the program
+;----------------------------------------
 end:
-    ; program exit
     mov eax, 1                                ; syscall number for exit
     mov ebx, 0                                ; exit status
     int 0x80
