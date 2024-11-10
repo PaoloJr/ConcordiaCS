@@ -11,16 +11,13 @@ section .data
     outMsgMul db "Double of the entered number is: ", 0xA, 0
     lenOutMsgMul equ $-outMsgMul
 
-    convertMsg db "The converted string is: ", 0xA, 0
-    lenConvertMsg equ $-convertMsg         
-
     newline db 0xA, 0
     lenNewline equ $-newline
 
 section .bss 
-    strIn resb 6                                                          ; 6 bytes to hold sign + 4-digits + newline
-    intOut resd 1                                                         ; hold the converted value as signed integer (1 double word, 32-bits)
-    strOut resb 8                                                         ; 8 bytes to hold the returned signed ASCII string, newline and null terminator
+    strIn resb 6                                                           ; 6 bytes to hold sign + 4-digits + newline
+    intOut resd 1                                                          ; hold the converted value as signed integer (1 double word, 32-bits)
+    strOut resb 8                                                          ; 8 bytes to hold the returned signed ASCII string, newline and null terminator
 
 section .text
 	global _start
@@ -34,19 +31,19 @@ while:
     mov edx, lenFirstPrompt
     call print
 
-    call iread                                                          ; read signed integer and return the binary integer (store in intOut)
+    call iread                                                             ; read signed integer and return the binary integer (store in intOut)
 
     ; Check if the input is empty (only Enter pressed)
-    cmp byte [strIn], 10                                                ; compare a byte with ASCII newline character
-    je endwhile                                                         ; If yes, jump to endwhile to exit the loop
+    cmp byte [strIn], 10                                                   ; compare a byte with ASCII newline character
+    je endwhile                                                            ; If yes, jump to endwhile to exit the loop
 
     ; display second messsage "The number entered is: "
     mov ecx, outMsg
     mov edx, lenOutMsg
     call print
 
-    mov eax, [intOut]                                                   ; Load the integer value into eax
-    call iprint                                                         ; print the original integer after converting to string
+    mov eax, [intOut]                                                      ; Load the integer value into eax
+    call iprint                                                            ; print the original integer after converting to string
     call prln
 
     ; display "Double of the entered number is: "
@@ -54,8 +51,8 @@ while:
     mov edx, lenOutMsgMul
     call print
 
-    mov eax, [intOut]                                                   ; re-load integer value into eax
-    sal eax, 1                                                          ; arithmetic shift left by 1 for multiplication
+    mov eax, [intOut]                                                      ; re-load integer value into eax
+    sal eax, 1                                                             ; arithmetic shift left by 1 for multiplication
     call iprint
     call prln
 
@@ -64,33 +61,25 @@ while:
     mov edx, lenOutMsgDiv
     call print
 
-    mov eax, [intOut]                                                   ; re-load integer value into eax
-    test eax, eax                                                       ; Check if EAX is zero or non-zero and sets the sign-flag (SF)
-    jns positive_halve                                                  ; If positive or zero (non-negative); SF = 0, jump to positive_halve
+    mov eax, [intOut]                                                      ; re-load integer value into eax
+    test eax, eax                                                          ; Check if EAX is zero or non-zero and sets the sign-flag (SF)
+    jns positive_halve                                                     ; If positive or zero (non-negative); SF = 0, jump to positive_halve
 
     ; Negative number adjustment
-    add eax, 1                                                          ; Adjust for negative numbers
-    sar eax, 1                                                          ; Arithmetic shift right by 1
+    add eax, 1                                                             ; Adjust for negative numbers
+    sar eax, 1                                                             ; Arithmetic shift right by 1
     call iprint
     call prln
     jmp clear
 
 positive_halve:
-    sar eax, 1                                                          ; Direct shift for positive numbers
+    sar eax, 1                                                             ; Direct shift for positive numbers
     call iprint
     call prln
 
 clear:
     ; clear strOut before next iteration
     mov byte [strOut], 0
-    mov byte [strOut + 1], 0
-    mov byte [strOut + 2], 0
-    mov byte [strOut + 3], 0
-    mov byte [strOut + 4], 0
-    mov byte [strOut + 5], 0
-    mov byte [strOut + 6], 0
-    mov byte [strOut + 7], 0
-    mov byte [strOut + 8], 0
 
     ; print newlines to separate the iterations
     call prln
@@ -158,10 +147,10 @@ done:
 ; Converts the integer in EAX to a string and prints it
 ;----------------------------------------
 iprint:
-    mov ebx, eax                                                          ; Move integer to EBX
-    mov esi, strOut + 7                                                   ; Point ESI to the end of strOut buffer
-    mov ecx, 10                                                           ; Divisor for modulus
-    xor edi, edi                                                          ; clear EDI (negative flag)  
+    mov ebx, eax                                                           ; Move integer to EBX
+    mov esi, strOut + 7                                                    ; Point ESI to the end of strOut buffer
+    mov ecx, 10                                                            ; Divisor for modulus
+    xor edi, edi                                                           ; clear EDI (negative flag)  
 
 convert_number:
     ; Handle negative numbers
@@ -169,7 +158,6 @@ convert_number:
     jge convert_to_string
     neg ebx                                                                ; Make EBX positive
     mov edi, 1                                                             ; set EDI to positive
-    jmp convert_to_string
 
 convert_to_string:
     xor edx, edx                                                           ; Clear EDX
@@ -180,14 +168,14 @@ convert_to_string:
     mov [esi], dl                                                          ; Store character
     mov ebx, eax                                                           ; Update EBX with quotient
     cmp ebx, 0
-    jne convert_to_string
+    jne convert_to_string                                                  ; if quotient is not zero, continue loop
 
 finish_conversion:
     ; Add negative sign if necessary
     cmp edi, 1                                                             ; compare to positive flag in EDI
     jne prepare_print                                                      ; if not positive, skip adding negative sign
     dec esi                                                                ; move ESI pointer back to make space for `-`
-    mov byte [esi], '-'                                                    ; add negative sign to that address (front of string integer)
+    mov byte [esi], '-'                                                    ; add negative sign to that ESI address (front of string integer)
 
 prepare_print:
     mov ecx, esi                                                           ; Pointer to the start of the string
