@@ -37,6 +37,7 @@ section .text
 
 _start:
 
+while:
     ; call print with the first prompt
     mov ecx, firstPrompt
     mov edx, lenFirstPrompt
@@ -44,6 +45,10 @@ _start:
 
     ; read the signed integer and returns the binary integer (store in intOut)
     call iread
+
+    ; Check if the input is empty (only Enter pressed)
+    cmp byte [strInLen], 1         ; Check if the length of input is 1 (newline only)
+    je endwhile                    ; If yes, jump to endwhile to exit the loop
 
     ; display second prompt "The number entered is: "
     mov ecx, outMsg
@@ -56,9 +61,23 @@ _start:
     ; print the integer after converting to string
     call iprint
 
+    ; clear strOut before next iteration
+    mov byte [strOut], 0
+    mov byte [strOut + 1], 0
+    mov byte [strOut + 2], 0
+    mov byte [strOut + 3], 0
+    mov byte [strOut + 4], 0
+    mov byte [strOut + 5], 0
+
     ; print newline
     call prln
+    call prln
+    call prln
 
+    ; repeat the loop
+    jmp while
+
+endwhile:
     ; program exit
     call end
 
@@ -134,15 +153,15 @@ iprint:
 convert_number:
     ; Handle negative numbers
     test ebx, ebx
-    jge conversion_loop
+    jge convert_to_string
     neg ebx               ; Make EBX positive
     mov edi, 1            ; Negative flag
-    jmp conversion_loop
+    jmp convert_to_string
 
 positive_number:
     mov edi, 0            ; Positive flag
 
-conversion_loop:
+convert_to_string:
     xor edx, edx          ; Clear EDX
     mov eax, ebx          ; Move EBX to EAX for division
     div ecx               ; Divide EAX by 10
@@ -151,7 +170,7 @@ conversion_loop:
     mov [esi], dl         ; Store character
     mov ebx, eax          ; Update EBX with quotient
     cmp ebx, 0
-    jne conversion_loop
+    jne convert_to_string
 
 finish_conversion:
     ; Add negative sign if necessary
@@ -162,13 +181,15 @@ finish_conversion:
 
 prepare_print:
     ; Calculate length of the string
+    mov edx, strOut + 6   ; End of strOut buffer (since buffer is 6 bytes)
+    sub edx, esi          ; EDX = length of the string from ESI to end
+
     mov ecx, esi          ; Pointer to the start of the string
-    mov edx, [strOut]
-    sub edx, esi          ; edx = length of the string
 
     call print
 
     ret
+
 
 ;----------------------------------------
 ; Subroutine: prln
