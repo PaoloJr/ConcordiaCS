@@ -26,7 +26,7 @@ section .bss
     strInLen resb 6                           ; 6 bytes for the length
 
     intOut resd 1                             ; hold the converted value as signed integer (1 double word, 32-bits)
-    strOut resb 6                             ; 6 bytes to hold the returned ASCII string and newline
+    strOut resb 12                             ; 6 bytes to hold the returned ASCII string and newline
 
 
 section .text
@@ -45,8 +45,8 @@ while:
     call iread
 
     ; Check if the input is empty (only Enter pressed)
-    cmp byte [strInLen], 1         ; Check if the length of input is 1 (newline only)
-    je endwhile                    ; If yes, jump to endwhile to exit the loop
+    cmp byte [strInLen], 1                     ; Check if the length of input is 1 (newline only)
+    je endwhile                                ; If yes, jump to endwhile to exit the loop
 
     ; display second messsage "The number entered is: "
     mov ecx, outMsg
@@ -76,14 +76,22 @@ while:
     call print
 
     mov eax, [intOut]
-    cdq
-    ; sar eax, 1
-    mov ebx, 2
-    idiv ebx
+    test eax, eax                                  ; Check if EAX is negative
+    jns positive_halve                             ; If positive or zero (non-negative), jump to positive_halve
+
+    ; Negative number adjustment
+    sar eax, 1                                     ; Arithmetic shift right by 1
+    add eax, 1                                     ; Adjust for negative numbers
+    call iprint
+    call prln
+    jmp clear
+
+positive_halve:
+    sar eax, 1                                      ; Direct shift for positive numbers
     call iprint
     call prln
 
-
+clear:
     ; clear strOut before next iteration
     mov byte [strOut], 0
     mov byte [strOut + 1], 0
@@ -91,6 +99,12 @@ while:
     mov byte [strOut + 3], 0
     mov byte [strOut + 4], 0
     mov byte [strOut + 5], 0
+    mov byte [strOut + 6], 0
+    mov byte [strOut + 7], 0
+    mov byte [strOut + 8], 0
+    mov byte [strOut + 9], 0
+    mov byte [strOut + 10], 0
+    mov byte [strOut + 11], 0
 
     ; print newline
     call prln
@@ -161,37 +175,37 @@ done:
 ; Converts the integer in EAX to a string and prints it
 ;----------------------------------------
 iprint:
-    mov ebx, eax          ; Move integer to EBX
-    mov esi, strOut + 5   ; Point ESI to the end of strOut buffer
-    mov ecx, 10           ; Divisor for modulus
-    xor edi, edi          ; clear EDI (negative flag)  
+    mov ebx, eax                                    ; Move integer to EBX
+    mov esi, strOut + 11                             ; Point ESI to the end of strOut buffer
+    mov ecx, 10                                     ; Divisor for modulus
+    xor edi, edi                                    ; clear EDI (negative flag)  
 
     ; Handle zero case
     cmp ebx, 0
     jne convert_number
     mov byte [esi], '0'
-    dec esi
+    ; dec esi
     jmp finish_conversion
 
 convert_number:
     ; Handle negative numbers
     test ebx, ebx
     jge convert_to_string
-    neg ebx               ; Make EBX positive
-    mov edi, 1            ; Negative flag
+    neg ebx                                         ; Make EBX positive
+    mov edi, 1                                      ; Negative flag
     jmp convert_to_string
 
 positive_number:
-    mov edi, 0            ; Positive flag
+    mov edi, 0                                      ; Positive flag
 
 convert_to_string:
-    xor edx, edx          ; Clear EDX
-    mov eax, ebx          ; Move EBX to EAX for division
-    div ecx               ; Divide EAX by 10
-    add dl, '0'           ; Convert remainder to ASCII
+    xor edx, edx                                    ; Clear EDX
+    mov eax, ebx                                    ; Move EBX to EAX for division
+    div ecx                                         ; Divide EAX by 10
+    add dl, '0'                                     ; Convert remainder to ASCII
     dec esi
-    mov [esi], dl         ; Store character
-    mov ebx, eax          ; Update EBX with quotient
+    mov [esi], dl                                   ; Store character
+    mov ebx, eax                                    ; Update EBX with quotient
     cmp ebx, 0
     jne convert_to_string
 
@@ -204,10 +218,9 @@ finish_conversion:
 
 prepare_print:
     ; Calculate length of the string
-    mov edx, strOut + 6   ; End of strOut buffer (since buffer is 6 bytes)
-    sub edx, esi          ; EDX = length of the string from ESI to end
-
     mov ecx, esi          ; Pointer to the start of the string
+    mov edx, strOut + 12  ; End of strOut buffer (since buffer is 6 bytes)
+    sub edx, esi          ; EDX = length of the string from ESI to end
 
     call print
 
