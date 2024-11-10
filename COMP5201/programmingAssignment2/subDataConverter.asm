@@ -19,8 +19,6 @@ section .data
     newline db 0xA, 0
     lenNewline equ $-newline
 
-    modulo dd 0
-
 section .bss 
     ; unintialized data segment
 	
@@ -50,7 +48,7 @@ while:
     cmp byte [strInLen], 1         ; Check if the length of input is 1 (newline only)
     je endwhile                    ; If yes, jump to endwhile to exit the loop
 
-    ; display second prompt "The number entered is: "
+    ; display second messsage "The number entered is: "
     mov ecx, outMsg
     mov edx, lenOutMsg
     call print
@@ -58,8 +56,33 @@ while:
     ; Load the integer value into eax
     mov eax, [intOut]
 
-    ; print the integer after converting to string
+    ; print the original integer after converting to string
     call iprint
+    call prln
+
+    ; display "Double of the entered number is: "
+    mov ecx, outMsgMul
+    mov edx, lenOutMsgMul
+    call print
+
+    mov eax, [intOut]
+    sal eax, 1
+    call iprint
+    call prln
+
+    ; display "Half of the entered number is: "
+    mov ecx, outMsgDiv
+    mov edx, lenOutMsgDiv
+    call print
+
+    mov eax, [intOut]
+    cdq
+    ; sar eax, 1
+    mov ebx, 2
+    idiv ebx
+    call iprint
+    call prln
+
 
     ; clear strOut before next iteration
     mov byte [strOut], 0
@@ -165,7 +188,7 @@ convert_to_string:
     xor edx, edx          ; Clear EDX
     mov eax, ebx          ; Move EBX to EAX for division
     div ecx               ; Divide EAX by 10
-    add dl, '0'          ; Convert remainder to ASCII
+    add dl, '0'           ; Convert remainder to ASCII
     dec esi
     mov [esi], dl         ; Store character
     mov ebx, eax          ; Update EBX with quotient
