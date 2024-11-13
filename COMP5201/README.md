@@ -23,13 +23,19 @@ _**NASM**_ \
 _for building ELF32 object file with debugging details `.o`_ \
 `nasm -f elf32 -g -F dwarf -o <output_objectFile> <input_asmFile>`
 
+_for building ELF64 object file with debugging details `.o`_ \
+`nasm -f elf642 -g -F dwarf -o <output_objectFile> <input_asmFile>`
+
 _**gcc**_ \
 _32-bit_ \
 `gcc -m32 -no-pie -nostdlib <object-file -o <output-file>`
 - `-nostdlib`, when not using C libraries
 
 _**ld**_ \
-`ld -m elf_i386 -o <output_fileName> <input_objectFile>`
+_32-bit_
+`ld -m elf_i386 -o <output_fileName> <input_objectFile>` \
+_64-bit_
+`ld -o <input_objectFile1> <input_objectFile2> -o <output_fileName>`
 
 _**gdb**_ \
 [gdb tutorial](https://www.gdbtutorial.com/gdb_commands) \
@@ -54,11 +60,20 @@ _**readelf**_ \
 
 ## Windows
 _**NASM**_ \
-_for building WinAPI 32-bit object file `.obj`_ \
-`nasm -f win32 <filePath>`
+_for building Win32 API, 32-bit object file `.obj`_ \
+`nasm -f win32 -g -o <objectFile.obj> <filePath>`
 
 _**zig build-exe**_ \
 `zig build-exe <objectFile> -target x86-windows-gnu -lc`
 
 _**gcc using MinGW, for `.exe`**_ \
 `gcc <object-file> -o <output-file>.exe`
+
+_**gcc for `.dll`**_ \
+_to make library shareable_ \
+`gcc -m32 -shared -o <example.dll> <dll.obj>`
+
+_**gcc for `.exe`, linked to `.dll`**_ \
+_`-L.` for enabling linking_ \
+_`-l<dllFile.dll>` for linking to a `.dll` file_
+`gcc -m32 -o <executable.exe> <inputFile.obj> -L . -l<dllFile.dll>`
