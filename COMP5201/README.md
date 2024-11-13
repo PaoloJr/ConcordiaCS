@@ -34,7 +34,7 @@ _32-bit_ \
 _**ld**_ \
 _32-bit_
 `ld -m elf_i386 -o <output_fileName> <input_objectFile>` \
-_64-bit_
+_64-bit for two linked files in one program_
 `ld -o <input_objectFile1> <input_objectFile2> -o <output_fileName>`
 
 _**gdb**_ \
