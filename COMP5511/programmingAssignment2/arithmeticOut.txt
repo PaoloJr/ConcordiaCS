@@ -10,6 +10,9 @@ Error: Cannot divide by zero
 Expression: (2)(2)
 Error: Invalid expression
 
+Expression: 2^0
+Result: 1
+
 Expression: 2*2
 Result: 4
 
@@ -140,5 +143,8 @@ Expression: ((6^2/3)-(4*5)+(((2^3) + (2^4))/8)^2) >= (2^5 - 4 * 2^2)/(3+1)
 Result: false
 
 Expression: 3 - 4 * -2 >= 4 * 3 + 2 / 4 == 1 - 2 < 3 * -4
+Result: true
+
+Expression: 20 <= (2 + 3) * 4
 Result: true
 

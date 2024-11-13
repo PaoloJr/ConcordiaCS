@@ -56,34 +56,53 @@ public class GrammarRegex {
     
     private static String phoneNumberRegex(String sentence) {
         // String phoneRegex = 
-        // "(\\+1[-.\\s]?)?"
-        // + "(\\(?[2-9]\\d{2}\\)?"
-        // + "[-.\\s]?)?[2-9]\\d{2}[-.\\s]?"
-        // + "\\d{4}";
-
+        // "(?:(\\+1[-.\\s]?)?"                   
+        // + "\\(?"
+        // + "[2-9][0-9]{2}"
+        // + "\\)?"
+        // + "[-.\\s]?"   
+        // + "[2-9][0-9]{2}"
+        // + "[-.\\s]?"           
+        // + "[0-9]{4})";
         String phoneRegex = 
-        "(\\+1[-.\\s]?)?"                   
-        + "\\(?"
+        "\\(?"
         + "[2-9][0-9]{2}"
         + "\\)?"
         + "[-.\\s]?"   
         + "[2-9][0-9]{2}"
         + "[-.\\s]?"           
-        + "[0-9]{4}";     
+        + "[0-9]{4}";
 
         // Exchange code: first digit 2-9, followed by any two digits and by a single optional dash or period or whitepace
         // anchored optional +1 prefix, followed by single optional dash or period or whitespace
         // Area code: optional open-parentheses, first digit 2-9, followed by any two digits, optional closed-parentheses followed by single optional dash or period or whitepace
         // Subscriber number: any four digits
-            
+        
         Pattern pattern = Pattern.compile(phoneRegex);
         Matcher matcher = pattern.matcher(sentence);
-        
-        if (matcher.find()) {
-            return matcher.group();
-            } else {
-                return "Phone Match Not Found!";
+        // System.out.println(pattern);
+        // System.out.println(matcher);
+
+        while (matcher.find()) {
+            String potentialPhone = matcher.group();
+            System.out.println("Found potential match: " + potentialPhone);
+            
+            if (potentialPhone.matches(phoneRegex)) { 
+                System.out.println("Full match confirmed for: " + potentialPhone);
+                return potentialPhone;
             }
+        }
+        System.out.println("No valid phone number found in sentence.");
+        return "Phone Match Not Found!";
+        
+        // if (matcher.find()) {
+            // System.out.println("Found potential match: " + potentialPhone);            
+            //     return matcher.group();
+            //     } else {
+                // System.out.println("Full match confirmed for: " + potentialPhone);
+        //         return "Phone Match Not Found!";
+        //     }          
+
     }
     
     private static String dateRegex(String sentence) {
