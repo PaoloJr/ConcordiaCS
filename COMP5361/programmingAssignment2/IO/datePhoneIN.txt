@@ -1,4 +1,6 @@
 Call me on Monday, April 9, 2020 at 999-999-9999
+Call me on Monday, April 9, 2020 at (999).999-9999
+Call me on Monday, April 9, 2020 at (999)-999-9999
 Call me on Mon Apr 9 2020 at 999.999.9999
 Call me on Monday, April 9, 2020 at +19999999999
 Call me on Monday, April 9, 2020 at +1 999 999 9999

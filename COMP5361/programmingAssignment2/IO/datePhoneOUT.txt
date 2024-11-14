@@ -2,24 +2,32 @@ Sentence: Call me on Monday, April 9, 2020 at 999-999-9999
 Detected phone number: 999-999-9999
 Detected date: Monday, April 9, 2020
 
+Sentence: Call me on Monday, April 9, 2020 at (999).999-9999
+Detected phone number: (999).999-9999
+Detected date: Monday, April 9, 2020
+
+Sentence: Call me on Monday, April 9, 2020 at (999)-999-9999
+Detected phone number: (999)-999-9999
+Detected date: Monday, April 9, 2020
+
 Sentence: Call me on Mon Apr 9 2020 at 999.999.9999
 Detected phone number: 999.999.9999
 Detected date: Mon Apr 9 2020
 
 Sentence: Call me on Monday, April 9, 2020 at +19999999999
-Detected phone number: +19999999999
+Detected phone number: 9999999999
 Detected date: Monday, April 9, 2020
 
 Sentence: Call me on Monday, April 9, 2020 at +1 999 999 9999
-Detected phone number: +1 999 999 9999
+Detected phone number: 999 999 9999
 Detected date: Monday, April 9, 2020
 
 Sentence: Call me on Monday, April 9, 2020 at +1 (999) 999-9999
-Detected phone number: +1 (999) 999-9999
+Detected phone number: (999) 999-9999
 Detected date: Monday, April 9, 2020
 
 Sentence: Call me on Monday, April 9, 2020 at +1 999.999.9999
-Detected phone number: +1 999.999.9999
+Detected phone number: 999.999.9999
 Detected date: Monday, April 9, 2020
 
 Sentence: My appointment is scheduled for 2020/02/02, and my phone number is (999) 999-9999
@@ -203,7 +211,7 @@ Detected phone number: 831-555-6420
 Detected date: Monday, June 30, 2023
 
 Sentence: My birthday is on 2020/12/31, so call me at +1.514.299.9999
-Detected phone number: +1.514.299.9999
+Detected phone number: 514.299.9999
 Detected date: 2020/12/31
 
 Sentence: Call me on Monday, April 9, 2020 at 9999999999
@@ -238,7 +246,7 @@ Detected phone number: Phone Match Not Found!
 Detected date: 31/1/2024
 
 Sentence: Call me on Monday April/09/2020 at +1 (999) 999.9999
-Detected phone number: +1 (999) 999.9999
+Detected phone number: (999) 999.9999
 Detected date: Date Match Not Found!
 
 Sentence: Sarah called me on December 25, 2025 at (555) 123-4567.
