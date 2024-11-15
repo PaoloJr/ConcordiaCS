@@ -1,5 +1,16 @@
+My birthday is on 2020Dec31
+My birthday is on 2020-dec-31
+My birthday is on monday, April 4th, 2020
+My birthday is on Monday, december 31st, 2020
+My birthday is on 1899/Dec-31
+My birthday is on 2100/Dec-31
+My birthday is on 2020/Dec-32
+My birthday is on 2020/13-31
 Call me on Monday, 09/Apr/1990  at 999999-9999
-Call me on Monday, April 9, 2020 at 999999-9999
+Call me on Monday April 9 2020 at 999999-9999
+Call me on Monday, April   9   2020 at 999999-9999
+Call me on Monday, April 9 2020 at 999999-9999
+Call me on Monday, April 09th, 2020 at 999999-9999
 Call me on Monday, April 9, 2020 at 999999.9999
 Call me on Monday, April 9, 2020 at 999-9999999
 Call me on Monday, April 9, 2020 at 999.9999999

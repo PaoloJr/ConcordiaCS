@@ -1,6 +1,54 @@
-Sentence: Call me on Monday, April 9, 2020 at 999999-9999
+Sentence: My birthday is on 2020Dec31
+Detected phone number: Phone Match Not Found!
+Detected date: Date Match Not Found!
+
+Sentence: My birthday is on 2020-dec-31
+Detected phone number: Phone Match Not Found!
+Detected date: Date Match Not Found!
+
+Sentence: My birthday is on monday, April 4th, 2020
+Detected phone number: Phone Match Not Found!
+Detected date: April 4th, 2020
+
+Sentence: My birthday is on Monday, december 31st, 2020
+Detected phone number: Phone Match Not Found!
+Detected date: Date Match Not Found!
+
+Sentence: My birthday is on 1899/Dec-31
+Detected phone number: Phone Match Not Found!
+Detected date: Date Match Not Found!
+
+Sentence: My birthday is on 2100/Dec-31
+Detected phone number: Phone Match Not Found!
+Detected date: Date Match Not Found!
+
+Sentence: My birthday is on 2020/Dec-32
+Detected phone number: Phone Match Not Found!
+Detected date: Date Match Not Found!
+
+Sentence: My birthday is on 2020/13-31
+Detected phone number: Phone Match Not Found!
+Detected date: Date Match Not Found!
+
+Sentence: Call me on Monday, 09/Apr/1990  at 999999-9999
 Detected phone number: 999999-9999
-Detected date: Monday, April 9, 2020
+Detected date: 09/Apr/1990
+
+Sentence: Call me on Monday April 9 2020 at 999999-9999
+Detected phone number: 999999-9999
+Detected date: Monday April 9 2020
+
+Sentence: Call me on Monday, April   9   2020 at 999999-9999
+Detected phone number: 999999-9999
+Detected date: Monday, April   9   2020
+
+Sentence: Call me on Monday, April 9 2020 at 999999-9999
+Detected phone number: 999999-9999
+Detected date: Monday, April 9 2020
+
+Sentence: Call me on Monday, April 09th, 2020 at 999999-9999
+Detected phone number: 999999-9999
+Detected date: Monday, April 09th, 2020
 
 Sentence: Call me on Monday, April 9, 2020 at 999999.9999
 Detected phone number: 999999.9999
