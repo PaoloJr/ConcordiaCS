@@ -13,6 +13,9 @@ Error: Invalid expression
 Expression: 2^0
 Result: 1
 
+Expression: (-2)-3*4
+Result: -14
+
 Expression: 2*2
 Result: 4
 

@@ -5,29 +5,102 @@ _**Phone Numbers**_
     - where `N` represents digits `2` to `9`
     - the first 3-digit group is the area code
 
-    **Phone Number Grammar** \
-    _first 3 digits_
-    > A --> D2B | D3B | D4B | D5B | D6B | D7B | D8B | D9B \
-    > B --> 0C | 1C | 2C | 3C | 4C | 5C | 6C | 7C | 8C | 9C \
-    > C --> 0EF | 1EF | 2EF | 3EF | 4EF | 5EF | 6EF | 7EF | 8EF | 9EF \
-    > D --> ( | $\lambda$ \
-    > E --> ) | $\lambda$ \
-    > F --> (space) | - | . | $\lambda$
-    
-    _second 3-digit group (area code)_
-    > G --> 2H | 3H | 4H | 5H | 6H | 7H | 8H | 9H
-    > H --> 0I | 1I | 2I | 3I | 4I | 5I | 6I | 7I | 8I | 9I
-    > I --> 0F | 1F | 2F | 3F | 4F | 5F | 6F | 7F | 8F | 9F
+    **Phone Number Grammar**
+    > S --> phoneNumber \
+    > phoneNumber --> areaCode delimiter prefixNumber delimiter lineNumber \
+    > areaCode --> leftParenth nonZeroOne digit digit rightParenth \
+    > prefixNumber --> nonZeroOne digit digit \
+    > lineNumber --> digit digit digit digit \
+    > leftParenth --> `(` | $\lambda$ \
+    > rightParenth --> `)` | $\lambda$ \
+    > nonZeroOne --> 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 \
+    > digit -->  0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 \
+    > delimiter --> `.` | `-` | `(space)` | $\lambda$
 
-    _4-digit group (subscriber)_
-    > J --> 0KKK | 1KK | 2KK | 3KK | 4KK | 5KK | 6KK | 7KK | 8KK | 9KK
-    > K --> 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+    this phone-number grammar WILL support / detect / match `NANP` phone numbers like:
+    - `(514) 999 9999`
+    - `(514)9999999`
+    - `(514)999 9999`
+    - `(514) 9999999`
+    - `(514) 999-9999`
+    - `(514)-999-9999`
+    - `(514).999.9999`
+    - `(514).999-9999`
+    - `(514)-999.9999`
+    - `(514.999.9999`
+    - `514).999.9999`
+    - `5149999999`
+    - `514 999 9999`
+    - `514 9999999`
+    - `514-9999999`
+    - `514.9999999`
+    - `514999 9999`
+    - `514 999-9999`
+    - `514 999.9999`
+    - `514.999.9999`
+    - `514-999-9999`
+    - `514.999-9999`
+    - `514-999.9999`
+
+    
+    this phone-number grammar does NOT support / detect / match phone numbers with:
+    - country codes --> numbers beginning with `+1`, `+2` etc
+        - ex: `+1 514-999-9999`
+        - it will however match a NANP-appropriate number even though a country-code (with the optional `+`) was entered (effectively, it ignores the country-code)
+            - ex: `+44 514-999-9999`
+    - multiple space delimiters between the digit-groups
+        - ex: `(515)   999   9999`
+    - the slash delimiter --> `\` or `/`
+        - ex: `514\999\9999` or `514/999/9999` 
+    - phone number that do not follow the North American Numbering Plan (NANP)
+        - the first digit of the area code AND prefix number must be a digit from `2 to 9`
+        - examples: 
+            - `014 999 9999` --> this one has a `0` in the first digit of the area code
+            - `514 099 9999` --> this one has a `0` in the first digit of the prefix number
+
+---
 
 _**Dates**_
+- Follows numerous formats like:
+    - `YYYY/MM/DD` or `YYYY/MMM/DD` 
+    - `MM/DD/YYYY` or `MMM/DD/YYYY`
+    - `DD/MM/YYYY` or `DD/MMM/YYYY`
+    - (where `MMM` is the 3-character month)
+    - the date can also be in full-word format; like `Monday December 31st, 2020`
+    - the year can be from `1900` to `2099`
+    - the month can be numeric, from `01` to `12` or by name, `January / Jan` to `Decemeber / Dec`
+    - separator / delimiters can be a period, forward-slash or space
+    - full or partial weekday --> `Monday / Mon` etc.
+    - the day number can have optional suffix (`st, nd, rd, th`)
+    - acceptable delimiters (depending on format) are the dot (`.`), comma (`,`), forward-slash (`/`) or the dash / hyphen `-`
+
+    **Dates Grammar** \
+    > S -->  dateWithDelimiter | dateInWords \
+    > dateWithDelimiter -->  \
+    > dateInWords -->  \
+    > year -->  nineTwenty digit digit \
+    > monthsFull --> January | February | March | April | May | June | July | August | September | October | November | December \
+    > monthPart --> Jan | Feb | Mar | Apr | May | Jun | Jul | Aug | Sep | Sept | Oct | Nov | Dec \
+    > monthNum --> zero nonZeroDigit | one zeroOne | one two \
+    > weekdayFull --> Monday | Tuesday | Wednesday | Thursday | Friday | Saturday | Sunday \
+    > weekdayPart --> Mon | Tues | Tue | Wed | Thur | Thurs | Fri | Sat | Sun \
+    > dayNum --> zero nonZeroDigit | one digit | two digit | three zeroOne  \  
+    > nineteenTwenty --> `19` | `20` \
+    > digit --> O | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 \
+    > nonZeroDigit --> 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 \
+    > zeroOne --> `0` | `1` \
+    > zero --> `0` | $\lambda$ \
+    > one --> `1` \
+    > two --> `2` \
+    > three --> `3` \
+    > delimiters --> `.` | `-` | `/` \
+    > daySuffix --> `st` | `nd` | `rd` | `th` | $\lambda$ \
+    > comma --> `,` | $\lambda$ \
+    > space --> `(space)` | $\lambda$
 
 
-
-
+    this dates-grammar does not support / detect / match dates like:
+    - 
 
 
 [Date Formats by Country](https://en.wikipedia.org/wiki/List_of_date_formats_by_country)\
