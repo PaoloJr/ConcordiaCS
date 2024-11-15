@@ -76,17 +76,16 @@ _**Dates**_
 
     **Dates Grammar** \
     > S -->  dateWithDelimiter | dateInWords \
-    > dateWithDelimiter -->  \
+    > dateWithDelimiter -->  `year delimiter monthNum delimiter dayNum` | `dayNum delimiter monthNum delimiter year` | `monthNum delimiter dayNum delimiter year` | `year delimiter monthPart delimiter dayNum` | `dayNum delimiter monthPart delimiter year` | `monthPart delimiter dayNum delimiter year` \
     > dateInWords -->  \
     > year -->  nineTwenty digit digit \
     > monthsFull --> January | February | March | April | May | June | July | August | September | October | November | December \
     > monthPart --> Jan | Feb | Mar | Apr | May | Jun | Jul | Aug | Sep | Sept | Oct | Nov | Dec \
     > monthNum --> zero nonZeroDigit | one zeroOne | one two \
-    > weekdayFull --> Monday | Tuesday | Wednesday | Thursday | Friday | Saturday | Sunday \
-    > weekdayPart --> Mon | Tues | Tue | Wed | Thur | Thurs | Fri | Sat | Sun \
+    > weekday --> Monday | Mon | Tuesday | Tues | Tue | Wednesday | Wed | Thursday | Thurs | Thur | Friday | Fri | Saturday | Sat | Sunday | Sun \
     > dayNum --> zero nonZeroDigit | one digit | two digit | three zeroOne  \  
     > nineteenTwenty --> `19` | `20` \
-    > digit --> O | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 \
+    > digit --> 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 \
     > nonZeroDigit --> 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 \
     > zeroOne --> `0` | `1` \
     > zero --> `0` | $\lambda$ \
@@ -96,7 +95,7 @@ _**Dates**_
     > delimiters --> `.` | `-` | `/` \
     > daySuffix --> `st` | `nd` | `rd` | `th` | $\lambda$ \
     > comma --> `,` | $\lambda$ \
-    > space --> `(space)` | $\lambda$
+    > space --> `(space)`
 
 
     this dates-grammar does not support / detect / match dates like:
