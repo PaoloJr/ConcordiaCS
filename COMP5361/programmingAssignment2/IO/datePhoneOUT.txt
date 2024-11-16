@@ -1,3 +1,19 @@
+Sentence: Call me on Monday, 12/31/90  at 1-800-332-5432
+Detected phone number: 800-332-5432
+Detected date: Date Match Not Found!
+
+Sentence: Call me on Monday, 9/4/1990  at 1-800-332-5432
+Detected phone number: 800-332-5432
+Detected date: 9/4/1990
+
+Sentence: Call me on Monday, 09/Apr/1990  at 1-800-332-5432
+Detected phone number: 800-332-5432
+Detected date: 09/Apr/1990
+
+Sentence: My birthday is on 2020,Dec,31
+Detected phone number: Phone Match Not Found!
+Detected date: Date Match Not Found!
+
 Sentence: My birthday is on 2020Dec31
 Detected phone number: Phone Match Not Found!
 Detected date: Date Match Not Found!

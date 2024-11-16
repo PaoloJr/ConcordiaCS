@@ -102,10 +102,6 @@ public class GrammarRegex {
     }
     
     private static String dateRegex(String sentence) {
-        // String dayRegex = "(0?[1-9]|[12][0-9]|3[01])";  // For days 01-31 or 1-31
-        // String monthRegex = "(0?[1-9]|1[0-2])";  // For months 01-12 or 1-12
-        // String yearRegex = "((19|20)\\d{2})"; // for years from 1900-2099
-        
         String dateRegex = 
             "\\b" // assert position at beginning of word boundary
             + "(?:" // match everything enclosed
