@@ -2,14 +2,14 @@ package COMP5511.programmingAssignment3;
 
 import java.util.Comparator;
 
+import COMP5511.dataStructures_textbook.DefaultComparator;
+
 /*
 *  REQUIRED METHODS
 *  removeTop(): removes and returns the entry object (a key, value pair) with the smallest or biggest key
-*  depending on the current state of the priority queue (either Min or Max).
+*  remove (e): Removes entry object e from the priority queue and returns the entry depending on the current state of the PQ (either Min or Max). --> done
 *  insert (k,v): insert pair to the PQ, and returns the corresponding entry object in the PQ. --> done
-*  top(): returns the top entry (with the minimum or the maximum key depending on whether it is a
-*  Min- or Max-priority queue, without removing the entry.
-*  remove (e): Removes entry object e from the priority queue and returns the entry --> done
+*  top(): returns the top entry (with the min or the max key depending whether it is a Min- or Max-priority queue, without removing the entry. --> done
 *  replaceKey (e, k): replace entry e’s key to k and return the old key. --> done
 *  replaceValue (e, v): replace entry e’s value to v and return the old value. --> done
 *  toggle() transforms a min- to a max-priority queue or vice versa.
@@ -21,20 +21,31 @@ import java.util.Comparator;
 public class AFPriorityQueue<K, V> {
   private AFPQEntry<K, V>[] heap;
   private Comparator<K> comp;
-  private int size = 0;
+  private int size;
   private String currState;
   private final String MIN_HEAP = "Min Heap";
   private final String MAX_HEAP = "Max Heap";
 
+  @SuppressWarnings("unchecked")
   public AFPriorityQueue() {
-    heap[0] = new AFPQEntry;
+    heap = (AFPQEntry<K, V>[]) new AFPQEntry[3]; 
+    comp = new DefaultComparator<>();   
     currState = MIN_HEAP;
-    size++;
+    size = 0;
   }
 
-  public int size() { return heap.length; }
+  @SuppressWarnings("unchecked")
+  public AFPriorityQueue(Comparator<K> comparator) {
+    heap = (AFPQEntry<K, V>[]) new AFPQEntry[3]; 
+    comp = comparator;   
+    currState = MIN_HEAP;
+    size = 0;
+  }  
+
+  public String state() { return currState; }
   public boolean isEmpty() { return size() == 0; }
-  public String state() {return currState; }
+  public int size() { return size; }
+  public AFPQEntry<K, V> top() { return heap[0]; };
 
   public int parent(int j) { return (j-1) / 2; }  
   private int left(int j) { return 2*j + 1; }
@@ -42,61 +53,103 @@ public class AFPriorityQueue<K, V> {
   private boolean hasLeft(int j) { return left(j) < heap.length; }
   private boolean hasRight(int j) { return right(j) < heap.length; }
 
-  public AFPQEntry<K, V> insert(K key, V value) throws IllegalArgumentException {
-      checkKey(key); // may throw an exception
-      if (size == heap.length) {
-          resize(2 * heap.length);
-      }
-      AFPQEntry<K, V> newest = new AFPQEntry<K, V>(key, value);
-      
-      heap[size] = newest;
-      upheap(size);
-      size++;
-      return newest;
+  private void swap(int i, int j) {
+    AFPQEntry<K,V> temp = heap[i];
+    heap[i] = heap[j];
+    heap[j] = temp;
   }
 
-  public void remove(AFPQEntry<K,V> entry) throws IllegalArgumentException {
-    AFPQEntry<K,V> locator = validate(entry);
-    int j = locator.getIndex();
-    if (j == size - 1) {        // entry is at last position
-      heap[j] = null;  // so just remove it
-    } else {
-      swap(j, size - 1);      // swap entry to last position
-      heap[size - 1] = null;  // then remove it
-      bubble(j);                     // and fix entry displaced by the swap
-    }
-    size--;
+  private int compare(AFPQEntry<K,V> a, AFPQEntry<K,V> b) {
+    return comp.compare(a.getKey(), b.getKey());
   }
-
-  // public AFPQEntry<K, V> removeTop() {
-  //   if (isEmpty()) {
-  //     return null;
-  //   }
-  //   AFPQEntry<K, V> topEntry = heap[0];
     
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+
+    sb.append("[");
+    for (int i = 0; i < size; i++) {
+      sb.append(heap[i]);
+
+      if (i < size - 1) {
+        sb.append(",");
+      }
+    }
+    sb.append("]");
+    
+    return sb.toString();
+  }
+  
+  public AFPQEntry<K, V> insert(K key, V value) throws IllegalArgumentException {  
+    if (size == heap.length) {
+        resize(2 * heap.length);
+    }
+    AFPQEntry<K, V> newest = new AFPQEntry<K, V>(key, value);    
+    heap[size] = newest;
+    upheap(size);
+    size++;
+    return newest;
+  }
+  
+  // public AFPQEntry<K, V>remove(AFPQEntry<K,V> entry) throws IllegalArgumentException {
+  //   AFPQEntry<K,V> locator = validate(entry);
+  //   int j = locator.getIndex();
+  //   if (j == size - 1) {        // entry is at last position
+  //     heap[j] = null;  // so just remove it
+  //   } else {
+  //     swap(j, size - 1);      // swap entry to last position
+  //     heap[size - 1] = null;  // then remove it
+  //     bubble(j);                     // and fix entry displaced by the swap
+  //   }
   //   size--;
   // }
 
-  public void replaceKey(AFPQEntry<K,V> entry, K key) throws IllegalArgumentException {
-    AFPQEntry<K,V> locator = validate(entry);
+  public AFPQEntry<K, V> removeTop() {
+    if (isEmpty()) {
+        return null;
+      }
+      AFPQEntry<K, V> topEntry = heap[0];
+      swap(0, size - 1);
+      downheap(size);
+      heap[size - 1] = null;
+      size--;
+      return topEntry;
+    }
 
-    checkKey(key);                   // might throw an exception
-    locator.setKey(key);             // method inherited from PQEntry
-    bubble(locator.getIndex());      // with new key, may need to move entry
-}
+  // public void toggle() {
+  //   if (currState.equalsIgnoreCase(MAX_HEAP)) {
+  //     currState = MIN_HEAP;
+  //   } else {
+  //     currState = MAX_HEAP;
+  //   }
+  //   rebuildHeap();
+  // }
 
-  public void replaceValue(AFPQEntry<K,V> entry, V value) throws IllegalArgumentException {
-    AFPQEntry<K,V> locator = validate(entry);
-    locator.setValue(value);   
-  }  
+  // private void rebuildHeap() {
+
+  // }
+  
+  // public void replaceKey(AFPQEntry<K,V> entry, K key) throws IllegalArgumentException {
+  //   AFPQEntry<K,V> locator = validate(entry);
+    
+  //   locator.setKey(key);             // method inherited from PQEntry
+  //   bubble(locator.getIndex());      // with new key, may need to move entry
+  // }
+  
+  // public void replaceValue(AFPQEntry<K,V> entry, V value) throws IllegalArgumentException {
+  //   AFPQEntry<K,V> locator = validate(entry);
+  //   locator.setValue(value);   
+  // }  
   
   //Moves the entry at index j higher, if necessary, to restore the heap property. 
   private void upheap(int j) {
     while (j > 0) {            // continue until reaching root (or break statement)
       int p = parent(j);
-      if (compare(heap[j], heap[p]) >= 0) break; // heap property verified
-      swap(j, p);
-      j = p; // continue from the parent's location
+      if (compare(heap[j], heap[p]) >= 0) {
+         break;
+       } else {
+          swap(j, p);
+          j = p; 
+       }
     }
   }
   
@@ -107,63 +160,49 @@ public class AFPriorityQueue<K, V> {
       int smallChildIndex = leftIndex;     // although right may be smaller
       if (hasRight(j)) {
         int rightIndex = right(j);
-        if (compare(heap[leftIndex], heap[rightIndex]) > 0)
-        smallChildIndex = rightIndex;  // right child is smaller
+        if (compare(heap[leftIndex], heap[rightIndex]) > 0) {
+          smallChildIndex = rightIndex;  // right child is smaller
+        }
       }
       if (compare(heap[smallChildIndex], heap[j]) >= 0) {
-      break;                             // heap property has been restored
+        break;                             // heap property has been restored
       }
       swap(j, smallChildIndex);
       j = smallChildIndex;                 // continue at position of the child
     }
   }
 
-  private void heapify() {
-    int startIndex = parent(size() - 1);    // start at PARENT of last entry
-    for (int j = startIndex; j >= 0; j--)   // loop until processing the root
-      downheap(j);
-  }
+  // private void heapify() {
+  //   int startIndex = parent(size() - 1);    // start at PARENT of last entry
+  //   for (int j = startIndex; j >= 0; j--) {   // loop until processing the root
+  //     downheap(j);
+  //   }
+  // }
 
-  private void bubble(int j) {
-    if (j > 0 && compare(heap[j], heap[parent(j)]) < 0)
-    upheap(j);
-    else
-    downheap(j);                   // although it might not need to move
-  }
+  // private void bubble(int j) {
+  //   if (j > 0 && compare(heap[j], heap[parent(j)]) < 0) {
+  //     upheap(j);
+  //   } else {
+  //     downheap(j);
+  //   }
+  // }
   
+  @SuppressWarnings("unchecked")
   public void resize(int capacity) {
     AFPQEntry<K, V>[] temp = new AFPQEntry[capacity];
     for (int i = 0; i < size; i++) {
         temp[i] = heap[i];
     }
     heap = temp;
-}
+  }
 
-  public AFPQEntry<K,V> validate(AFPQEntry<K,V> entry) throws IllegalArgumentException {
-    if (!(entry instanceof AFPQEntry)) throw new IllegalArgumentException("Invalid entry");
+  // public AFPQEntry<K,V> validate(AFPQEntry<K,V> entry) throws IllegalArgumentException {
+  //   if (!(entry instanceof AFPQEntry)) throw new IllegalArgumentException("Invalid entry");
     
-    AFPQEntry<K,V> locator = (AFPQEntry<K,V>) entry;   // safe
-    int j = locator.getIndex();
-    if (j >= heap.length || heap[j] != locator) throw new IllegalArgumentException("Invalid entry");
-  return locator;
-  }
-
-  private void swap(int i, int j) {
-      AFPQEntry<K,V> temp = heap[i];
-      heap[i] = heap[j];
-      heap[j] = temp;
-  }
-
-  private int compare(AFPQEntry<K,V> a, AFPQEntry<K,V> b) {
-      return comp.compare(a.getKey(), b.getKey());
-    }
-
-  private boolean checkKey(K key) throws IllegalArgumentException {
-      try {
-          return (comp.compare(key,key) == 0);  // see if key can be compared to itself
-      } catch (ClassCastException e) {
-          throw new IllegalArgumentException("Incompatible key");
-      }
-  }
+  //   AFPQEntry<K,V> locator = (AFPQEntry<K,V>) entry;   // safe
+  //   int j = locator.getIndex();
+  //   if (j >= heap.length || heap[j] != locator) throw new IllegalArgumentException("Invalid entry");
+  // return locator;
+  // }
 
 }
