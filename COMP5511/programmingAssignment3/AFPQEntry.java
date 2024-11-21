@@ -3,15 +3,12 @@ package COMP5511.programmingAssignment3;
 public class AFPQEntry<K, V> {
     private K k; 
     private V v;
+    private int index;
 
-    // empty entry
-    public AFPQEntry() {
-        this(null, null);
-    }
-    
-    public AFPQEntry(K key, V value) {
-        k = key;
-        v = value;
+    public AFPQEntry(K key, V value, int index) {
+        this.k = key;
+        this.v = value;
+        this.index = index;
     }    
 
     public String toString() { return "(" + k + "," + v + ")"; }
@@ -20,4 +17,7 @@ public class AFPQEntry<K, V> {
 
     public void setKey(K key) { k = key; }
     public void setValue(V value) { v = value; }
+
+    public int getIndex() { return index; }
+    public int setIndex(int newIndex) { return this.index = newIndex; }
 }
