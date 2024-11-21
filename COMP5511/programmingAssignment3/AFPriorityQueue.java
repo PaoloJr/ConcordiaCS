@@ -115,7 +115,7 @@ public class AFPriorityQueue<K, V> {
       heap[size - 1] = null;
       size--;
       System.out.println("heap[0] before downheap" + heap[0]);
-      downheap(size);
+      downheap(0);
       System.out.println("heap[0] after downheap" + heap[0]);
       return topEntry;
     }
