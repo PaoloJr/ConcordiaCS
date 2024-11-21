@@ -6,16 +6,16 @@ import COMP5511.dataStructures_textbook.DefaultComparator;
 
 /*
 *  REQUIRED METHODS
-*  removeTop(): removes and returns the entry object (a key, value pair) with the smallest or biggest key
-*  remove (e): Removes entry object e from the priority queue and returns the entry depending on the current state of the PQ (either Min or Max). --> done
-*  insert (k,v): insert pair to the PQ, and returns the corresponding entry object in the PQ. --> done
-*  top(): returns the top entry (with the min or the max key depending whether it is a Min- or Max-priority queue, without removing the entry. --> done
-*  replaceKey (e, k): replace entry e’s key to k and return the old key. --> done
-*  replaceValue (e, v): replace entry e’s value to v and return the old value. --> done
-*  toggle() transforms a min- to a max-priority queue or vice versa.
 *  state (): returns the current state (Min or Max) of the priority queue. --> done
 *  isEmpty(): returns true if the priority queue is empty. --> done
 *  size(): returns the current number of entries in the priority queue --> done
+*  removeTop(): removes and returns the entry object (a key, value pair) with the smallest or biggest key
+*  remove (e): Removes entry object e from the priority queue and returns the entry depending on the current state of the PQ (either Min or Max).
+*  insert (k,v): insert pair to the PQ, and returns the corresponding entry object in the PQ. --> done
+*  top(): returns the top entry (with the min or the max key depending whether it is a Min- or Max-priority queue, without removing the entry. --> done
+*  replaceKey (e, k): replace entry e’s key to k and return the old key.
+*  replaceValue (e, v): replace entry e’s value to v and return the old value. --> done
+*  toggle() transforms a min- to a max-priority queue or vice versa.
  */
 
 public class AFPriorityQueue<K, V> {
@@ -108,10 +108,15 @@ public class AFPriorityQueue<K, V> {
         return null;
       }
       AFPQEntry<K, V> topEntry = heap[0];
+      System.out.println("heap[0]" + heap[0]);
+      System.out.println("heap[size - 1] before swap" + heap[size - 1]);
       swap(0, size - 1);
-      downheap(size);
+      System.out.println("heap[size - 1] after swap" + heap[size - 1]);
       heap[size - 1] = null;
       size--;
+      System.out.println("heap[0] before downheap" + heap[0]);
+      downheap(size);
+      System.out.println("heap[0] after downheap" + heap[0]);
       return topEntry;
     }
 
@@ -135,10 +140,12 @@ public class AFPriorityQueue<K, V> {
   //   bubble(locator.getIndex());      // with new key, may need to move entry
   // }
   
-  // public void replaceValue(AFPQEntry<K,V> entry, V value) throws IllegalArgumentException {
-  //   AFPQEntry<K,V> locator = validate(entry);
-  //   locator.setValue(value);   
-  // }  
+  public V replaceValue(AFPQEntry<K,V> entry, V value) throws IllegalArgumentException {
+    AFPQEntry<K,V> locator = validate(entry);
+    V oldValue = locator.getValue();
+    locator.setValue(value);
+    return oldValue;
+  }  
   
   //Moves the entry at index j higher, if necessary, to restore the heap property. 
   private void upheap(int j) {
@@ -196,13 +203,21 @@ public class AFPriorityQueue<K, V> {
     heap = temp;
   }
 
-  // public AFPQEntry<K,V> validate(AFPQEntry<K,V> entry) throws IllegalArgumentException {
-  //   if (!(entry instanceof AFPQEntry)) throw new IllegalArgumentException("Invalid entry");
+  public AFPQEntry<K,V> validate(AFPQEntry<K,V> entry) throws IllegalArgumentException {
+    if (!(entry instanceof AFPQEntry)) throw new IllegalArgumentException("Invalid entry");
     
-  //   AFPQEntry<K,V> locator = (AFPQEntry<K,V>) entry;   // safe
-  //   int j = locator.getIndex();
-  //   if (j >= heap.length || heap[j] != locator) throw new IllegalArgumentException("Invalid entry");
-  // return locator;
-  // }
+    AFPQEntry<K,V> locator = (AFPQEntry<K,V>) entry;
+    int j = -1;
+    for (int i = 0; i < heap.length; i++) {
+        if (heap[i] == locator) {
+            j = i;
+            break;
+        }
+    }
+    if (j == -1) {
+      throw new IllegalArgumentException("Invalid entry");
+    }
+    return locator;
+  }
 
 }
