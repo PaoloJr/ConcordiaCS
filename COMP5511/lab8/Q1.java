@@ -1,35 +1,39 @@
 package COMP5511.lab8;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Stack;
+import java.util.Queue;
 
 public class Q1 {
 
     public static List<List<Integer>> levelOrder(TreeNode tn) {
         List<List<Integer>> result = new ArrayList<>();
-        Stack<List<TreeNode>> stack = new Stack<>();            
+        Queue<TreeNode> queue = new LinkedList<>();            
         if (tn == null) {
             return result;
         } else {
-            List<TreeNode> initList = new ArrayList<>();
-            initList.add(tn);
-            stack.push(initList);
+            queue.add(tn);
         }
-        System.out.println(stack.pop().toString());
 
-        while(!stack.isEmpty()) {
-            int levelSize = stack.size();
+        while(!queue.isEmpty()) {
+            int levelSize = queue.size();
             List<Integer> currLevel = new ArrayList<>();
 
             for(int i = 0; i < levelSize; i++) {
-                List<TreeNode> currNode = stack.peek();
+                TreeNode currNode = queue.poll();
+                currLevel.add(currNode.val);
+
+                if (currNode.left != null) {
+                    queue.add(currNode.left);
+                }
+                if (currNode.right != null) {
+                    queue.add(currNode.right);
+                }
             }
-
+            result.add(currLevel);
         }
-
         return result;
-
     }
 
 
