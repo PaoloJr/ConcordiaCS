@@ -1,0 +1,2 @@
+extern printf
+extern scanf

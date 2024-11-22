@@ -50,6 +50,7 @@ _**gdb**_ \
 _**make**_ \
 [makefile tutorial](https://makefiletutorial.com/) \
 `make` - use MAKEFILE to compile `.asm` and link `.o` to  ELF file \
+`make -s` - supress / silence command output messages \
 `make clean` - using MAKEFILE `clean` command to remove object and ELF file
 
 _**file**_ \
