@@ -2,25 +2,24 @@ package COMP5511.programmingAssignment3;
 
 import java.util.Comparator;
 
-import  COMP5511.programmingAssignment3.helperFiles.DefaultComparator;
+// import  COMP5511.programmingAssignment3.helperFiles.DefaultComparator;
 
 /*
 *  REQUIRED METHODS
 *  state (): returns the current state (Min or Max) of the priority queue. --> done
 *  isEmpty(): returns true if the priority queue is empty. --> done
 *  size(): returns the current number of entries in the priority queue --> done
+*  top(): returns the top entry (with the min or the max key depending whether it is a Min- or Max-priority queue, without removing the entry. --> done
 *  removeTop(): removes and returns the entry object (a key, value pair) with the smallest or biggest key --> done
 *  remove (e): Removes entry object e from the priority queue and returns the entry depending on the current state of the PQ (either Min or Max).
-*  insert (k,v): insert pair to the PQ, and returns the corresponding entry object in the PQ. --> done
-*  top(): returns the top entry (with the min or the max key depending whether it is a Min- or Max-priority queue, without removing the entry. --> done
-*  replaceKey (e, k): replace entry e’s key to k and return the old key.
 *  replaceValue (e, v): replace entry e’s value to v and return the old value. --> done
+*  replaceKey (e, k): replace entry e’s key to k and return the old key.
 *  toggle() transforms a min- to a max-priority queue or vice versa. --> done
+*  insert (k,v): insert pair to the PQ, and returns the corresponding entry object in the PQ. --> done
  */
 
 public class AFPriorityQueue <K extends Comparable<K>, V> {
   private AFPQEntry<K, V>[] heap;
-  private Comparator<K> comp;
   private int size;
   private String currState;
   private final String MIN_HEAP = "Min Heap";
@@ -29,7 +28,6 @@ public class AFPriorityQueue <K extends Comparable<K>, V> {
   @SuppressWarnings("unchecked")
   public AFPriorityQueue() {
     heap = (AFPQEntry<K, V>[]) new AFPQEntry[3]; 
-    comp = new DefaultComparator<>();   
     currState = MIN_HEAP;
     size = 0;
   }
@@ -37,7 +35,6 @@ public class AFPriorityQueue <K extends Comparable<K>, V> {
   @SuppressWarnings("unchecked")
   public AFPriorityQueue(Comparator<K> comparator) {
     heap = (AFPQEntry<K, V>[]) new AFPQEntry[3]; 
-    comp = comparator;   
     currState = MIN_HEAP;
     size = 0;
   }  
@@ -82,9 +79,9 @@ public class AFPriorityQueue <K extends Comparable<K>, V> {
   }  
   
   public AFPQEntry<K, V> insert(K key, V value) throws IllegalArgumentException {  
-    if (size == heap.length) {
-        resize(2 * heap.length);
-      }
+    if (size == heap.length) { resize(2 * heap.length); }
+    if (value == null) { throw new IllegalArgumentException("Value must not be null"); }
+
     AFPQEntry<K, V> newest = new AFPQEntry<K, V>(key, value, heap.length);    
     heap[size] = newest;
     upheap(size);
@@ -108,9 +105,7 @@ public class AFPriorityQueue <K extends Comparable<K>, V> {
   //     }
       
   public AFPQEntry<K, V> removeTop() {
-    if (isEmpty()) {
-      return null;
-    }
+    if (isEmpty()) { return null; }
     AFPQEntry<K, V> topEntry = heap[0];
     swap(0, size - 1);
     heap[size - 1] = null;
@@ -119,34 +114,32 @@ public class AFPriorityQueue <K extends Comparable<K>, V> {
     return topEntry;
   }
 
-public void toggle() {
-  if (currState.equalsIgnoreCase(MAX_HEAP)) {
-      currState = MIN_HEAP;
-      for (int i = (size / 2) - 1; i >= 0; i--) {
-        downheap(i);
-    }
-  } else {
-      currState = MAX_HEAP;
-      for (int i = (size / 2) - 1; i >= 0; i--) {
-        downheap(i);
+  public void toggle() {
+    if (currState.equalsIgnoreCase(MAX_HEAP)) {
+        currState = MIN_HEAP;
+        for (int i = (size / 2) - 1; i >= 0; i--) {
+          downheap(i);
       }
-    }
+    } else {
+        currState = MAX_HEAP;
+        for (int i = (size / 2) - 1; i >= 0; i--) {
+          downheap(i);
+        }
+      }
   }
       
-// public K replaceKey(AFPQEntry<K,V> entry, K key) throws IllegalArgumentException {
-//     AFPQEntry<K,V> locator = validate(entry);
-//     K oldKey = locator.getKey();
-//     K newKey = entry.getKey();
-    
+  public K replaceKey(AFPQEntry<K,V> entry, K key) throws IllegalArgumentException {
+    AFPQEntry<K,V> locator = validate(entry);
+    K oldKey = locator.getKey();
+    K newKey = entry.getKey();
 
-
-//     if (comp.compare(newKey, oldKey)) {
-//       upheap(locator.getIndex());
-//     } else {
-//       downheap(locator.getIndex());
-//     }
-//     return oldKey;
-//   }
+    if (compare(newKey, oldKey) > 0) {
+      upheap(locator.getIndex());
+    } else {
+      downheap(locator.getIndex());
+    }
+    return oldKey;
+  }
               
   public V replaceValue(AFPQEntry<K,V> entry, V value) throws IllegalArgumentException {
     AFPQEntry<K,V> locator = validate(entry);
@@ -184,8 +177,7 @@ public void toggle() {
         swap(j, smallChildIndex);
         j = smallChildIndex;      
       }
-  }
-    
+  }    
             
   @SuppressWarnings("unchecked")
   public void resize(int capacity) {
@@ -196,30 +188,13 @@ public void toggle() {
     heap = temp;
   }
   
-  public AFPQEntry<K,V> validate(AFPQEntry<K,V> entry) throws IllegalArgumentException {
-    if (!(entry instanceof AFPQEntry)) throw new IllegalArgumentException("Invalid entry");
-    
-    AFPQEntry<K,V> locator = (AFPQEntry<K,V>) entry;
-    int j = -1;
-    for (int i = 0; i < heap.length; i++) {
-      if (heap[i] == locator) {
-        j = i;
-        break;
-      }
-    }
-    if (j == -1) {
-      throw new IllegalArgumentException("Invalid entry");
-    }
-    return locator;
-  }
-  
   public String toString() {
     StringBuilder sb = new StringBuilder();
-
+    
     sb.append("[");
     for (int i = 0; i < size; i++) {
       sb.append(heap[i]);
-
+      
       if (i < size - 1) {
         sb.append(",");
       }
@@ -228,5 +203,45 @@ public void toggle() {
     
     return sb.toString();
   }
+
+  private AFPQEntry<K,V> validate(AFPQEntry<K,V> entry) throws IllegalArgumentException {
+    if (!(entry instanceof AFPQEntry)) throw new IllegalArgumentException("Invalid entry: not an instance of AFPQEntry");
+    AFPQEntry<K,V> locator = (AFPQEntry<K,V>) entry;
+    int j = locator.getIndex();
+    
+    if (j >= heap.length) {
+      throw new IllegalArgumentException("Heap is full!");
+    }
+    
+    if(heap[j] != locator) {
+      throw new IllegalArgumentException("Invalid entry, please check key-value pair types");
+    }
+    
+    
+    // if (j >= heap.length) {
+    //   System.out.println("Heap is full!");
+    // }
+    // if(heap[j] != locator) {
+    //   System.out.println("Invalid Entry");
+    // }
+  
+    // if (j >= heap.length || heap[j] != locator) {
+    //  System.out.println("Invalid entry");
+    //  return null;
+    // }
+    return locator;
+  }
+  
+    /** Used for debugging purposes only */
+    // private void sanityCheck() {
+    //   for (int j=0; j < heap.size(); j++) {
+    //     int left = left(j);
+    //     int right = right(j);
+    //     if (left < heap.size() && compare(heap.get(left), heap.get(j)) < 0)
+    //       System.out.println("Invalid left child relationship");
+    //     if (right < heap.size() && compare(heap.get(right), heap.get(j)) < 0)
+    //       System.out.println("Invalid right child relationship");
+    //   }
+    // }
 }
           

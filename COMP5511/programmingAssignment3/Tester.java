@@ -11,11 +11,15 @@ public class Tester {
         
         AFPQEntry<Integer, String> first = afpq.insert(7, "A");
         AFPQEntry<Integer, String> second = afpq.insert(2, "B");
-        afpq.insert(3, "C");
+        AFPQEntry<Integer, String> third = afpq.insert(3, "C");
+        afpq.insert(0, "P");
         afpq.insert(4, "D");
         afpq.insert(1, "F");
         afpq.insert(5, "G");
-        afpq.insert(6, "H");        
+        afpq.insert(6, "H"); 
+        
+        // testing null value insertion
+        // afpq.insert(6, null);        
 
 
         System.out.println("-----INITIAL STATE-----");
@@ -24,7 +28,6 @@ public class Tester {
         System.out.println("SIZE: " + afpq.size());
         System.out.println("AFPQ: " + afpq.toString());
         System.out.println("TOP: " + afpq.top());
-
         
         System.out.println();
         System.out.println("TOGGLE FROM: " + afpq.state());
@@ -36,18 +39,20 @@ public class Tester {
         System.out.println("TOGGLE FROM: " + afpq.state()); 
         afpq.toggle();
         System.out.println("TOGGLE TO: " + afpq.state()); 
-        System.out.println("AFPQ AFTER TOGGLE: " + afpq.toString());
+        System.out.println("AFPQ AFTER TOGGLE: " + afpq.toString());                
         
-        
-
+        System.out.println();
         System.out.println("OLD VALUE REPLACED: " + afpq.replaceValue(first, "10"));
         System.out.println("NEW AFPQ: " + afpq.toString());
-
-        // System.out.println("REMOVE TOP: " + afpq.removeTop());
-        // System.out.println("-----AFTER REMOVE TOP-----");
-        // System.out.println("SIZE: " + afpq.size());
-        // System.out.println("AFPQ: " + afpq.toString());
-        // System.out.println("TOP: " + afpq.top());
+        System.out.println("REMOVE TOP: " + afpq.removeTop());
+        System.out.println("-----AFTER REMOVE TOP-----");
+        System.out.println("SIZE: " + afpq.size());
+        System.out.println("AFPQ: " + afpq.toString());
+        System.out.println("TOP: " + afpq.top());
+        
+        System.out.println();
+        System.out.println("REPLACED KEY: " + afpq.replaceKey(third, 4));
+        System.out.println("AFTER REPLACE KEY: " + afpq.toString());
 
 
     }
