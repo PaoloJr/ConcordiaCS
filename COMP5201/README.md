@@ -41,10 +41,11 @@ _**gdb**_ \
 [gdb tutorial](https://www.gdbtutorial.com/gdb_commands) \
 [gdb cheatsheet](https://gabriellesc.github.io/teaching/resources/GDB-cheat-sheet.pdf) \
 `gdb ./ELF_binary` - to start `gdb` with the executable \
-    1.`layout asm` - show each assembly line
+    1.`layout asm` & `layout reg` - show each assembly line and registers \
     2.`break <some line or function name>` - set a breakpoint \
     3.`run` \
-    4. `si` - step in
+    4.`si` - step in \
+`refresh` - refreshes the screen (useful when stepping in cause some visual inconsistencies)
 
 _**make**_ \
 [makefile tutorial](https://makefiletutorial.com/) \
@@ -56,6 +57,16 @@ _**file**_ \
 
 _**readelf**_ \
 `readelf -a` - to view all ELF binary file details (headers, sections, symbols etc.)  
+
+_**core dump (current state of program in file after crash)**_ \
+`ulimit -c unlimited` - allow kernel to produce unlimited size of core files \
+
+_to change `core_pattern`_
+- `sudo su` - root
+- `"corePattern" > /proc/sys/kernel/core_pattern`
+- "corePattern" could be "./core" (to create core file in crashing-program's directory)
+- `gdb <crashing-program> <core-file>` - open gdb using program file and core file
+- `x/i $pc` - examine memory instruction at program-counter (could be used at crashing line-number / function)
 
 
 ## Windows
