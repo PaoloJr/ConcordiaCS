@@ -10,7 +10,7 @@ public class Tester {
         AFPQEntry<Integer, String> third = afpq.insert(3, "C");
         AFPQEntry<Integer, String> fourth = afpq.insert(4, "D");
         AFPQEntry<Integer, String> fifth = afpq.insert(5, "C");
-        afpq.insert(0, "P");
+        AFPQEntry<Integer, String> sixth = afpq.insert(0, "P");
         afpq.insert(7, "G");
         afpq.insert(6, "H"); 
 
@@ -23,12 +23,14 @@ public class Tester {
         System.out.println("TOP: " + afpq.top());
         
         System.out.println();
+        System.out.println("-----TOGGLE-----");
         System.out.println("TOGGLE FROM: " + afpq.state());
         afpq.toggle(); 
         System.out.println("TOGGLE TO: " + afpq.state()); 
         System.out.println("AFPQ AFTER TOGGLE: " + afpq.toString());
         
         System.out.println();
+        System.out.println("-----TOGGLE-----");
         System.out.println("TOGGLE FROM: " + afpq.state()); 
         afpq.toggle();
         System.out.println("TOGGLE TO: " + afpq.state()); 
@@ -36,11 +38,15 @@ public class Tester {
         
         System.out.println();
         String newValue = "Z";
+        System.out.println("-----REPLACE VALUE-----");
         System.out.println("OLD VALUE: " + afpq.replaceValue(second, newValue) + " , REPLACED WITH: " + newValue);
         System.out.println("NEW AFPQ: " + afpq.toString());
+        System.out.println("SIZE: " + afpq.size());
         System.out.println("REMOVE TOP: " + afpq.removeTop());
 
-        System.out.println("\n-----AFTER REMOVE TOP-----");
+
+        System.out.println();
+        System.out.println("-----AFTER REMOVE TOP-----");
         System.out.println("STATE: " + afpq.state());
         System.out.println("SIZE: " + afpq.size());
         System.out.println("AFPQ: " + afpq.toString());
@@ -48,20 +54,25 @@ public class Tester {
         
         System.out.println();
         int key1 = 12;
+        System.out.println("-----REPLACE KEY-----");
         System.out.println("OLD KEY: " + afpq.replaceKey(third, key1) + " , REPLACED WITH: " + key1);
         System.out.println("AFTER REPLACE KEY: " + afpq.toString());
+        System.out.println("SIZE: " + afpq.size());
         
         int key2 = 13;
+        System.out.println();
+        System.out.println("-----REPLACE KEY-----");
         System.out.println("OLD KEY: " + afpq.replaceKey(fourth, key2) + " , REPLACED WITH: " + key2);
         System.out.println("AFTER REPLACE KEY: " + afpq.toString());
+        System.out.println("SIZE: " + afpq.size());
         
         
         System.out.println();
         System.out.println("-----REMOVE ANY ENTRY-----");
         System.out.println("STATE: " + afpq.state());        
         System.out.println("OLD ENTRY: " + afpq.remove(fifth));
-        System.out.println("SIZE: " + afpq.size());
         System.out.println("AFTER ENTRY REMOVAL: " + afpq.toString());
+        System.out.println("SIZE: " + afpq.size());
         
         afpq.insert(7, "F");
         afpq.insert(8, "I");
@@ -69,6 +80,7 @@ public class Tester {
         afpq.insert(10, "K");
         
         System.out.println();
+        System.out.println("-----NEW INSERTIONS-----");
         System.out.println("AFPQ: " + afpq.toString());
         System.out.println("TOGGLE FROM: " + afpq.state()); 
         afpq.toggle();
@@ -79,8 +91,8 @@ public class Tester {
         System.out.println("-----REMOVE ANY ENTRY-----");
         System.out.println("STATE: " + afpq.state());        
         System.out.println("OLD ENTRY: " + afpq.remove(first));
-        System.out.println("SIZE: " + afpq.size());
         System.out.println("AFTER ENTRY REMOVAL: " + afpq.toString());
+        System.out.println("SIZE: " + afpq.size());
 
         // --- ERROR-HANDLING ---
 
