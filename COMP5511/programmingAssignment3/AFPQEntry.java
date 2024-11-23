@@ -9,6 +9,11 @@ public class AFPQEntry<K, V> {
         this.k = key;
         this.v = value;
         this.index = index;
+    }
+
+    public AFPQEntry(K key, V value) {
+        this.k = key;
+        this.v = value;
     }    
 
     public String toString() { return "(" + k + "," + v + ")"; }

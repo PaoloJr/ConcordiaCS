@@ -13,10 +13,7 @@ public class Tester {
         afpq.insert(0, "P");
         afpq.insert(7, "G");
         afpq.insert(6, "H"); 
-        
-        // testing null value insertion
-        // afpq.insert(6, null);       
-        // afpq.insert(null, "H");       
+
 
         System.out.println("-----INITIAL STATE-----");
         System.out.println("STATE: " + afpq.state());
@@ -38,7 +35,7 @@ public class Tester {
         System.out.println("AFPQ AFTER TOGGLE: " + afpq.toString());                
         
         System.out.println();
-        String newValue = "87";
+        String newValue = "Z";
         System.out.println("OLD VALUE: " + afpq.replaceValue(second, newValue) + " , REPLACED WITH: " + newValue);
         System.out.println("NEW AFPQ: " + afpq.toString());
         System.out.println("REMOVE TOP: " + afpq.removeTop());
@@ -84,6 +81,17 @@ public class Tester {
         System.out.println("OLD ENTRY: " + afpq.remove(first));
         System.out.println("SIZE: " + afpq.size());
         System.out.println("AFTER ENTRY REMOVAL: " + afpq.toString());
+
+        // --- ERROR-HANDLING ---
+
+        // testing null value insertion
+        // afpq.insert(6, null);       
+        // afpq.insert(null, "H"); 
+        
+        // System.out.println("\n-----REMOVE NON-EXISTANT KEY-----");
+        // AFPQEntry<Integer, String> nonExistantEntry = new AFPQEntry<Integer, String>(99,"NonExistant");
+        // System.out.println("OLD ENTRY: " + afpq.remove(nonExistantEntry));
+        // System.out.println("AFPQ: " + afpq.toString());
     }
     
 }

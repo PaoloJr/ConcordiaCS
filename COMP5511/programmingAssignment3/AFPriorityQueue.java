@@ -3,13 +3,13 @@ package COMP5511.programmingAssignment3;
 import java.util.Comparator;
 
 /*
-*  REQUIRED METHODS
+*  REQUIRED METHODS FOR ADT
 *  state (): returns the current state (Min or Max) of the priority queue. --> done
 *  isEmpty(): returns true if the priority queue is empty. --> done
 *  size(): returns the current number of entries in the priority queue --> done
 *  top(): returns the top entry (with the min or the max key depending whether it is a Min- or Max-priority queue, without removing the entry. --> done
 *  removeTop(): removes and returns the entry object (a key, value pair) with the smallest or biggest key --> done
-*  remove (e): Removes entry object e from the priority queue and returns the entry depending on the current state of the PQ (either Min or Max).
+*  remove (e): Removes entry object e from the priority queue and returns the entry depending on the current state of the PQ (either Min or Max). --> done
 *  replaceValue (e, v): replace entry e’s value to v and return the old value. --> done
 *  replaceKey (e, k): replace entry e’s key to k and return the old key. --> done
 *  toggle() transforms a min- to a max-priority queue or vice versa. --> done
@@ -68,6 +68,7 @@ public class AFPriorityQueue <K extends Comparable<K>, V> {
   // insert will run O(1)
   // the required upheap method will run O(log n) times
   public AFPQEntry<K, V> insert(K key, V value) throws IllegalArgumentException {  
+    // if array of AFPQEntries has reached it's capacity, double its size
     if (size == heap.length) { resize(2 * heap.length); }
     if (key == null) { throw new IllegalArgumentException("Key must not be null"); }
     if (value == null) { throw new IllegalArgumentException("Value must not be null"); }
@@ -92,6 +93,7 @@ public class AFPriorityQueue <K extends Comparable<K>, V> {
   
   // swap() runs in constant time --> O(1)
   // downheap(j) runs in O(log n) time to restore the heap order from that removal
+  // upheap(j) run in O(log n) time to restore the heap order from that removal
   public AFPQEntry<K, V>remove(AFPQEntry<K,V> entry) throws IllegalArgumentException {
       AFPQEntry<K,V> locator = validate(entry);
       int j = locator.getIndex();
@@ -138,9 +140,12 @@ public class AFPriorityQueue <K extends Comparable<K>, V> {
         }
       }
     }
-    
-  //Moves the entry at index j higher, if necessary, to restore the heap property. 
-  // upheap will run O(log n) times to rebuild one side of the heap
+
+  // Moves the entry at index j higher, if necessary, to restore the heap property.
+  // This method is used when the current entry is smaller than its parent in a min-heap
+  // or larger than its parent in a max-heap.
+  // upheap runs in O(log n) time as it may need to traverse the height of the heap.
+  // swap runs in O(1) time
   private void upheap(int j) {
     while (j > 0) {         
       int p = parent(j);
@@ -152,9 +157,12 @@ public class AFPriorityQueue <K extends Comparable<K>, V> {
       }
     }
   }
-    
+
   // Moves the entry at index j lower, if necessary, to restore the heap property.
-  // O(log n) times since only half the heap needs to be compared (O(1)) and swapped (O(1))
+  // This method is used when the current entry is larger than its children in a min-heap
+  // or smaller than its children in a max-heap.
+  // downheap runs in O(log n) time as it may need to traverse the height of the heap.
+  // compare and swapa run in O(1) time
   private void downheap(int j) {
     while (hasLeft(j)) {               
       int leftIndex = left(j);
@@ -216,10 +224,15 @@ public class AFPriorityQueue <K extends Comparable<K>, V> {
     
     AFPQEntry<K,V> locator = (AFPQEntry<K,V>) entry;
     int j = locator.getIndex();
-    if (j >= heap.length) { throw new IllegalArgumentException("Heap is full!"); }
-    
-    if(heap[j].getKey() == null) { throw new IllegalArgumentException("Invalid entry, key must not be null"); }   
-    if(heap[j].getValue() == null) { throw new IllegalArgumentException("Invalid entry, value must not be null"); }   
+    if (j >= size || heap[j] != locator) {
+      throw new IllegalArgumentException("Invalid entry: entry not found in the heap");
+  }
+  if (heap[j].getKey() == null) {
+      throw new IllegalArgumentException("Invalid entry: key must not be null");
+  }
+  if (heap[j].getValue() == null) {
+      throw new IllegalArgumentException("Invalid entry: value must not be null");
+  }
 
     // if (j >= heap.length || heap[j] != locator)
     // throw new IllegalArgumentException("Invalid entry");
