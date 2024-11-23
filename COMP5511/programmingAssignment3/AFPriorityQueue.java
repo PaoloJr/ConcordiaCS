@@ -74,11 +74,13 @@ public class AFPriorityQueue <K extends Comparable<K>, V> {
 
     AFPQEntry<K, V> newest = new AFPQEntry<K, V>(key, value, heap.length);    
     heap[size] = newest;
+    newest.setIndex(size);
     upheap(size);
     size++;
     return newest;
   }
 
+  // will run O(n) as all values are placed in the temp AFPQ-array
   @SuppressWarnings("unchecked")
   public void resize(int capacity) {
     AFPQEntry<K, V>[] temp = new AFPQEntry[capacity];
@@ -88,20 +90,25 @@ public class AFPriorityQueue <K extends Comparable<K>, V> {
     heap = temp;
   }
   
-  // public AFPQEntry<K, V>remove(AFPQEntry<K,V> entry) throws IllegalArgumentException {
-  //     AFPQEntry<K,V> locator = validate(entry);
-  //     int j = locator.getIndex();
-  //     if (j == size - 1) {        // entry is at last position
-  //       heap[j] = null;  // so just remove it
-  //     } else {
-  //         // swap entry to last position
-  //         swap(j, size - 1);      
-  //         // then remove it
-  //         heap[size - 1] = null;        
-  //         bubble(j);           
-  //       }
-  //       size--;
-  //     }
+  // swap() runs in constant time --> O(1)
+  // downheap(j) runs in O(log n) time to restore the heap order from that removal
+  public AFPQEntry<K, V>remove(AFPQEntry<K,V> entry) throws IllegalArgumentException {
+      AFPQEntry<K,V> locator = validate(entry);
+      int j = locator.getIndex();
+      // if entry is at last position, just remove it; no order change
+      if (j == size - 1) {        
+        heap[j] = null; 
+      } else {
+          // swap entry to last position
+          swap(j, size - 1); 
+          // then remove it
+          heap[size - 1] = null;        
+          downheap(j);
+          upheap(j);
+        }
+        size--;
+        return entry;
+  }
       
   // removing the top (the swap) --> O(1)
   // downheap within the method --> O(log n) times
@@ -146,7 +153,8 @@ public class AFPriorityQueue <K extends Comparable<K>, V> {
     }
   }
     
-  /** Moves the entry at index j lower, if necessary, to restore the heap property. */
+  // Moves the entry at index j lower, if necessary, to restore the heap property.
+  // O(log n) times since only half the heap needs to be compared (O(1)) and swapped (O(1))
   private void downheap(int j) {
     while (hasLeft(j)) {               
       int leftIndex = left(j);
@@ -164,10 +172,13 @@ public class AFPriorityQueue <K extends Comparable<K>, V> {
       }
   }    
 
+  // replacing the key takes constant time --> O(1)
+  // running either upheap() or downheap(), after comparing keys (new key with old key) will run O(log n) time to restore heap-order (minHeap or maxHeap)
   public K replaceKey(AFPQEntry<K,V> entry, K key) throws IllegalArgumentException {
     AFPQEntry<K,V> locator = validate(entry);
     K oldKey = locator.getKey();
     K newKey = entry.getKey();
+    locator.setKey(key);
 
     if (compare(newKey, oldKey) > 0) {
       upheap(locator.getIndex());
@@ -178,6 +189,7 @@ public class AFPriorityQueue <K extends Comparable<K>, V> {
   }
               
   // replace value will run O(1) times
+  // does not need to rebuild the heap-order (minHeap or maxHeap)
   public V replaceValue(AFPQEntry<K,V> entry, V value) throws IllegalArgumentException {
     AFPQEntry<K,V> locator = validate(entry);
     V oldValue = locator.getValue();
@@ -198,37 +210,19 @@ public class AFPriorityQueue <K extends Comparable<K>, V> {
     return sb.toString();
   }
 
-  // check if entry and/or key-value pairs are valid (non-null)
+  // check if entry is valid and/or key-value pairs are non-null
   private AFPQEntry<K,V> validate(AFPQEntry<K,V> entry) throws IllegalArgumentException {
     if (!(entry instanceof AFPQEntry)) throw new IllegalArgumentException("Invalid entry: not an instance of AFPQEntry");
     
     AFPQEntry<K,V> locator = (AFPQEntry<K,V>) entry;
     int j = locator.getIndex();
-    // if (j >= heap.length) { throw new IllegalArgumentException("Heap is full!"); }
+    if (j >= heap.length) { throw new IllegalArgumentException("Heap is full!"); }
     
-    // if(heap[j] != locator) { throw new IllegalArgumentException("Invalid entry, please check key-value pair types"); }   
-    
-    // System.out.println("Validating entry: " + entry);
-    // System.out.println("Heap size: " + size);
-    // System.out.println("Heap length: " + heap.length);
-    // System.out.println("Entry index: " + j);
-    
-    // if (j >= heap.length) {
-    //   System.out.println("Heap is full!");
-    //   return null;
-    // }
-    // if(heap[j] != locator) {
-    //   System.out.println("Invalid Entry");
-    //   return null;
-    // }
-  
-    // if (j >= heap.length || heap[j] != locator) {
-    //  System.out.println("Invalid entry");
-    //  return null;
-    // }
+    if(heap[j].getKey() == null) { throw new IllegalArgumentException("Invalid entry, key must not be null"); }   
+    if(heap[j].getValue() == null) { throw new IllegalArgumentException("Invalid entry, value must not be null"); }   
 
-    if (j >= heap.length || heap[j] != locator)
-    throw new IllegalArgumentException("Invalid entry");
+    // if (j >= heap.length || heap[j] != locator)
+    // throw new IllegalArgumentException("Invalid entry");
     return locator;
   }
   
