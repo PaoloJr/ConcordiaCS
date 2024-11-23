@@ -238,17 +238,21 @@ public class AFPriorityQueue <K extends Comparable<K>, V> {
     // throw new IllegalArgumentException("Invalid entry");
     return locator;
   }
+
+  private int comparEntries(AFPQEntry<K,V> a, AFPQEntry<K,V> b) {
+    return compare(a.getKey(), b.getKey());
+  }
   
   /** Used for debugging purposes only */
-  // private void sanityCheck() {
-  //   for (int j=0; j < heap.size(); j++) {
-  //     int left = left(j);
-  //     int right = right(j);
-  //     if (left < heap.size() && compare(heap.get(left), heap.get(j)) < 0)
-  //       System.out.println("Invalid left child relationship");
-  //     if (right < heap.size() && compare(heap.get(right), heap.get(j)) < 0)
-  //       System.out.println("Invalid right child relationship");
-  //   }
-  // }
+  public void sanityCheck() {
+    for (int j=0; j < heap.length; j++) {
+      int left = left(j);
+      int right = right(j);
+      if (left < heap.length && comparEntries(heap[left], heap[j]) < 0)
+        System.out.println("Invalid left child relationship");
+      if (right < heap.length && comparEntries(heap[right], heap[j]) < 0)
+        System.out.println("Invalid right child relationship");
+    }
+  }
 }
           

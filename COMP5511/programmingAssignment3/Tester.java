@@ -121,6 +121,9 @@ public class Tester {
         System.out.println("AFPQ: " + afpq.toString());
         System.out.println("SIZE AFTER REMOVETOP: " + afpq.size());
         System.out.println();
+
+        // sanityCheck
+        afpq.sanityCheck();
         
         // --- ERROR-HANDLING ---
         
