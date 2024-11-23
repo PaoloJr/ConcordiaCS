@@ -24,7 +24,7 @@ _for building ELF32 object file with debugging details `.o`_ \
 `nasm -f elf32 -g -F dwarf -o <output_objectFile> <input_asmFile>`
 
 _for building ELF64 object file with debugging details `.o`_ \
-`nasm -f elf642 -g -F dwarf -o <output_objectFile> <input_asmFile>`
+`nasm -f elf64 -g -F dwarf -o <output_objectFile> <input_asmFile>`
 
 _**gcc**_ \
 _32-bit_ \

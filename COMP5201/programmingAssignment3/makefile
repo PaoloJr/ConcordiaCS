@@ -1,5 +1,5 @@
 ASM = nasm
-ASM_FLAGS = -f elf64 -g -F dwarf
+ASM_FLAGS = -f elf32 -g -F dwarf
 LD = ld
 LD_FLAGS = -m elf_i386
 MAIN_FILE = main.asm
