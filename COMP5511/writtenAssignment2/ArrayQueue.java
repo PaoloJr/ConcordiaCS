@@ -28,10 +28,12 @@ public class ArrayQueue<E> implements Queue<E> {
     }
 
     // methods
+    @Override
     public int size() {
         return sz;
     }
 
+    @Override
     public boolean isEmpty() {
         return (sz == 0);
     }

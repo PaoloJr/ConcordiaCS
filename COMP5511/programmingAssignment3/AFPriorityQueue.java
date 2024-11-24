@@ -83,7 +83,7 @@ public class AFPriorityQueue <K extends Comparable<K>, V> {
     if (key == null) { throw new IllegalArgumentException("Key must not be null"); }
     if (value == null) { throw new IllegalArgumentException("Value must not be null"); }
 
-    AFPQEntry<K, V> newest = new AFPQEntry<K, V>(key, value, heap.length);    
+    AFPQEntry<K, V> newest = new AFPQEntry<>(key, value, heap.length);    
     heap[size] = newest;
     newest.setIndex(size);
     upheap(size);
@@ -92,7 +92,7 @@ public class AFPriorityQueue <K extends Comparable<K>, V> {
   }
 
   // will run O(n) as all values are placed in the temp AFPQ-array
-  @SuppressWarnings("unchecked")
+  @SuppressWarnings("ManualArrayToCollectionCopy")
   public void resize(int capacity) {
     AFPQEntry<K, V>[] temp = new AFPQEntry[capacity];
     for (int i = 0; i < size; i++) {
@@ -215,6 +215,7 @@ public class AFPriorityQueue <K extends Comparable<K>, V> {
     return oldValue;
   }                
   
+  @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();    
     sb.append("[");
