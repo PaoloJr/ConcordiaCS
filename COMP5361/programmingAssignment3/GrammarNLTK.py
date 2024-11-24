@@ -1,17 +1,32 @@
 import os
 import nltk
-from nltk import CFG
+# import re
+from nltk import CFG, ChartParser
 from nltk.tokenize import word_tokenize
 from nltk.parse.generate import generate
 
-# Get absolute path of the script's directory
-script_dir = os.path.dirname(os.path.relpath(__file__))
+#  Set the NLTK data path to the virtual environment's nltk_data directory
+nltk.data.path.append(os.path.join(os.path.dirname(__file__), 'nltk_data'))
 
+# Get relative path of the script's directory
+script_dir = os.path.dirname(os.path.relpath(__file__))
 inputFile = "./IO/datePhoneIN_nltk.txt"
 outputFile = "./IO/datePhoneOUT_nltk.txt"
-
 input_path = os.path.join(script_dir, inputFile)
 output_path = os.path.join(script_dir, outputFile)
+
+phone_grammar = CFG.fromstring("""
+    S -> phoneNumber
+    phoneNumber -> areaCode delimiter prefixNumber delimiter lineNumber
+    areaCode -> leftParenth nonZeroOne digit digit rightParenth
+    prefixNumber -> nonZeroOne digit digit
+    lineNumber -> digit digit digit digit
+    leftParenth -> '(' |
+    rightParenth -> ')' |
+    nonZeroOne -> '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'
+    digit -> '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'
+    delimiter -> '.' | '-' | ' ' |
+""")
 
 def process_files(input_path, output_path):
     if not os.path.isfile(input_path):
@@ -19,28 +34,36 @@ def process_files(input_path, output_path):
     else:
         with open(input_path, 'r') as readFile:
             readFileLines = readFile.readlines()
-            # regex-like function goes here
+            matches = []
+            parser = ChartParser(phone_grammar)
+            for line in readFileLines:
+                tokens = word_tokenize(line)
+                try:
+                    for tree in parser.parse(tokens):
+                        # check if parse tree matches phone_number rules
+                        for subtree in tree.subtrees():
+                            if subtree.label() == 'phoneNumber':
+                                phone_number = ' '.join(tokens[subtree.leaves()[0]:subtree.leaves()[-1]+1])
+                                matches.append(phone_number)
+                                #  debugging
+                                print(f"Match found: {phone_number}")
+                                # assume only want first match for now
+                                break
+                except ValueError as e:
+                        # print(f"Error parsing ling: {line.strip()}")
+                        print(e)
+
         if os.path.exists(os.path.dirname(output_path)):
             print(f"File or directory '{output_path}' already exists.")
             print("Overwriting contents...")
-            with open(output_path, 'w') as f: 
-                f.writelines(readFileLines)
         else:
-            print(f"Output directory does not exist: {os.path.dirname(output_path)}")
+            os.makedirs(os.path.dirname(output_path))
+        
+        with open(output_path, 'w') as f:
+            for match in matches:
+                f.write(match + '\n')
 
 process_files(input_path, output_path)
 
-
-grammar = CFG.fromstring("""
-    Month -> 'January'|'February' 'March' 'April' 'May' 'June' 'July' 'August' 'September' 'October' 'November' 'December'
-""")
-list = list(generate(grammar))
-print(list)
-
-
-
-# Sample text
-# text = "Hello, world! This is a simple NLTK example. Written in November!"
-# Tokenize the text
-# tokens = word_tokenize(text)
-# print(tokens)
+# list = list(generate(phone_grammar))
+# print(list)
