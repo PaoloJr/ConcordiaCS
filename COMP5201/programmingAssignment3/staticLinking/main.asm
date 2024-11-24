@@ -51,9 +51,9 @@ section .bss
     digitCount resb 1
 
 section .text
-    global main
+    global _start
 
-main:
+_start:
 
 while:
     ; call print with the first prompt

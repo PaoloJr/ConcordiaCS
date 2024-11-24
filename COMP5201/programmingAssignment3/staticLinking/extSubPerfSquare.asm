@@ -6,10 +6,10 @@ section .text
     extern newline
     extern lenNewline
 
-    global print:function
-    global iread:function
-    global iprint:function
-    global prln:function
+    global print
+    global iread
+    global iprint
+    global prln
 
 ;----------------------------------------
 ; Subroutine: print

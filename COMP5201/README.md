@@ -28,14 +28,24 @@ _for building ELF64 object file with debugging details `.o`_ \
 
 _**gcc**_ \
 _32-bit_ \
-`gcc -m32 -no-pie -nostdlib <object-file -o <output-file>`
-- `-nostdlib`, when not using C libraries
+`gcc -m32 -no-pie -nostdlib <object-file -o <output-file>` \
+`-nostdlib`, when not using C libraries \
+_build shared library_ \
+`gcc -m32 -shared -o <libName>.so libName.o` \
+_main program dynamically linked to shared library_ \
+`gcc -m32 <objectFile> -o <ELF> -L<pathToLib> -l<libName> -ldl` \
+`-ldl`, to link with `dl` (dynamic-linker) library \
+- may need to export `LD_LIBRARY_PATH=.:$$LD_LIBRARY_PATH`, to use the current directory for `ld` to link to shared-library
 
 _**ld**_ \
-_32-bit_
+_32-bit_ \
 `ld -m elf_i386 -o <output_fileName> <input_objectFile>` \
-_64-bit for two linked files in one program_
+_64-bit for two linked files in one program_ \
 `ld -o <input_objectFile1> <input_objectFile2> -o <output_fileName>`
+- `-l<libName>`, to link with a library
+- `-lc`, to link with `libc.a` (static C standard library; `libc.so` (shared object) is the shared library version, for dynamic-linking)
+- `-lm`, to link with `libm.a` (static Math Library; `libm.so` (shared object) is the shared library version, for dynamic-linking)
+- `-L<pathToSharedLibs`, to link with a specified directory containing share library
 
 _**gdb**_ \
 [gdb tutorial](https://www.gdbtutorial.com/gdb_commands) \
@@ -51,7 +61,8 @@ _**make**_ \
 [makefile tutorial](https://makefiletutorial.com/) \
 `make` - use MAKEFILE to compile `.asm` and link `.o` to  ELF file \
 `make -s` - supress / silence command output messages \
-`make clean` - using MAKEFILE `clean` command to remove object and ELF file
+`make clean` - using MAKEFILE `clean` command to remove object and ELF file \ 
+`make -f <makeFile>` - choose specific makefile to run
 
 _**file**_ \
 `file <filename>` - to view file details
@@ -82,10 +93,10 @@ _**gcc using MinGW, for `.exe`**_ \
 `gcc <object-file> -o <output-file>.exe`
 
 _**gcc for `.dll`**_ \
-_to make library shareable_ \
-`gcc -m32 -shared -o <example.dll> <dll.obj>`
+_to make library shareable_
+- `gcc -m32 -shared -o <example.dll> <dll.obj>`
 
-_**gcc for `.exe`, linked to `.dll`**_ \
-_`-L.` for enabling linking_ \
-_`-l<dllFile.dll>` for linking to a `.dll` file_
-`gcc -m32 -o <executable.exe> <inputFile.obj> -L . -l<dllFile.dll>`
+_**gcc for `.exe`, linked to `.dll`**_
+- `gcc -m32 -o <executable.exe> <inputFile.obj> -L . -l<dllFile.dll>`
+- `-L.` to enable linking in current directory
+- `-l<dllFile.dll>` for linking to a `.dll` file
