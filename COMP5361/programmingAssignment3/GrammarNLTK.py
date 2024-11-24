@@ -5,10 +5,10 @@ from nltk.tokenize import word_tokenize
 from nltk.parse.generate import generate
 
 # Get absolute path of the script's directory
-script_dir = os.path.dirname(os.path.abspath(__file__))
+script_dir = os.path.dirname(os.path.relpath(__file__))
 
-inputFile = "../IO/datePhoneIN_nltk.txt"
-outputFile = "../IO/datePhoneOUT_nltk.txt"
+inputFile = "./IO/datePhoneIN_nltk.txt"
+outputFile = "./IO/datePhoneOUT_nltk.txt"
 
 input_path = os.path.join(script_dir, inputFile)
 output_path = os.path.join(script_dir, outputFile)
@@ -35,12 +35,12 @@ grammar = CFG.fromstring("""
     Month -> 'January'|'February' 'March' 'April' 'May' 'June' 'July' 'August' 'September' 'October' 'November' 'December'
 """)
 list = list(generate(grammar))
-# print(list)
+print(list)
 
 
 
 # Sample text
-text = "Hello, world! This is a simple NLTK example. Written in November!"
+# text = "Hello, world! This is a simple NLTK example. Written in November!"
 # Tokenize the text
-tokens = word_tokenize(text)
+# tokens = word_tokenize(text)
 # print(tokens)
