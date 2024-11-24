@@ -2,7 +2,7 @@ import os
 import nltk
 # import re
 from nltk import CFG, ChartParser
-from nltk.tokenize import word_tokenize
+from nltk.tokenize import word_tokenize, line_tokenize, RegexpTokenizer, regexp_tokenize
 from nltk.parse.generate import generate
 
 #  Set the NLTK data path to the virtual environment's nltk_data directory
@@ -27,6 +27,11 @@ phone_grammar = CFG.fromstring("""
     digit -> '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'
     delimiter -> '.' | '-' | ' ' |
 """)
+
+phone_grammar.start()
+phone_grammar.productions()
+# list(generate(phone_grammar))
+# print(list)
 
 def process_files(input_path, output_path):
     if not os.path.isfile(input_path):
@@ -64,6 +69,3 @@ def process_files(input_path, output_path):
                 f.write(match + '\n')
 
 process_files(input_path, output_path)
-
-# list = list(generate(phone_grammar))
-# print(list)
