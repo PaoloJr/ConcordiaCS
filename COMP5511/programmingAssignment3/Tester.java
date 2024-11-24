@@ -5,6 +5,9 @@ public class Tester {
     @SuppressWarnings("unused")
     public static void main(String[] args) {
         AFPriorityQueue<Integer, String> afpq = new AFPriorityQueue<>();
+
+        // testing `top()` function when heap is empty
+        // System.out.println("TOP: " + afpq.top());
         
         AFPQEntry<Integer, String> first = afpq.insert(1, "A");
         AFPQEntry<Integer, String> second = afpq.insert(2, "B");
@@ -15,6 +18,8 @@ public class Tester {
         AFPQEntry<Integer, String> seventh = afpq.insert(7, "G");
         AFPQEntry<Integer, String> eighth = afpq.insert(8, "H"); 
 
+        // sanityCheck
+        // afpq.sanityCheck();
 
         System.out.println("-----INITIAL STATE-----");
         System.out.println("STATE: " + afpq.state());
@@ -29,6 +34,7 @@ public class Tester {
         afpq.toggle(); 
         System.out.println("TOGGLE TO: " + afpq.state()); 
         System.out.println("AFPQ AFTER TOGGLE: " + afpq.toString());
+        System.out.println("TOP: " + afpq.top());
         
         System.out.println();
         System.out.println("-----TOGGLE-----");
@@ -36,6 +42,7 @@ public class Tester {
         afpq.toggle();
         System.out.println("TOGGLE TO: " + afpq.state()); 
         System.out.println("AFPQ AFTER TOGGLE: " + afpq.toString());                
+        System.out.println("TOP: " + afpq.top());
         
         System.out.println();
         String newValue = "Z";
@@ -79,6 +86,9 @@ public class Tester {
         afpq.insert(10, "J");
         afpq.insert(11, "K");
         afpq.insert(12, "L");
+
+         // sanityCheck
+        //  afpq.sanityCheck();
         
         System.out.println();
         System.out.println("-----NEW INSERTIONS-----");
@@ -119,11 +129,12 @@ public class Tester {
         System.out.println("SIZE: " + afpq.size());
         System.out.println("REMOVE TOP: " + afpq.removeTop());    
         System.out.println("AFPQ: " + afpq.toString());
+        System.out.println("TOP: " + afpq.top());
         System.out.println("SIZE AFTER REMOVETOP: " + afpq.size());
         System.out.println();
 
         // sanityCheck
-        afpq.sanityCheck();
+        //  afpq.sanityCheck();     
         
         // --- ERROR-HANDLING ---
         
@@ -146,8 +157,7 @@ public class Tester {
         // int key4 = 18;
         // System.out.println("-----REPLACE NON-EXISTANT KEY-----");
         // System.out.println("OLD KEY: " + afpq.replaceKey(first, key4) + " , REPLACED WITH: " + key4);
-        // System.out.println("AFTER REPLACE KEY: " + afpq.toString());
-        
+        // System.out.println("AFTER REPLACE KEY: " + afpq.toString());     
         
     }
     

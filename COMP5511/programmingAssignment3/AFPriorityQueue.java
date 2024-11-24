@@ -20,8 +20,8 @@ public class AFPriorityQueue <K extends Comparable<K>, V> {
   private AFPQEntry<K, V>[] heap;
   private int size;
   private String currState;
-  private final String MIN_HEAP = "Min Heap";
-  private final String MAX_HEAP = "Max Heap";
+  private final String MIN_HEAP = "minHeap";
+  private final String MAX_HEAP = "maxHeap";
 
   @SuppressWarnings("unchecked")
   public AFPriorityQueue() {
@@ -40,7 +40,17 @@ public class AFPriorityQueue <K extends Comparable<K>, V> {
   public String state() { return currState; }
   public boolean isEmpty() { return size() == 0; }
   public int size() { return size; }
-  public AFPQEntry<K, V> top() { return heap[0]; };
+  public AFPQEntry<K, V> top() { 
+    if (heap.length == 0) {
+      return null;
+    }
+    AFPQEntry<K, V> found = validate(heap[0]);
+    if (found != null) {   
+      return heap[0]; 
+    }
+    
+    return heap[0];
+  };
 
   private int parent(int j) { return (j-1) / 2; }  
   private int left(int j) { return 2*j + 1; }
@@ -56,7 +66,7 @@ public class AFPriorityQueue <K extends Comparable<K>, V> {
     heap[j].setIndex(j);
   }
 
-  private int compare(K key1, K key2) {
+  public int compare(K key1, K key2) {
       int cmp = key1.compareTo(key2);
       if (currState.equalsIgnoreCase(MAX_HEAP)) {
           return -cmp; // Reverse the comparison for max-heap
@@ -94,7 +104,7 @@ public class AFPriorityQueue <K extends Comparable<K>, V> {
   // swap() runs in constant time --> O(1)
   // downheap(j) runs in O(log n) time to restore the heap order from that removal
   // upheap(j) run in O(log n) time to restore the heap order from that removal
-  public AFPQEntry<K, V>remove(AFPQEntry<K,V> entry) throws IllegalArgumentException {
+  public AFPQEntry<K, V> remove(AFPQEntry<K,V> entry) throws IllegalArgumentException {
       AFPQEntry<K,V> locator = validate(entry);
       int j = locator.getIndex();
       // if entry is at last position, just remove it; no order change
@@ -162,7 +172,7 @@ public class AFPriorityQueue <K extends Comparable<K>, V> {
   // This method is used when the current entry is larger than its children in a min-heap
   // or smaller than its children in a max-heap.
   // downheap runs in O(log n) time as it may need to traverse the height of the heap.
-  // compare and swapa run in O(1) time
+  // compare and swap (within the downheap function) runs in O(1) time
   private void downheap(int j) {
     while (hasLeft(j)) {               
       int leftIndex = left(j);
@@ -185,7 +195,7 @@ public class AFPriorityQueue <K extends Comparable<K>, V> {
   public K replaceKey(AFPQEntry<K,V> entry, K key) throws IllegalArgumentException {
     AFPQEntry<K,V> locator = validate(entry);
     K oldKey = locator.getKey();
-    K newKey = entry.getKey();
+    K newKey = key;
     locator.setKey(key);
 
     if (compare(newKey, oldKey) > 0) {
@@ -220,7 +230,7 @@ public class AFPriorityQueue <K extends Comparable<K>, V> {
 
   // check if entry is valid and/or key-value pairs are non-null
   private AFPQEntry<K,V> validate(AFPQEntry<K,V> entry) throws IllegalArgumentException {
-    if (!(entry instanceof AFPQEntry)) throw new IllegalArgumentException("Invalid entry: not an instance of AFPQEntry");
+    if (!(entry instanceof AFPQEntry)) throw new IllegalArgumentException("Invalid entry: not an instance of AFPQEntry or heap is empty");
     
     AFPQEntry<K,V> locator = (AFPQEntry<K,V>) entry;
     int j = locator.getIndex();
@@ -238,21 +248,21 @@ public class AFPriorityQueue <K extends Comparable<K>, V> {
     // throw new IllegalArgumentException("Invalid entry");
     return locator;
   }
-
-  private int comparEntries(AFPQEntry<K,V> a, AFPQEntry<K,V> b) {
-    return compare(a.getKey(), b.getKey());
-  }
   
   /** Used for debugging purposes only */
-  public void sanityCheck() {
-    for (int j=0; j < heap.length; j++) {
-      int left = left(j);
-      int right = right(j);
-      if (left < heap.length && comparEntries(heap[left], heap[j]) < 0)
-        System.out.println("Invalid left child relationship");
-      if (right < heap.length && comparEntries(heap[right], heap[j]) < 0)
-        System.out.println("Invalid right child relationship");
-    }
-  }
+  // public void sanityCheck() {
+    //   for (int j=0; j < heap.length; j++) {
+      //     int left = left(j);
+      //     int right = right(j);
+      //     if (left < heap.length && heap[left] != null && comparEntries(heap[left], heap[j]) < 0)
+  //       System.out.println("Invalid left child relationship");
+  //     if (right < heap.length && heap[right] != null && comparEntries(heap[right], heap[j]) < 0)
+  //       System.out.println("Invalid right child relationship");
+  //   }
+  // }
+
+  // private int comparEntries(AFPQEntry<K,V> a, AFPQEntry<K,V> b) {
+  //   return compare(a.getKey(), b.getKey());
+  // }
 }
           

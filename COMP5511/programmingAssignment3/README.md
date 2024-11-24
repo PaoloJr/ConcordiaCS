@@ -5,6 +5,89 @@ _pseudo-code_
 
 ```Java
 
+function top() {
+    if (heap size == 0) {
+        return null;
+    }
+    return heap[0]; // --> the heap (dynamic array at index 0)
+}
+
+function size() {
+    return size;
+    // size is created when the AFPriorityQueue object is created
+    // and incremented / decremented when insert / remove (or removeTop) are called
+}
+
+function isEmpty() {
+    if (size() == 0) {
+        return true;
+    }
+    return false;
+}
+
+function state() {
+    return currState;
+    // currState (the current state of the heap) is initially set as minHeap
+    // and switched once the toggle() function is called
+}
+
+function toggle() {
+    if (currState is `maxHeap`) {
+        update currState to `minHeap`
+        for (from (size / 2) - 1 to i >= 0; i--) {
+            downheap(i);
+        }
+    } else {
+            update currState to `maxHeap`
+            for (from (size / 2) - 1 to i >= 0; i--) {
+            downheap(i);
+        }
+    }
+    // downheap(i) will check the left and right child of the node, compare their respective key magnitude and swap if necessary
+    // depending on the heap-order (minHeap or maxHeap) as determined by the compare() function
+}
+
+function downheap(index j) {
+    while(hasLeft(j)) { // while the current index has a left child node
+        leftIndex = left(j)
+        rightIndex = right(j)
+        smallChildIndex = leftIndex
+        if (hasRight(j)) {
+            // compare will return a positive or negative number, depending on currState
+            if (compare(heap at leftIndexKey, heap at rightIndexKey) > 0) {
+                update smallChildIndex with rightIndex
+            }
+            if(compare(heap at smallChildIndexKey, heap at `j` key) >= 0) {
+                break;
+            }
+        }
+        swap(j, smallChildIndex);
+        j = smallChildIndex
+    }
+}
+
+fuction upheap(index j) {
+    while (j > 0) { // while `j` is not the root
+        p = parent(j)
+        // compare will return a positive or negative number, depending on currState
+        if (compare(heap at `j` key, heap at `p` key) >= 0) {
+            break
+        } else {
+            swap(j, p)
+            j = p
+        }
+    }
+}
+ 
+function swap(int i, int j) {
+    // swapping the nodes here and updating their respective index
+    create temporary (`temp`) entry at `i` (`heap[i]`)
+    heap[i] = heap[j];
+    heap[j] = temp;
+    heap[i].setIndex(i);
+    heap[j].setIndex(i); 
+}
+
 
 
 ```
@@ -48,3 +131,7 @@ _`replaceValue(e, v)`_
 - this is due to the array-based nature of the heap
     - accessing and updating a value within it runs `O(1)`
 
+
+
+**c)** \
+[see code](../programmingAssignment3/)
