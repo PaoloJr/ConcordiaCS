@@ -196,7 +196,7 @@ public class AFPriorityQueue <K extends Comparable<K>, V> {
     AFPQEntry<K,V> locator = validate(entry);
     K oldKey = locator.getKey();
     K newKey = key;
-    locator.setKey(key);
+    locator.setKey(newKey);
 
     if (compare(newKey, oldKey) > 0) {
       upheap(locator.getIndex());
