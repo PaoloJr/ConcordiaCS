@@ -141,12 +141,12 @@ public class AFPriorityQueue <K extends Comparable<K>, V> {
   public void toggle() {
     if (currState.equalsIgnoreCase(MAX_HEAP)) {
         currState = MIN_HEAP;
-        for (int i = (size / 2) - 1; i >= 0; i--) {
+        for (int i = size - 1; i >= 0; i--) {
           downheap(i);
       }
     } else {
         currState = MAX_HEAP;
-        for (int i = (size / 2) - 1; i >= 0; i--) {
+        for (int i = size - 1; i >= 0; i--) {
           downheap(i);
         }
       }

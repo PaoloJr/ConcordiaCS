@@ -31,7 +31,7 @@ _32-bit_ \
 `gcc -m32 -no-pie -nostdlib <object-file -o <output-file>` \
 `-nostdlib`, when not using C libraries \
 _build shared library_ \
-`gcc -m32 -shared -o <libName>.so libName.o` \
+`gcc -m32 -shared -o lib<libName>.so libName.o` \
 _main program dynamically linked to shared library_ \
 `gcc -m32 <objectFile> -o <ELF> -L<pathToLib> -l<libName> -ldl` \
 `-ldl`, to link with `dl` (dynamic-linker) library \
