@@ -94,6 +94,7 @@ public class AFPriorityQueue <K extends Comparable<K>, V> {
   // will run O(n) as all values are placed in the temp AFPQ-array
   @SuppressWarnings("ManualArrayToCollectionCopy")
   public void resize(int capacity) {
+    @SuppressWarnings("unchecked")
     AFPQEntry<K, V>[] temp = new AFPQEntry[capacity];
     for (int i = 0; i < size; i++) {
       temp[i] = heap[i];

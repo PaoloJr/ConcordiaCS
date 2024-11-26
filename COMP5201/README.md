@@ -35,7 +35,7 @@ _build shared library_ \
 _main program dynamically linked to shared library_ \
 `gcc -m32 <objectFile> -o <ELF> -L<pathToLib> -l<libName> -ldl` \
 `-ldl`, to link with `dl` (dynamic-linker) library \
-- may need to export `LD_LIBRARY_PATH=.:$$LD_LIBRARY_PATH`, to use the current directory for `ld` to link to shared-library
+- may need to `export LD_LIBRARY_PATH=.:$$LD_LIBRARY_PATH`, to use the current directory for `ld` to link to shared-library
 
 _**ld**_ \
 _32-bit_ \
