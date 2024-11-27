@@ -187,9 +187,10 @@ _`downheap()` and `upheap()` use the `compare(key1, key2)` method which adjusts 
 <br>
 
 _`toggle()`_
-- The non-nested for-loop runs `n/2` times from half the heap's size to index 0, which is `O(n)`.
-- The nested call to `downheap(i)` will run `O(log n)` times for each iteration of the loop, since the height of the binary heap is `O(log n)`, where `n` is the number of elements in the heap; running on all nodes of the heap
-- Thus overall, `toggle()` will run in `O(n log n)` time.
+- The non-nested for-loop runs from the last non-leaf node to the root, and calls `downheap` for every iteration.
+- In the heap, there are more nodes at the bottom and fewer at the top; `downheap` does less work (compare-and-swap) on the lower parts (leaves and near-leaves)
+- Nodes at the top require more work (compare-and-swap), but there are fewer to do
+- Thus overall, `toggle()` will run in `O( n)` time.
 
 <br>
 

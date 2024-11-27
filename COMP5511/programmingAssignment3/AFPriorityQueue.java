@@ -139,14 +139,15 @@ public class AFPriorityQueue <K extends Comparable<K>, V> {
   // toggle will run O(n) times
   // downheap within toggle will run O(log n) times to restore the heap order (minHeap or maxHeap)
   public void toggle() {
+    int startIndex = parent(size() - 1);
     if (currState.equalsIgnoreCase(MAX_HEAP)) {
         currState = MIN_HEAP;
-        for (int i = size - 1; i >= 0; i--) {
+        for (int i = startIndex; i >= 0; i--) {
           downheap(i);
       }
     } else {
         currState = MAX_HEAP;
-        for (int i = size - 1; i >= 0; i--) {
+        for (int i = startIndex; i >= 0; i--) {
           downheap(i);
         }
       }
