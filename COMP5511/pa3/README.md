@@ -188,9 +188,10 @@ _`downheap()` and `upheap()` use the `compare(key1, key2)` method which adjusts 
 
 _`toggle()`_
 - The non-nested for-loop runs from the last non-leaf node to the root, and calls `downheap` for every iteration.
+- The number of operations to be done (compare-and-swap) depend on the relative height of the individual node
 - In the heap, there are more nodes at the bottom and fewer at the top; `downheap` does less work (compare-and-swap) on the lower parts (leaves and near-leaves)
 - Nodes at the top require more work (compare-and-swap), but there are fewer to do
-- Thus overall, `toggle()` will run in `O( n)` time.
+- Thus overall, `toggle()` will run in `O(n)` time.
 
 <br>
 
@@ -223,4 +224,4 @@ _`replaceValue(e, v)`_
 
 
 **c)** \
-[see code](../programmingAssignment3/)
+[see code](../pa3/)

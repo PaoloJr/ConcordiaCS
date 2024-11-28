@@ -93,7 +93,7 @@ _pseudo-code_
 ```
 
 **b)** \
-[see code](../programmingAssignment2/)
+[see code](../pa2/)
 
 
 **c) _time and space complexity_** \
@@ -132,5 +132,5 @@ _pseudo-code_
 
 
 **d)** \
-[input file](../programmingAssignment2/arithmeticIn.txt) \
-[output file](../programmingAssignment2/arithmeticOut.txt)
+[input file](./arithmeticIn.txt) \
+[output file](./arithmeticOut.txt)

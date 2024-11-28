@@ -1,5 +1,5 @@
 ## RegEx Grammar
-[Java RegEx implementation](https://github.com/PaoloJr90/ConcordiaCS/tree/main/COMP5361/programmingAssignment2)
+[Java RegEx implementation](../pa2/)
 ### _Phone Numbers_
 [Phone Number Formats - Microsoft](https://learn.microsoft.com/en-us/globalization/locale/telephone-numbers) \
 [Phone Number Formats by Country](https://en.wikipedia.org/wiki/National_conventions_for_writing_telephone_numbers#United_States,_Canada,_and_other_NANP_countries)

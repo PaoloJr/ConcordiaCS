@@ -1,4 +1,4 @@
-## Tutorials
+## Tutorials & Docs
 [PC Assembly Book](https://pacman128.github.io/pcasm/) \
 [NASM docs](https://www.nasm.us/xdoc/2.16.03/html/nasmdoc0.html) \
 [NASM assembly lab](https://labs.bilimedtech.com/nasm/index.html) \
@@ -9,6 +9,8 @@
 [x86 Assembly Guide](https://www.cs.virginia.edu/~evans/cs216/guides/x86.html) \
 [x86 Registers](https://en.wikibooks.org/wiki/X86_Assembly/X86_Architecture) \
 [x86 Registers - uToronto](https://www.eecg.utoronto.ca/~amza/www.mindsec.com/files/x86regs.html) \
+[LLDB](https://lldb.llvm.org/#) \
+[GDB](https://www.sourceware.org/gdb/) \
 [ASCII Table](https://www.ascii-code.com/)
 
 ## Linux
@@ -34,7 +36,7 @@ _build shared library_ \
 `gcc -m32 -shared -o lib<libName>.so libName.o` \
 _main program dynamically linked to shared library_ \
 `gcc -m32 <objectFile> -o <ELF> -L<pathToLib> -l<libName> -ldl` \
-`-ldl`, to link with `dl` (dynamic-linker) library \
+`-ldl`, to link with `dl` (dynamic-linker) library
 - may need to `export LD_LIBRARY_PATH=.:$$LD_LIBRARY_PATH`, to use the current directory for `ld` to link to shared-library
 
 _**ld**_ \

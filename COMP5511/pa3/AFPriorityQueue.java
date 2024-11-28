@@ -1,5 +1,3 @@
-package COMP5511.programmingAssignment3;
-
 import java.util.Comparator;
 
 /*

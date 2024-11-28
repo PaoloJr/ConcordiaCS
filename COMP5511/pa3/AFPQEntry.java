@@ -1,5 +1,3 @@
-package COMP5511.programmingAssignment3;
-
 public class AFPQEntry<K, V> {
     private K k; 
     private V v;
@@ -16,6 +14,7 @@ public class AFPQEntry<K, V> {
         this.v = value;
     }    
 
+    @Override
     public String toString() { return "(" + k + "," + v + ")"; }
     public K getKey() { return k; }
     public V getValue() { return v; }
