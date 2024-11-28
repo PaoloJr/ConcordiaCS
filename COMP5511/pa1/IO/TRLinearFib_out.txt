@@ -1,0 +1,63 @@
+
+ linear Fibonacci of: 5 = 5
+	 execution time = 0.000433200 seconds
+
+ linear Fibonacci of: 10 = 55
+	 execution time = 0.000005800 seconds
+
+ linear Fibonacci of: 15 = 610
+	 execution time = 0.000005300 seconds
+
+ linear Fibonacci of: 20 = 6765
+	 execution time = 0.000005600 seconds
+
+ linear Fibonacci of: 25 = 75025
+	 execution time = 0.000006700 seconds
+
+ linear Fibonacci of: 30 = 832040
+	 execution time = 0.000008200 seconds
+
+ linear Fibonacci of: 35 = 9227465
+	 execution time = 0.000009600 seconds
+
+ linear Fibonacci of: 40 = 102334155
+	 execution time = 0.000010500 seconds
+
+ linear Fibonacci of: 45 = 1134903170
+	 execution time = 0.000011400 seconds
+
+ linear Fibonacci of: 50 = 12586269025
+	 execution time = 0.000016600 seconds
+
+ linear Fibonacci of: 55 = 139583862445
+	 execution time = 0.000015300 seconds
+
+ linear Fibonacci of: 60 = 1548008755920
+	 execution time = 0.000026300 seconds
+
+ linear Fibonacci of: 65 = 17167680177565
+	 execution time = 0.000030800 seconds
+
+ linear Fibonacci of: 70 = 190392490709135
+	 execution time = 0.000026400 seconds
+
+ linear Fibonacci of: 75 = 2111485077978050
+	 execution time = 0.000032300 seconds
+
+ linear Fibonacci of: 80 = 23416728348467685
+	 execution time = 0.000023200 seconds
+
+ linear Fibonacci of: 85 = 259695496911122585
+	 execution time = 0.000023500 seconds
+
+ linear Fibonacci of: 90 = 2880067194370816120
+	 execution time = 0.000025800 seconds
+
+ linear Fibonacci of: 95 = 31940434634990099905
+	 execution time = 0.000027300 seconds
+
+ linear Fibonacci of: 100 = 354224848179261915075
+	 execution time = 0.000017900 seconds
+
+
+ TOTAL execution time = 0.0214408 seconds
