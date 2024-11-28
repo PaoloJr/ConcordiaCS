@@ -11,6 +11,7 @@
 [x86 Registers - uToronto](https://www.eecg.utoronto.ca/~amza/www.mindsec.com/files/x86regs.html) \
 [LLDB](https://lldb.llvm.org/#) \
 [GDB](https://www.sourceware.org/gdb/) \
+[GDB Enhanced Features](https://hugsy.github.io/gef/) \
 [ASCII Table](https://www.ascii-code.com/)
 
 ## Linux
@@ -35,9 +36,12 @@ _32-bit_ \
 _build shared library_ \
 `gcc -m32 -shared -o lib<libName>.so libName.o` \
 _main program dynamically linked to shared library_ \
-`gcc -m32 <objectFile> -o <ELF> -L<pathToLib> -l<libName> -ldl` \
+`gcc -m32 <objectFile> -o <ELF> -L<pathToLib> -l<libName> -ldl -Wl,-rpath<absPathToLib>` \
 `-ldl`, to link with `dl` (dynamic-linker) library
 - may need to `export LD_LIBRARY_PATH=.:$$LD_LIBRARY_PATH`, to use the current directory for `ld` to link to shared-library
+- `Wl` to pass additional options to linker
+- `-rpath` (used with `-Wl`) to specify runtime library search path
+    - avoids using the `export` command before building the dynamically linked program
 
 _**ld**_ \
 _32-bit_ \
@@ -57,7 +61,8 @@ _**gdb**_ \
     2.`break <some line or function name>` - set a breakpoint \
     3.`run` \
     4.`si` - step in \
-`refresh` - refreshes the screen (useful when stepping in cause some visual inconsistencies)
+`refresh` - refreshes the screen (useful when stepping in cause some visual inconsistencies) \
+`continue` - to enter input (sometimes required by program)
 
 _**make**_ \
 [makefile tutorial](https://makefiletutorial.com/) \

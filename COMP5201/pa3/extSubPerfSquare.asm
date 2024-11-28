@@ -2,7 +2,6 @@ section .text
     extern strIn
     extern intOut
     extern strOut
-    extern digitCount
     extern newline
     extern lenNewline
 
@@ -60,21 +59,6 @@ convert_to_int:
 done:
     imul eax, edi                                                  ; multiply by EDI for the sign (+/-)
     mov [intOut], eax                                              ; store to memory location `intOut`
-
-    ; count number of digits
-    mov esi, strIn
-    xor ecx, ecx
-
-count_digits:
-    mov cl, [esi]
-    cmp cl, 10
-    je count_done
-    inc ecx
-    inc esi
-    jmp count_digits
-
-count_done:
-    mov [digitCount], ecx
     ret
 
 ;----------------------------------------

@@ -193,6 +193,8 @@ _`toggle()`_
 - Nodes at the top require more work (compare-and-swap), but there are fewer to do
 - Thus overall, `toggle()` will run in `O(n)` time.
 
+[HeapSort Analysis](https://hugsy.github.io/gef/)
+
 <br>
 
 _`remove(e)`_
@@ -225,3 +227,4 @@ _`replaceValue(e, v)`_
 
 **c)** \
 [see code](../pa3/)
+
