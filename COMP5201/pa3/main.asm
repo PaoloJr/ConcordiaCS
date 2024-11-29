@@ -6,6 +6,7 @@ extern prln
 section .data
     global newline
     global lenNewline
+    global input_non_number
 
     firstPrompt db "Enter an integer (+/-) up to four digits long: ", 0xA, 0
     lenFirstPrompt equ $-firstPrompt 
@@ -19,9 +20,13 @@ section .data
     lenPosMsg2 equ $-posMsg2
     notPerfectMsg db ") is not a perfect square.", 0xA, 0
     lenNotPerfectMsg equ $-notPerfectMsg
-    errorMsg db "Error: Number exceeds 4 digits.", 0xA, 0
-    lenErrorMsg equ $-errorMsg
+    errorMsgTooLong db "Invalid Input: Number exceeds 4 digits.", 0xA, 0
+    lenErrorMsgTooLong equ $-errorMsgTooLong
+    
+    errorMsgNonNum db "Invalid Input: Entry contains non-digit(s).", 0xA, 0
+    lenErrorMsgNonNum equ $-errorMsgNonNum
     newline db 0xA, 0
+    
     lenNewline equ $-newline
     root dd 0
 
@@ -31,9 +36,9 @@ section .bss
     global strOut
     global rootsqr
 
-    strIn resb 6                                                           ; 6 bytes to hold sign + 4-digits + newline
-    intOut resd 1                                                          ; hold the converted value as signed integer (1 double word, 32-bits)
-    strOut resb 8                                                          ; 8 bytes to hold the returned signed ASCII string, newline and null terminator
+    strIn resb 32                                                           ; to hold many characters
+    intOut resb 32                                                          ; hold the converted value as signed integer (1 double word, 32-bits)
+    strOut resb 32                                                          ; 8 bytes to hold the returned signed ASCII string, newline and null terminator
     rootsqr resd 1
 
 section .text
@@ -52,18 +57,19 @@ while:
 
     ; check if input is empty (compare a byte with ASCII newline character)
     cmp byte [strIn], 10            
-    je endwhile           
+    je end           
+
+    ; check if number is within range
+    mov eax, [intOut]
+    cmp eax, -9999
+    jl input_too_long
+    cmp eax, 9999
+    jg input_too_long
 
     ; Check if the number is negative
     mov eax, [intOut]
     cmp eax, 0
     jl negative_number
-
-    ; check if the input length exceeds 4 digits    
-    cmp dword [intOut], 9999
-    jg input_too_long
-    cmp dword [intOut], -9999
-    jl input_too_long
 
     ; Positive number, determine initial guess for root
     mov ecx, eax
@@ -123,7 +129,7 @@ not_perfect_square:
     mov edx, lenNotPerfectMsg
     call print
     call prln
-    jmp while
+    jmp reset
 
 perfect_square:
     mov ecx, posMsg
@@ -138,7 +144,7 @@ perfect_square:
     call iprint
     call prln
     call prln
-    jmp while
+    jmp reset
 
 negative_number:
     mov ecx, negMsg
@@ -150,19 +156,24 @@ negative_number:
     mov edx, lenNegMsg2
     call print
     call prln
-    jmp while
+    jmp reset
 
 input_too_long:
-    mov ecx, errorMsg
-    mov edx, lenErrorMsg
+    mov ecx, errorMsgTooLong
+    mov edx, lenErrorMsgTooLong
     call print
     call prln
+    jmp reset
+
+input_non_number:
+    mov ecx, errorMsgNonNum
+    mov edx, lenErrorMsgNonNum
+    call print
+    call prln
+    jmp reset
+
+reset:    
     jmp while
-
-    ; jmp while                                                              ; repeat the loop
-
-endwhile:
-    call end                                                               ; program exit
 
 end:
     mov eax, 1                               
