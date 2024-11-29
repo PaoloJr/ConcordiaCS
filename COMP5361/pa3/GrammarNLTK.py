@@ -16,16 +16,63 @@ input_path = os.path.join(script_dir, inputFile)
 output_path = os.path.join(script_dir, outputFile)
 
 phone_grammar = CFG.fromstring("""
-    S -> phoneNumber
-    phoneNumber -> areaCode delimiter prefixNumber delimiter lineNumber
-    areaCode -> leftParenth nonZeroOne digit digit rightParenth
-    prefixNumber -> nonZeroOne digit digit
-    lineNumber -> digit digit digit digit
-    leftParenth -> '(' |
-    rightParenth -> ')' |
-    nonZeroOne -> '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'
-    digit -> '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'
-    delimiter -> '.' | '-' | ' ' |
+S -> phoneNumber
+phoneNumber -> areaCode delimiter prefixNumber delimiter lineNumber
+areaCode -> leftParenth nonZeroOne digit digit rightParenth
+prefixNumber -> nonZeroOne digit digit
+lineNumber -> digit digit digit digit
+leftParenth -> '(' |
+rightParenth -> ')' |
+nonZeroOne -> '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'
+digit -> '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'
+delimiter -> '.' | '-' | ' ' |
+""")
+
+phone_regex = "\\(?"
++ "[2-9][0-9]{2}"
++ "\\)?"
++ "[-.\\s]?"   
++ "[2-9][0-9]{2}"
++ "[-.\\s]?"           
++ "[0-9]{4}"
+
+date_regex = "\\b"
++ "(?:" 
++ "(?:((19|20)\\d{2})[-/.](0?[1-9]|1[0-2])[-/.](0?[1-9]|[12][0-9]|3[01]))"
++ "|((0?[1-9]|[12][0-9]|3[01])[-/.](0?[1-9]|1[0-2])[-/.]((19|20)\\d{2}))"
++ "|((0?[1-9]|1[0-2])[-/.](0?[1-9]|[12][0-9]|3[01])[-/.]((19|20)\\d{2}))"
++ "|((19|20)\\d{2})[-/.]?(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[-/.](0?[1-9]|[12][0-9]|3[01])"
++ "|((0?[1-9]|[12][0-9]|3[01])[-/.]?(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[-/.]((19|20)\\d{2}))"
++ "|((Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[-/.]?(0?[1-9]|[12][0-9]|3[01])[-/.]((19|20)\\d{2}))"
++ "|(?:"
++ "(?:Monday|Mon|Tuesday|Tue|Tues|Wednesday|Wed|Thursday|Thur|Thurs|Friday|Fri|Saturday|Sat|Sunday|Sun),?\\s*)?"
++ "(?:January|Jan|February|Feb|March|Mar|April|Apr|May|June|Jun|July|Jul|August|Aug|September|Sept|Sep|October|Oct|November|Nov|December|Dec)\\s+"
++ "(\\d{1,2}(?:st|nd|rd|th)?)"
++ ",?\\s*(\\d{4})"
++ ")\\b"
+
+date_grammar = CFG.fromstring("""
+    S -->  dateWithDelimiter | dateString 
+    dateWithDelimiter -->  year delimiter monthNum delimiter dayNum | year delimiter monthPart delimiter dayNum | monthNum delimiter dayNum delimiter year | monthPart delimiter dayNum delimiter year | dayNum delimiter monthNum delimiter year |  dayNum delimiter monthPart delimiter year |  
+    dateString --> weekday comma space monthFull space dayNum daySuffix comma space year | weekday comma space monthPart dayNum daySuffix comma space year 
+    year -->  nineteenTwenty digit digit 
+    monthFull --> 'January' | 'February' | 'March' | 'April'| 'May' | 'June' | 'July' | 'August' | 'September' | 'October' | 'November' | 'December' 
+    monthPart --> 'Jan' | 'Feb' | 'Mar' | 'Apr' | 'May' | 'Jun' | 'Jul' | 'Aug' | 'Sep' | 'Sept' | 'Oct' | 'Nov' | 'Dec' 
+    monthNum --> zero nonZeroDigit | one zeroOne | one two 
+    weekday --> 'Monday' | 'Mon' | 'Tuesday' | 'Tues' | 'Tue' | 'Wednesday' | 'Wed' | 'Thursday' | 'Thurs' | 'Thur' | 'Friday' | 'Fri' | 'Saturday' | 'Sat' | 'Sunday' | 'Sun' 
+    dayNum --> zero nonZeroDigit | one digit | two digit | three zeroOne    
+    nineteenTwenty --> 19 | 20 
+    digit --> 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 
+    nonZeroDigit --> 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 
+    zeroOne --> 0 | 1 
+    zero --> 0 |
+    one --> 1 
+    two --> 2 
+    three --> 3 
+    delimiter --> '.' | '-' | '/' 
+    daySuffix --> 'st' | 'nd' | 'rd' | 'th' | 
+    comma --> ',' |
+    space --> " "
 """)
 
 phone_grammar.start()
