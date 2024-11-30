@@ -1,3 +1,6 @@
+section .data
+    minus_zero db "-0", 0xA, 0
+
 section .text
     extern strIn
     extern intOut
@@ -5,22 +8,12 @@ section .text
     extern newline
     extern lenNewline
     extern input_non_number
+    extern input_invalid_num
 
     global print:function
     global iread:function
     global iprint:function
     global prln:function
-
-;----------------------------------------
-; Subroutine: print
-; Prints the string pointed to by ECX of length EDX
-; ECX and EDX are setup before calling print
-;----------------------------------------
-print:
-    mov eax, 4                                                     ; sys_write
-    mov ebx, 1                                                     ; stdout, default output device 
-    int 0x80
-    ret
 
 ;----------------------------------------
 ; Subroutine: iread
@@ -33,7 +26,27 @@ iread:
     mov ecx, strIn                                                 ; load address of the buffer
     mov edx, 32                                                    ; many bytes to read
     int 0x80
+    mov ebp, eax                   ;                               ; Store the number of bytes read
 
+    ; Check if the input length matches minus_zero
+    cmp ebp, 3                                                     ; Length of "-0\n" is 3 bytes
+    jne continue_conversion        
+
+    ; Set up registers for string comparison
+    mov esi, strIn                                                 ; Source index pointing to strIn
+    mov edi, minus_zero                                            ; Destination index pointing to minus_zero
+    mov ecx, 3                                                     ; Number of bytes to compare
+
+    ; Compare strIn with minus_zero
+    repe cmpsb                                                     ; Compare ECX bytes from [ESI] and [EDI]
+
+    ; Check if the strings are equal
+    jne continue_conversion   
+
+    ; If equal, the input is "-0\n", handle the error
+    jmp input_invalid_num
+
+continue_conversion:
     ; ASCII to integer conversion, store result in intOut
     mov esi, strIn                                                 ; start ESI at strIn (beginning of user input buffer)
     xor eax, eax
@@ -112,6 +125,17 @@ prepare_print:
     mov edx, strOut                                                ; strOut buffer
     sub edx, esi                                                   ; EDX = length of the string from ESI to end
     call print
+    ret
+
+;----------------------------------------
+; Subroutine: print
+; Prints the string pointed to by ECX of length EDX
+; ECX and EDX are setup before calling print
+;----------------------------------------
+print:
+    mov eax, 4                                                     ; sys_write
+    mov ebx, 1                                                     ; stdout, default output device 
+    int 0x80
     ret
 
 ;----------------------------------------

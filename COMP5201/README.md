@@ -35,7 +35,7 @@ _32-bit_ \
 `-nostdlib`, when not using C libraries \
 _build shared library_ \
 `gcc -m32 -shared -o lib<libName>.so libName.o` \
-_main program dynamically linked to shared library_ \
+_main program dynamic-linking to shared library_ \
 `gcc -m32 <objectFile> -o <ELF> -L<pathToLib> -l<libName> -ldl -Wl,-rpath<absPathToLib>` \
 `-ldl`, to link with `dl` (dynamic-linker) library
 - may need to `export LD_LIBRARY_PATH=.:$$LD_LIBRARY_PATH`, to use the current directory for `ld` to link to shared-library
@@ -46,7 +46,7 @@ _main program dynamically linked to shared library_ \
 _**ld**_ \
 _32-bit_ \
 `ld -m elf_i386 -o <output_fileName> <input_objectFile>` \
-_64-bit for two linked files in one program_ \
+_64-bit static-linking_ \
 `ld -o <input_objectFile1> <input_objectFile2> -o <output_fileName>`
 - `-l<libName>`, to link with a library
 - `-lc`, to link with `libc.a` (static C standard library; `libc.so` (shared object) is the shared library version, for dynamic-linking)

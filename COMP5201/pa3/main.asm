@@ -6,27 +6,26 @@ extern prln
 section .data
     global newline
     global lenNewline
-    global input_non_number
 
     firstPrompt db "Enter an integer (+/-) up to four digits long: ", 0xA, 0
     lenFirstPrompt equ $-firstPrompt 
     negMsg db "The entered number (", 0
     lenNegMsg equ $-negMsg
-    negMsg2 db ") cannot be a perfect square as it is negative.", 0xA, 0
+    negMsg2 db ") cannot be a perfect square as it is negative.", 0
     lenNegMsg2 equ $-negMsg2
     posMsg db "The entered number (", 0
     lenPosMg equ $-posMsg
     posMsg2 db ") is a perfect square and its square root is ", 0
     lenPosMsg2 equ $-posMsg2
-    notPerfectMsg db ") is not a perfect square.", 0xA, 0
+    notPerfectMsg db ") is not a perfect square.", 0
     lenNotPerfectMsg equ $-notPerfectMsg
-    errorMsgTooLong db "Invalid Input: Number exceeds 4 digits.", 0xA, 0
+    errorMsgTooLong db "Error: number exceeds 4 digits.", 0
     lenErrorMsgTooLong equ $-errorMsgTooLong
-    
-    errorMsgNonNum db "Invalid Input: Entry contains non-digit(s).", 0xA, 0
+    errorMsgInvalidNum db "Error: invalid number."
+    lenErrorMsgInvalidNum equ $-errorMsgInvalidNum    
+    errorMsgNonNum db "Error: entry contains non-digit(s).", 0
     lenErrorMsgNonNum equ $-errorMsgNonNum
-    newline db 0xA, 0
-    
+    newline db 0xA, 0    
     lenNewline equ $-newline
     root dd 0
 
@@ -37,12 +36,15 @@ section .bss
     global rootsqr
 
     strIn resb 32                                                           ; to hold many characters
-    intOut resb 32                                                          ; hold the converted value as signed integer (1 double word, 32-bits)
-    strOut resb 32                                                          ; 8 bytes to hold the returned signed ASCII string, newline and null terminator
+    intOut resb 32                                                          ; hold the converted value as signed integer
+    strOut resb 32                                                          ; 32 bytes to hold the returned signed ASCII string, newline and null terminator
     rootsqr resd 1
 
 section .text
-    global main
+    global main 
+    global input_non_number
+    global input_invalid_num
+    
 
 main:
 
@@ -57,7 +59,7 @@ while:
 
     ; check if input is empty (compare a byte with ASCII newline character)
     cmp byte [strIn], 10            
-    je end           
+    je end      
 
     ; check if number is within range
     mov eax, [intOut]
@@ -66,11 +68,12 @@ while:
     cmp eax, 9999
     jg input_too_long
 
-    ; Check if the number is negative
+    ; Check if the number is negative or -0
     mov eax, [intOut]
     cmp eax, 0
     jl negative_number
 
+valid_num:
     ; Positive number, determine initial guess for root
     mov ecx, eax
     cmp ecx, 9
@@ -119,6 +122,10 @@ check_perfect_square:
     cmp eax, [intOut]
     je perfect_square
 
+;----------------------------------------
+; Messages Section
+;----------------------------------------
+
 not_perfect_square:
     mov ecx, posMsg
     mov edx, lenPosMg
@@ -142,7 +149,6 @@ perfect_square:
     call print
     mov eax, [root]
     call iprint
-    call prln
     call prln
     jmp reset
 
@@ -172,7 +178,15 @@ input_non_number:
     call prln
     jmp reset
 
-reset:    
+input_invalid_num:
+    mov ecx, errorMsgInvalidNum
+    mov edx, lenErrorMsgInvalidNum
+    call print
+    call prln
+    jmp reset
+
+reset:
+    call prln    
     jmp while
 
 end:
