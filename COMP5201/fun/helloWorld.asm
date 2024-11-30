@@ -1,43 +1,42 @@
-
-; 32-bit ELF (Linux) Hello World
 section .data
-    msg db "Hello World!", 0xA          ; message to print with a newline character `0xA` = `\n` in ASCII
-    msgLength equ $-msg                 ; dynamically get message buffer length
-    
+    msg db "Hello World! What is your name?", 0xA, 0      ; message to print with a newline character `0xA` = `\n` in ASCII
+    msgLength equ $-msg                                    ; dynamically get message buffer length
+    msgName db "Hi ", 0                                    ; message prefix
+    format db "%s%s", 0xA, 0                               ; format string for printf
+
 section .bss
-    inputTxt resd 2                     ; 2 double words --> 4 bytes 
+    inputTxt resb 100                                      ; reserve 100 bytes for input
 
 section .text
-    global _start                       ; program must start with `_start`
+    extern printf                                          ; declare the printf function
+    extern exit                                            ; declare the exit function
+    global main                                            ; program must start with `main`
 
-_start:
-    mov eax, 4                          ; sys_write
-    mov ebx, 1                          ; file descriptor = 
-    mov ecx, msg                        ; store message in ecx
-    mov edx, msgLength                  ; store length of message in edx
+main:
+    ; print the initial message
+    mov eax, 4                                             ; sys_write
+    mov ebx, 1                                             ; file descriptor = stdout
+    mov ecx, msg                                           ; store message in ecx
+    mov edx, msgLength                                     ; store length of message in edx
     int 0x80
 
-    ; read input 
-    mov eax, 3                          ; sys_read
-    mov ebx, 2
-    mov ecx, inputTxt
-    mov edx, 4
+    ; read input
+    mov eax, 3                                             ; sys_read
+    mov ebx, 0                                             ; file descriptor = stdin
+    mov ecx, inputTxt                                      ; store input buffer in ecx
+    mov edx, 100                                           ; number of bytes to read
     int 0x80
 
-    ; print input
-    mov eax, 4
-    mov ebx, 1
-    mov ecx, inputTxt
-    mov edx, 4
-    int 0x80
+    ; add null terminator to input
+    mov byte [inputTxt + eax - 1], 0                       ; add null terminator at the end of input
 
-    ; try to print the value of msgLength
-    mov eax, 4
-    mov ebx, 1
-    mov ecx, msgLength
-    mov edx, msgLength
-    int 0x80
+    ; call printf to print the input
+    push dword inputTxt                                    ; push the input buffer
+    push dword msgName                                     ; push the message prefix
+    push dword format                                      ; push the format string
+    call printf                                            ; call printf
+    add esp, 12                                            ; clean up the stack
 
-    mov eax, 1                          ; sys_exit
-    mov ebx, 0                          ; clear ebx
-    int 0x80
+    ; exit the program
+    push dword 0                                           ; exit code 0
+    call exit                                              ; call exit
