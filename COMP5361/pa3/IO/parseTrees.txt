@@ -1983,6 +1983,16 @@ DATE TREE
     (year (nineteenTwenty 2 0) (digit 2) (digit 0))))
 Detected Date:  December 31 2020
 Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (monthFull D e c e m b e r)
+    (space  )
+    (dayNum (three 3) (zeroOne 1))
+    (daySuffix )
+    (comma )
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))))
 Detected Date:  Monday, February 12th 1945
 Using ChartParser:
 DATE TREE
@@ -2381,6 +2391,16 @@ DATE TREE
     (dayNum (zero 0) (nonZeroDigit 2))))
 Detected Date:  December 25, 2025
 Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (monthFull D e c e m b e r)
+    (space  )
+    (dayNum (two 2) (digit 5))
+    (daySuffix )
+    (comma ,)
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 2) (digit 5))))
 Detected Date:  15-03-2024
 Using ChartParser:
 DATE TREE
@@ -2673,6 +2693,16 @@ DATE TREE
     (year (nineteenTwenty 2 0) (digit 2) (digit 4))))
 Detected Date:  April 25, 2025
 Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (monthFull A p r i l)
+    (space  )
+    (dayNum (two 2) (digit 5))
+    (daySuffix )
+    (comma ,)
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 2) (digit 5))))
 Detected Date:  15-03-2024
 Using ChartParser:
 DATE TREE
@@ -2803,6 +2833,16 @@ DATE TREE
     (year (nineteenTwenty 2 0) (digit 2) (digit 7))))
 Detected Date:  April 11, 2023
 Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (monthFull A p r i l)
+    (space  )
+    (dayNum (one 1) (digit 1))
+    (daySuffix )
+    (comma ,)
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 2) (digit 3))))
 Detected Date:  04.05.2028
 Using ChartParser:
 DATE TREE
@@ -2924,8 +2964,28 @@ DATE TREE
     (year (nineteenTwenty 2 0) (digit 2) (digit 4))))
 Detected Date:  December 25, 2025
 Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (monthFull D e c e m b e r)
+    (space  )
+    (dayNum (two 2) (digit 5))
+    (daySuffix )
+    (comma ,)
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 2) (digit 5))))
 Detected Date:  December 25, 2025
 Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (monthFull D e c e m b e r)
+    (space  )
+    (dayNum (two 2) (digit 5))
+    (daySuffix )
+    (comma ,)
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 2) (digit 5))))
 Detected Date:  2020/12/31
 Using ChartParser:
 DATE TREE
@@ -2949,7 +3009,7 @@ Using ChartParser:
 TIME TREE
 (S
   (TimeSeconds
-    (Hours (HourFirst 1) (HourSecond 2))
+    (Hours (TwoDigitHour 1 2))
     (Colon :)
     (Minutes (MinSecFirst 3) (SecondDigit 0))
     (Colon :)
@@ -2961,7 +3021,7 @@ Using ChartParser:
 TIME TREE
 (S
   (TimeSeconds
-    (Hours (HourFirst 1) (HourSecond 2))
+    (Hours (TwoDigitHour 1 2))
     (Colon :)
     (Minutes (MinSecFirst 3) (SecondDigit 0))
     (Colon :)
@@ -2970,34 +3030,92 @@ TIME TREE
     (AMPM p m)))
 Detected Time:  14:00 Am
 Using ChartParser:
+TIME TREE
+(S
+  (Time
+    (Hours (TwoDigitHour 1 4))
+    (Colon :)
+    (Minutes (MinSecFirst 0) (SecondDigit 0))
+    (Space  )
+    (AMPM A m)))
 Detected Time:  16:30
 Using ChartParser:
+TIME TREE
+(S
+  (Time
+    (Hours (TwoDigitHour 1 6))
+    (Colon :)
+    (Minutes (MinSecFirst 3) (SecondDigit 0))
+    (Space )
+    (AMPM )))
 Detected Time:  09:00am
 Using ChartParser:
+TIME TREE
+(S
+  (Time
+    (Hours (TwoDigitHour 0 (SecondDigit 9)))
+    (Colon :)
+    (Minutes (MinSecFirst 0) (SecondDigit 0))
+    (Space )
+    (AMPM a m)))
 Detected Time:  19:30
 Using ChartParser:
+TIME TREE
+(S
+  (Time
+    (Hours (TwoDigitHour 1 9))
+    (Colon :)
+    (Minutes (MinSecFirst 3) (SecondDigit 0))
+    (Space )
+    (AMPM )))
 Detected Time:  11:00pm
 Using ChartParser:
 TIME TREE
 (S
   (Time
-    (Hours (HourFirst 1) (HourSecond 1))
+    (Hours (TwoDigitHour 1 1))
     (Colon :)
     (Minutes (MinSecFirst 0) (SecondDigit 0))
     (Space )
     (AMPM p m)))
 Detected Time:  08:45:00
 Using ChartParser:
+TIME TREE
+(S
+  (TimeSeconds
+    (Hours (TwoDigitHour 0 (SecondDigit 8)))
+    (Colon :)
+    (Minutes (MinSecFirst 4) (SecondDigit 5))
+    (Colon :)
+    (Seconds (MinSecFirst 0) (SecondDigit 0))
+    (Space )
+    (AMPM )))
 Detected Time:  18:00
 Using ChartParser:
+TIME TREE
+(S
+  (Time
+    (Hours (TwoDigitHour 1 8))
+    (Colon :)
+    (Minutes (MinSecFirst 0) (SecondDigit 0))
+    (Space )
+    (AMPM )))
 Detected Time:  14:00pm
 Using ChartParser:
+TIME TREE
+(S
+  (Time
+    (Hours (TwoDigitHour 1 4))
+    (Colon :)
+    (Minutes (MinSecFirst 0) (SecondDigit 0))
+    (Space )
+    (AMPM p m)))
 Detected Time:  10:15:00 pm
 Using ChartParser:
 TIME TREE
 (S
   (TimeSeconds
-    (Hours (HourFirst 1) (HourSecond 0))
+    (Hours (TwoDigitHour 1 0))
     (Colon :)
     (Minutes (MinSecFirst 1) (SecondDigit 5))
     (Colon :)
@@ -3006,16 +3124,40 @@ TIME TREE
     (AMPM p m)))
 Detected Time:  17:00 am
 Using ChartParser:
+TIME TREE
+(S
+  (Time
+    (Hours (TwoDigitHour 1 7))
+    (Colon :)
+    (Minutes (MinSecFirst 0) (SecondDigit 0))
+    (Space  )
+    (AMPM a m)))
 Detected Time:  15:00 pm
 Using ChartParser:
+TIME TREE
+(S
+  (Time
+    (Hours (TwoDigitHour 1 5))
+    (Colon :)
+    (Minutes (MinSecFirst 0) (SecondDigit 0))
+    (Space  )
+    (AMPM p m)))
 Detected Time:  09:00am
 Using ChartParser:
+TIME TREE
+(S
+  (Time
+    (Hours (TwoDigitHour 0 (SecondDigit 9)))
+    (Colon :)
+    (Minutes (MinSecFirst 0) (SecondDigit 0))
+    (Space )
+    (AMPM a m)))
 Detected Time:  20:00AM
 Using ChartParser:
 TIME TREE
 (S
   (Time
-    (Hours (HourFirst 2) (HourSecond 0))
+    (Hours (TwoDigitHour 2 0))
     (Colon :)
     (Minutes (MinSecFirst 0) (SecondDigit 0))
     (Space )
@@ -3032,3 +3174,11 @@ TIME TREE
     (AMPM A M)))
 Detected Time:  14:30
 Using ChartParser:
+TIME TREE
+(S
+  (Time
+    (Hours (TwoDigitHour 1 4))
+    (Colon :)
+    (Minutes (MinSecFirst 3) (SecondDigit 0))
+    (Space )
+    (AMPM )))

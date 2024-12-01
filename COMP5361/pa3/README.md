@@ -1,7 +1,7 @@
 # Report
 [Python NLTK Project](https://github.com/PaoloJr90/ConcordiaCS/tree/main/COMP5361/pa3) \
-[Parse Tree Samples](https://github.com/PaoloJr90/ConcordiaCS/blob/main/COMP5361/pa3/IO/parseTrees_samples.txt) \
-[More Parse Tree Samples on Extracted RegEx](https://github.com/PaoloJr90/ConcordiaCS/blob/main/COMP5361/pa3/IO/parseTrees.txt)
+[Parse Tree Samples - output using `nltk.ChartParser`](https://github.com/PaoloJr90/ConcordiaCS/blob/main/COMP5361/pa3/IO/parseTrees_samples.txt) \
+[More Parse Tree Samples on Extracted RegEx - output using `nltk.ChartParser`](https://github.com/PaoloJr90/ConcordiaCS/blob/main/COMP5361/pa3/IO/parseTrees.txt)
 
 ## Phone Numbers
 [Phone Number Formats - Microsoft](https://learn.microsoft.com/en-us/globalization/locale/telephone-numbers) \
@@ -109,14 +109,14 @@
 >    \b \
 
 **Dates Grammar**
-> S -->  `dateWithDelimiter` | `dateString` \
-> dateWithDelimiter -->  `year delimiter monthNum delimiter dayNum` | `year delimiter monthPart delimiter dayNum` | `monthNum delimiter dayNum delimiter year` | `monthPart delimiter dayNum delimiter year` | `dayNum delimiter monthNum delimiter year` |  `dayNum delimiter monthPart delimiter year` |  \
-> dateString --> `weekday comma space monthFull space dayNum daySuffix comma space year` | `weekday comma space monthPart dayNum daySuffix comma space year` \
-> year -->  `nineteenTwenty digit digit` \
-> monthFull --> January | February | March | April | May | June | July | August | September | October | November | December \
-> monthPart --> Jan | Feb | Mar | Apr | May | Jun | Jul | Aug | Sep | Sept | Oct | Nov | Dec \
+> S ->  `dateWithDelimiter` | `dateString` 
+> dateWithDelimiter ->  `year delimiter monthNum delimiter dayNum` | `year delimiter monthPart delimiter dayNum` | `monthNum delimiter dayNum delimiter year` | `monthPart delimiter dayNum delimiter year` | `dayNum delimiter monthNum delimiter year` |  `dayNum delimiter monthPart delimiter year` |  
+> dateString -> `monthFull space dayNum daySuffix comma space year` | `weekday comma space monthFull space dayNum daySuffix comma space year` | `weekday comma space monthPart dayNum daySuffix comma space year`
+> year ->  `nineteenTwenty digit digit` \
+> monthFull -> January | February | March | April | May | June | July | August | September | October |November | December \
+> monthPart -> Jan | Feb | Mar | Apr | May | Jun | Jul | Aug | Sep | Sept | Oct | Nov | Dec 
 > monthNum --> `zero nonZeroDigit` | `one zeroOne` | `one two` \
-> weekday --> Monday | Mon | Tuesday | Tues | Tue | Wednesday | Wed | Thursday | Thurs | Thur | Friday | Fri | Saturday | Sat | Sunday | Sun \
+> weekday -> Monday | Mon | Tuesday | Tues | Tue | Wednesday | Wed | Thursday | Thurs | Thur | Friday | Fri | Saturday | Sat | Sunday | Sun | \
 > dayNum --> `zero nonZeroDigit` | `one digit` | `two digit` | `three zeroOne`  \  
 > nineteenTwenty --> `19` | `20` \
 > digit --> 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 \
@@ -163,6 +163,8 @@
 - `Mon April 9 1900`
 - `Mon April 9 2099`
 - `Monday, 01/12/2020` --> it will only match with the date with slashes (`dateWithDelimiter`), ignoring the day string (ex: `Monday`)
+- `12/01/2024` --> Grammar may create duplicate parse trees since `12/01` can be either `DD/MM` or `MM/DD`
+- `08-09-2024` / `04.05.2028` --> same as previous point
 
 
 **this dates-grammar will not support / detect / match dates like:**
@@ -192,8 +194,10 @@
     - `HH:MM AM`
     - `HH:MM:SS`
     - `HH:MM:SS AM`
-    - it must be using a 24-hour format
+    - the time can be in either 24-hour format (no `AM`/`PM`) or 12-hour format (with `AM`/`PM`)
     - the colon separator between the time-groups is required
+    - the seconds portion (`SS`) is optional
+    - there can be an optional single space between the time and the `AM`/`PM`
     - the hour portion can be single or double-digit
         - if single-digit, its acceptable range is from `0` to `9`
     - when the hour portion is double digits
@@ -203,34 +207,33 @@
     - the second minutes-digit must be between `0` and `9`
     - first seconds-digit must be between `0` and `5`
     - the second seconds-digit must be between `0` and `9`
-    - the seconds portion (`SS`) is optional
-    - `AM` and `PM` are optional and are case-insensitive
-    - there can be an optional single space between the time and the `AM`/`PM`
+    - `AM` and `PM` are optional and are case-insensitive (only those letters are allowed after the time)
 
 **Times RegEx**
 > \b(?:(?:0?\d|1\d|2[0-3]):[0-5]\d(?::[0-5]\d)?(?:\s?[APap][Mm])?)\b
 
 **Times Grammar**
-> S -> Time | TimeSeconds \
+> S -> `Time` | `TimeSeconds` \
 > Time -> Hours Colon Minutes Space AMPM \
 > TimeSeconds -> Hours Colon Minutes Colon Seconds Space AMPM \
-> Hours -> HourFirst SecondDigit | SingleDigitHour \
-> Minutes -> MinSecFirst SecondDigit \
-> Seconds -> MinSecFirst SecondDigit \
-> HourFirst -> 0 | 1 | 2 \
-> HourSecond ->0' |1' |2' |3' |4' \
-> SingleDigitHour -> '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'
+> Hours -> `SingleDigitHour` | `TwoDigitHour` \
+> Minutes -> `MinSecFirst` `SecondDigit` \
+> Seconds -> `MinSecFirst` `SecondDigit` \
+> SingleDigitHour -> 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+> TwoDigitHour -> 10 | 11| 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23
 > MinSecFirst -> 0 | 1 | 2 | 3 | 4 | 5 \
 > SecondDigit -> 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 \
 > AMPM ->  `AM` | `PM` | `am` | `pm` | `aM` | `Am` | `pM` | `Pm` | $\lambda$ \
-> Space -> ' ' | $\lambda$ \
+> Space -> `(space)` | $\lambda$ \
 > Colon -> `:` 
 
 **this times-grammar will support / detect / match times like:**
 - `23:59`
 - `3:59`
+- `14:00pm`
 - `23:59 PM`
 - `23:59PM`
+- `23:59AM`
 - `23:59 pM`
 - `23:59 Pm`
 - `23:59 aM`
@@ -239,8 +242,22 @@
 - `12:00:30 AM`
 - `12:00:30 PM`
 - `0:59:43`
+- `:59:43`
+- `00:5:43` --> `5:43` will be detected by RegEx and Grammar by ignoring the `00:`
+- `23:58:60` --> `23:58` will be detected by RegEx and Grammar by ignoring the `:60`
+- `23:00   AM` --> `23:00` will be detected by RegEx and Grammar by ignoring the `   AM`
+- `14:30:0` --> `14:30` will be detected by RegEx and Grammar by ignoring the `:0`
+- `20:00AM` --> this will be detected by RegEx and Grammar despite `AM` being incorrect for that 24-hour format
+- `11:00PM` --> 12-hour format acceptable by the RegEx/Grammar
 
 
 **this times-grammar will not support / detect / match times like:**
 - `24:00` --> second hour digit is not within range `0` to `3`
 - `33:00` --> first hour digit is not within range `0` to `2`
+- `23:60` --> first minute digit is not within range `0` to `5`
+- `12 : 00` --> single (or more) space before and/or after the colon (`:`)
+    - around the colon(s), no space is allowed by the RegEx / Grammar
+- `23 PM` or `09am` --> only the hour is indicated
+    - it must have, at a minimum, the `HH:MM` format
+- `13:0:0` --> single digits for minutes and seconds
+- `11:0` --> single digit for the minutes segment
