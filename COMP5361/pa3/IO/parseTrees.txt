@@ -1,0 +1,3108 @@
+##########################################
+Parsing Phone Numbers
+Detected Phone Number:  800-332-5432
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 8)
+      (digit 0)
+      (digit 0)
+      (rightParenth ))
+    (delimiter -)
+    (prefixNumber (nonZeroOne 3) (digit 3) (digit 2))
+    (delimiter -)
+    (lineNumber (digit 5) (digit 4) (digit 3) (digit 2))))
+Detected Phone Number:  800-332-5432
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 8)
+      (digit 0)
+      (digit 0)
+      (rightParenth ))
+    (delimiter -)
+    (prefixNumber (nonZeroOne 3) (digit 3) (digit 2))
+    (delimiter -)
+    (lineNumber (digit 5) (digit 4) (digit 3) (digit 2))))
+Detected Phone Number:  999999-9999
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 9)
+      (digit 9)
+      (digit 9)
+      (rightParenth ))
+    (delimiter )
+    (prefixNumber (nonZeroOne 9) (digit 9) (digit 9))
+    (delimiter -)
+    (lineNumber (digit 9) (digit 9) (digit 9) (digit 9))))
+Detected Phone Number:  999999-9999
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 9)
+      (digit 9)
+      (digit 9)
+      (rightParenth ))
+    (delimiter )
+    (prefixNumber (nonZeroOne 9) (digit 9) (digit 9))
+    (delimiter -)
+    (lineNumber (digit 9) (digit 9) (digit 9) (digit 9))))
+Detected Phone Number:  999999-9999
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 9)
+      (digit 9)
+      (digit 9)
+      (rightParenth ))
+    (delimiter )
+    (prefixNumber (nonZeroOne 9) (digit 9) (digit 9))
+    (delimiter -)
+    (lineNumber (digit 9) (digit 9) (digit 9) (digit 9))))
+Detected Phone Number:  999999-9999
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 9)
+      (digit 9)
+      (digit 9)
+      (rightParenth ))
+    (delimiter )
+    (prefixNumber (nonZeroOne 9) (digit 9) (digit 9))
+    (delimiter -)
+    (lineNumber (digit 9) (digit 9) (digit 9) (digit 9))))
+Detected Phone Number:  999999-9999
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 9)
+      (digit 9)
+      (digit 9)
+      (rightParenth ))
+    (delimiter )
+    (prefixNumber (nonZeroOne 9) (digit 9) (digit 9))
+    (delimiter -)
+    (lineNumber (digit 9) (digit 9) (digit 9) (digit 9))))
+Detected Phone Number:  999999.9999
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 9)
+      (digit 9)
+      (digit 9)
+      (rightParenth ))
+    (delimiter )
+    (prefixNumber (nonZeroOne 9) (digit 9) (digit 9))
+    (delimiter .)
+    (lineNumber (digit 9) (digit 9) (digit 9) (digit 9))))
+Detected Phone Number:  999-9999999
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 9)
+      (digit 9)
+      (digit 9)
+      (rightParenth ))
+    (delimiter -)
+    (prefixNumber (nonZeroOne 9) (digit 9) (digit 9))
+    (delimiter )
+    (lineNumber (digit 9) (digit 9) (digit 9) (digit 9))))
+Detected Phone Number:  999.9999999
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 9)
+      (digit 9)
+      (digit 9)
+      (rightParenth ))
+    (delimiter .)
+    (prefixNumber (nonZeroOne 9) (digit 9) (digit 9))
+    (delimiter )
+    (lineNumber (digit 9) (digit 9) (digit 9) (digit 9))))
+Detected Phone Number:  999 9999999
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 9)
+      (digit 9)
+      (digit 9)
+      (rightParenth ))
+    (delimiter  )
+    (prefixNumber (nonZeroOne 9) (digit 9) (digit 9))
+    (delimiter )
+    (lineNumber (digit 9) (digit 9) (digit 9) (digit 9))))
+Detected Phone Number:  999 999-9999
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 9)
+      (digit 9)
+      (digit 9)
+      (rightParenth ))
+    (delimiter  )
+    (prefixNumber (nonZeroOne 9) (digit 9) (digit 9))
+    (delimiter -)
+    (lineNumber (digit 9) (digit 9) (digit 9) (digit 9))))
+Detected Phone Number:  999 999.9999
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 9)
+      (digit 9)
+      (digit 9)
+      (rightParenth ))
+    (delimiter  )
+    (prefixNumber (nonZeroOne 9) (digit 9) (digit 9))
+    (delimiter .)
+    (lineNumber (digit 9) (digit 9) (digit 9) (digit 9))))
+Detected Phone Number:  999)999-9999
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 9)
+      (digit 9)
+      (digit 9)
+      (rightParenth )))
+    (delimiter )
+    (prefixNumber (nonZeroOne 9) (digit 9) (digit 9))
+    (delimiter -)
+    (lineNumber (digit 9) (digit 9) (digit 9) (digit 9))))
+Detected Phone Number:  (999999-9999
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth ()
+      (nonZeroOne 9)
+      (digit 9)
+      (digit 9)
+      (rightParenth ))
+    (delimiter )
+    (prefixNumber (nonZeroOne 9) (digit 9) (digit 9))
+    (delimiter -)
+    (lineNumber (digit 9) (digit 9) (digit 9) (digit 9))))
+Detected Phone Number:  (999)9999999
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth ()
+      (nonZeroOne 9)
+      (digit 9)
+      (digit 9)
+      (rightParenth )))
+    (delimiter )
+    (prefixNumber (nonZeroOne 9) (digit 9) (digit 9))
+    (delimiter )
+    (lineNumber (digit 9) (digit 9) (digit 9) (digit 9))))
+Detected Phone Number:  (999)999 9999
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth ()
+      (nonZeroOne 9)
+      (digit 9)
+      (digit 9)
+      (rightParenth )))
+    (delimiter )
+    (prefixNumber (nonZeroOne 9) (digit 9) (digit 9))
+    (delimiter  )
+    (lineNumber (digit 9) (digit 9) (digit 9) (digit 9))))
+Detected Phone Number:  999-999-9999
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 9)
+      (digit 9)
+      (digit 9)
+      (rightParenth ))
+    (delimiter -)
+    (prefixNumber (nonZeroOne 9) (digit 9) (digit 9))
+    (delimiter -)
+    (lineNumber (digit 9) (digit 9) (digit 9) (digit 9))))
+Detected Phone Number:  999.999-9999
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 9)
+      (digit 9)
+      (digit 9)
+      (rightParenth ))
+    (delimiter .)
+    (prefixNumber (nonZeroOne 9) (digit 9) (digit 9))
+    (delimiter -)
+    (lineNumber (digit 9) (digit 9) (digit 9) (digit 9))))
+Detected Phone Number:  999-999.9999
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 9)
+      (digit 9)
+      (digit 9)
+      (rightParenth ))
+    (delimiter -)
+    (prefixNumber (nonZeroOne 9) (digit 9) (digit 9))
+    (delimiter .)
+    (lineNumber (digit 9) (digit 9) (digit 9) (digit 9))))
+Detected Phone Number:  (999).999-9999
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth ()
+      (nonZeroOne 9)
+      (digit 9)
+      (digit 9)
+      (rightParenth )))
+    (delimiter .)
+    (prefixNumber (nonZeroOne 9) (digit 9) (digit 9))
+    (delimiter -)
+    (lineNumber (digit 9) (digit 9) (digit 9) (digit 9))))
+Detected Phone Number:  (999)-999-9999
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth ()
+      (nonZeroOne 9)
+      (digit 9)
+      (digit 9)
+      (rightParenth )))
+    (delimiter -)
+    (prefixNumber (nonZeroOne 9) (digit 9) (digit 9))
+    (delimiter -)
+    (lineNumber (digit 9) (digit 9) (digit 9) (digit 9))))
+Detected Phone Number:  999.999.9999
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 9)
+      (digit 9)
+      (digit 9)
+      (rightParenth ))
+    (delimiter .)
+    (prefixNumber (nonZeroOne 9) (digit 9) (digit 9))
+    (delimiter .)
+    (lineNumber (digit 9) (digit 9) (digit 9) (digit 9))))
+Detected Phone Number:  9999999999
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 9)
+      (digit 9)
+      (digit 9)
+      (rightParenth ))
+    (delimiter )
+    (prefixNumber (nonZeroOne 9) (digit 9) (digit 9))
+    (delimiter )
+    (lineNumber (digit 9) (digit 9) (digit 9) (digit 9))))
+Detected Phone Number:  999 999 9999
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 9)
+      (digit 9)
+      (digit 9)
+      (rightParenth ))
+    (delimiter  )
+    (prefixNumber (nonZeroOne 9) (digit 9) (digit 9))
+    (delimiter  )
+    (lineNumber (digit 9) (digit 9) (digit 9) (digit 9))))
+Detected Phone Number:  (999) 999-9999
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth ()
+      (nonZeroOne 9)
+      (digit 9)
+      (digit 9)
+      (rightParenth )))
+    (delimiter  )
+    (prefixNumber (nonZeroOne 9) (digit 9) (digit 9))
+    (delimiter -)
+    (lineNumber (digit 9) (digit 9) (digit 9) (digit 9))))
+Detected Phone Number:  999.999.9999
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 9)
+      (digit 9)
+      (digit 9)
+      (rightParenth ))
+    (delimiter .)
+    (prefixNumber (nonZeroOne 9) (digit 9) (digit 9))
+    (delimiter .)
+    (lineNumber (digit 9) (digit 9) (digit 9) (digit 9))))
+Detected Phone Number:  (999) 999-9999
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth ()
+      (nonZeroOne 9)
+      (digit 9)
+      (digit 9)
+      (rightParenth )))
+    (delimiter  )
+    (prefixNumber (nonZeroOne 9) (digit 9) (digit 9))
+    (delimiter -)
+    (lineNumber (digit 9) (digit 9) (digit 9) (digit 9))))
+Detected Phone Number:  888-555-6543
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 8)
+      (digit 8)
+      (digit 8)
+      (rightParenth ))
+    (delimiter -)
+    (prefixNumber (nonZeroOne 5) (digit 5) (digit 5))
+    (delimiter -)
+    (lineNumber (digit 6) (digit 5) (digit 4) (digit 3))))
+Detected Phone Number:  925-555-6789
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 9)
+      (digit 2)
+      (digit 5)
+      (rightParenth ))
+    (delimiter -)
+    (prefixNumber (nonZeroOne 5) (digit 5) (digit 5))
+    (delimiter -)
+    (lineNumber (digit 6) (digit 7) (digit 8) (digit 9))))
+Detected Phone Number:  999-999-9999
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 9)
+      (digit 9)
+      (digit 9)
+      (rightParenth ))
+    (delimiter -)
+    (prefixNumber (nonZeroOne 9) (digit 9) (digit 9))
+    (delimiter -)
+    (lineNumber (digit 9) (digit 9) (digit 9) (digit 9))))
+Detected Phone Number:  (999) 999-9999
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth ()
+      (nonZeroOne 9)
+      (digit 9)
+      (digit 9)
+      (rightParenth )))
+    (delimiter  )
+    (prefixNumber (nonZeroOne 9) (digit 9) (digit 9))
+    (delimiter -)
+    (lineNumber (digit 9) (digit 9) (digit 9) (digit 9))))
+Detected Phone Number:  (619) 555-1098
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth ()
+      (nonZeroOne 6)
+      (digit 1)
+      (digit 9)
+      (rightParenth )))
+    (delimiter  )
+    (prefixNumber (nonZeroOne 5) (digit 5) (digit 5))
+    (delimiter -)
+    (lineNumber (digit 1) (digit 0) (digit 9) (digit 8))))
+Detected Phone Number:  707.555.3210
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 7)
+      (digit 0)
+      (digit 7)
+      (rightParenth ))
+    (delimiter .)
+    (prefixNumber (nonZeroOne 5) (digit 5) (digit 5))
+    (delimiter .)
+    (lineNumber (digit 3) (digit 2) (digit 1) (digit 0))))
+Detected Phone Number:  (503) 555-4567
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth ()
+      (nonZeroOne 5)
+      (digit 0)
+      (digit 3)
+      (rightParenth )))
+    (delimiter  )
+    (prefixNumber (nonZeroOne 5) (digit 5) (digit 5))
+    (delimiter -)
+    (lineNumber (digit 4) (digit 5) (digit 6) (digit 7))))
+Detected Phone Number:  650-555-8901
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 6)
+      (digit 5)
+      (digit 0)
+      (rightParenth ))
+    (delimiter -)
+    (prefixNumber (nonZeroOne 5) (digit 5) (digit 5))
+    (delimiter -)
+    (lineNumber (digit 8) (digit 9) (digit 0) (digit 1))))
+Detected Phone Number:  617-555-4321
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 6)
+      (digit 1)
+      (digit 7)
+      (rightParenth ))
+    (delimiter -)
+    (prefixNumber (nonZeroOne 5) (digit 5) (digit 5))
+    (delimiter -)
+    (lineNumber (digit 4) (digit 3) (digit 2) (digit 1))))
+Detected Phone Number:  (800) 555-7654
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth ()
+      (nonZeroOne 8)
+      (digit 0)
+      (digit 0)
+      (rightParenth )))
+    (delimiter  )
+    (prefixNumber (nonZeroOne 5) (digit 5) (digit 5))
+    (delimiter -)
+    (lineNumber (digit 7) (digit 6) (digit 5) (digit 4))))
+Detected Phone Number:  213.555.8765
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 2)
+      (digit 1)
+      (digit 3)
+      (rightParenth ))
+    (delimiter .)
+    (prefixNumber (nonZeroOne 5) (digit 5) (digit 5))
+    (delimiter .)
+    (lineNumber (digit 8) (digit 7) (digit 6) (digit 5))))
+Detected Phone Number:  (408) 555-2345
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth ()
+      (nonZeroOne 4)
+      (digit 0)
+      (digit 8)
+      (rightParenth )))
+    (delimiter  )
+    (prefixNumber (nonZeroOne 5) (digit 5) (digit 5))
+    (delimiter -)
+    (lineNumber (digit 2) (digit 3) (digit 4) (digit 5))))
+Detected Phone Number:  415.555.3456
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 4)
+      (digit 1)
+      (digit 5)
+      (rightParenth ))
+    (delimiter .)
+    (prefixNumber (nonZeroOne 5) (digit 5) (digit 5))
+    (delimiter .)
+    (lineNumber (digit 3) (digit 4) (digit 5) (digit 6))))
+Detected Phone Number:  312-555.8900
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 3)
+      (digit 1)
+      (digit 2)
+      (rightParenth ))
+    (delimiter -)
+    (prefixNumber (nonZeroOne 5) (digit 5) (digit 5))
+    (delimiter .)
+    (lineNumber (digit 8) (digit 9) (digit 0) (digit 0))))
+Detected Phone Number:  (415) 555-2468
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth ()
+      (nonZeroOne 4)
+      (digit 1)
+      (digit 5)
+      (rightParenth )))
+    (delimiter  )
+    (prefixNumber (nonZeroOne 5) (digit 5) (digit 5))
+    (delimiter -)
+    (lineNumber (digit 2) (digit 4) (digit 6) (digit 8))))
+Detected Phone Number:  (212) 555-9876
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth ()
+      (nonZeroOne 2)
+      (digit 1)
+      (digit 2)
+      (rightParenth )))
+    (delimiter  )
+    (prefixNumber (nonZeroOne 5) (digit 5) (digit 5))
+    (delimiter -)
+    (lineNumber (digit 9) (digit 8) (digit 7) (digit 6))))
+Detected Phone Number:  831-555-6420
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 8)
+      (digit 3)
+      (digit 1)
+      (rightParenth ))
+    (delimiter -)
+    (prefixNumber (nonZeroOne 5) (digit 5) (digit 5))
+    (delimiter -)
+    (lineNumber (digit 6) (digit 4) (digit 2) (digit 0))))
+Detected Phone Number:  514.299.9999
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 5)
+      (digit 1)
+      (digit 4)
+      (rightParenth ))
+    (delimiter .)
+    (prefixNumber (nonZeroOne 2) (digit 9) (digit 9))
+    (delimiter .)
+    (lineNumber (digit 9) (digit 9) (digit 9) (digit 9))))
+Detected Phone Number:  9999999999
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 9)
+      (digit 9)
+      (digit 9)
+      (rightParenth ))
+    (delimiter )
+    (prefixNumber (nonZeroOne 9) (digit 9) (digit 9))
+    (delimiter )
+    (lineNumber (digit 9) (digit 9) (digit 9) (digit 9))))
+Detected Phone Number:  5558901234
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 5)
+      (digit 5)
+      (digit 5)
+      (rightParenth ))
+    (delimiter )
+    (prefixNumber (nonZeroOne 8) (digit 9) (digit 0))
+    (delimiter )
+    (lineNumber (digit 1) (digit 2) (digit 3) (digit 4))))
+Detected Phone Number:  (999) 999-9999
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth ()
+      (nonZeroOne 9)
+      (digit 9)
+      (digit 9)
+      (rightParenth )))
+    (delimiter  )
+    (prefixNumber (nonZeroOne 9) (digit 9) (digit 9))
+    (delimiter -)
+    (lineNumber (digit 9) (digit 9) (digit 9) (digit 9))))
+Detected Phone Number:  312-555.8900
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 3)
+      (digit 1)
+      (digit 2)
+      (rightParenth ))
+    (delimiter -)
+    (prefixNumber (nonZeroOne 5) (digit 5) (digit 5))
+    (delimiter .)
+    (lineNumber (digit 8) (digit 9) (digit 0) (digit 0))))
+Detected Phone Number:  5558901234
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 5)
+      (digit 5)
+      (digit 5)
+      (rightParenth ))
+    (delimiter )
+    (prefixNumber (nonZeroOne 8) (digit 9) (digit 0))
+    (delimiter )
+    (lineNumber (digit 1) (digit 2) (digit 3) (digit 4))))
+Detected Phone Number:  415.555.3456
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 4)
+      (digit 1)
+      (digit 5)
+      (rightParenth ))
+    (delimiter .)
+    (prefixNumber (nonZeroOne 5) (digit 5) (digit 5))
+    (delimiter .)
+    (lineNumber (digit 3) (digit 4) (digit 5) (digit 6))))
+Detected Phone Number:  888-555-6543
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 8)
+      (digit 8)
+      (digit 8)
+      (rightParenth ))
+    (delimiter -)
+    (prefixNumber (nonZeroOne 5) (digit 5) (digit 5))
+    (delimiter -)
+    (lineNumber (digit 6) (digit 5) (digit 4) (digit 3))))
+Detected Phone Number:  617-555-4321
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 6)
+      (digit 1)
+      (digit 7)
+      (rightParenth ))
+    (delimiter -)
+    (prefixNumber (nonZeroOne 5) (digit 5) (digit 5))
+    (delimiter -)
+    (lineNumber (digit 4) (digit 3) (digit 2) (digit 1))))
+Detected Phone Number:  (800) 555-7654
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth ()
+      (nonZeroOne 8)
+      (digit 0)
+      (digit 0)
+      (rightParenth )))
+    (delimiter  )
+    (prefixNumber (nonZeroOne 5) (digit 5) (digit 5))
+    (delimiter -)
+    (lineNumber (digit 7) (digit 6) (digit 5) (digit 4))))
+Detected Phone Number:  213.555.8765
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 2)
+      (digit 1)
+      (digit 3)
+      (rightParenth ))
+    (delimiter .)
+    (prefixNumber (nonZeroOne 5) (digit 5) (digit 5))
+    (delimiter .)
+    (lineNumber (digit 8) (digit 7) (digit 6) (digit 5))))
+Detected Phone Number:  (408) 555-2345
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth ()
+      (nonZeroOne 4)
+      (digit 0)
+      (digit 8)
+      (rightParenth )))
+    (delimiter  )
+    (prefixNumber (nonZeroOne 5) (digit 5) (digit 5))
+    (delimiter -)
+    (lineNumber (digit 2) (digit 3) (digit 4) (digit 5))))
+Detected Phone Number:  925-555-6789
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 9)
+      (digit 2)
+      (digit 5)
+      (rightParenth ))
+    (delimiter -)
+    (prefixNumber (nonZeroOne 5) (digit 5) (digit 5))
+    (delimiter -)
+    (lineNumber (digit 6) (digit 7) (digit 8) (digit 9))))
+Detected Phone Number:  (619) 555-1098
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth ()
+      (nonZeroOne 6)
+      (digit 1)
+      (digit 9)
+      (rightParenth )))
+    (delimiter  )
+    (prefixNumber (nonZeroOne 5) (digit 5) (digit 5))
+    (delimiter -)
+    (lineNumber (digit 1) (digit 0) (digit 9) (digit 8))))
+Detected Phone Number:  707.555.3210
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 7)
+      (digit 0)
+      (digit 7)
+      (rightParenth ))
+    (delimiter .)
+    (prefixNumber (nonZeroOne 5) (digit 5) (digit 5))
+    (delimiter .)
+    (lineNumber (digit 3) (digit 2) (digit 1) (digit 0))))
+Detected Phone Number:  (503) 555-4567
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth ()
+      (nonZeroOne 5)
+      (digit 0)
+      (digit 3)
+      (rightParenth )))
+    (delimiter  )
+    (prefixNumber (nonZeroOne 5) (digit 5) (digit 5))
+    (delimiter -)
+    (lineNumber (digit 4) (digit 5) (digit 6) (digit 7))))
+Detected Phone Number:  650-555-8901
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 6)
+      (digit 5)
+      (digit 0)
+      (rightParenth ))
+    (delimiter -)
+    (prefixNumber (nonZeroOne 5) (digit 5) (digit 5))
+    (delimiter -)
+    (lineNumber (digit 8) (digit 9) (digit 0) (digit 1))))
+Detected Phone Number:  (415) 555-2468
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth ()
+      (nonZeroOne 4)
+      (digit 1)
+      (digit 5)
+      (rightParenth )))
+    (delimiter  )
+    (prefixNumber (nonZeroOne 5) (digit 5) (digit 5))
+    (delimiter -)
+    (lineNumber (digit 2) (digit 4) (digit 6) (digit 8))))
+Detected Phone Number:  (212) 555-9876
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth ()
+      (nonZeroOne 2)
+      (digit 1)
+      (digit 2)
+      (rightParenth )))
+    (delimiter  )
+    (prefixNumber (nonZeroOne 5) (digit 5) (digit 5))
+    (delimiter -)
+    (lineNumber (digit 9) (digit 8) (digit 7) (digit 6))))
+Detected Phone Number:  831-555-6420
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 8)
+      (digit 3)
+      (digit 1)
+      (rightParenth ))
+    (delimiter -)
+    (prefixNumber (nonZeroOne 5) (digit 5) (digit 5))
+    (delimiter -)
+    (lineNumber (digit 6) (digit 4) (digit 2) (digit 0))))
+Detected Phone Number:  999-999-9999
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 9)
+      (digit 9)
+      (digit 9)
+      (rightParenth ))
+    (delimiter -)
+    (prefixNumber (nonZeroOne 9) (digit 9) (digit 9))
+    (delimiter -)
+    (lineNumber (digit 9) (digit 9) (digit 9) (digit 9))))
+Detected Phone Number:  (999) 999-9999
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth ()
+      (nonZeroOne 9)
+      (digit 9)
+      (digit 9)
+      (rightParenth )))
+    (delimiter  )
+    (prefixNumber (nonZeroOne 9) (digit 9) (digit 9))
+    (delimiter -)
+    (lineNumber (digit 9) (digit 9) (digit 9) (digit 9))))
+Detected Phone Number:  312-555.8900
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 3)
+      (digit 1)
+      (digit 2)
+      (rightParenth ))
+    (delimiter -)
+    (prefixNumber (nonZeroOne 5) (digit 5) (digit 5))
+    (delimiter .)
+    (lineNumber (digit 8) (digit 9) (digit 0) (digit 0))))
+Detected Phone Number:  555-8901234
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 5)
+      (digit 5)
+      (digit 5)
+      (rightParenth ))
+    (delimiter -)
+    (prefixNumber (nonZeroOne 8) (digit 9) (digit 0))
+    (delimiter )
+    (lineNumber (digit 1) (digit 2) (digit 3) (digit 4))))
+Detected Phone Number:  415.555.3456
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 4)
+      (digit 1)
+      (digit 5)
+      (rightParenth ))
+    (delimiter .)
+    (prefixNumber (nonZeroOne 5) (digit 5) (digit 5))
+    (delimiter .)
+    (lineNumber (digit 3) (digit 4) (digit 5) (digit 6))))
+Detected Phone Number:  (702) 555-9012
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth ()
+      (nonZeroOne 7)
+      (digit 0)
+      (digit 2)
+      (rightParenth )))
+    (delimiter  )
+    (prefixNumber (nonZeroOne 5) (digit 5) (digit 5))
+    (delimiter -)
+    (lineNumber (digit 9) (digit 0) (digit 1) (digit 2))))
+Detected Phone Number:  888-555-6543
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 8)
+      (digit 8)
+      (digit 8)
+      (rightParenth ))
+    (delimiter -)
+    (prefixNumber (nonZeroOne 5) (digit 5) (digit 5))
+    (delimiter -)
+    (lineNumber (digit 6) (digit 5) (digit 4) (digit 3))))
+Detected Phone Number:  617-555-4321
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 6)
+      (digit 1)
+      (digit 7)
+      (rightParenth ))
+    (delimiter -)
+    (prefixNumber (nonZeroOne 5) (digit 5) (digit 5))
+    (delimiter -)
+    (lineNumber (digit 4) (digit 3) (digit 2) (digit 1))))
+Detected Phone Number:  (800) 555-7654
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth ()
+      (nonZeroOne 8)
+      (digit 0)
+      (digit 0)
+      (rightParenth )))
+    (delimiter  )
+    (prefixNumber (nonZeroOne 5) (digit 5) (digit 5))
+    (delimiter -)
+    (lineNumber (digit 7) (digit 6) (digit 5) (digit 4))))
+Detected Phone Number:  213.555.8765
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 2)
+      (digit 1)
+      (digit 3)
+      (rightParenth ))
+    (delimiter .)
+    (prefixNumber (nonZeroOne 5) (digit 5) (digit 5))
+    (delimiter .)
+    (lineNumber (digit 8) (digit 7) (digit 6) (digit 5))))
+Detected Phone Number:  (408) 555-2345
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth ()
+      (nonZeroOne 4)
+      (digit 0)
+      (digit 8)
+      (rightParenth )))
+    (delimiter  )
+    (prefixNumber (nonZeroOne 5) (digit 5) (digit 5))
+    (delimiter -)
+    (lineNumber (digit 2) (digit 3) (digit 4) (digit 5))))
+Detected Phone Number:  925-555-6789
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 9)
+      (digit 2)
+      (digit 5)
+      (rightParenth ))
+    (delimiter -)
+    (prefixNumber (nonZeroOne 5) (digit 5) (digit 5))
+    (delimiter -)
+    (lineNumber (digit 6) (digit 7) (digit 8) (digit 9))))
+Detected Phone Number:  (619) 555-1098
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth ()
+      (nonZeroOne 6)
+      (digit 1)
+      (digit 9)
+      (rightParenth )))
+    (delimiter  )
+    (prefixNumber (nonZeroOne 5) (digit 5) (digit 5))
+    (delimiter -)
+    (lineNumber (digit 1) (digit 0) (digit 9) (digit 8))))
+Detected Phone Number:  707.555.3210
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 7)
+      (digit 0)
+      (digit 7)
+      (rightParenth ))
+    (delimiter .)
+    (prefixNumber (nonZeroOne 5) (digit 5) (digit 5))
+    (delimiter .)
+    (lineNumber (digit 3) (digit 2) (digit 1) (digit 0))))
+Detected Phone Number:  (503) 555-4567
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth ()
+      (nonZeroOne 5)
+      (digit 0)
+      (digit 3)
+      (rightParenth )))
+    (delimiter  )
+    (prefixNumber (nonZeroOne 5) (digit 5) (digit 5))
+    (delimiter -)
+    (lineNumber (digit 4) (digit 5) (digit 6) (digit 7))))
+Detected Phone Number:  650-555-8901
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 6)
+      (digit 5)
+      (digit 0)
+      (rightParenth ))
+    (delimiter -)
+    (prefixNumber (nonZeroOne 5) (digit 5) (digit 5))
+    (delimiter -)
+    (lineNumber (digit 8) (digit 9) (digit 0) (digit 1))))
+Detected Phone Number:  (415) 555-2468
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth ()
+      (nonZeroOne 4)
+      (digit 1)
+      (digit 5)
+      (rightParenth )))
+    (delimiter  )
+    (prefixNumber (nonZeroOne 5) (digit 5) (digit 5))
+    (delimiter -)
+    (lineNumber (digit 2) (digit 4) (digit 6) (digit 8))))
+Detected Phone Number:  510 555-1357
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 5)
+      (digit 1)
+      (digit 0)
+      (rightParenth ))
+    (delimiter  )
+    (prefixNumber (nonZeroOne 5) (digit 5) (digit 5))
+    (delimiter -)
+    (lineNumber (digit 1) (digit 3) (digit 5) (digit 7))))
+Detected Phone Number:  (212) 555-9876
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth ()
+      (nonZeroOne 2)
+      (digit 1)
+      (digit 2)
+      (rightParenth )))
+    (delimiter  )
+    (prefixNumber (nonZeroOne 5) (digit 5) (digit 5))
+    (delimiter -)
+    (lineNumber (digit 9) (digit 8) (digit 7) (digit 6))))
+Detected Phone Number:  831-555-6420
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 8)
+      (digit 3)
+      (digit 1)
+      (rightParenth ))
+    (delimiter -)
+    (prefixNumber (nonZeroOne 5) (digit 5) (digit 5))
+    (delimiter -)
+    (lineNumber (digit 6) (digit 4) (digit 2) (digit 0))))
+Detected Phone Number:  999-999-9999
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 9)
+      (digit 9)
+      (digit 9)
+      (rightParenth ))
+    (delimiter -)
+    (prefixNumber (nonZeroOne 9) (digit 9) (digit 9))
+    (delimiter -)
+    (lineNumber (digit 9) (digit 9) (digit 9) (digit 9))))
+Detected Phone Number:  (999) 999-9999
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth ()
+      (nonZeroOne 9)
+      (digit 9)
+      (digit 9)
+      (rightParenth )))
+    (delimiter  )
+    (prefixNumber (nonZeroOne 9) (digit 9) (digit 9))
+    (delimiter -)
+    (lineNumber (digit 9) (digit 9) (digit 9) (digit 9))))
+Detected Phone Number:  (514) 599-9999
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth ()
+      (nonZeroOne 5)
+      (digit 1)
+      (digit 4)
+      (rightParenth )))
+    (delimiter  )
+    (prefixNumber (nonZeroOne 5) (digit 9) (digit 9))
+    (delimiter -)
+    (lineNumber (digit 9) (digit 9) (digit 9) (digit 9))))
+Detected Phone Number:  (514) 599-9999
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth ()
+      (nonZeroOne 5)
+      (digit 1)
+      (digit 4)
+      (rightParenth )))
+    (delimiter  )
+    (prefixNumber (nonZeroOne 5) (digit 9) (digit 9))
+    (delimiter -)
+    (lineNumber (digit 9) (digit 9) (digit 9) (digit 9))))
+Detected Phone Number:  (702) 555-9012
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth ()
+      (nonZeroOne 7)
+      (digit 0)
+      (digit 2)
+      (rightParenth )))
+    (delimiter  )
+    (prefixNumber (nonZeroOne 5) (digit 5) (digit 5))
+    (delimiter -)
+    (lineNumber (digit 9) (digit 0) (digit 1) (digit 2))))
+Detected Phone Number:  510 555-1357
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 5)
+      (digit 1)
+      (digit 0)
+      (rightParenth ))
+    (delimiter  )
+    (prefixNumber (nonZeroOne 5) (digit 5) (digit 5))
+    (delimiter -)
+    (lineNumber (digit 1) (digit 3) (digit 5) (digit 7))))
+Detected Phone Number:  (999) 999.9999
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth ()
+      (nonZeroOne 9)
+      (digit 9)
+      (digit 9)
+      (rightParenth )))
+    (delimiter  )
+    (prefixNumber (nonZeroOne 9) (digit 9) (digit 9))
+    (delimiter .)
+    (lineNumber (digit 9) (digit 9) (digit 9) (digit 9))))
+Detected Phone Number:  800-332-5432
+Using ChartParser:
+PHONE TREE
+(S
+  (phoneNumber
+    (areaCode
+      (leftParenth )
+      (nonZeroOne 8)
+      (digit 0)
+      (digit 0)
+      (rightParenth ))
+    (delimiter -)
+    (prefixNumber (nonZeroOne 3) (digit 3) (digit 2))
+    (delimiter -)
+    (lineNumber (digit 5) (digit 4) (digit 3) (digit 2))))
+##########################################
+Parsing Dates
+Detected Date:  9/4/1990
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (monthNum (zero ) (nonZeroDigit 9))
+    (delimiter /)
+    (dayNum (zero ) (nonZeroDigit 4))
+    (delimiter /)
+    (year (nineteenTwenty 1 9) (digit 9) (digit 0))))
+DATE TREE
+(S
+  (dateWithDelimiter
+    (dayNum (zero ) (nonZeroDigit 9))
+    (delimiter /)
+    (monthNum (zero ) (nonZeroDigit 4))
+    (delimiter /)
+    (year (nineteenTwenty 1 9) (digit 9) (digit 0))))
+Detected Date:  09/Apr/1990
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (dayNum (zero 0) (nonZeroDigit 9))
+    (delimiter /)
+    (monthPart A p r)
+    (delimiter /)
+    (year (nineteenTwenty 1 9) (digit 9) (digit 0))))
+Detected Date:  09/Apr/1990
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (dayNum (zero 0) (nonZeroDigit 9))
+    (delimiter /)
+    (monthPart A p r)
+    (delimiter /)
+    (year (nineteenTwenty 1 9) (digit 9) (digit 0))))
+Detected Date:  Monday April 9 2020
+Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (weekday M o n d a y)
+    (comma )
+    (space  )
+    (monthFull A p r i l)
+    (space  )
+    (dayNum (zero ) (nonZeroDigit 9))
+    (daySuffix )
+    (comma )
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))))
+Detected Date:  Monday, April   9   2020
+Using ChartParser:
+Detected Date:  Monday, April 9 2020
+Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (weekday M o n d a y)
+    (comma ,)
+    (space  )
+    (monthFull A p r i l)
+    (space  )
+    (dayNum (zero ) (nonZeroDigit 9))
+    (daySuffix )
+    (comma )
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))))
+Detected Date:  Monday, April 09th, 2020
+Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (weekday M o n d a y)
+    (comma ,)
+    (space  )
+    (monthFull A p r i l)
+    (space  )
+    (dayNum (zero 0) (nonZeroDigit 9))
+    (daySuffix t h)
+    (comma ,)
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))))
+Detected Date:  Monday, April 9, 2020
+Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (weekday M o n d a y)
+    (comma ,)
+    (space  )
+    (monthFull A p r i l)
+    (space  )
+    (dayNum (zero ) (nonZeroDigit 9))
+    (daySuffix )
+    (comma ,)
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))))
+Detected Date:  Monday, April 9, 2020
+Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (weekday M o n d a y)
+    (comma ,)
+    (space  )
+    (monthFull A p r i l)
+    (space  )
+    (dayNum (zero ) (nonZeroDigit 9))
+    (daySuffix )
+    (comma ,)
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))))
+Detected Date:  Monday, April 9, 2020
+Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (weekday M o n d a y)
+    (comma ,)
+    (space  )
+    (monthFull A p r i l)
+    (space  )
+    (dayNum (zero ) (nonZeroDigit 9))
+    (daySuffix )
+    (comma ,)
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))))
+Detected Date:  Monday, April 9, 2020
+Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (weekday M o n d a y)
+    (comma ,)
+    (space  )
+    (monthFull A p r i l)
+    (space  )
+    (dayNum (zero ) (nonZeroDigit 9))
+    (daySuffix )
+    (comma ,)
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))))
+Detected Date:  Monday, April 9, 2020
+Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (weekday M o n d a y)
+    (comma ,)
+    (space  )
+    (monthFull A p r i l)
+    (space  )
+    (dayNum (zero ) (nonZeroDigit 9))
+    (daySuffix )
+    (comma ,)
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))))
+Detected Date:  Monday, April 9, 2020
+Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (weekday M o n d a y)
+    (comma ,)
+    (space  )
+    (monthFull A p r i l)
+    (space  )
+    (dayNum (zero ) (nonZeroDigit 9))
+    (daySuffix )
+    (comma ,)
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))))
+Detected Date:  Monday, April 9, 2020
+Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (weekday M o n d a y)
+    (comma ,)
+    (space  )
+    (monthFull A p r i l)
+    (space  )
+    (dayNum (zero ) (nonZeroDigit 9))
+    (daySuffix )
+    (comma ,)
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))))
+Detected Date:  Monday, April 9, 2020
+Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (weekday M o n d a y)
+    (comma ,)
+    (space  )
+    (monthFull A p r i l)
+    (space  )
+    (dayNum (zero ) (nonZeroDigit 9))
+    (daySuffix )
+    (comma ,)
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))))
+Detected Date:  Monday, April 9, 2020
+Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (weekday M o n d a y)
+    (comma ,)
+    (space  )
+    (monthFull A p r i l)
+    (space  )
+    (dayNum (zero ) (nonZeroDigit 9))
+    (daySuffix )
+    (comma ,)
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))))
+Detected Date:  Monday, April 9, 2020
+Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (weekday M o n d a y)
+    (comma ,)
+    (space  )
+    (monthFull A p r i l)
+    (space  )
+    (dayNum (zero ) (nonZeroDigit 9))
+    (daySuffix )
+    (comma ,)
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))))
+Detected Date:  Monday, April 9, 2020
+Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (weekday M o n d a y)
+    (comma ,)
+    (space  )
+    (monthFull A p r i l)
+    (space  )
+    (dayNum (zero ) (nonZeroDigit 9))
+    (daySuffix )
+    (comma ,)
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))))
+Detected Date:  Monday, April 9, 2020
+Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (weekday M o n d a y)
+    (comma ,)
+    (space  )
+    (monthFull A p r i l)
+    (space  )
+    (dayNum (zero ) (nonZeroDigit 9))
+    (daySuffix )
+    (comma ,)
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))))
+Detected Date:  Monday, April 9, 2020
+Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (weekday M o n d a y)
+    (comma ,)
+    (space  )
+    (monthFull A p r i l)
+    (space  )
+    (dayNum (zero ) (nonZeroDigit 9))
+    (daySuffix )
+    (comma ,)
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))))
+Detected Date:  Monday, April 9, 2020
+Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (weekday M o n d a y)
+    (comma ,)
+    (space  )
+    (monthFull A p r i l)
+    (space  )
+    (dayNum (zero ) (nonZeroDigit 9))
+    (daySuffix )
+    (comma ,)
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))))
+Detected Date:  Monday, April 9, 2020
+Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (weekday M o n d a y)
+    (comma ,)
+    (space  )
+    (monthFull A p r i l)
+    (space  )
+    (dayNum (zero ) (nonZeroDigit 9))
+    (daySuffix )
+    (comma ,)
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))))
+Detected Date:  Mon Apr 9 2020
+Using ChartParser:
+Detected Date:  Monday, April 9, 2020
+Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (weekday M o n d a y)
+    (comma ,)
+    (space  )
+    (monthFull A p r i l)
+    (space  )
+    (dayNum (zero ) (nonZeroDigit 9))
+    (daySuffix )
+    (comma ,)
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))))
+Detected Date:  Monday, April 9, 2020
+Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (weekday M o n d a y)
+    (comma ,)
+    (space  )
+    (monthFull A p r i l)
+    (space  )
+    (dayNum (zero ) (nonZeroDigit 9))
+    (daySuffix )
+    (comma ,)
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))))
+Detected Date:  Monday, April 9, 2020
+Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (weekday M o n d a y)
+    (comma ,)
+    (space  )
+    (monthFull A p r i l)
+    (space  )
+    (dayNum (zero ) (nonZeroDigit 9))
+    (daySuffix )
+    (comma ,)
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))))
+Detected Date:  Monday, April 9, 2020
+Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (weekday M o n d a y)
+    (comma ,)
+    (space  )
+    (monthFull A p r i l)
+    (space  )
+    (dayNum (zero ) (nonZeroDigit 9))
+    (daySuffix )
+    (comma ,)
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))))
+Detected Date:  2020/02/02
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))
+    (delimiter /)
+    (monthNum (zero 0) (nonZeroDigit 2))
+    (delimiter /)
+    (dayNum (zero 0) (nonZeroDigit 2))))
+Detected Date:  2020/Dec/31
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))
+    (delimiter /)
+    (monthPart D e c)
+    (delimiter /)
+    (dayNum (three 3) (zeroOne 1))))
+Detected Date:  12/31/2020
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (monthNum (one 1) (two 2))
+    (delimiter /)
+    (dayNum (three 3) (zeroOne 1))
+    (delimiter /)
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))))
+Detected Date:  Dec/31/2020
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (monthPart D e c)
+    (delimiter /)
+    (dayNum (three 3) (zeroOne 1))
+    (delimiter /)
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))))
+Detected Date:  31/12/2020
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (dayNum (three 3) (zeroOne 1))
+    (delimiter /)
+    (monthNum (one 1) (two 2))
+    (delimiter /)
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))))
+Detected Date:  31/Dec/2020
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (dayNum (three 3) (zeroOne 1))
+    (delimiter /)
+    (monthPart D e c)
+    (delimiter /)
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))))
+Detected Date:  02/02/1945
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (dayNum (zero 0) (nonZeroDigit 2))
+    (delimiter /)
+    (monthNum (zero 0) (nonZeroDigit 2))
+    (delimiter /)
+    (year (nineteenTwenty 1 9) (digit 4) (digit 5))))
+DATE TREE
+(S
+  (dateWithDelimiter
+    (monthNum (zero 0) (nonZeroDigit 2))
+    (delimiter /)
+    (dayNum (zero 0) (nonZeroDigit 2))
+    (delimiter /)
+    (year (nineteenTwenty 1 9) (digit 4) (digit 5))))
+Detected Date:  2020/1/1
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))
+    (delimiter /)
+    (monthNum (zero ) (nonZeroDigit 1))
+    (delimiter /)
+    (dayNum (zero ) (nonZeroDigit 1))))
+Detected Date:  2020/Dec/01
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))
+    (delimiter /)
+    (monthPart D e c)
+    (delimiter /)
+    (dayNum (zero 0) (nonZeroDigit 1))))
+Detected Date:  02/Dec/2020
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (dayNum (zero 0) (nonZeroDigit 2))
+    (delimiter /)
+    (monthPart D e c)
+    (delimiter /)
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))))
+Detected Date:  Dec/02/2020
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (monthPart D e c)
+    (delimiter /)
+    (dayNum (zero 0) (nonZeroDigit 2))
+    (delimiter /)
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))))
+Detected Date:  2020.01.01
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))
+    (delimiter .)
+    (monthNum (zero 0) (nonZeroDigit 1))
+    (delimiter .)
+    (dayNum (zero 0) (nonZeroDigit 1))))
+Detected Date:  02.01.2020
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (dayNum (zero 0) (nonZeroDigit 2))
+    (delimiter .)
+    (monthNum (zero 0) (nonZeroDigit 1))
+    (delimiter .)
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))))
+DATE TREE
+(S
+  (dateWithDelimiter
+    (monthNum (zero 0) (nonZeroDigit 2))
+    (delimiter .)
+    (dayNum (zero 0) (nonZeroDigit 1))
+    (delimiter .)
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))))
+Detected Date:  2020-01-01
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))
+    (delimiter -)
+    (monthNum (zero 0) (nonZeroDigit 1))
+    (delimiter -)
+    (dayNum (zero 0) (nonZeroDigit 1))))
+Detected Date:  02-01-2020
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (dayNum (zero 0) (nonZeroDigit 2))
+    (delimiter -)
+    (monthNum (zero 0) (nonZeroDigit 1))
+    (delimiter -)
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))))
+DATE TREE
+(S
+  (dateWithDelimiter
+    (monthNum (zero 0) (nonZeroDigit 2))
+    (delimiter -)
+    (dayNum (zero 0) (nonZeroDigit 1))
+    (delimiter -)
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))))
+Detected Date:  02/02/1945
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (dayNum (zero 0) (nonZeroDigit 2))
+    (delimiter /)
+    (monthNum (zero 0) (nonZeroDigit 2))
+    (delimiter /)
+    (year (nineteenTwenty 1 9) (digit 4) (digit 5))))
+DATE TREE
+(S
+  (dateWithDelimiter
+    (monthNum (zero 0) (nonZeroDigit 2))
+    (delimiter /)
+    (dayNum (zero 0) (nonZeroDigit 2))
+    (delimiter /)
+    (year (nineteenTwenty 1 9) (digit 4) (digit 5))))
+Detected Date:  2020.Dec.01
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))
+    (delimiter .)
+    (monthPart D e c)
+    (delimiter .)
+    (dayNum (zero 0) (nonZeroDigit 1))))
+Detected Date:  Dec.01.2020
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (monthPart D e c)
+    (delimiter .)
+    (dayNum (zero 0) (nonZeroDigit 1))
+    (delimiter .)
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))))
+Detected Date:  December 31 2020
+Using ChartParser:
+Detected Date:  Monday, February 12th 1945
+Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (weekday M o n d a y)
+    (comma ,)
+    (space  )
+    (monthFull F e b r u a r y)
+    (space  )
+    (dayNum (one 1) (digit 2))
+    (daySuffix t h)
+    (comma )
+    (space  )
+    (year (nineteenTwenty 1 9) (digit 4) (digit 5))))
+Detected Date:  Tues February 12th, 1945
+Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (weekday T u e s)
+    (comma )
+    (space  )
+    (monthFull F e b r u a r y)
+    (space  )
+    (dayNum (one 1) (digit 2))
+    (daySuffix t h)
+    (comma ,)
+    (space  )
+    (year (nineteenTwenty 1 9) (digit 4) (digit 5))))
+Detected Date:  Sat February 3rd, 1946
+Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (weekday S a t)
+    (comma )
+    (space  )
+    (monthFull F e b r u a r y)
+    (space  )
+    (dayNum (zero ) (nonZeroDigit 3))
+    (daySuffix r d)
+    (comma ,)
+    (space  )
+    (year (nineteenTwenty 1 9) (digit 4) (digit 6))))
+Detected Date:  Wednesday April 5 2021
+Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (weekday W e d n e s d a y)
+    (comma )
+    (space  )
+    (monthFull A p r i l)
+    (space  )
+    (dayNum (zero ) (nonZeroDigit 5))
+    (daySuffix )
+    (comma )
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 2) (digit 1))))
+Detected Date:  Wednesday, April 5, 2021
+Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (weekday W e d n e s d a y)
+    (comma ,)
+    (space  )
+    (monthFull A p r i l)
+    (space  )
+    (dayNum (zero ) (nonZeroDigit 5))
+    (daySuffix )
+    (comma ,)
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 2) (digit 1))))
+Detected Date:  Wednesday, April 5 2021
+Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (weekday W e d n e s d a y)
+    (comma ,)
+    (space  )
+    (monthFull A p r i l)
+    (space  )
+    (dayNum (zero ) (nonZeroDigit 5))
+    (daySuffix )
+    (comma )
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 2) (digit 1))))
+Detected Date:  Tues Dec 01 2020
+Using ChartParser:
+Detected Date:  Monday Dec 1 2020
+Using ChartParser:
+Detected Date:  Monday Dec 1st 2020
+Using ChartParser:
+Detected Date:  Thursday, April 18 2024
+Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (weekday T h u r s d a y)
+    (comma ,)
+    (space  )
+    (monthFull A p r i l)
+    (space  )
+    (dayNum (one 1) (digit 8))
+    (daySuffix )
+    (comma )
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 2) (digit 4))))
+Detected Date:  Monday, October 15, 2023
+Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (weekday M o n d a y)
+    (comma ,)
+    (space  )
+    (monthFull O c t o b e r)
+    (space  )
+    (dayNum (one 1) (digit 5))
+    (daySuffix )
+    (comma ,)
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 2) (digit 3))))
+Detected Date:  Monday, April 9, 2020
+Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (weekday M o n d a y)
+    (comma ,)
+    (space  )
+    (monthFull A p r i l)
+    (space  )
+    (dayNum (zero ) (nonZeroDigit 9))
+    (daySuffix )
+    (comma ,)
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))))
+Detected Date:  2020/02/02
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))
+    (delimiter /)
+    (monthNum (zero 0) (nonZeroDigit 2))
+    (delimiter /)
+    (dayNum (zero 0) (nonZeroDigit 2))))
+Detected Date:  21/08/2027
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (dayNum (two 2) (digit 1))
+    (delimiter /)
+    (monthNum (zero 0) (nonZeroDigit 8))
+    (delimiter /)
+    (year (nineteenTwenty 2 0) (digit 2) (digit 7))))
+Detected Date:  Tuesday, April 11, 2023
+Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (weekday T u e s d a y)
+    (comma ,)
+    (space  )
+    (monthFull A p r i l)
+    (space  )
+    (dayNum (one 1) (digit 1))
+    (daySuffix )
+    (comma ,)
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 2) (digit 3))))
+Detected Date:  04.05.2028
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (dayNum (zero 0) (nonZeroDigit 4))
+    (delimiter .)
+    (monthNum (zero 0) (nonZeroDigit 5))
+    (delimiter .)
+    (year (nineteenTwenty 2 0) (digit 2) (digit 8))))
+DATE TREE
+(S
+  (dateWithDelimiter
+    (monthNum (zero 0) (nonZeroDigit 4))
+    (delimiter .)
+    (dayNum (zero 0) (nonZeroDigit 5))
+    (delimiter .)
+    (year (nineteenTwenty 2 0) (digit 2) (digit 8))))
+Detected Date:  Wednesday, December 31, 2020
+Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (weekday W e d n e s d a y)
+    (comma ,)
+    (space  )
+    (monthFull D e c e m b e r)
+    (space  )
+    (dayNum (three 3) (zeroOne 1))
+    (daySuffix )
+    (comma ,)
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))))
+Detected Date:  28-05-2019
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (dayNum (two 2) (digit 8))
+    (delimiter -)
+    (monthNum (zero 0) (nonZeroDigit 5))
+    (delimiter -)
+    (year (nineteenTwenty 2 0) (digit 1) (digit 9))))
+Detected Date:  03.11.2023
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (monthNum (zero 0) (nonZeroDigit 3))
+    (delimiter .)
+    (dayNum (one 1) (digit 1))
+    (delimiter .)
+    (year (nineteenTwenty 2 0) (digit 2) (digit 3))))
+DATE TREE
+(S
+  (dateWithDelimiter
+    (dayNum (zero 0) (nonZeroDigit 3))
+    (delimiter .)
+    (monthNum (one 1) (zeroOne 1))
+    (delimiter .)
+    (year (nineteenTwenty 2 0) (digit 2) (digit 3))))
+Detected Date:  Friday, July 26, 2029
+Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (weekday F r i d a y)
+    (comma ,)
+    (space  )
+    (monthFull J u l y)
+    (space  )
+    (dayNum (two 2) (digit 6))
+    (daySuffix )
+    (comma ,)
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 2) (digit 9))))
+Detected Date:  05-02-2024
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (dayNum (zero 0) (nonZeroDigit 5))
+    (delimiter -)
+    (monthNum (zero 0) (nonZeroDigit 2))
+    (delimiter -)
+    (year (nineteenTwenty 2 0) (digit 2) (digit 4))))
+DATE TREE
+(S
+  (dateWithDelimiter
+    (monthNum (zero 0) (nonZeroDigit 5))
+    (delimiter -)
+    (dayNum (zero 0) (nonZeroDigit 2))
+    (delimiter -)
+    (year (nineteenTwenty 2 0) (digit 2) (digit 4))))
+Detected Date:  Saturday, June 22nd, 2026
+Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (weekday S a t u r d a y)
+    (comma ,)
+    (space  )
+    (monthFull J u n e)
+    (space  )
+    (dayNum (two 2) (digit 2))
+    (daySuffix n d)
+    (comma ,)
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 2) (digit 6))))
+Detected Date:  15-03-2024
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (dayNum (one 1) (digit 5))
+    (delimiter -)
+    (monthNum (zero 0) (nonZeroDigit 3))
+    (delimiter -)
+    (year (nineteenTwenty 2 0) (digit 2) (digit 4))))
+Detected Date:  08-09-2024
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (dayNum (zero 0) (nonZeroDigit 8))
+    (delimiter -)
+    (monthNum (zero 0) (nonZeroDigit 9))
+    (delimiter -)
+    (year (nineteenTwenty 2 0) (digit 2) (digit 4))))
+DATE TREE
+(S
+  (dateWithDelimiter
+    (monthNum (zero 0) (nonZeroDigit 8))
+    (delimiter -)
+    (dayNum (zero 0) (nonZeroDigit 9))
+    (delimiter -)
+    (year (nineteenTwenty 2 0) (digit 2) (digit 4))))
+Detected Date:  12/01/2024
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (dayNum (one 1) (digit 2))
+    (delimiter /)
+    (monthNum (zero 0) (nonZeroDigit 1))
+    (delimiter /)
+    (year (nineteenTwenty 2 0) (digit 2) (digit 4))))
+DATE TREE
+(S
+  (dateWithDelimiter
+    (monthNum (one 1) (two 2))
+    (delimiter /)
+    (dayNum (zero 0) (nonZeroDigit 1))
+    (delimiter /)
+    (year (nineteenTwenty 2 0) (digit 2) (digit 4))))
+Detected Date:  Monday, June 30, 2023
+Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (weekday M o n d a y)
+    (comma ,)
+    (space  )
+    (monthFull J u n e)
+    (space  )
+    (dayNum (three 3) (zeroOne 0))
+    (daySuffix )
+    (comma ,)
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 2) (digit 3))))
+Detected Date:  2020/12/31
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))
+    (delimiter /)
+    (monthNum (one 1) (two 2))
+    (delimiter /)
+    (dayNum (three 3) (zeroOne 1))))
+Detected Date:  Monday, April 9, 2020
+Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (weekday M o n d a y)
+    (comma ,)
+    (space  )
+    (monthFull A p r i l)
+    (space  )
+    (dayNum (zero ) (nonZeroDigit 9))
+    (daySuffix )
+    (comma ,)
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))))
+Detected Date:  Sunday, August 07, 2008
+Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (weekday S u n d a y)
+    (comma ,)
+    (space  )
+    (monthFull A u g u s t)
+    (space  )
+    (dayNum (zero 0) (nonZeroDigit 7))
+    (daySuffix )
+    (comma ,)
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 0) (digit 8))))
+Detected Date:  2020/02/02
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))
+    (delimiter /)
+    (monthNum (zero 0) (nonZeroDigit 2))
+    (delimiter /)
+    (dayNum (zero 0) (nonZeroDigit 2))))
+Detected Date:  December 25, 2025
+Using ChartParser:
+Detected Date:  15-03-2024
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (dayNum (one 1) (digit 5))
+    (delimiter -)
+    (monthNum (zero 0) (nonZeroDigit 3))
+    (delimiter -)
+    (year (nineteenTwenty 2 0) (digit 2) (digit 4))))
+Detected Date:  Sunday, August 07, 2008
+Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (weekday S u n d a y)
+    (comma ,)
+    (space  )
+    (monthFull A u g u s t)
+    (space  )
+    (dayNum (zero 0) (nonZeroDigit 7))
+    (daySuffix )
+    (comma ,)
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 0) (digit 8))))
+Detected Date:  Saturday, June 22nd, 2026
+Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (weekday S a t u r d a y)
+    (comma ,)
+    (space  )
+    (monthFull J u n e)
+    (space  )
+    (dayNum (two 2) (digit 2))
+    (daySuffix n d)
+    (comma ,)
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 2) (digit 6))))
+Detected Date:  Thursday, April 18 2024
+Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (weekday T h u r s d a y)
+    (comma ,)
+    (space  )
+    (monthFull A p r i l)
+    (space  )
+    (dayNum (one 1) (digit 8))
+    (daySuffix )
+    (comma )
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 2) (digit 4))))
+Detected Date:  28-05-2019
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (dayNum (two 2) (digit 8))
+    (delimiter -)
+    (monthNum (zero 0) (nonZeroDigit 5))
+    (delimiter -)
+    (year (nineteenTwenty 2 0) (digit 1) (digit 9))))
+Detected Date:  03.11.2023
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (monthNum (zero 0) (nonZeroDigit 3))
+    (delimiter .)
+    (dayNum (one 1) (digit 1))
+    (delimiter .)
+    (year (nineteenTwenty 2 0) (digit 2) (digit 3))))
+DATE TREE
+(S
+  (dateWithDelimiter
+    (dayNum (zero 0) (nonZeroDigit 3))
+    (delimiter .)
+    (monthNum (one 1) (zeroOne 1))
+    (delimiter .)
+    (year (nineteenTwenty 2 0) (digit 2) (digit 3))))
+Detected Date:  Friday, July 26, 2029
+Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (weekday F r i d a y)
+    (comma ,)
+    (space  )
+    (monthFull J u l y)
+    (space  )
+    (dayNum (two 2) (digit 6))
+    (daySuffix )
+    (comma ,)
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 2) (digit 9))))
+Detected Date:  05-02-2024
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (dayNum (zero 0) (nonZeroDigit 5))
+    (delimiter -)
+    (monthNum (zero 0) (nonZeroDigit 2))
+    (delimiter -)
+    (year (nineteenTwenty 2 0) (digit 2) (digit 4))))
+DATE TREE
+(S
+  (dateWithDelimiter
+    (monthNum (zero 0) (nonZeroDigit 5))
+    (delimiter -)
+    (dayNum (zero 0) (nonZeroDigit 2))
+    (delimiter -)
+    (year (nineteenTwenty 2 0) (digit 2) (digit 4))))
+Detected Date:  Monday, October 15, 2023
+Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (weekday M o n d a y)
+    (comma ,)
+    (space  )
+    (monthFull O c t o b e r)
+    (space  )
+    (dayNum (one 1) (digit 5))
+    (daySuffix )
+    (comma ,)
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 2) (digit 3))))
+Detected Date:  21/08/2027
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (dayNum (two 2) (digit 1))
+    (delimiter /)
+    (monthNum (zero 0) (nonZeroDigit 8))
+    (delimiter /)
+    (year (nineteenTwenty 2 0) (digit 2) (digit 7))))
+Detected Date:  Tuesday, April 11, 2023
+Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (weekday T u e s d a y)
+    (comma ,)
+    (space  )
+    (monthFull A p r i l)
+    (space  )
+    (dayNum (one 1) (digit 1))
+    (daySuffix )
+    (comma ,)
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 2) (digit 3))))
+Detected Date:  04.05.2028
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (dayNum (zero 0) (nonZeroDigit 4))
+    (delimiter .)
+    (monthNum (zero 0) (nonZeroDigit 5))
+    (delimiter .)
+    (year (nineteenTwenty 2 0) (digit 2) (digit 8))))
+DATE TREE
+(S
+  (dateWithDelimiter
+    (monthNum (zero 0) (nonZeroDigit 4))
+    (delimiter .)
+    (dayNum (zero 0) (nonZeroDigit 5))
+    (delimiter .)
+    (year (nineteenTwenty 2 0) (digit 2) (digit 8))))
+Detected Date:  Wednesday, December 31, 2020
+Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (weekday W e d n e s d a y)
+    (comma ,)
+    (space  )
+    (monthFull D e c e m b e r)
+    (space  )
+    (dayNum (three 3) (zeroOne 1))
+    (daySuffix )
+    (comma ,)
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))))
+Detected Date:  08-09-2024
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (dayNum (zero 0) (nonZeroDigit 8))
+    (delimiter -)
+    (monthNum (zero 0) (nonZeroDigit 9))
+    (delimiter -)
+    (year (nineteenTwenty 2 0) (digit 2) (digit 4))))
+DATE TREE
+(S
+  (dateWithDelimiter
+    (monthNum (zero 0) (nonZeroDigit 8))
+    (delimiter -)
+    (dayNum (zero 0) (nonZeroDigit 9))
+    (delimiter -)
+    (year (nineteenTwenty 2 0) (digit 2) (digit 4))))
+Detected Date:  12/01/2024
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (dayNum (one 1) (digit 2))
+    (delimiter /)
+    (monthNum (zero 0) (nonZeroDigit 1))
+    (delimiter /)
+    (year (nineteenTwenty 2 0) (digit 2) (digit 4))))
+DATE TREE
+(S
+  (dateWithDelimiter
+    (monthNum (one 1) (two 2))
+    (delimiter /)
+    (dayNum (zero 0) (nonZeroDigit 1))
+    (delimiter /)
+    (year (nineteenTwenty 2 0) (digit 2) (digit 4))))
+Detected Date:  Monday, June 30, 2023
+Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (weekday M o n d a y)
+    (comma ,)
+    (space  )
+    (monthFull J u n e)
+    (space  )
+    (dayNum (three 3) (zeroOne 0))
+    (daySuffix )
+    (comma ,)
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 2) (digit 3))))
+Detected Date:  Monday, April 9, 2020
+Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (weekday M o n d a y)
+    (comma ,)
+    (space  )
+    (monthFull A p r i l)
+    (space  )
+    (dayNum (zero ) (nonZeroDigit 9))
+    (daySuffix )
+    (comma ,)
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))))
+Detected Date:  2020/02/02
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))
+    (delimiter /)
+    (monthNum (zero 0) (nonZeroDigit 2))
+    (delimiter /)
+    (dayNum (zero 0) (nonZeroDigit 2))))
+Detected Date:  12-31-2024
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (monthNum (one 1) (two 2))
+    (delimiter -)
+    (dayNum (three 3) (zeroOne 1))
+    (delimiter -)
+    (year (nineteenTwenty 2 0) (digit 2) (digit 4))))
+Detected Date:  Monday, January 31st, 2024
+Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (weekday M o n d a y)
+    (comma ,)
+    (space  )
+    (monthFull J a n u a r y)
+    (space  )
+    (dayNum (three 3) (zeroOne 1))
+    (daySuffix s t)
+    (comma ,)
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 2) (digit 4))))
+Detected Date:  April 25, 2025
+Using ChartParser:
+Detected Date:  15-03-2024
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (dayNum (one 1) (digit 5))
+    (delimiter -)
+    (monthNum (zero 0) (nonZeroDigit 3))
+    (delimiter -)
+    (year (nineteenTwenty 2 0) (digit 2) (digit 4))))
+Detected Date:  Sunday, August 07, 2008
+Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (weekday S u n d a y)
+    (comma ,)
+    (space  )
+    (monthFull A u g u s t)
+    (space  )
+    (dayNum (zero 0) (nonZeroDigit 7))
+    (daySuffix )
+    (comma ,)
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 0) (digit 8))))
+Detected Date:  31/1/2024
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (dayNum (three 3) (zeroOne 1))
+    (delimiter /)
+    (monthNum (zero ) (nonZeroDigit 1))
+    (delimiter /)
+    (year (nineteenTwenty 2 0) (digit 2) (digit 4))))
+Detected Date:  Saturday, June 22nd, 2026
+Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (weekday S a t u r d a y)
+    (comma ,)
+    (space  )
+    (monthFull J u n e)
+    (space  )
+    (dayNum (two 2) (digit 2))
+    (daySuffix n d)
+    (comma ,)
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 2) (digit 6))))
+Detected Date:  Thursday, April 18 2024
+Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (weekday T h u r s d a y)
+    (comma ,)
+    (space  )
+    (monthFull A p r i l)
+    (space  )
+    (dayNum (one 1) (digit 8))
+    (daySuffix )
+    (comma )
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 2) (digit 4))))
+Detected Date:  03.11.2023
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (monthNum (zero 0) (nonZeroDigit 3))
+    (delimiter .)
+    (dayNum (one 1) (digit 1))
+    (delimiter .)
+    (year (nineteenTwenty 2 0) (digit 2) (digit 3))))
+DATE TREE
+(S
+  (dateWithDelimiter
+    (dayNum (zero 0) (nonZeroDigit 3))
+    (delimiter .)
+    (monthNum (one 1) (zeroOne 1))
+    (delimiter .)
+    (year (nineteenTwenty 2 0) (digit 2) (digit 3))))
+Detected Date:  Friday, July 26, 2029
+Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (weekday F r i d a y)
+    (comma ,)
+    (space  )
+    (monthFull J u l y)
+    (space  )
+    (dayNum (two 2) (digit 6))
+    (daySuffix )
+    (comma ,)
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 2) (digit 9))))
+Detected Date:  05-02-2024
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (dayNum (zero 0) (nonZeroDigit 5))
+    (delimiter -)
+    (monthNum (zero 0) (nonZeroDigit 2))
+    (delimiter -)
+    (year (nineteenTwenty 2 0) (digit 2) (digit 4))))
+DATE TREE
+(S
+  (dateWithDelimiter
+    (monthNum (zero 0) (nonZeroDigit 5))
+    (delimiter -)
+    (dayNum (zero 0) (nonZeroDigit 2))
+    (delimiter -)
+    (year (nineteenTwenty 2 0) (digit 2) (digit 4))))
+Detected Date:  Monday    October 15, 2023
+Using ChartParser:
+Detected Date:  21/08/2027
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (dayNum (two 2) (digit 1))
+    (delimiter /)
+    (monthNum (zero 0) (nonZeroDigit 8))
+    (delimiter /)
+    (year (nineteenTwenty 2 0) (digit 2) (digit 7))))
+Detected Date:  April 11, 2023
+Using ChartParser:
+Detected Date:  04.05.2028
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (dayNum (zero 0) (nonZeroDigit 4))
+    (delimiter .)
+    (monthNum (zero 0) (nonZeroDigit 5))
+    (delimiter .)
+    (year (nineteenTwenty 2 0) (digit 2) (digit 8))))
+DATE TREE
+(S
+  (dateWithDelimiter
+    (monthNum (zero 0) (nonZeroDigit 4))
+    (delimiter .)
+    (dayNum (zero 0) (nonZeroDigit 5))
+    (delimiter .)
+    (year (nineteenTwenty 2 0) (digit 2) (digit 8))))
+Detected Date:  08-09-2024
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (dayNum (zero 0) (nonZeroDigit 8))
+    (delimiter -)
+    (monthNum (zero 0) (nonZeroDigit 9))
+    (delimiter -)
+    (year (nineteenTwenty 2 0) (digit 2) (digit 4))))
+DATE TREE
+(S
+  (dateWithDelimiter
+    (monthNum (zero 0) (nonZeroDigit 8))
+    (delimiter -)
+    (dayNum (zero 0) (nonZeroDigit 9))
+    (delimiter -)
+    (year (nineteenTwenty 2 0) (digit 2) (digit 4))))
+Detected Date:  12/01/2024
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (dayNum (one 1) (digit 2))
+    (delimiter /)
+    (monthNum (zero 0) (nonZeroDigit 1))
+    (delimiter /)
+    (year (nineteenTwenty 2 0) (digit 2) (digit 4))))
+DATE TREE
+(S
+  (dateWithDelimiter
+    (monthNum (one 1) (two 2))
+    (delimiter /)
+    (dayNum (zero 0) (nonZeroDigit 1))
+    (delimiter /)
+    (year (nineteenTwenty 2 0) (digit 2) (digit 4))))
+Detected Date:  Monday, April 9, 2020
+Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (weekday M o n d a y)
+    (comma ,)
+    (space  )
+    (monthFull A p r i l)
+    (space  )
+    (dayNum (zero ) (nonZeroDigit 9))
+    (daySuffix )
+    (comma ,)
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))))
+Detected Date:  2020/02/02
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))
+    (delimiter /)
+    (monthNum (zero 0) (nonZeroDigit 2))
+    (delimiter /)
+    (dayNum (zero 0) (nonZeroDigit 2))))
+Detected Date:  2020/12/31
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))
+    (delimiter /)
+    (monthNum (one 1) (two 2))
+    (delimiter /)
+    (dayNum (three 3) (zeroOne 1))))
+Detected Date:  2020/12/31
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))
+    (delimiter /)
+    (monthNum (one 1) (two 2))
+    (delimiter /)
+    (dayNum (three 3) (zeroOne 1))))
+Detected Date:  31/1/2024
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (dayNum (three 3) (zeroOne 1))
+    (delimiter /)
+    (monthNum (zero ) (nonZeroDigit 1))
+    (delimiter /)
+    (year (nineteenTwenty 2 0) (digit 2) (digit 4))))
+Detected Date:  31/1/2024
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (dayNum (three 3) (zeroOne 1))
+    (delimiter /)
+    (monthNum (zero ) (nonZeroDigit 1))
+    (delimiter /)
+    (year (nineteenTwenty 2 0) (digit 2) (digit 4))))
+Detected Date:  December 25, 2025
+Using ChartParser:
+Detected Date:  December 25, 2025
+Using ChartParser:
+Detected Date:  2020/12/31
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (year (nineteenTwenty 2 0) (digit 2) (digit 0))
+    (delimiter /)
+    (monthNum (one 1) (two 2))
+    (delimiter /)
+    (dayNum (three 3) (zeroOne 1))))
+Detected Date:  2020-dec-31
+Using ChartParser:
+Detected Date:  monday, April 4th, 2020
+Using ChartParser:
+Detected Date:  Monday, december 31st, 2020
+Using ChartParser:
+##########################################
+Parsing Times
+Detected Time:  12:30:45 PM
+Using ChartParser:
+TIME TREE
+(S
+  (TimeSeconds
+    (Hours (HourFirst 1) (SecondDigit 2))
+    (Colon :)
+    (Minutes (MinSecFirst 3) (SecondDigit 0))
+    (Colon :)
+    (Seconds (MinSecFirst 4) (SecondDigit 5))
+    (Space  )
+    (AMPM P M)))
+Detected Time:  12:30:45 pm
+Using ChartParser:
+TIME TREE
+(S
+  (TimeSeconds
+    (Hours (HourFirst 1) (SecondDigit 2))
+    (Colon :)
+    (Minutes (MinSecFirst 3) (SecondDigit 0))
+    (Colon :)
+    (Seconds (MinSecFirst 4) (SecondDigit 5))
+    (Space  )
+    (AMPM p m)))
+Detected Time:  14:00 Am
+Using ChartParser:
+Detected Time:  16:30
+Using ChartParser:
+TIME TREE
+(S
+  (Time
+    (Hours (HourFirst 1) (SecondDigit 6))
+    (Colon :)
+    (Minutes (MinSecFirst 3) (SecondDigit 0))
+    (Space )
+    (AMPM )))
+Detected Time:  09:00am
+Using ChartParser:
+TIME TREE
+(S
+  (Time
+    (Hours (HourFirst 0) (SecondDigit 9))
+    (Colon :)
+    (Minutes (MinSecFirst 0) (SecondDigit 0))
+    (Space )
+    (AMPM a m)))
+Detected Time:  19:30
+Using ChartParser:
+TIME TREE
+(S
+  (Time
+    (Hours (HourFirst 1) (SecondDigit 9))
+    (Colon :)
+    (Minutes (MinSecFirst 3) (SecondDigit 0))
+    (Space )
+    (AMPM )))
+Detected Time:  11:00pm
+Using ChartParser:
+TIME TREE
+(S
+  (Time
+    (Hours (HourFirst 1) (SecondDigit 1))
+    (Colon :)
+    (Minutes (MinSecFirst 0) (SecondDigit 0))
+    (Space )
+    (AMPM p m)))
+Detected Time:  08:45:00
+Using ChartParser:
+TIME TREE
+(S
+  (TimeSeconds
+    (Hours (HourFirst 0) (SecondDigit 8))
+    (Colon :)
+    (Minutes (MinSecFirst 4) (SecondDigit 5))
+    (Colon :)
+    (Seconds (MinSecFirst 0) (SecondDigit 0))
+    (Space )
+    (AMPM )))
+Detected Time:  18:00
+Using ChartParser:
+TIME TREE
+(S
+  (Time
+    (Hours (HourFirst 1) (SecondDigit 8))
+    (Colon :)
+    (Minutes (MinSecFirst 0) (SecondDigit 0))
+    (Space )
+    (AMPM )))
+Detected Time:  14:00pm
+Using ChartParser:
+TIME TREE
+(S
+  (Time
+    (Hours (HourFirst 1) (SecondDigit 4))
+    (Colon :)
+    (Minutes (MinSecFirst 0) (SecondDigit 0))
+    (Space )
+    (AMPM p m)))
+Detected Time:  10:15:00 pm
+Using ChartParser:
+TIME TREE
+(S
+  (TimeSeconds
+    (Hours (HourFirst 1) (SecondDigit 0))
+    (Colon :)
+    (Minutes (MinSecFirst 1) (SecondDigit 5))
+    (Colon :)
+    (Seconds (MinSecFirst 0) (SecondDigit 0))
+    (Space  )
+    (AMPM p m)))
+Detected Time:  17:00 am
+Using ChartParser:
+TIME TREE
+(S
+  (Time
+    (Hours (HourFirst 1) (SecondDigit 7))
+    (Colon :)
+    (Minutes (MinSecFirst 0) (SecondDigit 0))
+    (Space  )
+    (AMPM a m)))
+Detected Time:  15:00 pm
+Using ChartParser:
+TIME TREE
+(S
+  (Time
+    (Hours (HourFirst 1) (SecondDigit 5))
+    (Colon :)
+    (Minutes (MinSecFirst 0) (SecondDigit 0))
+    (Space  )
+    (AMPM p m)))
+Detected Time:  09:00am
+Using ChartParser:
+TIME TREE
+(S
+  (Time
+    (Hours (HourFirst 0) (SecondDigit 9))
+    (Colon :)
+    (Minutes (MinSecFirst 0) (SecondDigit 0))
+    (Space )
+    (AMPM a m)))
+Detected Time:  20:00AM
+Using ChartParser:
+TIME TREE
+(S
+  (Time
+    (Hours (HourFirst 2) (SecondDigit 0))
+    (Colon :)
+    (Minutes (MinSecFirst 0) (SecondDigit 0))
+    (Space )
+    (AMPM A M)))
+Detected Time:  9:00 AM
+Using ChartParser:
+Detected Time:  14:30
+Using ChartParser:
+TIME TREE
+(S
+  (Time
+    (Hours (HourFirst 1) (SecondDigit 4))
+    (Colon :)
+    (Minutes (MinSecFirst 3) (SecondDigit 0))
+    (Space )
+    (AMPM )))

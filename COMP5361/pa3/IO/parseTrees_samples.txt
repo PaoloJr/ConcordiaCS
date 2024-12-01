@@ -1,0 +1,37 @@
+Parsing Phone Numbers
+Using ChartParser:
+PHONE NUMBER NOT DETECTEDParsing Dates
+Using ChartParser:
+DATE TREE
+(S
+  (dateWithDelimiter
+    (monthNum (one 1) (two 2))
+    (delimiter -)
+    (dayNum (three 3) (zeroOne 1))
+    (delimiter -)
+    (year (nineteenTwenty 2 0) (digit 2) (digit 4))))
+Using ChartParser:
+DATE TREE
+(S
+  (dateString
+    (weekday M o n d a y)
+    (comma ,)
+    (space  )
+    (monthFull J a n u a r y)
+    (space  )
+    (dayNum (three 3) (zeroOne 1))
+    (daySuffix s t)
+    (comma ,)
+    (space  )
+    (year (nineteenTwenty 2 0) (digit 2) (digit 4))))
+Using ChartParser:
+TIME TREE
+(S
+  (TimeSeconds
+    (Hours (HourFirst 1) (SecondDigit 2))
+    (Colon :)
+    (Minutes (MinSecFirst 3) (SecondDigit 0))
+    (Colon :)
+    (Seconds (MinSecFirst 4) (SecondDigit 5))
+    (Space  )
+    (AMPM P M)))
