@@ -314,24 +314,29 @@ with open('./IO/parseTrees_samples.txt', 'w') as trees_output_samples_file:
                 trees_output_samples_file.write(f"{detected_phone_text} {phone_number}\n")
         else:
                 # print(phone_not_detected_text)  
-                trees_output_samples_file.write()  
+                trees_output_samples_file.write(phone_not_detected_text)  
         
         trees_output_samples_file.write("Parsing Dates\n")
         dates = re.findall(date_regex, sentence)
         if dates:
             for date in dates:
-                    result = ''.join(date)
-                    print(f"{detected_date_text} {result}")
+                result = ''.join(date)
+                # print(f"{detected_date_text} {result}")
+                trees_output_samples_file(f"{detected_date_text} {result}")
         else: 
-                print(date_not_deteceted_text)
+                # print(date_not_deteceted_text)
+                trees_output_samples_file(date_not_deteceted_text)
 
                 trees_output_samples_file.write("Parsing Times\n")
         if time_tokens:  
             for time_token in time_tokens:
-                print(f"{detected_time_text} {time_token}")
+                # print(f"{detected_time_text} {time_token}")
+                trees_output_samples_file(f"{detected_time_text} {time_token}")
         else:
-                print(time_not_detected_text)
-        print("##########################################")
+                # print(time_not_detected_text)
+                trees_output_samples_file(time_not_detected_text)
+        # print("##########################################")
+        trees_output_samples_file("##########################################")
 
         for token in phone_tokens:
             for tree in phone_chart_parser.parse(token):
