@@ -15,7 +15,7 @@
         - ex: `+1 999-999-9999`, `+44 999-999-9999`
             - the 10-digit number are valid NANP-numbers (it will detec/match), but the country codes (`+1` and `+44`) are ignored
 
-**Phone Number RegEx** \
+**Phone Number RegEx**
 >\(?[2-9][0-9]{2}\)?[-.\s]?[2-9][0-9]{2}[-.\s]?[0-9]{4}
 
 **Phone Number Grammar**
@@ -90,7 +90,7 @@
     - acceptable delimiters (depending on format) are the dot (`.`), comma (`,`), forward-slash (`/`) or the dash / hyphen `-`
     - the `space` character is mandatory for the string date format
 
-**Dates RegEx** \
+**Dates RegEx**
 >    \b \
 >    ( \
 >        (?: \
@@ -187,12 +187,18 @@
 ## Times
 - Follows numerous formats like:
     - `HH:MM`
+    - `H:MM`
+    - `H:MM AM`
     - `HH:MM AM`
     - `HH:MM:SS`
+    - `HH:MM:SS AM`
     - it must be using a 24-hour format
     - the colon separator between the time-groups is required
-    - the first hours-digit must be between `0` and `2`
-    - the second hours-digit must be between `0` and `9`
+    - the hour portion can be single or double-digit
+        - if single-digit, its acceptable range is from `0` to `9`
+    - when the hour portion is double digits
+        - the first hours-digit must be between `0` and `2`
+        - the second hours-digit must be between `0` and `9`
     - the first minutes-digit must be between `0` and `5`
     - the second minutes-digit must be between `0` and `9`
     - first seconds-digit must be between `0` and `5`
@@ -201,15 +207,19 @@
     - `AM` and `PM` are optional and are case-insensitive
     - there can be an optional single space between the time and the `AM`/`PM`
 
+**Times RegEx**
+> \b(?:(?:0?\d|1\d|2[0-3]):[0-5]\d(?::[0-5]\d)?(?:\s?[APap][Mm])?)\b
 
 **Times Grammar**
 > S -> Time | TimeSeconds \
 > Time -> Hours Colon Minutes Space AMPM \
 > TimeSeconds -> Hours Colon Minutes Colon Seconds Space AMPM \
-> Hours -> HourFirst SecondDigit \
+> Hours -> HourFirst SecondDigit | SingleDigitHour \
 > Minutes -> MinSecFirst SecondDigit \
 > Seconds -> MinSecFirst SecondDigit \
 > HourFirst -> 0 | 1 | 2 \
+> HourSecond ->0' |1' |2' |3' |4' \
+> SingleDigitHour -> '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'
 > MinSecFirst -> 0 | 1 | 2 | 3 | 4 | 5 \
 > SecondDigit -> 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 \
 > AMPM ->  `AM` | `PM` | `am` | `pm` | `aM` | `Am` | `pM` | `Pm` | $\lambda$ \
@@ -217,6 +227,20 @@
 > Colon -> `:` 
 
 **this times-grammar will support / detect / match times like:**
+- `23:59`
+- `3:59`
+- `23:59 PM`
+- `23:59PM`
+- `23:59 pM`
+- `23:59 Pm`
+- `23:59 aM`
+- `23:59 Am`
+- `12:00:30`
+- `12:00:30 AM`
+- `12:00:30 PM`
+- `0:59:43`
 
 
 **this times-grammar will not support / detect / match times like:**
+- `24:00` --> second hour digit is not within range `0` to `3`
+- `33:00` --> first hour digit is not within range `0` to `2`

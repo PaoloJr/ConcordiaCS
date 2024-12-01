@@ -20,7 +20,6 @@ output_path = os.path.join(script_dir, output_file)
 
 
 phone_regex = re.compile(r"\(?[2-9][0-9]{2}\)?[-.\s]?[2-9][0-9]{2}[-.\s]?[0-9]{4}") 
-# phone_regex_nltk = r"\(?[2-9][0-9]{2}\)?[-.\s]?[2-9][0-9]{2}[-.\s]?[0-9]{4}"
 
 date_regex = re.compile(r'''
     \b
@@ -41,27 +40,9 @@ date_regex = re.compile(r'''
     \b
     ''', re.VERBOSE | re.IGNORECASE)
 
-# date_regex_nltk = r"""
-#     \b
-#     (
-#         (?:
-#             (?: (?:19|20)\d{2} ) [-/.] (?:0?[1-9]|1[0-2]) [-/.] (?:0?[1-9]|[12][0-9]|3[01])
-#             |(?:0?[1-9]|[12][0-9]|3[01]) [-/.] (?:0?[1-9]|1[0-2]) [-/.] (?:19|20)\d{2}
-#             |(?:0?[1-9]|1[0-2]) [-/.] (?:0?[1-9]|[12][0-9]|3[01]) [-/.] (?:19|20)\d{2}
-#             |(?:19|20)\d{2} [-/.]? (?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) [-/.] (?:0?[1-9]|[12][0-9]|3[01])
-#             |(?:0?[1-9]|[12][0-9]|3[01]) [-/.]? (?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) [-/.] (?:19|20)\d{2}
-#             |(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) [-/.]? (?:0?[1-9]|[12][0-9]|3[01]) [-/.] (?:19|20)\d{2}
-#             |(?:
-#                 (?:Monday|Mon|Tuesday|Tue|Tues|Wednesday|Wed|Thursday|Thur|Thurs|Friday|Fri|Saturday|Sat|Sunday|Sun),?\s*)?
-#             (?:January|Jan|February|Feb|March|Mar|April|Apr|May|June|Jun|July|Jul|August|Aug|September|Sept|Sep|October|Oct|November|Nov|December|Dec)\s+
-#             \d{1,2}(?:st|nd|rd|th)?,?\s*\d{4}
-#             )
-#     )
-#     \b
-# """
-
-time_regex = re.compile(r"\b(?:(?:[01]?\d|2[0-3]):[0-5]\d(?::[0-5]\d)?(?:\s?[APap][Mm])?)\b")
-# time_regex_nltk = r"\b(?:(?:[01]?\d|2[0-3]):[0-5]\d(?::[0-5]\d)?(?:\s?[APap][Mm])?)\b"
+time_regex = re.compile(r"\b(?:(?:0?\d|1\d|2[0-3]):[0-5]\d(?::[0-5]\d)?(?:\s?[APap][Mm])?)\b")
+# time_regex = re.compile(r"\b(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d)?(?:\s?[APap][Mm])?)\b")
+# time_regex = re.compile(r"\b(?:(?:0?[1-9]|1\d|2[0-3]):[0-5]\d(?::[0-5]\d)?(?:\s?[APap][Mm])?)\b")
 
 ###########################
 # GRAMMAR SECTION
@@ -108,10 +89,12 @@ time_grammar = CFG.fromstring("""
     S -> Time | TimeSeconds
     Time -> Hours Colon Minutes Space AMPM
     TimeSeconds -> Hours Colon Minutes Colon Seconds Space AMPM
-    Hours -> HourFirst SecondDigit
+    Hours -> HourFirst HourSecond | SingleDigitHour
     Minutes -> MinSecFirst SecondDigit
     Seconds -> MinSecFirst SecondDigit
     HourFirst -> '0' | '1' | '2'
+    HourSecond -> '0' | '1' | '2' | '3'
+    SingleDigitHour -> '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'
     MinSecFirst -> '0' | '1' | '2' | '3' | '4' | '5' 
     SecondDigit -> '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'
     AMPM -> 'A' 'M' | 'P' 'M' | 'a' 'm' | 'p' 'm' | 'a' 'M' | 'A' 'm' | 'p' 'M' | 'P' 'm' |
@@ -284,29 +267,40 @@ with open('./IO/parseTrees.txt', 'w') as trees_output_file:
 
 
 input_parse_sentences = [
-    "My phone number is (123) 456-7890 and my birthday is 12-31-2024 and I was born on Monday, January 31st, 2024 at 12:30:45 PM",
-    "Sarah called me on April 25, 2025 at 12:30:45 pm at (555) 123   -    4567.",
-    "The conference is scheduled for 15-03-2024 at 14:00 Am; please RSVP at 312-555.8900",
-    "I visited the museum on Sunday, August 07, 2008 at 10: 00 AM and called the guide at 555-8901234",
-    "Please contact our support team at (206)   555-7890 before 31/1/2024 at 16:30:0",
-    "The wedding is set for Saturday, June 22nd, 2026 at 5 : 00 pM - the planner's number is 415.555.3456",
-    "I started my new job on 12.9 2022 at 09:00am and got my work phone: (702) 555-9012",
-    "The concert will be held on Thursday, April 18 2024 at 19:30; for tickets call 888-555-6543",
-    "She graduated on 28 -05 2019 at 11:00pm and changed her number to 617-555-4321",
-    "The package was delivered on 03.11.2023 at 08:45:00; tracking support: (800) 555-7654",
-    "Mark your calendar for Friday, July 26, 2029 at 18:00 and call the venue at 213.555.8765",
-    "The interview is scheduled for 05-02-2024 at 23 PM; recruiter: (408) 555-2345",
-    "We moved to our new house on Monday    October 15, 2023 at 14:00pm and got a landline: 925-555-6789",
-    "The grand opening is on 21/08/2027 at 09am; information desk: (619) 555-1098",
-    "I adopted my cat on April 11, 2023 at 10:15:00 pm; vet's number is 707.555.3210",
-    "The festival begins on 04.05.2028 at 13:0:0; ticket office: (503) 555-4567",
-    "She retired on Wednesday, 31st December, 2020 at 17:00 am and left her contact: 650-555-8901",
-    "The charity event is on 08-09-2024 at 15:00 pm; organizer's number: (415) 555-2468",
-    "I took my driving test on Tuesday, 17 July  2018 at 09:00am; instructor's phone: 510 555-1357",
-    "The art exhibition opens on 12/01/2024 at 11:0; gallery number: (212) 555-9876",
-    "We celebrated our anniversary on Monday, 2023 June 30 at 20:00AM and booked the restaurant at 831-555-6420",
-    "Call me on Monday, April 9, 2020 at 9:00 AM at 999-999-9999",
-    "My appointment is scheduled for 2020/02/02 at 14:30, and my phone number is (999) 999-9999"
+    "Call me on Monday, April 9, 2020 at 24:00 AM at 999-999-9999",
+    "Call me on Monday, April 9, 2020 at 33:30 AM at 999-999-9999",
+    "Call me on Monday, April 9, 2020 at :59:43 at 999-999-9999",
+    "Call me on Monday, April 9, 2020 at 00:5:43 at 999-999-9999",
+    "Call me on Monday, April 9, 2020 at 0:59:43 at 999-999-9999",
+    "Call me on Monday, April 9, 2020 at 5:59:43 at 999-999-9999",
+    "Call me on Monday, April 9, 2020 at 5:59 at 999-999-9999",
+    "Call me on Monday, April 9, 2020 at 35:00 at 999-999-9999",
+    "Call me on Monday, April 9, 2020 at 23:550 at 999-999-9999",
+    "Call me on Monday, April 9, 2020 at 25:00 AM at 999-999-9999",
+    "Call me on Monday, April 9, 2020 at 00 : 00 AM at 999-999-9999",
+    # "My phone number is (123) 456-7890 and my birthday is 12-31-2024 and I was born on Monday, January 31st, 2024 at 12:30:45 PM",
+    # "Sarah called me on April 25, 2025 at 12:30:45 pm at (555) 123   -    4567.",
+    # "The conference is scheduled for 15-03-2024 at 14:00 Am; please RSVP at 312-555.8900",
+    # "I visited the museum on Sunday, August 07, 2008 at 10: 00 AM and called the guide at 555-8901234",
+    # "Please contact our support team at (206)   555-7890 before 31/1/2024 at 16:30:0",
+    # "The wedding is set for Saturday, June 22nd, 2026 at 5 : 00 pM - the planner's number is 415.555.3456",
+    # "I started my new job on 12.9 2022 at 09:00am and got my work phone: (702) 555-9012",
+    # "The concert will be held on Thursday, April 18 2024 at 19:30; for tickets call 888-555-6543",
+    # "She graduated on 28 -05 2019 at 11:00pm and changed her number to 617-555-4321",
+    # "The package was delivered on 03.11.2023 at 08:45:00; tracking support: (800) 555-7654",
+    # "Mark your calendar for Friday, July 26, 2029 at 18:00 and call the venue at 213.555.8765",
+    # "The interview is scheduled for 05-02-2024 at 23 PM; recruiter: (408) 555-2345",
+    # "We moved to our new house on Monday    October 15, 2023 at 14:00pm and got a landline: 925-555-6789",
+    # "The grand opening is on 21/08/2027 at 09am; information desk: (619) 555-1098",
+    # "I adopted my cat on April 11, 2023 at 10:15:00 pm; vet's number is 707.555.3210",
+    # "The festival begins on 04.05.2028 at 13:0:0; ticket office: (503) 555-4567",
+    # "She retired on Wednesday, 31st December, 2020 at 17:00 am and left her contact: 650-555-8901",
+    # "The charity event is on 08-09-2024 at 15:00 pm; organizer's number: (415) 555-2468",
+    # "I took my driving test on Tuesday, 17 July  2018 at 09:00am; instructor's phone: 510 555-1357",
+    # "The art exhibition opens on 12/01/2024 at 11:0; gallery number: (212) 555-9876",
+    # "We celebrated our anniversary on Monday, 2023 June 30 at 20:00AM and booked the restaurant at 831-555-6420",
+    # "Call me on Monday, April 9, 2020 at 9:00 AM at 999-999-9999",
+    # "My appointment is scheduled for 2020/02/02 at 14:30, and my phone number is (999) 999-9999"
 ]
 
 # phone_tokenizer = nltk.RegexpTokenizer(phone_regex_nltk)
