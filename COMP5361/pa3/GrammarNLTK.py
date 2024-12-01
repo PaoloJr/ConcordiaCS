@@ -19,7 +19,8 @@ output_path = os.path.join(script_dir, output_file)
 ###########################
 
 
-phone_regex = re.compile(r"\(?[2-9][0-9]{2}\)?[-.\s]?[2-9][0-9]{2}[-.\s]?[0-9]{4}")  
+phone_regex = re.compile(r"\(?[2-9][0-9]{2}\)?[-.\s]?[2-9][0-9]{2}[-.\s]?[0-9]{4}") 
+# phone_regex_nltk = r"\(?[2-9][0-9]{2}\)?[-.\s]?[2-9][0-9]{2}[-.\s]?[0-9]{4}"
 
 date_regex = re.compile(r'''
     \b
@@ -40,23 +41,108 @@ date_regex = re.compile(r'''
     \b
     ''', re.VERBOSE | re.IGNORECASE)
 
+# date_regex_nltk = r"""
+#     \b
+#     (
+#         (?:
+#             (?: (?:19|20)\d{2} ) [-/.] (?:0?[1-9]|1[0-2]) [-/.] (?:0?[1-9]|[12][0-9]|3[01])
+#             |(?:0?[1-9]|[12][0-9]|3[01]) [-/.] (?:0?[1-9]|1[0-2]) [-/.] (?:19|20)\d{2}
+#             |(?:0?[1-9]|1[0-2]) [-/.] (?:0?[1-9]|[12][0-9]|3[01]) [-/.] (?:19|20)\d{2}
+#             |(?:19|20)\d{2} [-/.]? (?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) [-/.] (?:0?[1-9]|[12][0-9]|3[01])
+#             |(?:0?[1-9]|[12][0-9]|3[01]) [-/.]? (?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) [-/.] (?:19|20)\d{2}
+#             |(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) [-/.]? (?:0?[1-9]|[12][0-9]|3[01]) [-/.] (?:19|20)\d{2}
+#             |(?:
+#                 (?:Monday|Mon|Tuesday|Tue|Tues|Wednesday|Wed|Thursday|Thur|Thurs|Friday|Fri|Saturday|Sat|Sunday|Sun),?\s*)?
+#             (?:January|Jan|February|Feb|March|Mar|April|Apr|May|June|Jun|July|Jul|August|Aug|September|Sept|Sep|October|Oct|November|Nov|December|Dec)\s+
+#             \d{1,2}(?:st|nd|rd|th)?,?\s*\d{4}
+#             )
+#     )
+#     \b
+# """
+
 time_regex = re.compile(r"\b(?:(?:[01]?\d|2[0-3]):[0-5]\d(?::[0-5]\d)?(?:\s?[APap][Mm])?)\b")
+# time_regex_nltk = r"\b(?:(?:[01]?\d|2[0-3]):[0-5]\d(?::[0-5]\d)?(?:\s?[APap][Mm])?)\b"
 
+###########################
+# GRAMMAR SECTION
+###########################
 
-def detect_date(sentence):
-    date = re.findall(date_regex, sentence)
-    # print(date)
-    return date
+phone_grammar = CFG.fromstring("""
+    S -> phoneNumber
+    phoneNumber -> areaCode delimiter prefixNumber delimiter lineNumber
+    areaCode -> leftParenth nonZeroOne digit digit rightParenth
+    prefixNumber -> nonZeroOne digit digit
+    lineNumber -> digit digit digit digit
+    leftParenth -> '(' |
+    rightParenth -> ')' |
+    nonZeroOne -> '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'
+    digit -> '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'
+    delimiter -> '.' | '-' | ' ' |
+""")
+
+date_grammar = CFG.fromstring("""
+    S ->  dateWithDelimiter | dateString 
+    dateWithDelimiter ->  year delimiter monthNum delimiter dayNum | year delimiter monthPart delimiter dayNum | monthNum delimiter dayNum delimiter year | monthPart delimiter dayNum delimiter year | dayNum delimiter monthNum delimiter year |  dayNum delimiter monthPart delimiter year |  
+    dateString -> weekday comma space monthFull space dayNum daySuffix comma space year | weekday comma space monthPart dayNum daySuffix comma space year 
+    year ->  nineteenTwenty digit digit 
+    monthFull -> 'J' 'a' 'n' 'u' 'a' 'r' 'y' | 'F' 'e' 'b' 'r' 'u' 'a' 'r' 'y' | 'M' 'a' 'r' 'c' 'h' | 'A' 'p' 'r' 'i' 'l'| 'M' 'a' 'y' | 'J' 'u' 'n' 'e' | 'J' 'u' 'l' 'y' | 'A' 'u' 'g' 'u' 's' 't' | 'S' 'e' 'p' 't' 'e' 'm' 'b' 'e' 'r' | 'O' 'c' 't' 'o' 'b' 'e' 'r' | 'N' 'o' 'v' 'e' 'm' 'b' 'e' 'r' | 'D' 'e' 'c' 'e' 'm' 'b' 'e' 'r' 
+    monthPart -> 'J' 'a' 'n' | 'F' 'e' 'b' | 'M' 'a' 'r' | 'A' 'p' 'r' | 'M' 'a' 'y' | 'J' 'u' 'n' | 'J' 'u' 'l' | 'A' 'u' 'g' | 'S' 'e' 'p' | 'S' 'e' 'p' 't' | 'O' 'c' 't' | 'N' 'o' 'v' | 'D' 'e' 'c' 
+    monthNum -> zero nonZeroDigit | one zeroOne | one two 
+    weekday -> 'M' 'o' 'n' 'd' 'a' 'y' | 'M' 'o' 'n' | 'T' 'u' 'e' 's' 'd' 'a' 'y' | 'T' 'u' 'e' 's' | 'T' 'u' 'e' | 'W' 'e' 'd' 'n' 'e' 's' 'd' 'a' 'y' | 'W' 'e' 'd' | 'T' 'h' 'u' 'r' 's' 'd' 'a' 'y' | 'T' 'h' 'u' 'r' 's' | 'T' 'h' 'u' 'r' | 'F' 'r' 'i' 'd' 'a' 'y' | 'F' 'r' 'i' | 'S' 'a' 't' 'u' 'r' 'd' 'a' 'y' | 'S' 'a' 't' | 'S' 'u' 'n' 'd' 'a' 'y' | 'S' 'u' 'n' 
+    dayNum -> zero nonZeroDigit | one digit | two digit | three zeroOne    
+    nineteenTwenty -> '1' '9' | '2' '0' 
+    digit -> '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' 
+    nonZeroDigit -> '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' 
+    zeroOne -> '0' | '1' 
+    zero -> '0' |
+    one -> '1' 
+    two -> '2' 
+    three -> '3' 
+    delimiter -> '.' | '-' | '/' 
+    daySuffix -> 's' 't' | 'n' 'd' | 'r' 'd' | 't' 'h' | 
+    comma -> ',' |
+    space -> " "
+""")
+
+time_grammar = CFG.fromstring("""
+    S -> Time | TimeSeconds
+    Time -> Hours Colon Minutes Space AMPM
+    TimeSeconds -> Hours Colon Minutes Colon Seconds Space AMPM
+    Hours -> HourFirst SecondDigit
+    Minutes -> MinSecFirst SecondDigit
+    Seconds -> MinSecFirst SecondDigit
+    HourFirst -> '0' | '1' | '2'
+    MinSecFirst -> '0' | '1' | '2' | '3' | '4' | '5' 
+    SecondDigit -> '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'
+    AMPM -> 'A' 'M' | 'P' 'M' | 'a' 'm' | 'p' 'm' | 'a' 'M' | 'A' 'm' | 'p' 'M' | 'P' 'm' |
+    Space -> ' ' |
+    Colon -> ':'
+""")
+
 
 def detect_phone_number(sentence):
     phone_number = re.findall(phone_regex, sentence)
     # print(phone_number)
     return phone_number
 
+def detect_date(sentence):
+    date = re.findall(date_regex, sentence)
+    # print(date)
+    return date
+
 def detect_time(sentence):
     time = re.findall(time_regex, sentence)
     # print(time)
     return time
+
+
+phone_chart_parser = nltk.ChartParser(phone_grammar)
+date_chart_parser = nltk.ChartParser(date_grammar)
+time_chart_parser = nltk.ChartParser(time_grammar)
+
+# phone_descent_parser = nltk.RecursiveDescentParser(phone_grammar)
+# date_descent_parser = nltk.RecursiveDescentParser(date_grammar)
+# time_descent_parser = nltk.RecursiveDescentParser(time_grammar)
 
 chart_parser_text = "Using ChartParser:\n"
 detected_phone_text = "Detected Phone Number: "
@@ -69,6 +155,7 @@ phone_tree_text = "PHONE TREE\n"
 date_tree_text = "DATE TREE\n"
 time_tree_text = "TIME TREE\n"
 
+sentences = []
 phone_numbers = []
 dates = []
 times = []
@@ -131,75 +218,9 @@ process_files(input_path, output_path)
 #     print(time)
 
 
-###########################
-# GRAMMAR SECTION
-###########################
-
-
-phone_grammar = CFG.fromstring("""
-    S -> phoneNumber
-    phoneNumber -> areaCode delimiter prefixNumber delimiter lineNumber
-    areaCode -> leftParenth nonZeroOne digit digit rightParenth
-    prefixNumber -> nonZeroOne digit digit
-    lineNumber -> digit digit digit digit
-    leftParenth -> '(' |
-    rightParenth -> ')' |
-    nonZeroOne -> '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'
-    digit -> '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'
-    delimiter -> '.' | '-' | ' ' |
-""")
-
-date_grammar = CFG.fromstring("""
-    S ->  dateWithDelimiter | dateString 
-    dateWithDelimiter ->  year delimiter monthNum delimiter dayNum | year delimiter monthPart delimiter dayNum | monthNum delimiter dayNum delimiter year | monthPart delimiter dayNum delimiter year | dayNum delimiter monthNum delimiter year |  dayNum delimiter monthPart delimiter year |  
-    dateString -> weekday comma space monthFull space dayNum daySuffix comma space year | weekday comma space monthPart dayNum daySuffix comma space year 
-    year ->  nineteenTwenty digit digit 
-    monthFull -> 'J' 'a' 'n' 'u' 'a' 'r' 'y' | 'F' 'e' 'b' 'r' 'u' 'a' 'r' 'y' | 'M' 'a' 'r' 'c' 'h' | 'A' 'p' 'r' 'i' 'l'| 'M' 'a' 'y' | 'J' 'u' 'n' 'e' | 'J' 'u' 'l' 'y' | 'A' 'u' 'g' 'u' 's' 't' | 'S' 'e' 'p' 't' 'e' 'm' 'b' 'e' 'r' | 'O' 'c' 't' 'o' 'b' 'e' 'r' | 'N' 'o' 'v' 'e' 'm' 'b' 'e' 'r' | 'D' 'e' 'c' 'e' 'm' 'b' 'e' 'r' 
-    monthPart -> 'J' 'a' 'n' | 'F' 'e' 'b' | 'M' 'a' 'r' | 'A' 'p' 'r' | 'M' 'a' 'y' | 'J' 'u' 'n' | 'J' 'u' 'l' | 'A' 'u' 'g' | 'S' 'e' 'p' | 'S' 'e' 'p' 't' | 'O' 'c' 't' | 'N' 'o' 'v' | 'D' 'e' 'c' 
-    monthNum -> zero nonZeroDigit | one zeroOne | one two 
-    weekday -> 'M' 'o' 'n' 'd' 'a' 'y' | 'M' 'o' 'n' | 'T' 'u' 'e' 's' 'd' 'a' 'y' | 'T' 'u' 'e' 's' | 'T' 'u' 'e' | 'W' 'e' 'd' 'n' 'e' 's' 'd' 'a' 'y' | 'W' 'e' 'd' | 'T' 'h' 'u' 'r' 's' 'd' 'a' 'y' | 'T' 'h' 'u' 'r' 's' | 'T' 'h' 'u' 'r' | 'F' 'r' 'i' 'd' 'a' 'y' | 'F' 'r' 'i' | 'S' 'a' 't' 'u' 'r' 'd' 'a' 'y' | 'S' 'a' 't' | 'S' 'u' 'n' 'd' 'a' 'y' | 'S' 'u' 'n' 
-    dayNum -> zero nonZeroDigit | one digit | two digit | three zeroOne    
-    nineteenTwenty -> '1' '9' | '2' '0' 
-    digit -> '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' 
-    nonZeroDigit -> '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' 
-    zeroOne -> '0' | '1' 
-    zero -> '0' |
-    one -> '1' 
-    two -> '2' 
-    three -> '3' 
-    delimiter -> '.' | '-' | '/' 
-    daySuffix -> 's' 't' | 'n' 'd' | 'r' 'd' | 't' 'h' | 
-    comma -> ',' |
-    space -> " "
-""")
-
-time_grammar = CFG.fromstring("""
-    S -> Time | TimeSeconds
-    Time -> Hours Colon Minutes Space AMPM
-    TimeSeconds -> Hours Colon Minutes Colon Seconds Space AMPM
-    Hours -> HourFirst SecondDigit
-    Minutes -> MinSecFirst SecondDigit
-    Seconds -> MinSecFirst SecondDigit
-    HourFirst -> '0' | '1' | '2'
-    MinSecFirst -> '0' | '1' | '2' | '3' | '4' | '5' 
-    SecondDigit -> '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'
-    AMPM -> 'A' 'M' | 'P' 'M' | 'a' 'm' | 'p' 'm' |
-    Space -> ' ' |
-    Colon -> ':'
-""")
-
-
 #####################################################################
 # WRITE PARSE TREES TO FILE USING REGEX EXTRACTED FROM INPUT FILE
 #####################################################################
-
-phone_chart_parser = nltk.ChartParser(phone_grammar)
-date_chart_parser = nltk.ChartParser(date_grammar)
-time_chart_parser = nltk.ChartParser(time_grammar)
-
-# phone_descent_parser = nltk.RecursiveDescentParser(phone_grammar)
-# date_descent_parser = nltk.RecursiveDescentParser(date_grammar)
-# time_descent_parser = nltk.RecursiveDescentParser(time_grammar)
 
 with open('./IO/parseTrees.txt', 'w') as trees_output_file:
     # print("##########################################")
@@ -288,21 +309,18 @@ input_parse_sentences = [
     "My appointment is scheduled for 2020/02/02 at 14:30, and my phone number is (999) 999-9999"
 ]
 
-phone_tokenizer = nltk.RegexpTokenizer(phone_regex)
-date_tokenizer = nltk.RegexpTokenizer(date_regex) 
-time_tokenizer = nltk.RegexpTokenizer(time_regex)
+# phone_tokenizer = nltk.RegexpTokenizer(phone_regex_nltk)
+# date_tokenizer = nltk.RegexpTokenizer(date_regex_nltk) 
+# time_tokenizer = nltk.RegexpTokenizer(time_regex_nltk)
 
 with open('./IO/parseTrees_samples.txt', 'w') as trees_output_samples_file:
     for sentence in input_parse_sentences:
-        phone_tokens = phone_tokenizer.tokenize(sentence)
+        # phone_tokens = phone_tokenizer.tokenize(sentence)
         # print("phone_tokens: " + " ".join(phone_tokens))
-        date_tokens = date_tokenizer.tokenize(sentence)
+        # date_tokens = date_tokenizer.tokenize(sentence)
         # print("date_tokens: " + " ".join(date_tokens))
-        time_tokens = time_tokenizer.tokenize(sentence)
+        # time_tokens = time_tokenizer.tokenize(sentence)
         # print("time_tokens: " + " ".join(time_tokens))
-        # regex_phone = detect_phone_number(sentence)
-        # regex_date = detect_phone_number(sentence)
-        # regex_time = detect_phone_number(sentence)
 
         # print("##########################################")
         # print(f"Sentence: {sentence}")
@@ -310,38 +328,45 @@ with open('./IO/parseTrees_samples.txt', 'w') as trees_output_samples_file:
         trees_output_samples_file.write(f"Sentence: {sentence}\n")
 
         trees_output_samples_file.write("Parsing Phone Numbers\n")
-        if phone_tokens:
-            for phone in phone_tokens:
+        phone_matches = re.findall(phone_regex, sentence)
+        # print("phone_matches" + "".join(phone_matches))
+        if phone_matches:
+            for phone in phone_matches:
+                result_phone = ''.join(phone)
                 # print(f"{detect_phone_number} {phone_token}")
-                trees_output_samples_file.write(f"{detected_phone_text} {phone}\n")
+                trees_output_samples_file.write(f"{detected_phone_text} {result_phone}\n")
         else:
                 # print(phone_not_detected_text)  
                 trees_output_samples_file.write(phone_not_detected_text)  
         
         trees_output_samples_file.write("Parsing Dates\n")
-        # dates = re.findall(date_regex, sentence)
-        if date_tokens:
-            for date in date_tokens:
-                result = ' '.join(date)
-                # print(f"{detected_date_text} {result}")
-                trees_output_samples_file.write(f"{detected_date_text} {result}\n")
+        date_matches = re.findall(date_regex, sentence)
+        # print("date_matches" + "".join(date_matches))
+        if date_matches:
+            for date in date_matches:
+                result_date = ''.join(date)
+                # print(f"{detected_date_text} {result_date}")
+                trees_output_samples_file.write(f"{detected_date_text} {result_date}\n")
         else: 
                 # print(date_not_deteceted_text)
                 trees_output_samples_file.write(date_not_deteceted_text)
 
         trees_output_samples_file.write("Parsing Times\n")
-        if time_tokens:  
-            for time in time_tokens:
+        time_matches = re.findall(time_regex, sentence)
+        # print("time matches" + "".join(time_matches))
+        if time_matches:  
+            for time in time_matches:
+                result_time = ''.join(time)
                 # print(f"{detected_time_text} {time_token}")
-                trees_output_samples_file.write(f"{detected_time_text} {time}\n")
+                trees_output_samples_file.write(f"{detected_time_text} {result_time}\n")
         else:
                 # print(time_not_detected_text)
                 trees_output_samples_file.write(time_not_detected_text)
         # print("##########################################")
         trees_output_samples_file.write("##########################################\n")
 
-        if phone_tokens:
-            for phone in phone_tokens:
+        if phone_matches:
+            for phone in phone_matches:
                 for tree in phone_chart_parser.parse(phone):
                     # print(phone_tree_text)
                     # print(tree)
@@ -350,8 +375,8 @@ with open('./IO/parseTrees_samples.txt', 'w') as trees_output_samples_file:
                     trees_output_samples_file.write(str(tree) + "\n")
         else:
             trees_output_samples_file.write("NO PHONE TREE\n")
-        if date_tokens:
-            for date in date_tokens:
+        if date_matches:
+            for date in date_matches:
                 result = ''.join(date)
                 for tree in date_chart_parser.parse(result):
                     # print(date_tree_text)
@@ -361,8 +386,8 @@ with open('./IO/parseTrees_samples.txt', 'w') as trees_output_samples_file:
                     trees_output_samples_file.write(str(tree) + "\n")
         else: 
              trees_output_samples_file.write("NO DATE TREE\n")
-        if time_tokens:
-            for time in time_tokens:
+        if time_matches:
+            for time in time_matches:
                 time = time.replace('-', '').replace('.', '')
                 for tree in time_chart_parser.parse(time):
                     # print(time_tree_text)
@@ -372,5 +397,3 @@ with open('./IO/parseTrees_samples.txt', 'w') as trees_output_samples_file:
                     trees_output_samples_file.write(str(tree) + "\n")
         else:
             trees_output_samples_file.write("NO TIME TREE\n")
-                
-        

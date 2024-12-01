@@ -2970,6 +2970,14 @@ TIME TREE
     (AMPM p m)))
 Detected Time:  14:00 Am
 Using ChartParser:
+TIME TREE
+(S
+  (Time
+    (Hours (HourFirst 1) (SecondDigit 4))
+    (Colon :)
+    (Minutes (MinSecFirst 0) (SecondDigit 0))
+    (Space  )
+    (AMPM A m)))
 Detected Time:  16:30
 Using ChartParser:
 TIME TREE
