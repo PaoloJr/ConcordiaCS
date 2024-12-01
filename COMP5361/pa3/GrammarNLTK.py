@@ -264,28 +264,28 @@ with open('./IO/parseTrees.txt', 'w') as trees_output_file:
 
 input_parse_sentences = [
     "My phone number is (123) 456-7890 and my birthday is 12-31-2024 and I was born on Monday, January 31st, 2024 at 12:30:45 PM",
-    # "Sarah called me on April 25, 2025 at 12:30:45 pm at (555) 123   -    4567.",
-    # "The conference is scheduled for 15-03-2024 at 14:00 Am; please RSVP at 312-555.8900",
-    # "I visited the museum on Sunday, August 07, 2008 at 10: 00 AM and called the guide at 555-8901234",
-    # "Please contact our support team at (206)   555-7890 before 31/1/2024 at 16:30:0",
-    # "The wedding is set for Saturday, June 22nd, 2026 at 5 : 00 pM - the planner's number is 415.555.3456",
-    # "I started my new job on 12.9 2022 at 09:00am and got my work phone: (702) 555-9012",
-    # "The concert will be held on Thursday, April 18 2024 at 19:30; for tickets call 888-555-6543",
-    # "She graduated on 28 -05 2019 at 11:00pm and changed her number to 617-555-4321",
-    # "The package was delivered on 03.11.2023 at 08:45:00; tracking support: (800) 555-7654",
-    # "Mark your calendar for Friday, July 26, 2029 at 18:00 and call the venue at 213.555.8765",
-    # "The interview is scheduled for 05-02-2024 at 23 PM; recruiter: (408) 555-2345",
-    # "We moved to our new house on Monday    October 15, 2023 at 14:00pm and got a landline: 925-555-6789",
-    # "The grand opening is on 21/08/2027 at 09am; information desk: (619) 555-1098",
-    # "I adopted my cat on April 11, 2023 at 10:15:00 pm; vet's number is 707.555.3210",
-    # "The festival begins on 04.05.2028 at 13:0:0; ticket office: (503) 555-4567",
-    # "She retired on Wednesday, 31st December, 2020 at 17:00 am and left her contact: 650-555-8901",
-    # "The charity event is on 08-09-2024 at 15:00 pm; organizer's number: (415) 555-2468",
-    # "I took my driving test on Tuesday, 17 July  2018 at 09:00am; instructor's phone: 510 555-1357",
-    # "The art exhibition opens on 12/01/2024 at 11:0; gallery number: (212) 555-9876",
-    # "We celebrated our anniversary on Monday, 2023 June 30 at 20:00AM and booked the restaurant at 831-555-6420",
-    # "Call me on Monday, April 9, 2020 at 9:00 AM at 999-999-9999",
-    # "My appointment is scheduled for 2020/02/02 at 14:30, and my phone number is (999) 999-9999"
+    "Sarah called me on April 25, 2025 at 12:30:45 pm at (555) 123   -    4567.",
+    "The conference is scheduled for 15-03-2024 at 14:00 Am; please RSVP at 312-555.8900",
+    "I visited the museum on Sunday, August 07, 2008 at 10: 00 AM and called the guide at 555-8901234",
+    "Please contact our support team at (206)   555-7890 before 31/1/2024 at 16:30:0",
+    "The wedding is set for Saturday, June 22nd, 2026 at 5 : 00 pM - the planner's number is 415.555.3456",
+    "I started my new job on 12.9 2022 at 09:00am and got my work phone: (702) 555-9012",
+    "The concert will be held on Thursday, April 18 2024 at 19:30; for tickets call 888-555-6543",
+    "She graduated on 28 -05 2019 at 11:00pm and changed her number to 617-555-4321",
+    "The package was delivered on 03.11.2023 at 08:45:00; tracking support: (800) 555-7654",
+    "Mark your calendar for Friday, July 26, 2029 at 18:00 and call the venue at 213.555.8765",
+    "The interview is scheduled for 05-02-2024 at 23 PM; recruiter: (408) 555-2345",
+    "We moved to our new house on Monday    October 15, 2023 at 14:00pm and got a landline: 925-555-6789",
+    "The grand opening is on 21/08/2027 at 09am; information desk: (619) 555-1098",
+    "I adopted my cat on April 11, 2023 at 10:15:00 pm; vet's number is 707.555.3210",
+    "The festival begins on 04.05.2028 at 13:0:0; ticket office: (503) 555-4567",
+    "She retired on Wednesday, 31st December, 2020 at 17:00 am and left her contact: 650-555-8901",
+    "The charity event is on 08-09-2024 at 15:00 pm; organizer's number: (415) 555-2468",
+    "I took my driving test on Tuesday, 17 July  2018 at 09:00am; instructor's phone: 510 555-1357",
+    "The art exhibition opens on 12/01/2024 at 11:0; gallery number: (212) 555-9876",
+    "We celebrated our anniversary on Monday, 2023 June 30 at 20:00AM and booked the restaurant at 831-555-6420",
+    "Call me on Monday, April 9, 2020 at 9:00 AM at 999-999-9999",
+    "My appointment is scheduled for 2020/02/02 at 14:30, and my phone number is (999) 999-9999"
 ]
 
 phone_tokenizer = nltk.RegexpTokenizer(phone_regex)
@@ -300,65 +300,77 @@ with open('./IO/parseTrees_samples.txt', 'w') as trees_output_samples_file:
         # print("date_tokens: " + " ".join(date_tokens))
         time_tokens = time_tokenizer.tokenize(sentence)
         # print("time_tokens: " + " ".join(time_tokens))
+        # regex_phone = detect_phone_number(sentence)
+        # regex_date = detect_phone_number(sentence)
+        # regex_time = detect_phone_number(sentence)
 
         # print("##########################################")
         # print(f"Sentence: {sentence}")
-        trees_output_samples_file.write("##########################################")
-        trees_output_samples_file.write(f"Sentence: {sentence}")
+        trees_output_samples_file.write("##########################################\n")
+        trees_output_samples_file.write(f"Sentence: {sentence}\n")
 
         trees_output_samples_file.write("Parsing Phone Numbers\n")
-        trees_output_samples_file.write(chart_parser_text)
         if phone_tokens:
-            for phone_token in phone_tokens:
+            for phone in phone_tokens:
                 # print(f"{detect_phone_number} {phone_token}")
-                trees_output_samples_file.write(f"{detected_phone_text} {phone_number}\n")
+                trees_output_samples_file.write(f"{detected_phone_text} {phone}\n")
         else:
                 # print(phone_not_detected_text)  
                 trees_output_samples_file.write(phone_not_detected_text)  
         
         trees_output_samples_file.write("Parsing Dates\n")
-        dates = re.findall(date_regex, sentence)
-        if dates:
-            for date in dates:
-                result = ''.join(date)
+        # dates = re.findall(date_regex, sentence)
+        if date_tokens:
+            for date in date_tokens:
+                result = ' '.join(date)
                 # print(f"{detected_date_text} {result}")
-                trees_output_samples_file(f"{detected_date_text} {result}")
+                trees_output_samples_file.write(f"{detected_date_text} {result}\n")
         else: 
                 # print(date_not_deteceted_text)
-                trees_output_samples_file(date_not_deteceted_text)
+                trees_output_samples_file.write(date_not_deteceted_text)
 
-                trees_output_samples_file.write("Parsing Times\n")
+        trees_output_samples_file.write("Parsing Times\n")
         if time_tokens:  
-            for time_token in time_tokens:
+            for time in time_tokens:
                 # print(f"{detected_time_text} {time_token}")
-                trees_output_samples_file(f"{detected_time_text} {time_token}")
+                trees_output_samples_file.write(f"{detected_time_text} {time}\n")
         else:
                 # print(time_not_detected_text)
-                trees_output_samples_file(time_not_detected_text)
+                trees_output_samples_file.write(time_not_detected_text)
         # print("##########################################")
-        trees_output_samples_file("##########################################")
+        trees_output_samples_file.write("##########################################\n")
 
-        for token in phone_tokens:
-            for tree in phone_chart_parser.parse(token):
-                # print(phone_tree_text)
-                # print(tree)
-                trees_output_samples_file.write(chart_parser_text)
-                trees_output_samples_file.write(phone_tree_text)
-                trees_output_samples_file.write(str(tree) + "\n")
-        for date in dates:
-            result = ''.join(date)
-            for tree in date_chart_parser.parse(result):
-                # print(date_tree_text)
-                # print(tree)
-                trees_output_samples_file.write(chart_parser_text)
-                trees_output_samples_file.write(date_tree_text)
-                trees_output_samples_file.write(str(tree) + "\n")
-        for token in time_tokens:
-            for tree in time_chart_parser.parse(token):
-                # print(time_tree_text)
-                # print(tree)
-                trees_output_samples_file.write(chart_parser_text)
-                trees_output_samples_file.write(time_tree_text)
-                trees_output_samples_file.write(str(tree) + "\n")
+        if phone_tokens:
+            for phone in phone_tokens:
+                for tree in phone_chart_parser.parse(phone):
+                    # print(phone_tree_text)
+                    # print(tree)
+                    trees_output_samples_file.write(chart_parser_text)
+                    trees_output_samples_file.write(phone_tree_text)
+                    trees_output_samples_file.write(str(tree) + "\n")
+        else:
+            trees_output_samples_file.write("NO PHONE TREE\n")
+        if date_tokens:
+            for date in date_tokens:
+                result = ''.join(date)
+                for tree in date_chart_parser.parse(result):
+                    # print(date_tree_text)
+                    # print(tree)
+                    trees_output_samples_file.write(chart_parser_text)
+                    trees_output_samples_file.write(date_tree_text)
+                    trees_output_samples_file.write(str(tree) + "\n")
+        else: 
+             trees_output_samples_file.write("NO DATE TREE\n")
+        if time_tokens:
+            for time in time_tokens:
+                time = time.replace('-', '').replace('.', '')
+                for tree in time_chart_parser.parse(time):
+                    # print(time_tree_text)
+                    # print(tree)
+                    trees_output_samples_file.write(chart_parser_text)
+                    trees_output_samples_file.write(time_tree_text)
+                    trees_output_samples_file.write(str(tree) + "\n")
+        else:
+            trees_output_samples_file.write("NO TIME TREE\n")
                 
         
