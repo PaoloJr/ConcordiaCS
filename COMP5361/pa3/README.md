@@ -73,6 +73,7 @@
     - ex: `514\999\9999` or `514/999/9999` 
 - `1-800-332-5432` --> it will detect the last 10-digits (if they are NANP-valid), ignoring the `1-`
 
+---
 
 ## Dates
 [Date Formats by Country](https://en.wikipedia.org/wiki/List_of_date_formats_by_country)
@@ -185,6 +186,8 @@
 - `31/December/2020` --> full month name in the `dateWithDelimiter` format
 - `24/Dec/31` --> two-digit year (`24`)
 - `12/2020/31` --> year in the middle of the `dateWithDelimiter` format
+
+---
 
 ## Times
 - Follows numerous formats like:
