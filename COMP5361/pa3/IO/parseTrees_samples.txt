@@ -290,7 +290,7 @@ Detected Phone Number:  312-555.8900
 Parsing Dates
 Detected Date:  15-03-2024
 Parsing Times
-Detected Time:  14:00 Am
+Detected Time:  14:00
 ##########################################
 Using ChartParser:
 PHONE TREE
@@ -322,8 +322,8 @@ TIME TREE
     (Hours (TwoDigitHour 1 4))
     (Colon :)
     (Minutes (MinSecFirst 0) (SecondDigit 0))
-    (Space  )
-    (AMPM A m)))
+    (Space )
+    (AMPM )))
 ##########################################
 Sentence: I visited the museum on Sunday, August 07, 2008 at 10: 00 AM and called the guide at 555-8901234
 Parsing Phone Numbers
@@ -687,7 +687,7 @@ Detected Phone Number:  925-555-6789
 Parsing Dates
 Detected Date:  Monday    October 15, 2023
 Parsing Times
-Detected Time:  14:00pm
+TIME NOT DETECTED
 ##########################################
 Using ChartParser:
 PHONE TREE
@@ -703,15 +703,7 @@ PHONE TREE
     (prefixNumber (nonZeroOne 5) (digit 5) (digit 5))
     (delimiter -)
     (lineNumber (digit 6) (digit 7) (digit 8) (digit 9))))
-Using ChartParser:
-TIME TREE
-(S
-  (Time
-    (Hours (TwoDigitHour 1 4))
-    (Colon :)
-    (Minutes (MinSecFirst 0) (SecondDigit 0))
-    (Space )
-    (AMPM p m)))
+NO TIME TREE
 ##########################################
 Sentence: The grand opening is on 21/08/2027 at 09am; information desk: (619) 555-1098
 Parsing Phone Numbers
@@ -839,7 +831,7 @@ Detected Phone Number:  650-555-8901
 Parsing Dates
 DATE NOT DETECTED
 Parsing Times
-Detected Time:  17:00 am
+Detected Time:  17:00
 ##########################################
 Using ChartParser:
 PHONE TREE
@@ -863,8 +855,8 @@ TIME TREE
     (Hours (TwoDigitHour 1 7))
     (Colon :)
     (Minutes (MinSecFirst 0) (SecondDigit 0))
-    (Space  )
-    (AMPM a m)))
+    (Space )
+    (AMPM )))
 ##########################################
 Sentence: The charity event is on 08-09-2024 at 15:00 pm; organizer's number: (415) 555-2468
 Parsing Phone Numbers
@@ -872,7 +864,7 @@ Detected Phone Number:  (415) 555-2468
 Parsing Dates
 Detected Date:  08-09-2024
 Parsing Times
-Detected Time:  15:00 pm
+Detected Time:  15:00
 ##########################################
 Using ChartParser:
 PHONE TREE
@@ -913,8 +905,8 @@ TIME TREE
     (Hours (TwoDigitHour 1 5))
     (Colon :)
     (Minutes (MinSecFirst 0) (SecondDigit 0))
-    (Space  )
-    (AMPM p m)))
+    (Space )
+    (AMPM )))
 ##########################################
 Sentence: I took my driving test on Tuesday, 17 July  2018 at 09:00am; instructor's phone: 510 555-1357
 Parsing Phone Numbers
@@ -997,7 +989,7 @@ Detected Phone Number:  831-555-6420
 Parsing Dates
 DATE NOT DETECTED
 Parsing Times
-Detected Time:  20:00AM
+TIME NOT DETECTED
 ##########################################
 Using ChartParser:
 PHONE TREE
@@ -1014,15 +1006,7 @@ PHONE TREE
     (delimiter -)
     (lineNumber (digit 6) (digit 4) (digit 2) (digit 0))))
 NO DATE TREE
-Using ChartParser:
-TIME TREE
-(S
-  (Time
-    (Hours (TwoDigitHour 2 0))
-    (Colon :)
-    (Minutes (MinSecFirst 0) (SecondDigit 0))
-    (Space )
-    (AMPM A M)))
+NO TIME TREE
 ##########################################
 Sentence: Call me on Monday, April 9, 2020 at 9:00 AM at 999-999-9999
 Parsing Phone Numbers

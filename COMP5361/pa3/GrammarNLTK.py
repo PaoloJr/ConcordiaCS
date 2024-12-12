@@ -40,7 +40,11 @@ date_regex = re.compile(r'''
     \b
     ''', re.VERBOSE | re.IGNORECASE)
 
-time_regex = re.compile(r"\b(?:(?:0?\d|1\d|2[0-3]):[0-5]\d(?::[0-5]\d)?(?:\s?[APap][Mm])?)\b")
+# time_regex = re.compile(r"\b(?:(?:0?\d|1\d|2[0-3]):[0-5]\d(?::[0-5]\d)?\s?(?:AM|PM|am|pm)?)\b")
+
+# 12-hour format first
+# 24-hour format next
+time_regex = re.compile(r"\b(?:(?:0?\d|1[0-2]):[0-5]\d(?::[0-5]\d)?\s?(?:AM|PM|am|pm)|(?:[01]?\d|2[0-3]):[0-5]\d(?::[0-5]\d)?)\b")
 
 ###########################
 # GRAMMAR SECTION

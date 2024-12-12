@@ -3028,7 +3028,7 @@ TIME TREE
     (Seconds (MinSecFirst 4) (SecondDigit 5))
     (Space  )
     (AMPM p m)))
-Detected Time:  14:00 Am
+Detected Time:  14:00
 Using ChartParser:
 TIME TREE
 (S
@@ -3036,8 +3036,8 @@ TIME TREE
     (Hours (TwoDigitHour 1 4))
     (Colon :)
     (Minutes (MinSecFirst 0) (SecondDigit 0))
-    (Space  )
-    (AMPM A m)))
+    (Space )
+    (AMPM )))
 Detected Time:  16:30
 Using ChartParser:
 TIME TREE
@@ -3100,16 +3100,6 @@ TIME TREE
     (Minutes (MinSecFirst 0) (SecondDigit 0))
     (Space )
     (AMPM )))
-Detected Time:  14:00pm
-Using ChartParser:
-TIME TREE
-(S
-  (Time
-    (Hours (TwoDigitHour 1 4))
-    (Colon :)
-    (Minutes (MinSecFirst 0) (SecondDigit 0))
-    (Space )
-    (AMPM p m)))
 Detected Time:  10:15:00 pm
 Using ChartParser:
 TIME TREE
@@ -3122,7 +3112,7 @@ TIME TREE
     (Seconds (MinSecFirst 0) (SecondDigit 0))
     (Space  )
     (AMPM p m)))
-Detected Time:  17:00 am
+Detected Time:  17:00
 Using ChartParser:
 TIME TREE
 (S
@@ -3130,9 +3120,9 @@ TIME TREE
     (Hours (TwoDigitHour 1 7))
     (Colon :)
     (Minutes (MinSecFirst 0) (SecondDigit 0))
-    (Space  )
-    (AMPM a m)))
-Detected Time:  15:00 pm
+    (Space )
+    (AMPM )))
+Detected Time:  15:00
 Using ChartParser:
 TIME TREE
 (S
@@ -3140,8 +3130,8 @@ TIME TREE
     (Hours (TwoDigitHour 1 5))
     (Colon :)
     (Minutes (MinSecFirst 0) (SecondDigit 0))
-    (Space  )
-    (AMPM p m)))
+    (Space )
+    (AMPM )))
 Detected Time:  09:00am
 Using ChartParser:
 TIME TREE
@@ -3152,16 +3142,6 @@ TIME TREE
     (Minutes (MinSecFirst 0) (SecondDigit 0))
     (Space )
     (AMPM a m)))
-Detected Time:  20:00AM
-Using ChartParser:
-TIME TREE
-(S
-  (Time
-    (Hours (TwoDigitHour 2 0))
-    (Colon :)
-    (Minutes (MinSecFirst 0) (SecondDigit 0))
-    (Space )
-    (AMPM A M)))
 Detected Time:  9:00 AM
 Using ChartParser:
 TIME TREE
