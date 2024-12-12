@@ -1,7 +1,7 @@
 # Report
 [Python NLTK Project](https://github.com/PaoloJr90/ConcordiaCS/tree/main/COMP5361/pa3) \
-[Parse Tree Samples - output using `nltk.ChartParser`](https://github.com/PaoloJr90/ConcordiaCS/blob/main/COMP5361/pa3/IO/parseTrees_samples.txt) \
-[More Parse Tree Samples on Extracted RegEx - output using `nltk.ChartParser`](https://github.com/PaoloJr90/ConcordiaCS/blob/main/COMP5361/pa3/IO/parseTrees.txt)
+[Parse Tree Samples - output using `nltk.ChartParser` in ASCII format](https://github.com/PaoloJr90/ConcordiaCS/blob/main/COMP5361/pa3/IO/parseTrees_samples.txt) \
+[More Parse Tree Samples on Extracted RegEx - output using `nltk.ChartParser` in ASCII format](https://github.com/PaoloJr90/ConcordiaCS/blob/main/COMP5361/pa3/IO/parseTrees.txt)
 
 ## Phone Numbers
 [Phone Number Formats - Microsoft](https://learn.microsoft.com/en-us/globalization/locale/telephone-numbers) \
@@ -196,7 +196,7 @@
     - `HH:MM:SS AM`
     - the time can be in either 24-hour format (no `AM`/`PM`) or 12-hour format (with `AM`/`PM`)
     - the colon separator between the time-groups is required
-    - the seconds portion (`SS`) is optional
+    - the seconds portion (`SS`) is optional in either the 12-hour or 24-hour format
     - there can be an optional single space between the time and the `AM`/`PM`
     - the hour portion can be single or double-digit
         - if single-digit, its acceptable range is from `0` to `9`
@@ -208,47 +208,51 @@
     - first seconds-digit must be between `0` and `5`
     - the second seconds-digit must be between `0` and `9`
     - `AM` and `PM` are optional and are case-insensitive (only those letters are allowed after the time)
+        - can also be `am` or `pm`
 
 **Times RegEx**
-> \b(?:(?:0?\d|1\d|2[0-3]):[0-5]\d(?::[0-5]\d)?(?:\s?[APap][Mm])?)\b
+ >r"\b(?:" \
+ >r"(?:" \
+ >r"(?:0?\d|1[0-2]):[0-5]\d(?::[0-5]\d)?\s?(?:AM|PM|am|pm))" # 12-hour time with AM/PM \
+ >r"|(?:[01]?\d|2[0-3]):[0-5]\d(?::[0-5]\d)?)\b" # 24-hour time without AM/PM \
 
 **Times Grammar**
-> S -> `Time` | `TimeSeconds` \
-> Time -> Hours Colon Minutes Space AMPM \
-> TimeSeconds -> Hours Colon Minutes Colon Seconds Space AMPM \
-> Hours -> `SingleDigitHour` | `TwoDigitHour` \
-> Minutes -> `MinSecFirst` `SecondDigit` \
-> Seconds -> `MinSecFirst` `SecondDigit` \
-> SingleDigitHour -> 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
-> TwoDigitHour -> 10 | 11| 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23
-> MinSecFirst -> 0 | 1 | 2 | 3 | 4 | 5 \
-> SecondDigit -> 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 \
-> AMPM ->  `AM` | `PM` | `am` | `pm` | `aM` | `Am` | `pM` | `Pm` | $\lambda$ \
-> Space -> `(space)` | $\lambda$ \
-> Colon -> `:` 
+>S -> `Time12` | `Time24` \
+>Time12 -> `Hour12` `Colon` `Minutes` `Colon` `Seconds` `Space` `AMPM` | `Hour12` `Colon` `Minutes` `Space` `AMPM`  \
+>Time24 -> `Hour24` `Colon` `Minutes` `Colon` `Seconds` | `Hour24` `Colon` `Minutes`                               \
+>Hour12 -> `TwoDigitHour12` | `SingleDigitHour` \
+>Hour24 -> `TwoDigitHour24` | `SingleDigitHour` \
+>Minutes -> `MinSecFirst` `SecondDigit` \
+>Seconds -> `MinSecFirst` `SecondDigit` \
+>SingleDigitHour -> `0` | `1` | `2` | `3` | `4` | `5` | `6` | `7` | `8` | `9` \
+>TwoDigitHour12 -> `0` `SecondDigit` | `1` `0` | `1` `1` | `1` `2` \
+>TwoDigitHour24 -> `0` `SecondDigit` | `1` `SecondDigit` | `2` `0` | `2` `1` | `2` `2` | `2` `3` \
+>MinSecFirst -> `0` | `1` | `2` | `3` | `4` | `5` \
+>SecondDigit -> `0` | `1` | `2` | `3` | `4` | `5` | `6` | `7` | `8` | `9` \
+>AMPM -> `A` `M` | `P` `M` | `a` `m` | `p` `m` \
+>Space -> `'(space)'` | $\lambda$ \
+>Colon -> `:`
 
 **this times-grammar will support / detect / match times like:**
 - `23:59`
 - `3:59`
-- `14:00pm`
-- `23:59 PM`
-- `23:59PM`
-- `23:59AM`
-- `23:59 pM`
-- `23:59 Pm`
-- `23:59 aM`
-- `23:59 Am`
+- `09:00am` --> 12-hour format with `am`
+- `10:15:00 pm` --> 12-hour format with seconds and `pm`
 - `12:00:30`
 - `12:00:30 AM`
 - `12:00:30 PM`
 - `0:59:43`
 - `:59:43`
 - `00:5:43` --> `5:43` will be detected by RegEx and Grammar by ignoring the `00:`
-- `23:58:60` --> `23:58` will be detected by RegEx and Grammar by ignoring the `:60`
+- `23:58:60` --> `23:58` will be detected by RegEx and Grammar by ignoring the `:60` (out of 00-59 seconds bounds)
+- `23:15:25 PM` --> `23:15:25` will be detected by RegEx and Grammar by ignoring the ` PM` suffix
 - `23:00   AM` --> `23:00` will be detected by RegEx and Grammar by ignoring the `   AM`
 - `14:30:0` --> `14:30` will be detected by RegEx and Grammar by ignoring the `:0`
-- `20:00AM` --> this will be detected by RegEx and Grammar despite `AM` being incorrect for that 24-hour format
 - `11:00PM` --> 12-hour format acceptable by the RegEx/Grammar
+- `17:00 am` --> `17:00` will be detected by RegEx and Grammar by ignoring the ` am` suffix
+- `20:15 AM` --> `20:15` will be detected by RegEx and Grammar by ignoring the ` AM` suffix
+- `00:00 AM`
+- `12:00:345 PM` --> `12:00` will be detected by RegEx and Grammar by ignoring the `:345 PM` ending (invalid portion)
 
 
 **this times-grammar will not support / detect / match times like:**
@@ -261,3 +265,11 @@
     - it must have, at a minimum, the `HH:MM` format
 - `13:0:0` --> single digits for minutes and seconds
 - `11:0` --> single digit for the minutes segment
+- `23:59 pM` --> must be either `AM`, `PM`, `am`, or `pm`
+- `23:59 Pm` --> must be either `AM`, `PM`, `am`, or `pm`
+- `23:59 aM` --> must be either `AM`, `PM`, `am`, or `pm`
+- `23:59 Am` --> must be either `AM`, `PM`, `am`, or `pm`
+- `20:00AM` --> 24-hour format does not have the `AM` or `PM`
+- `23:15AM` --> 24-hour format does not have the `AM` or `PM`
+- `14:00pm` --> 24-hour format does not have `pm`
+- `23:550` --> too many digits in the minutes segment

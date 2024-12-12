@@ -40,11 +40,12 @@ date_regex = re.compile(r'''
     \b
     ''', re.VERBOSE | re.IGNORECASE)
 
-# time_regex = re.compile(r"\b(?:(?:0?\d|1\d|2[0-3]):[0-5]\d(?::[0-5]\d)?\s?(?:AM|PM|am|pm)?)\b")
-
-# 12-hour format first
-# 24-hour format next
-time_regex = re.compile(r"\b(?:(?:0?\d|1[0-2]):[0-5]\d(?::[0-5]\d)?\s?(?:AM|PM|am|pm)|(?:[01]?\d|2[0-3]):[0-5]\d(?::[0-5]\d)?)\b")
+time_regex = re.compile(
+     r"\b(?:"
+     r"(?:"
+     r"(?:0?\d|1[0-2]):[0-5]\d(?::[0-5]\d)?\s?(?:AM|PM|am|pm))" # 12-hour time with AM/PM
+     r"|(?:[01]?\d|2[0-3]):[0-5]\d(?::[0-5]\d)?)\b" # 24-hour time without AM/PM
+     )
 
 ###########################
 # GRAMMAR SECTION
@@ -88,17 +89,19 @@ date_grammar = CFG.fromstring("""
 """)
 
 time_grammar = CFG.fromstring("""
-    S -> Time | TimeSeconds
-    Time -> Hours Colon Minutes Space AMPM
-    TimeSeconds -> Hours Colon Minutes Colon Seconds Space AMPM
-    Hours -> TwoDigitHour | SingleDigitHour
+    S -> Time12 | Time24
+    Time12 -> Hour12 Colon Minutes Colon Seconds Space AMPM | Hour12 Colon Minutes Space AMPM
+    Time24 -> Hour24 Colon Minutes Colon Seconds | Hour24 Colon Minutes                              
+    Hour12 -> TwoDigitHour12 | SingleDigitHour
+    Hour24 -> TwoDigitHour24 | SingleDigitHour
     Minutes -> MinSecFirst SecondDigit
     Seconds -> MinSecFirst SecondDigit
     SingleDigitHour -> '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'
-    TwoDigitHour -> '0' SecondDigit | '1' '0' | '1' '1' | '1' '2' | '1' '3' | '1' '4' | '1' '5' | '1' '6' | '1' '7' | '1' '8' | '1' '9' | '2' '0' | '2' '1' | '2' '2' | '2' '3'
+    TwoDigitHour12 -> '0' SecondDigit | '1' '0' | '1' '1' | '1' '2'
+    TwoDigitHour24 -> '0' SecondDigit | '1' SecondDigit | '2' '0' | '2' '1' | '2' '2' | '2' '3'
     MinSecFirst -> '0' | '1' | '2' | '3' | '4' | '5' 
     SecondDigit -> '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'
-    AMPM -> 'A' 'M' | 'P' 'M' | 'a' 'm' | 'p' 'm' | 'a' 'M' | 'A' 'm' | 'p' 'M' | 'P' 'm' |
+    AMPM -> 'A' 'M' | 'P' 'M' | 'a' 'm' | 'p' 'm'
     Space -> ' ' |
     Colon -> ':'
 """)
@@ -221,7 +224,10 @@ with open('./IO/parseTrees.txt', 'w') as trees_output_file:
                 # print(phone_tree_text)
                 # print(tree)
                 trees_output_file.write(phone_tree_text)
-                trees_output_file.write(str(tree) + "\n")
+                trees_output_file.write("\n")
+                tree.pretty_print(stream=trees_output_file)
+                trees_output_file.write("\n")
+                # trees_output_file.write(str(tree) + "\n")
         except ValueError as e:
                 trees_output_file.write(f"Error parsing phone {phone_number} : {e}\n")
     
@@ -239,7 +245,10 @@ with open('./IO/parseTrees.txt', 'w') as trees_output_file:
                 # print(date_tree_text)
                 # print(tree)
                 trees_output_file.write(date_tree_text)
-                trees_output_file.write(str(tree) + "\n")
+                trees_output_file.write("\n")
+                tree.pretty_print(stream=trees_output_file)
+                trees_output_file.write("\n")
+                # trees_output_file.write(str(tree) + "\n")
         except ValueError as e:
                 trees_output_file.write(f"Error parsing date {date} : {e}\n")
 
@@ -257,7 +266,10 @@ with open('./IO/parseTrees.txt', 'w') as trees_output_file:
                 # print(time_tree_text)
                 # print(tree)
                 trees_output_file.write(time_tree_text)
-                trees_output_file.write(str(tree) + "\n")
+                trees_output_file.write("\n")
+                tree.pretty_print(stream=trees_output_file)
+                trees_output_file.write("\n")
+                # trees_output_file.write(str(tree) + "\n")
         except ValueError as e:
                 trees_output_file.write(f"Error parsing date {time} : {e}\n")
 
@@ -268,6 +280,20 @@ with open('./IO/parseTrees.txt', 'w') as trees_output_file:
 
 
 input_parse_sentences = [
+    "Call me on at 12:00:345 PM",
+    "Call me on at 00:00 PM",
+    "Call me on at 00:00 AM",
+    "Call me on at 10:15PM",
+    "Call me on at 10:15pM",
+    "Call me on at 10:15 pM",
+    "Call me on at 23:15AM",
+    "Call me on at 23:15 AM",
+    "Call me on at 23:15:25 PM",
+    "Call me on at 23:15:60 PM",
+    "Call me on at 23:15aM",
+    "Call me on at 23:15Pm",
+    "Call me on at 20:15AM",
+    "Call me on at 20:15 AM",
     "Call me on at 23:00   AM",
     "Call me on at 24:00 AM",
     "Call me on at 33:30 AM",
@@ -368,8 +394,11 @@ with open('./IO/parseTrees_samples.txt', 'w') as trees_output_samples_file:
                     # print(phone_tree_text)
                     # print(tree)
                     trees_output_samples_file.write(chart_parser_text)
+                    trees_output_samples_file.write("\n")
                     trees_output_samples_file.write(phone_tree_text)
-                    trees_output_samples_file.write(str(tree) + "\n")
+                    tree.pretty_print(stream=trees_output_samples_file)
+                    trees_output_samples_file.write("\n")
+                    # trees_output_samples_file.write(str(tree) + "\n")
         else:
             trees_output_samples_file.write("NO PHONE TREE\n")
         if date_matches:
@@ -379,8 +408,11 @@ with open('./IO/parseTrees_samples.txt', 'w') as trees_output_samples_file:
                     # print(date_tree_text)
                     # print(tree)
                     trees_output_samples_file.write(chart_parser_text)
+                    trees_output_samples_file.write("\n")
                     trees_output_samples_file.write(date_tree_text)
-                    trees_output_samples_file.write(str(tree) + "\n")
+                    tree.pretty_print(stream=trees_output_samples_file)
+                    trees_output_samples_file.write("\n")
+                    # trees_output_samples_file.write(str(tree) + "\n")
         else: 
              trees_output_samples_file.write("NO DATE TREE\n")
         if time_matches:
@@ -390,7 +422,10 @@ with open('./IO/parseTrees_samples.txt', 'w') as trees_output_samples_file:
                     # print(time_tree_text)
                     # print(tree)
                     trees_output_samples_file.write(chart_parser_text)
+                    trees_output_samples_file.write("\n")
                     trees_output_samples_file.write(time_tree_text)
-                    trees_output_samples_file.write(str(tree) + "\n")
+                    tree.pretty_print(stream=trees_output_samples_file)
+                    trees_output_samples_file.write("\n")
+                    # trees_output_samples_file.write(str(tree) + "\n")
         else:
             trees_output_samples_file.write("NO TIME TREE\n")
