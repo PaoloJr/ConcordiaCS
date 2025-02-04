@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS Product(
     type ENUM('pc', 'laptop', 'printer') NOT NULL
 );
 
-INSERT INTO Product VALUES ('dell', 1, 'laptop'), ('system76', 2, 'pc'), ('acer', 3, 'laptop'), ('hp', 4, 'laptop'), ('lenovo', 5, 'laptop'), ('framework', 6, 'laptop'), ('asrock', 7, 'pc'), ('hp', 20, 'printer'), ('brother', 21, 'printer'), ('xerox', 22, 'printer'), ('epson', 23, 'printer'), ('test', null, 'printer');
+INSERT INTO Product VALUES ('dell', 1, 'laptop'), ('system76', 2, 'pc'), ('acer', 3, 'laptop'), ('hp', 4, 'laptop'), ('lenovo', 5, 'laptop'), ('framework', 6, 'laptop'), ('asrock', 7, 'pc'), ('hp', 20, 'printer'), ('brother', 21, 'printer'), ('xerox', 22, 'printer'), ('epson', 23, 'printer'), ('test', 24, 'printer');
 
 CREATE TABLE IF NOT EXISTS PC (
 	model INTEGER UNSIGNED PRIMARY KEY,
@@ -65,3 +65,32 @@ DROP color;
 
 -- SELECT queries
 
+-- find manufacturers that build laptops with a hard disk of at least 100 GB
+-- SELECT maker
+-- FROM Product, Laptop
+-- WHERE Product.model=Laptop.model AND Laptop.hd>=100;
+
+SELECT DISTINCT maker
+FROM Product
+WHERE type = 'Laptop' AND model IN (SELECT model FROM Laptop WHERE hd >= 100);
+
+-- Find PC models with the hard disks that are of sizes 128 GB or 256 GB
+SELECT DISTINCT model
+FROM PC
+WHERE hd = 128 or hd = 256;
+
+-- find PC models with the hard disks of sizes 128 GB and 256 GB.
+
+-- find those hard disk sizes used in PCs and laptops
+SELECT hd
+FROM PC
+UNION
+SELECT hd
+FROM Laptop;
+
+-- find those hard disk sizes used in at least two different laptop models.
+SELECT hd
+FROM Laptop
+GROUP BY hd
+HAVING COUNT(DISTINCT model) >= 2;
+-- HAVING COUNT(model) >= 2;
