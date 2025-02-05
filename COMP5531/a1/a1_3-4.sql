@@ -59,6 +59,7 @@ ADD od ENUM('cd', 'dvd', 'none') DEFAULT 'none' NOT NULL;
 -- first defaults `od` to 'none'
 INSERT INTO Laptop VALUES (6, 3.2, 16, 256, 15.4, 1500, 'none'), (1, 2.0, 12, 128, 15.4, 1500, 'cd'), (4, 2.4, 24, 512, 16.1, 1250, 'dvd');
 
+-- delete `color` attribute from Printer table
 ALTER TABLE Printer
 DROP color;
 
@@ -66,20 +67,19 @@ DROP color;
 -- SELECT queries
 
 -- find manufacturers that build laptops with a hard disk of at least 100 GB
--- SELECT maker
--- FROM Product, Laptop
--- WHERE Product.model=Laptop.model AND Laptop.hd>=100;
-
 SELECT DISTINCT maker
 FROM Product
 WHERE type = 'Laptop' AND model IN (SELECT model FROM Laptop WHERE hd >= 100);
 
--- Find PC models with the hard disks that are of sizes 128 GB or 256 GB
+-- find PC models with the hard disks that are of sizes 128 GB or 256 GB
 SELECT DISTINCT model
 FROM PC
-WHERE hd = 128 or hd = 256;
+WHERE hd = 128 OR hd = 256;
 
 -- find PC models with the hard disks of sizes 128 GB and 256 GB.
+SELECT DISTINCT model
+FROM PC
+WHERE hd = 128 AND hd = 256;
 
 -- find those hard disk sizes used in PCs and laptops
 SELECT hd
@@ -88,9 +88,13 @@ UNION
 SELECT hd
 FROM Laptop;
 
+SELECT DISTINCT hd
+FROM PC
+WHERE hd IN (SELECT hd FROM Laptop);
+
 -- find those hard disk sizes used in at least two different laptop models.
 SELECT hd
 FROM Laptop
 GROUP BY hd
-HAVING COUNT(DISTINCT model) >= 2;
--- HAVING COUNT(model) >= 2;
+HAVING COUNT(model) >= 2;
+-- HAVING COUNT(DISTINCT model) >= 2;
