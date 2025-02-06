@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS Product(
     type ENUM('pc', 'laptop', 'printer') NOT NULL
 );
 
-INSERT INTO Product VALUES ('dell', 1, 'laptop'), ('system76', 2, 'pc'), ('acer', 3, 'laptop'), ('hp', 4, 'laptop'), ('lenovo', 5, 'laptop'), ('framework', 6, 'laptop'), ('asrock', 7, 'pc'), ('hp', 20, 'printer'), ('brother', 21, 'printer'), ('xerox', 22, 'printer'), ('epson', 23, 'printer'), ('test', 24, 'printer');
+INSERT INTO Product VALUES ('dell', 1, 'laptop'), ('system76', 2, 'pc'), ('acer', 3, 'laptop'), ('hp', 4, 'laptop'), ('lenovo', 5, 'laptop'), ('framework', 6, 'laptop'), ('asrock', 7, 'pc'), ('gigabyte', 8, 'pc'), ('apple', 9, 'pc'), ('hp', 20, 'printer'), ('brother', 21, 'printer'), ('xerox', 22, 'printer'), ('epson', 23, 'printer'), ('test', 24, 'printer');
 
 CREATE TABLE IF NOT EXISTS PC (
 	model INTEGER UNSIGNED PRIMARY KEY,
@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS PC (
     price INTEGER UNSIGNED NOT NULL
 );
 
-INSERT INTO PC VALUES (2, 2.15, 4, 256, 2500), (2, 2.15, 8, 256, 5500), (7, 3.95, 8, 512, 6500), (7, 3.95, 2, 128, 1500);
+INSERT INTO PC VALUES (2, 2.15, 4, 256, 2500), (7, 2.15, 8, 256, 5500), (8, 3.95, 8, 512, 6500), (9, 3.95, 2, 128, 1500);
 
 CREATE TABLE IF NOT EXISTS Laptop (
 	model INTEGER UNSIGNED PRIMARY KEY,
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS Printer (
     price INTEGER UNSIGNED NOT NULL
 );
 
-INSERT INTO Printer VALUES (10, 1, 'laser', 500), (11, 0, 'ink-jet', 250), (12, 0, 'ink-jet', 650), (13, 1, 'laser', 700), (14, 2, 'laser', 150);
+INSERT INTO Printer VALUES (20, 1, 'laser', 500), (21, 0, 'ink-jet', 250), (22, 0, 'ink-jet', 650), (23, 1, 'laser', 700), (24, 2, 'laser', 150);
 
 
 -- alterations
@@ -57,7 +57,7 @@ ADD od ENUM('cd', 'dvd', 'none') DEFAULT 'none' NOT NULL;
 -- MODIFY COLUMN column_name new_data_type;
 
 -- first defaults `od` to 'none'
-INSERT INTO Laptop VALUES (6, 3.2, 16, 256, 15.4, 1500, 'none'), (1, 2.0, 12, 128, 15.4, 1500, 'cd'), (4, 2.4, 24, 512, 16.1, 1250, 'dvd');
+INSERT INTO Laptop VALUES (15, 3.2, 16, 256, 15.4, 1500, 'none'), (16, 2.0, 12, 128, 15.4, 1500, 'cd'), (17, 2.4, 24, 512, 16.1, 1250, 'dvd');
 
 -- delete `color` attribute from Printer table
 ALTER TABLE Printer
