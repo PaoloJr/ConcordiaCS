@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS Product(
     type ENUM('pc', 'laptop', 'printer') NOT NULL
 );
 
-INSERT INTO Product VALUES ('dell', 1, 'laptop'), ('system76', 2, 'pc'), ('acer', 3, 'laptop'), ('hp', 4, 'laptop'), ('lenovo', 5, 'laptop'), ('framework', 6, 'laptop'), ('asrock', 7, 'pc'), ('gigabyte', 8, 'pc'), ('apple', 9, 'pc'), ('hp', 20, 'printer'), ('brother', 21, 'printer'), ('xerox', 22, 'printer'), ('epson', 23, 'printer'), ('test', 24, 'printer');
+INSERT INTO Product VALUES ('dell', 1, 'laptop'), ('dell', 2, 'pc'), ('lenovo', 3, 'laptop'), ('lenovo', 4, 'laptop'), ('lenovo', 5, 'laptop'), ('apple', 6, 'laptop'), ('apple', 7, 'pc'), ('apple', 8, 'pc'), ('apple', 9, 'pc'),('framework', 10, 'laptop'), ('hp', 20, 'printer'), ('brother', 21, 'printer'), ('xerox', 22, 'printer'), ('epson', 23, 'printer'), ('test', 24, 'printer');
 
 CREATE TABLE IF NOT EXISTS PC (
 	model INTEGER UNSIGNED PRIMARY KEY,
@@ -36,10 +36,11 @@ CREATE TABLE IF NOT EXISTS Laptop (
     screen DECIMAL(3,1) NOT NULL,
     price INTEGER UNSIGNED NOT NULL,
     CHECK (speed > 0),
-    CHECK (screen > 0)      
+    CHECK (screen > 0),
+    FOREIGN KEY (model) REFERENCES Product(model)
 );
 
-INSERT INTO Laptop VALUES (1, 2.05, 8, 512, 15.4, 2000), (3, 1.85, 12, 128, 13.3, 750), (4, 2.45, 16, 256, 16.1, 1000), (5, 2.25, 12, 512, 12.2, 1200), (6, 3.25, 32, 512, 17.1, 2000);
+INSERT INTO Laptop VALUES (1, 2.05, 8, 512, 15.4, 2000), (3, 1.85, 12, 128, 13.3, 750), (4, 2.45, 16, 256, 16.1, 1000);
 
 CREATE TABLE IF NOT EXISTS Printer (
     model INTEGER UNSIGNED PRIMARY KEY,
@@ -60,7 +61,7 @@ ADD od ENUM('cd', 'dvd', 'none') DEFAULT 'none' NOT NULL;
 -- MODIFY COLUMN column_name new_data_type;
 
 -- first defaults `od` to 'none'
-INSERT INTO Laptop VALUES (15, 3.2, 16, 256, 15.4, 1500, 'none'), (16, 2.0, 12, 128, 15.4, 1500, 'cd'), (17, 2.4, 24, 512, 16.1, 1250, 'dvd');
+INSERT INTO Laptop VALUES (5, 2.25, 12, 512, 12.2, 1200, 'none'), (6, 3.25, 32, 512, 17.1, 2000, 'cd'), (10, 2.4, 24, 512, 16.1, 1250, 'dvd');
 
 -- delete `color` attribute from Printer table
 ALTER TABLE Printer
