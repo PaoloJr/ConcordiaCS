@@ -20,7 +20,8 @@ _some libraries may be needed_
 - `gcc-multilib` 
 
 [Linux SysCall Table for x86-64](https://blog.rchapman.org/posts/Linux_System_Call_Table_for_x86_64/) \
-[Linux SysCall Table for x86-32](https://syscalls32.paolostivanin.com/)
+[Linux SysCall Table for x86-32](https://syscalls32.paolostivanin.com/) \
+[Linux SysCall Table - Chromium](https://www.chromium.org/chromium-os/developer-library/reference/linux-constants/syscalls/)
 
 _**NASM**_ \
 _for building ELF32 object file with debugging details `.o`_ \
