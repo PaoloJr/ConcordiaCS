@@ -39,7 +39,7 @@ class Token {
         Token& operator = (const Token& other);
 
         /* 
-        move ctor transfers ownership of the `other.text` to `this` object, leaving `other`
+        move ctor; transfers ownership of the `other.text` to `this` object, leaving `other`
         as valid empty token (pointing to "\0")
         */
         Token(Token&& other) noexcept;
@@ -60,7 +60,7 @@ class Token {
         size_t length() const;
 
         // writes the token `text` to the output stream `os`
-        void print(std::ostream&) const;
+        void print(std::ostream& os) const;
 
         // performs case-sensitive comparison using `std::strcmp`. returns `<0`, `0`, or `>0`
         int compare(const Token& other) const;
