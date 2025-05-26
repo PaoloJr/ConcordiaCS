@@ -1,5 +1,6 @@
 #ifndef INDEXEDTOKEN_H
 #define INDEXEDTOKEN_H
+
 #include "Token.h"
 #include "IntList.h"
 #include <cstddef> // for `size_t` type
@@ -10,6 +11,7 @@ purpose:
 aggregates a token and its list of line numbers (IntList),
 representing a complete index for the token
 */
+
 class IndexedToken {
     private:
         // the token
@@ -46,7 +48,7 @@ class IndexedToken {
         // returns `token` by `const Token&`
         const Token& getToken() const;
 
-        // returns `lines` by `cons IntList&`
+        // returns `lines` by `const IntList&`
         const IntList& getLineNumbers() const;
 
         // writes `token` followed by `lines` to `os`

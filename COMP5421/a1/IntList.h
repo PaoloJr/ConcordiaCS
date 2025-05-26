@@ -1,5 +1,6 @@
 #ifndef INTLIST_H
 #define INTLIST_H
+
 #include <cstddef> // for `size_t` type
 #include <ostream> // for `std::ostream`
 
@@ -8,6 +9,7 @@ purpose:
 to represent and manage a dynamically growing sequence of integers,
 specifically intended for storing line numbers associated with a token
 */
+
 class IntList {
     private:
         // pointer to the dynamic array

@@ -1,6 +1,9 @@
 #ifndef TOKEN_H
 #define TOKEN_H
 
+#include <cstddef> // for `size_t` type
+#include <ostream> // for `std::ostream`
+
 /*
 purpose:
 to represent a single lexical token (a word or sequence of non-whitespace characters)
@@ -61,7 +64,6 @@ class Token {
 
         // performs case-sensitive comparison using `std::strcmp`. returns `<0`, `0`, or `>0`
         int compare(const Token& other) const;
-
 };
 
 #endif

@@ -4,7 +4,13 @@
 #include "DLList.h"
 #include "Token.h"
 
-// manages entire text file indexing process
+/*
+purpose:
+to maange the complete text indexing workflow, storing the resulting
+index as an array of 27 alphabetically sorted sections, each implemented
+using a `DLList`
+*/
+
 class Indexer {
     public:
         static const int NUM_SECTIONS = 27;
