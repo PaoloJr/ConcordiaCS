@@ -10,7 +10,7 @@ Token::~Token() {
     delete[] text;
 }
 
-Token::Token(const char* str = "") {
+Token::Token(const char* str) { // removed the `= ""` in the parameter
     if (str == "" || str == nullptr) {
         text = new char[1];
         text[0] = '\0';

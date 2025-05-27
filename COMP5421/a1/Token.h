@@ -30,7 +30,7 @@ class Token {
         parameterized constructor; handles null or empty `str`
         by allocating "\0". otherwise, performs a deep copy of `str`
         */
-        Token(const char* str = "");
+        Token(const char* str); // removed the `= ""` in the parameter
 
         // copy ctor; deep copies `other.text` to text using `strcpy`
         Token(const Token& other);
