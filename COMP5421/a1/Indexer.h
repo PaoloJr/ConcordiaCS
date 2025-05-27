@@ -6,7 +6,7 @@
 
 /*
 purpose:
-to maange the complete text indexing workflow, storing the resulting
+to manage the complete text indexing workflow, storing the resulting
 index as an array of 27 alphabetically sorted sections, each implemented
 using a `DLList`
 */
@@ -17,18 +17,21 @@ class Indexer {
 
         // default initial ctor; initializes 27 empty sections
         Indexer();
+
         // destructor = default
         ~Indexer() = default;
 
         // copy ctor, = delete, for efficiency
-        Indexer(const Indexer& source);
+        Indexer(const Indexer& source) = delete;
+        
         // copy assignment, = delete, for efficiency
-        Indexer& operator = (const Indexer& source);
+        Indexer& operator = (const Indexer& source) = delete;
         
         // move ctor, = default, for efficiency
-        Indexer(Indexer&& source) noexcept;
+        Indexer(Indexer&& source) noexcept = default;
+        
         // move assignment, = default, for efficiency
-        Indexer& operator = (Indexer&& source) noexcept;
+        Indexer& operator = (Indexer&& source) noexcept = default;
 
         /* If filename does not open successfully,
         displays an error message and returns;
@@ -52,7 +55,7 @@ class Indexer {
         void displayAll() const;
         
         // display tokens of a specified length
-        // doc shows listByLength?
+        // doc shows listByLength
         void searchByLength(size_t length) const;
         
         // display token in a specified section

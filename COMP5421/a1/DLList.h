@@ -101,7 +101,7 @@ class DLList {
         bool isEmpty() const;
 
         // calls `print(os) on `data` stored in each node
-        void print(std::ostream&) const;
+        void print(std::ostream& os) const;
 };
 
 #endif

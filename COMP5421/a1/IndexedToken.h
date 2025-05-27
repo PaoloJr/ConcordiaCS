@@ -20,6 +20,9 @@ class IndexedToken {
         IntList lines;
 
     public:
+        // default ctor
+        // doc did not show any default ctor
+        IndexedToken() = default;
         /*
         parameterized ctors; each initialize the `token` and add
         the first `lineNumber` to `lines` list
