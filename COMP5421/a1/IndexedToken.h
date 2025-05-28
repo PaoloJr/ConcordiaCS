@@ -21,7 +21,7 @@ class IndexedToken {
 
     public:
         // default ctor
-        // doc did not show any default ctor
+        // doc did not show any default ctor???
         IndexedToken() = default;
         /*
         parameterized ctors; each initialize the `token` and add

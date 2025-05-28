@@ -28,7 +28,89 @@ DLList::~DLList() {
     clear();
 }
 
-// other special member functions
+DLList::DLList(const DLList& dll) {
+    nodeCount = 0; // no nodes yet
+    head = nullptr; // empty list, for now
+    tail = nullptr; // initialize tail 
+
+    if (dll.isEmpty()) return;
+
+    // with at lease one node
+    Node* current = dll.head;
+    head = new Node (current->data, nullptr, nullptr);
+    nodeCount = 1;
+    tail = head; // for a single node
+
+    // copy remaining nodes
+    Node* lastNode = head;
+    current = current->next; // move to next node
+    while(current) {
+        Node* newNode = new Node(current->data, nullptr, nullptr);
+        lastNode->next = newNode;
+        newNode->prev = lastNode;
+        lastNode = newNode; // update lastNode
+        tail = newNode; // update tail
+        current = current->next; // move to next node
+        nodeCount++;
+    }
+}
+
+DLList& DLList::operator = (const DLList& dll) {
+    if (this != &dll) { // ex: this = list1, dll = list2
+        clear(); // clear list1 existing nodes
+
+        nodeCount = 0; // no nodes yet
+        head = nullptr; // empty list, for now
+        tail = nullptr; // initialize tail 
+
+        if (dll.isEmpty()) return *this;
+
+        // with at lease one node
+        Node* current = dll.head;
+        head = new Node (current->data, nullptr, nullptr);
+        nodeCount = 1;
+        // for a single node
+        tail = head;
+
+        // copy remaining nodes
+        Node* lastNode = head;
+        current = current->next; // move to next node
+        while(current) {
+            Node* newNode = new Node(current->data, nullptr, nullptr);
+            lastNode->next = newNode;
+            newNode->prev = lastNode;
+            lastNode = newNode; // update lastNode
+            tail = newNode; // update tail
+            current = current->next; // move to next node
+            nodeCount++;
+        }
+    }
+    return *this;
+}
+
+DLList::DLList(DLList&& dll) noexcept {
+    head = dll.head;
+    tail = dll.tail;
+    nodeCount = dll.nodeCount;
+    
+    dll.head = nullptr;
+    dll.tail = nullptr;
+    dll.nodeCount = 0;
+}
+
+DLList& DLList::operator = (DLList&& dll) noexcept {
+    if (this != &dll) {
+        clear();
+        head = dll.head;
+        tail = dll.tail;
+        nodeCount = dll.nodeCount;
+        
+        dll.head = nullptr;
+        dll.tail = nullptr;
+        dll.nodeCount = 0;
+    }
+    return *this;
+}
 
 void DLList::addBefore(IndexedToken data, size_t pos) {
     if (pos > nodeCount) {
