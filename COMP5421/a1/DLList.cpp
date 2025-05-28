@@ -36,8 +36,19 @@ void DLList::addBefore(IndexedToken data, size_t pos) {
     }
     if (isEmpty() || pos == 0) {
         Node* newNode = new Node(data, nullptr, head);
+        if (head) {
+            head->prev = newNode;
+        } else {
+            tail = newNode;
+        }
+        head = newNode;
+    } else {
+        Node* currentNode = getNodeAt(pos);
+        Node* newNode = new Node(data, currentNode->prev, currentNode);
+        currentNode->prev->next = newNode;
+        currentNode->prev = newNode; 
     }
-    // todo
+    nodeCount++;
 }
 
 bool DLList::remove(size_t pos) {
@@ -66,11 +77,22 @@ bool DLList::remove(size_t pos) {
 }
 
 const IndexedToken& DLList::getIndexedToken(size_t pos) {
-
+    if (pos >= nodeCount) {
+        throw std::out_of_range("Position out of range");
+    }
+    return getNodeAt(pos)->data;
 }
 
 const IndexedToken& DLList::getIndexedToken(size_t pos) const {
-
+    if (pos >= nodeCount) {
+        throw std::out_of_range("Position out of range");
+    }
+    // to get const version of IndexedToken&
+    Node* current = head;
+    for (size_t i = 0; i < pos; i++) {
+        current = current->next;
+    }
+    return current->data;
 }
 
 void DLList::clear() {
@@ -92,6 +114,13 @@ bool DLList::isEmpty() const {
 }
 
 void DLList::print(std::ostream& os) const {
-// todo
+    os << '[';
+    for (Node* temp = head; temp != nullptr; temp = temp->next) {
+        temp->data.print(os);
+        if (temp->next != nullptr) {
+            os << ' ';
+        }
+    }
+    os << ']';
 }
 
