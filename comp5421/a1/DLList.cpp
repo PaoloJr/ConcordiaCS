@@ -1,7 +1,9 @@
 #include "DLList.h"
-#include <iostream> // for std::
+#include <iostream> // for std::cout
+using namespace std; // for cout
 
 DLList::Node::Node(const IndexedToken& data, Node* prv, Node* nxt) {
+    cout << "Node: node ctor called\n";
     this->data = data;
     this->next = nxt;
     this->prev = prv;
@@ -19,16 +21,19 @@ DLList::Node* DLList::getNodeAt(size_t pos) {
 }
 
 DLList::DLList() {
+    cout << "DLList: default ctor called\n";
     head = nullptr;
     tail = nullptr;
     nodeCount = 0;
 }
 
 DLList::~DLList() {
+    cout << "DLList: destructor called\n";
     clear();
 }
 
 DLList::DLList(const DLList& dll) {
+    cout << "DLList: copy ctor called\n";
     nodeCount = 0; // no nodes yet
     head = nullptr; // empty list, for now
     tail = nullptr; // initialize tail 
@@ -56,6 +61,7 @@ DLList::DLList(const DLList& dll) {
 }
 
 DLList& DLList::operator = (const DLList& dll) {
+    cout << "DLList: copy assignment operator called\n";
     if (this != &dll) { // ex: this = list1, dll = list2
         clear(); // clear list1 existing nodes
 
@@ -89,6 +95,7 @@ DLList& DLList::operator = (const DLList& dll) {
 }
 
 DLList::DLList(DLList&& dll) noexcept {
+    cout << "DLList: move ctor called\n";
     head = dll.head;
     tail = dll.tail;
     nodeCount = dll.nodeCount;
@@ -99,6 +106,7 @@ DLList::DLList(DLList&& dll) noexcept {
 }
 
 DLList& DLList::operator = (DLList&& dll) noexcept {
+    cout << "DLList: move assignment operator called\n";
     if (this != &dll) {
         clear();
         head = dll.head;

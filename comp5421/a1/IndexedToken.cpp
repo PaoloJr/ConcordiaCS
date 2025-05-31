@@ -2,8 +2,6 @@
 #include "IntList.h"
 #include <cstring>
 
-// default ctor in header file
-
 IndexedToken::IndexedToken(const char* text, int lineNumber) {
     token = text;
     lines.append(lineNumber);
@@ -14,15 +12,11 @@ IndexedToken::IndexedToken(Token inputToken, int lineNumber) {
     lines.append(lineNumber);
 }
 
-IndexedToken::IndexedToken(const IndexedToken& it) = default;
+/* 
+other special member function have specifiers `= default`
+they are in `Indexer.h` file
+*/
 
-IndexedToken::IndexedToken(IndexedToken&& it) noexcept = default;
-
-IndexedToken& IndexedToken::operator = (const IndexedToken& it) = default;
-
-IndexedToken& IndexedToken::operator = (IndexedToken&& rhs) = default;
-
-IndexedToken::~IndexedToken() = default;
 
 void IndexedToken::appendLineNumber(size_t lineNumber) {
     lines.append(lineNumber);

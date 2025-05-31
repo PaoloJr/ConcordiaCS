@@ -58,7 +58,7 @@ class Indexer {
         // doc shows listByLength???
         void searchByLength(size_t length) const;
         
-        // display token in a specified section
+        // display tokens in a specified section
         void displaySection(char section) const;
         
     private:

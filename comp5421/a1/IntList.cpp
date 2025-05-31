@@ -1,12 +1,16 @@
 #include "IntList.h"
+#include <iostream> // for std::cout
+using namespace std; // for cout
 
 IntList::IntList() {
+    cout << "IntList: default ctor called\n";
     capacity = 0;
     size = 0;
     pData = nullptr;
 }
 
 IntList::IntList(const IntList& other) {
+    cout << "IntList: copy ctor called\n";
     this->capacity = other.capacity;
     this->size = other.size;
     
@@ -22,6 +26,7 @@ IntList::IntList(const IntList& other) {
 }
 
 IntList& IntList::operator = (const IntList& other) {
+    cout << "IntList: copy assignment operator called\n";
     if (this != &other) {
         delete[] pData;
         this->capacity = other.capacity;
@@ -40,6 +45,7 @@ IntList& IntList::operator = (const IntList& other) {
 }
 
 IntList::IntList(IntList&& other) noexcept {
+    cout << "IntList: move ctor called\n";
     pData = other.pData;
     other.pData = nullptr;
     other.capacity = 0;
@@ -47,6 +53,7 @@ IntList::IntList(IntList&& other) noexcept {
 }
 
 IntList& IntList::operator = (IntList&& other) {
+    cout << "IntList: move assignment operator called\n";
     if (this != &other) {
         delete[] pData;
         pData = other.pData;
@@ -61,6 +68,7 @@ IntList& IntList::operator = (IntList&& other) {
 }
 
 IntList::~IntList() {
+    cout << "IntList: destructor called ";
     delete[] pData;
 }
 
