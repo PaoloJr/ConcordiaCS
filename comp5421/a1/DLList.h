@@ -87,7 +87,7 @@ class DLList {
         returns a reference to `data` at position `pos` (0-based,
         throws `std::out_of_range)
         */
-        const IndexedToken& getIndexedToken(size_t pos);
+        IndexedToken& getIndexedToken(size_t pos);
 
         /* 
         returns a `const` reference to `data` at position `pos` (0-based,

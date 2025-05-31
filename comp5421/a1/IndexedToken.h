@@ -22,7 +22,8 @@ class IndexedToken {
     public:
         // default ctor
         // doc did not show any default ctor???
-        IndexedToken();
+        IndexedToken() = default;
+        
         /*
         parameterized ctors; each initialize the `token` and add
         the first `lineNumber` to `lines` list
@@ -31,19 +32,19 @@ class IndexedToken {
         IndexedToken(Token token, int lineNumber);
 
         // copy ctor; = default
-        IndexedToken(const IndexedToken& it);
+        IndexedToken(const IndexedToken& it) = default;
 
         // move constructor; = default
-        IndexedToken(IndexedToken&& it) noexcept;
+        IndexedToken(IndexedToken&& it) noexcept = default;
 
         // copy assignment operator; = default
-        IndexedToken& operator = (const IndexedToken& it);
+        IndexedToken& operator = (const IndexedToken& it) = default;
 
         // move assignment operator; = default
-        IndexedToken& operator = (IndexedToken&& rhs);
+        IndexedToken& operator = (IndexedToken&& rhs) = default;
 
         // destructor; = default
-        ~IndexedToken();
+        ~IndexedToken() = default;
 
         // appends `lineNumber` to the `lines` list
         void appendLineNumber(size_t lineNumber);

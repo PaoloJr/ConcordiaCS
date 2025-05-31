@@ -69,7 +69,7 @@ class Indexer {
         /*
         Locates the correct section and checks if the
         supplied token already exists in that sec-
-        tion; if it does, calls addLine(line) on the
+        tion; if it does, calls appendLineNumber(lineNumber) on the
         IndexedToken that stores the token; other-
         wise, constructs a brand new IndexedToken
         and inserts it in sorted order into the section.

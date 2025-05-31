@@ -17,7 +17,6 @@ other special member function have specifiers `= default`
 they are in `Indexer.h` file
 */
 
-
 void IndexedToken::appendLineNumber(size_t lineNumber) {
     lines.append(lineNumber);
 }

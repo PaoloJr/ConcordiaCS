@@ -166,7 +166,7 @@ bool DLList::remove(size_t pos) {
     return true;
 }
 
-const IndexedToken& DLList::getIndexedToken(size_t pos) {
+IndexedToken& DLList::getIndexedToken(size_t pos) {
     if (pos >= nodeCount) {
         throw std::out_of_range("Position out of range");
     }
