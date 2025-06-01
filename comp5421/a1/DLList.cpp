@@ -207,9 +207,9 @@ bool DLList::isEmpty() const {
 
 void DLList::print(std::ostream& os) const {
     for (Node* temp = head; temp != nullptr; temp = temp->next) {
-        temp->data.print(os);
-        if (temp->next != nullptr) {
-            os << ' ';
+        if (temp != nullptr) {
+            os << "      ";
+            temp->data.print(os);
         }
     }
 }

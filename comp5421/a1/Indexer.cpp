@@ -18,14 +18,14 @@ void Indexer::processTextFile(const std::string& filename) {
     ifstream file(filename.c_str());
 
     if (!file.is_open()) {
-        cerr << "error opening file: " << filename << "\n";
-        exit(1);
+        cerr << "File did not open: " << filename << "\n";
+        return;
     }
 
     clear();
     
     cout << "Indexing file: " << filename << "...\n";
-    int lineNumber = 0;
+    int lineNumber = 1;
     string line;
     // read file line by line
     while(getline(file, line)) {
@@ -123,11 +123,10 @@ bool Indexer::isEmpty() const {
 }
 
 void Indexer::print(std::ostream& os) const {
-    os << "--- Complete Index --- {\n";
+    os << "\n===== Complete Index =====\n\n";
     bool found = false;
 
-    for (size_t i = 0; i < NUM_SECTIONS; i++) {
-        
+    for (size_t i = 0; i < NUM_SECTIONS; i++) {    
         if (!index[i].isEmpty()) {
             char sectionChar;
             
@@ -138,10 +137,10 @@ void Indexer::print(std::ostream& os) const {
             }
 
             if (found) {
-                os << ",\n";
+                os << "\n";
             }
             found = true;
-            os << "--- Section '" << sectionChar << "' --- \n";
+            os << "----- Section '" << sectionChar << "' ----- \n";
             // call each section's print method
             index[i].print(os);
         }
@@ -150,7 +149,7 @@ void Indexer::print(std::ostream& os) const {
         os << " (empty index)";
     }
 
-    os << "\n";
+    os << "\n===== Done =====\n";
 }
 
 void Indexer::displayAll() const {

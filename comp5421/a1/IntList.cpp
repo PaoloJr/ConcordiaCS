@@ -125,7 +125,7 @@ void IntList::print(std::ostream& os) const {
     for (size_t i = 0; i < size; i++) {
         os << pData[i];
         if (i < size - 1) {
-            os << " ";
+            os << ", ";
         }
     }
     os << "\n";

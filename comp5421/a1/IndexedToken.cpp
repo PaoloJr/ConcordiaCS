@@ -31,7 +31,7 @@ const IntList& IndexedToken::getLineNumbers() const {
 
 void IndexedToken::print(std::ostream& os) const {
     token.print(os);
-    os << ", ";
+    os << ": ";
     lines.print(os);
 }
 
