@@ -1,5 +1,5 @@
-CXX = g++
-CXXFLAGS = -std=c++11 -Wall
+COMP = g++
+FLAGS = -std=c++11 -Wall
 
 SOURCES = Token.cpp IntList.cpp IndexedToken.cpp DLList.cpp Indexer.cpp IndexerUI.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
