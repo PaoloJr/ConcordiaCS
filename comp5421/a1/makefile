@@ -1,15 +1,21 @@
 COMP = g++
-FLAGS = -std=c++11 -Wall
-
-SOURCES = Token.cpp IntList.cpp IndexedToken.cpp DLList.cpp Indexer.cpp IndexerUI.cpp
-OBJECTS = $(SOURCES:.cpp=.o)
+FLAGS = -std=c++11 -Wall -g
+SOURCES = Token.cpp IntList.cpp IndexedToken.cpp DLList.cpp Indexer.cpp IndexerUI.cpp main.cpp
 TARGET = TextIndexer
 
-$(TARGET): $(OBJECTS)
-    $(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJECTS)
+# default target
+all: $(TARGET)
 
-%.o: %.cpp
-    $(CXX) $(CXXFLAGS) -c $<
+# compile directly from source files to executable
+$(TARGET): $(SOURCES)
+	$(COMP) $(FLAGS) -o $(TARGET) $(SOURCES)
 
+# clean up
 clean:
-    rm -f $(OBJECTS) $(TARGET)
+	rm -f $(TARGET)
+
+# run program
+run: $(TARGET)
+	./$(TARGET)
+
+.PHONY: all clean run

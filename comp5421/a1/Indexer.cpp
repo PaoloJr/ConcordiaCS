@@ -24,7 +24,7 @@ void Indexer::processTextFile(const std::string& filename) {
 
     clear();
     
-    cout << "Processing file contents below: \n";
+    cout << "Indexing file: " << filename << "...\n";
     int lineNumber = 0;
     string line;
     // read file line by line
@@ -43,6 +43,9 @@ void Indexer::processTextFile(const std::string& filename) {
         }
         lineNumber++;
     }
+    int linesProcessed = lineNumber;
+    int tokensProcessed = getTokenCount();
+    cout << "File indexed successfully " << "(" << linesProcessed << " lines, " << tokensProcessed << " tokens processed)\n";
     file.close();
 }
 
@@ -120,7 +123,7 @@ bool Indexer::isEmpty() const {
 }
 
 void Indexer::print(std::ostream& os) const {
-    os << "Index: {\n";
+    os << "--- Complete Index --- {\n";
     bool found = false;
 
     for (size_t i = 0; i < NUM_SECTIONS; i++) {
@@ -138,17 +141,16 @@ void Indexer::print(std::ostream& os) const {
                 os << ",\n";
             }
             found = true;
-            os << " Section '" << sectionChar << "': [";
+            os << "--- Section '" << sectionChar << "' --- \n";
             // call each section's print method
             index[i].print(os);
-            os << "]";
         }
     }
     if (!found) {
         os << " (empty index)";
     }
 
-    os << "\n}\n";
+    os << "\n";
 }
 
 void Indexer::displayAll() const {
@@ -208,4 +210,13 @@ void Indexer::displaySection(char section) const {
     } else {
         index[sectionIndex].print(cout);
     }
+}
+
+// added for token count
+int Indexer::getTokenCount() const {
+    int count = 0;
+    for (size_t i = 0; i < NUM_SECTIONS; i++) {
+        count += index[i].size();
+    }
+    return count;
 }

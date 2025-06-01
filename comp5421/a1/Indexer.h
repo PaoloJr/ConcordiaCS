@@ -60,6 +60,9 @@ class Indexer {
         
         // display tokens in a specified section
         void displaySection(char section) const;
+
+        // added for token count
+        int getTokenCount() const;
         
     private:
         // stores index; all 27 sections

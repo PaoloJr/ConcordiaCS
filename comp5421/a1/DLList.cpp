@@ -3,7 +3,6 @@
 using namespace std; // for cout
 
 DLList::Node::Node(const IndexedToken& data, Node* prv, Node* nxt) {
-    cout << "Node: node ctor called\n";
     this->data = data;
     this->next = nxt;
     this->prev = prv;
@@ -11,6 +10,7 @@ DLList::Node::Node(const IndexedToken& data, Node* prv, Node* nxt) {
 
 DLList::Node* DLList::getNodeAt(size_t pos) {
     if (pos >= nodeCount) {
+        cout << "getNodeAt: Position out of range: pos=" << pos << ", nodeCount=" << nodeCount;
         throw std::out_of_range("Position out of range");
     }
     Node* current = head;
@@ -21,31 +21,28 @@ DLList::Node* DLList::getNodeAt(size_t pos) {
 }
 
 DLList::DLList() {
-    cout << "DLList: default ctor called\n";
     head = nullptr;
     tail = nullptr;
     nodeCount = 0;
 }
 
 DLList::~DLList() {
-    cout << "DLList: destructor called\n";
     clear();
 }
 
 DLList::DLList(const DLList& dll) {
-    cout << "DLList: copy ctor called\n";
     nodeCount = 0; // no nodes yet
     head = nullptr; // empty list, for now
     tail = nullptr; // initialize tail 
-
+    
     if (dll.isEmpty()) return;
-
+    
     // with at lease one node
     Node* current = dll.head;
     head = new Node (current->data, nullptr, nullptr);
     nodeCount = 1;
     tail = head; // for a single node
-
+    
     // copy remaining nodes
     Node* lastNode = head;
     current = current->next; // move to next node
@@ -61,23 +58,22 @@ DLList::DLList(const DLList& dll) {
 }
 
 DLList& DLList::operator = (const DLList& dll) {
-    cout << "DLList: copy assignment operator called\n";
     if (this != &dll) { // ex: this = list1, dll = list2
         clear(); // clear list1 existing nodes
-
+        
         nodeCount = 0; // no nodes yet
         head = nullptr; // empty list, for now
         tail = nullptr; // initialize tail 
-
+        
         if (dll.isEmpty()) return *this;
-
+        
         // with at lease one node
         Node* current = dll.head;
         head = new Node (current->data, nullptr, nullptr);
         nodeCount = 1;
         // for a single node
         tail = head;
-
+        
         // copy remaining nodes
         Node* lastNode = head;
         current = current->next; // move to next node
@@ -95,7 +91,6 @@ DLList& DLList::operator = (const DLList& dll) {
 }
 
 DLList::DLList(DLList&& dll) noexcept {
-    cout << "DLList: move ctor called\n";
     head = dll.head;
     tail = dll.tail;
     nodeCount = dll.nodeCount;
@@ -106,7 +101,6 @@ DLList::DLList(DLList&& dll) noexcept {
 }
 
 DLList& DLList::operator = (DLList&& dll) noexcept {
-    cout << "DLList: move assignment operator called\n";
     if (this != &dll) {
         clear();
         head = dll.head;
@@ -122,9 +116,10 @@ DLList& DLList::operator = (DLList&& dll) noexcept {
 
 void DLList::addBefore(IndexedToken data, size_t pos) {
     if (pos > nodeCount) {
+        cout << "addBefore: Position out of range: pos=" << pos << ", nodeCount=" << nodeCount;
         throw std::out_of_range("Position out of range");
     }
-    if (isEmpty() || pos == 0) {
+    if (isEmpty() || pos == 0) {  // add to front of the list
         Node* newNode = new Node(data, nullptr, head);
         if (head) {
             head->prev = newNode;
@@ -132,17 +127,22 @@ void DLList::addBefore(IndexedToken data, size_t pos) {
             tail = newNode;
         }
         head = newNode;
-    } else {
+    } else if (pos == nodeCount) { // add to end of list
+        Node* newNode = new Node(data, tail, nullptr);
+        tail->next = newNode;
+        tail = newNode;
+    } else { // add to middle of list
         Node* currentNode = getNodeAt(pos);
         Node* newNode = new Node(data, currentNode->prev, currentNode);
         currentNode->prev->next = newNode;
-        currentNode->prev = newNode; 
+        currentNode->prev = newNode;         
     }
     nodeCount++;
 }
 
 bool DLList::remove(size_t pos) {
     if (pos >= nodeCount) {
+        cout << "remove: Position out of range: pos=" << pos << ", nodeCount=" << nodeCount;
         throw std::out_of_range("Position out of range");
     }
     Node* nodeToRemove = getNodeAt(pos);
@@ -168,6 +168,7 @@ bool DLList::remove(size_t pos) {
 
 IndexedToken& DLList::getIndexedToken(size_t pos) {
     if (pos >= nodeCount) {
+        cout << "getIndexedToken: Position out of range: pos=" << pos << ", nodeCount=" << nodeCount;
         throw std::out_of_range("Position out of range");
     }
     return getNodeAt(pos)->data;
@@ -175,6 +176,7 @@ IndexedToken& DLList::getIndexedToken(size_t pos) {
 
 const IndexedToken& DLList::getIndexedToken(size_t pos) const {
     if (pos >= nodeCount) {
+        cout << "getIndexedToken_const: Position out of range: pos=" << pos << ", nodeCount=" << nodeCount;
         throw std::out_of_range("Position out of range");
     }
     // to get const version of IndexedToken&
@@ -204,13 +206,11 @@ bool DLList::isEmpty() const {
 }
 
 void DLList::print(std::ostream& os) const {
-    os << '[';
     for (Node* temp = head; temp != nullptr; temp = temp->next) {
         temp->data.print(os);
         if (temp->next != nullptr) {
             os << ' ';
         }
     }
-    os << ']';
 }
 

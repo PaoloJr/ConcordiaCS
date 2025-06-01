@@ -4,18 +4,15 @@
 using namespace std; // for cout
 
 Token::Token() {
-    cout << "Token.cpp: default ctor called\n";
     text = new char[1];
     text[0] = '\0';
 }
 
 Token::~Token() {
-    cout << "Token.cpp: destructor called\n";
     delete[] text;
 }
 
 Token::Token(const char* str) { // removed the `= ""` in the parameter
-    cout << "Token.cpp: parameterized ctor called\n";
     if (str == nullptr || strcmp(str, "") == 0) {
         text = new char[1];
         text[0] = '\0';
@@ -28,13 +25,11 @@ Token::Token(const char* str) { // removed the `= ""` in the parameter
 }
 
 Token::Token(const Token& other) {
-    cout << "Token.cpp: copy ctor called\n";
     text = new char[strlen(other.text) + 1];
     strcpy(text, other.text);
 }
 
 Token& Token::operator=(const Token& other) {
-    cout << "Token.cpp: copy assignment operator called\n";
     if (this != &other) {
         delete[] text;
         text = new char[strlen(other.text) + 1];
@@ -44,14 +39,12 @@ Token& Token::operator=(const Token& other) {
 }
 
 Token::Token(Token&& other) noexcept {
-    cout << "Token.cpp: move ctor called\n";
     text = other.text;
     other.text = new char[1];
     other.text[0] = '\0';
 }
 
 Token& Token::operator=(Token&& other) noexcept {
-    cout << "Token.cpp: move assignment operator called\n";
     if (this != &other) {
         delete[] text;
         text = other.text;

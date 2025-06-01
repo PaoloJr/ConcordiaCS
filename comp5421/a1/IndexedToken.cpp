@@ -31,7 +31,7 @@ const IntList& IndexedToken::getLineNumbers() const {
 
 void IndexedToken::print(std::ostream& os) const {
     token.print(os);
-    os << " ";
+    os << ", ";
     lines.print(os);
 }
 
@@ -39,6 +39,7 @@ int IndexedToken::compare(const char* other) const {
     return std::strcmp(token.c_str(), other);
 }
 
+// delegate to compare method
 int IndexedToken::compare(const IndexedToken& other) const {
     return token.compare(other.token);
 }
