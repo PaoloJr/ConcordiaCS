@@ -63,6 +63,9 @@ class IntList {
         // checks if `size` is equal to `capacity`
         bool isFull() const;
 
+        // used in tests only
+        int getCapacity() const;
+
         // write the list contents to the stream `os`
         void print(std::ostream& os) const;
 

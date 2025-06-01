@@ -89,8 +89,29 @@ int main() {
     // Test isFull method
     cout << "\n[Testing isFull Method]" << endl;
     IntList list6;
-    test("Empty list is not full", !list6.isFull());
-    // Note: It's hard to test isFull directly as we don't know the capacity
+    int initialCapacity = list6.getCapacity();
+    cout << "Initial capacity: " << initialCapacity << endl;
+    
+    // First append should trigger resize
+    list6.append(1);
+    cout << "first append size: " << list6.getSize() << "\n";
+    cout << "first append capacity: " << list6.getCapacity() << "\n";
+    test("capacity equals 2 after first resize", list6.getCapacity() == 2);
+    test("after first append, list is not full", !list6.isFull());
+    initialCapacity = list6.getCapacity();    
+    
+    // After second append
+    list6.append(2);
+    test("list is filled to capacity", list6.isFull());
+    cout << "second append size: " << list6.getSize() << "\n";
+    cout << "second append capacity: " << list6.getCapacity() << "\n";
+    int beforeResizeCapacity = list6.getCapacity();
+    
+    // Third append will trigger resize
+    list6.append(3);
+    cout << "third append size: " << list6.getSize() << "\n";
+    cout << "third append capacity: " << list6.getCapacity() << "\n";
+    test("Capacity doubled after resize", list6.getCapacity() == beforeResizeCapacity * 2);
 
     // Test print method
     cout << "\n[Testing print Method]" << endl;

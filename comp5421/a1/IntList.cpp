@@ -68,7 +68,7 @@ IntList& IntList::operator = (IntList&& other) {
 }
 
 IntList::~IntList() {
-    cout << "IntList: destructor called ";
+    cout << "IntList: destructor called\n";
     delete[] pData;
 }
 
@@ -88,7 +88,7 @@ void IntList::resize() {
 }
 
 void IntList::append(int lineNumber) {
-    if (size >= capacity) {
+    if (isFull()) {
         resize();
     }
     pData[size] = lineNumber;    
@@ -112,6 +112,11 @@ bool IntList::isEmpty() const {
     } else {
         return false;
     }
+}
+
+// used in tests only
+int IntList::getCapacity() const {
+    return this->capacity;
 }
 
 bool IntList::isFull() const {
