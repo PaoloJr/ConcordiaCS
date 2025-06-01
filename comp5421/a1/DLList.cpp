@@ -37,7 +37,7 @@ DLList::DLList(const DLList& dll) {
     
     if (dll.isEmpty()) return;
     
-    // with at lease one node
+    // with at least one node
     Node* current = dll.head;
     head = new Node (current->data, nullptr, nullptr);
     nodeCount = 1;

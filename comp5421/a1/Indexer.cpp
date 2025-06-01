@@ -26,11 +26,13 @@ void Indexer::processTextFile(const std::string& filename) {
     
     cout << "Indexing file: " << filename << "...\n";
     int lineNumber = 1;
+    int lineCount = 0;
     string line;
     // read file line by line
     while(getline(file, line)) {
         if (line.empty()) {
             lineNumber++;
+            lineCount++;
             continue;
         }
         // stringstream for tokenization
@@ -42,8 +44,9 @@ void Indexer::processTextFile(const std::string& filename) {
             processToken(token.c_str(), lineNumber);
         }
         lineNumber++;
+        lineCount++;
     }
-    int linesProcessed = lineNumber;
+    int linesProcessed = lineCount;
     int tokensProcessed = getTokenCount();
     cout << "File indexed successfully " << "(" << linesProcessed << " lines, " << tokensProcessed << " tokens processed)\n";
     file.close();
@@ -131,7 +134,7 @@ void Indexer::print(std::ostream& os) const {
             char sectionChar;
             
             if (i < 26) {
-                sectionChar = 'a' + i;                
+                sectionChar = toupper('a') + i;                
             } else {
                 sectionChar = '#';
             }
@@ -158,7 +161,7 @@ void Indexer::displayAll() const {
 
 // loop every token of every section --> O(n^2)
 void Indexer::searchByLength(size_t length) const {
-    cout << "Tokens of length: " << length << ":\n";
+    cout << "\n===== Tokens of length " << length << " =====\n";
     bool found = false;
 
     // sections loop
@@ -168,10 +171,23 @@ void Indexer::searchByLength(size_t length) const {
             for (size_t j = 0; j < index[i].size(); j++) {
                 const IndexedToken& token = index[i].getIndexedToken(j);
 
+                size_t tokenLength = token.getToken().length();
+
+                // DEBUG char ASCII values    
+                // if (tokenLength >= 8 && tokenLength <= 10) {
+                //     cout << "Debug - Token: '";
+                //     // Print each character and its ASCII value
+                //     for (size_t k = 0; k < tokenLength; k++) {
+                //         char c = token.getToken().c_str()[k];
+                //         cout << c << "(" << (int)c << ")";
+                //     }
+                //     cout << "', Length: " << tokenLength << "\n";
+                // }
+               
                 // length check
-                if (token.getToken().length() == length) {
+                if (tokenLength == length) {
+                    cout << "      ";
                     token.print(cout);
-                    cout << "\n";
                     found = true;
                 }
             }
@@ -185,15 +201,22 @@ void Indexer::searchByLength(size_t length) const {
 // direct access O(1)
 void Indexer::displaySection(char section) const {
     // calculate section index (0-25 for a-z/A-Z, 26 for other)
-    int sectionIndex;
-    char displayChar = section; // keep original for display
+    int sectionIndex = (int)section;
+    char displayChar = toupper(section); // keep original for display
+
+    // DEBUG
+    // std::cout << "Debug: section character ASCII value: " << sectionIndex << std::endl;
     
-       // Use tolower() for case-insensitive section determination
+    // Use tolower() for case-insensitive section determination
     if (isalpha(section)) {
-        sectionIndex = tolower(section) - 'a';
+        // DEBUG
+        // std::cout << "Debug: Using alpha section index: " << sectionIndex << std::endl;
+        sectionIndex = toupper(section) - 'A';
     } else {
         sectionIndex = 26; // special characters section
         displayChar = '#';
+        // DEBUG
+        // std::cout << "Debug: Using special char section index: " << sectionIndex << std::endl;
     }
     
     if (sectionIndex < 0 || sectionIndex >= NUM_SECTIONS) {
@@ -202,7 +225,7 @@ void Indexer::displaySection(char section) const {
     }
 
     // section header
-    cout << "===== Section '" << displayChar << "' =====\n";
+    cout << "\n===== Section '" << displayChar << "' =====\n";
 
     if (index[sectionIndex].isEmpty()) {
         cout << "No tokens in this section\n";
@@ -214,8 +237,15 @@ void Indexer::displaySection(char section) const {
 // added for token count
 int Indexer::getTokenCount() const {
     int count = 0;
+    // this was only counting size of each section
+    // for (size_t i = 0; i < NUM_SECTIONS; i++) {
+    //     count += index[i].size();
+    // }
     for (size_t i = 0; i < NUM_SECTIONS; i++) {
-        count += index[i].size();
+        // get each section's token with line number count (occurences)
+        for (size_t j = 0; j < index[i].size(); j++) {
+            count += index[i].getIndexedToken(j).getLineNumbers().getSize();
+        }
     }
     return count;
 }

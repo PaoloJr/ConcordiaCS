@@ -59,6 +59,10 @@ class Indexer {
         void searchByLength(size_t length) const;
         
         // display tokens in a specified section
+        /*
+        doc shows ViewBySection(char section)
+        IndexerUI passes an int instead???
+        */
         void displaySection(char section) const;
 
         // added for token count

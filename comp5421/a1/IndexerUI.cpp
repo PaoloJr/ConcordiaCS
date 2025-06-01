@@ -197,8 +197,10 @@ void IndexerUI::processViewSection() {
     return;
   }
   char sectionChar = getSectionChar();
-  int sectionIndex = getSectionIndexFromChar(sectionChar);
-  index.displaySection(sectionIndex);
+  // int sectionIndex = getSectionIndexFromChar(sectionChar);
+  // doc shows displaySection (ViewBySection) as needing an `int` parameter???
+  // use `sectionChar` instead
+  index.displaySection(sectionChar);
 }
 
 // Helper maps valid browse char ('A'-'Z', '*') to index 0-26
