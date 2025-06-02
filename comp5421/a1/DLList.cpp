@@ -10,7 +10,8 @@ DLList::Node::Node(const IndexedToken& data, Node* prv, Node* nxt) {
 
 DLList::Node* DLList::getNodeAt(size_t pos) {
     if (pos >= nodeCount) {
-        cout << "getNodeAt: Position out of range: pos=" << pos << ", nodeCount=" << nodeCount;
+        // DEBUG
+        cout << "getNodeAt: Position out of range: pos=" << pos << ", nodeCount=" << nodeCount << "\t";
         throw std::out_of_range("Position out of range");
     }
     Node* current = head;
@@ -116,7 +117,8 @@ DLList& DLList::operator = (DLList&& dll) noexcept {
 
 void DLList::addBefore(IndexedToken data, size_t pos) {
     if (pos > nodeCount) {
-        cout << "addBefore: Position out of range: pos=" << pos << ", nodeCount=" << nodeCount;
+        // DEBUG
+        // cout << "addBefore: Position out of range: pos=" << pos << ", nodeCount=" << nodeCount << "\t";
         throw std::out_of_range("Position out of range");
     }
     if (isEmpty() || pos == 0) {  // add to front of the list
@@ -142,7 +144,8 @@ void DLList::addBefore(IndexedToken data, size_t pos) {
 
 bool DLList::remove(size_t pos) {
     if (pos >= nodeCount) {
-        cout << "remove: Position out of range: pos=" << pos << ", nodeCount=" << nodeCount;
+        // DEBUG
+        // cout << "remove: Position out of range: pos=" << pos << ", nodeCount=" << nodeCount;
         throw std::out_of_range("Position out of range");
     }
     Node* nodeToRemove = getNodeAt(pos);
@@ -168,7 +171,8 @@ bool DLList::remove(size_t pos) {
 
 IndexedToken& DLList::getIndexedToken(size_t pos) {
     if (pos >= nodeCount) {
-        cout << "getIndexedToken: Position out of range: pos=" << pos << ", nodeCount=" << nodeCount;
+        // DEBUG
+        // cout << "getIndexedToken: Position out of range: pos=" << pos << ", nodeCount=" << nodeCount << "\t";
         throw std::out_of_range("Position out of range");
     }
     return getNodeAt(pos)->data;
@@ -176,7 +180,8 @@ IndexedToken& DLList::getIndexedToken(size_t pos) {
 
 const IndexedToken& DLList::getIndexedToken(size_t pos) const {
     if (pos >= nodeCount) {
-        cout << "getIndexedToken_const: Position out of range: pos=" << pos << ", nodeCount=" << nodeCount;
+        // DEBUG
+        // cout << "getIndexedToken_const: Position out of range: pos=" << pos << ", nodeCount=" << nodeCount << "\t";
         throw std::out_of_range("Position out of range");
     }
     // to get const version of IndexedToken&

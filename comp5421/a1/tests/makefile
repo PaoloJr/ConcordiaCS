@@ -4,7 +4,9 @@ SRC_DIR = ..
 TOKEN = token
 INTLIST = intlist
 INDEXEDTOKEN = indexedtoken
-ALL_TESTS = $(TOKEN) $(INTLIST) $(INDEXEDTOKEN)
+DLLIST = dllist
+INDEXER = indexer
+ALL_TESTS = $(TOKEN) $(INTLIST) $(INDEXEDTOKEN) $(DLLIST) $(INDEXER)
 
 # default target
 all: $(ALL_TESTS)
@@ -22,6 +24,12 @@ $(INTLIST): intlist.cpp $(SRC_DIR)/IntList.cpp
 $(INDEXEDTOKEN): indexedtoken.cpp $(SRC_DIR)/IndexedToken.cpp $(SRC_DIR)/Token.cpp $(SRC_DIR)/IntList.cpp
 	$(COMP) $(FLAGS) -o $@ $^
 
+$(DLLIST): dllist.cpp $(SRC_DIR)/DLList.cpp $(SRC_DIR)/IndexedToken.cpp $(SRC_DIR)/Token.cpp $(SRC_DIR)/IntList.cpp
+	$(COMP) $(FLAGS) -o $@ $^
+
+$(INDEXER): indexer.cpp $(SRC_DIR)/Indexer.cpp $(SRC_DIR)/DLList.cpp $(SRC_DIR)/IndexedToken.cpp $(SRC_DIR)/Token.cpp $(SRC_DIR)/IntList.cpp
+	$(COMP) $(FLAGS) -o $@ $^
+
 # run individual tests
 run-token: $(TOKEN)
 	@echo "Running $(TOKEN) tests..."
@@ -35,10 +43,17 @@ run-indexedtoken: $(INDEXEDTOKEN)
 	@echo "Running $(INDEXEDTOKEN) tests..."
 	./$(INDEXEDTOKEN)
 
+# these are running from `main` function calls 
+run-dllist: $(DLLIST)
+	./$(DLLIST)
+
+run-indexer: $(INDEXER)
+	./$(INDEXER)
+
 # run all tests - call individual test targets
-run: run-token run-intlist run-indexedtoken
-	@echo "===================="
-	@echo "All tests completed."
+run: run-token run-intlist run-indexedtoken run-dllist run-indexer
+	@echo "========================================="
+	@echo "========== All tests completed =========="
 	
 # clean up
 clean:
