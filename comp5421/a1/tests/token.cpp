@@ -80,7 +80,7 @@ int main() {
     t2.print(cout);
     cout << endl;
 
-    cout << "\nAll Token tests complete!" << endl;
+    cout << "\n=== All token tests complete! ===\n\n" << endl;
     
     return 0;
 }

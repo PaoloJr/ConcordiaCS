@@ -133,7 +133,7 @@ int main() {
     }
     test("getElementAt throws exception for invalid index", exceptionThrown);
 
-    cout << "\nAll IntList tests complete!" << endl;
+    cout << "\n=== All intlist tests complete! ===\n\n" << endl;
     
     return 0;
 }

@@ -6,7 +6,8 @@ using namespace std; // for cout etc.
 
 
 Indexer::Indexer() {
-    cout << "Indexer: default ctor called, number of sections = " << NUM_SECTIONS << "\n";
+    // DEBUG
+    // cout << "Indexer: default ctor called, number of sections = " << NUM_SECTIONS << "\n";
 }
 
 /* 

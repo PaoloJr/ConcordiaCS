@@ -32,15 +32,12 @@ $(INDEXER): indexer.cpp $(SRC_DIR)/Indexer.cpp $(SRC_DIR)/DLList.cpp $(SRC_DIR)/
 
 # run individual tests
 run-token: $(TOKEN)
-	@echo "Running $(TOKEN) tests..."
 	./$(TOKEN)
 
 run-intlist: $(INTLIST)
-	@echo "Running $(INTLIST) tests..."
 	./$(INTLIST)
 
 run-indexedtoken: $(INDEXEDTOKEN)
-	@echo "Running $(INDEXEDTOKEN) tests..."
 	./$(INDEXEDTOKEN)
 
 # these are running from `main` function calls 
@@ -54,6 +51,7 @@ run-indexer: $(INDEXER)
 run: run-token run-intlist run-indexedtoken run-dllist run-indexer
 	@echo "========================================="
 	@echo "========== All tests completed =========="
+	@echo ""
 	
 # clean up
 clean:

@@ -90,7 +90,7 @@ int main() {
     test("compare with lexicographically smaller token returns >0", token1.compare(token4) > 0);
     test("compare with lexicographically larger token returns <0", token1.compare(token5) < 0);
 
-    cout << "\nAll IndexedToken tests complete!" << endl;
+    cout << "\n=== All indexedtoken tests complete! ===\n\n" << endl;
     
     return 0;
 }
