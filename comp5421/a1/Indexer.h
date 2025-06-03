@@ -65,8 +65,8 @@ class Indexer {
         */
         void displaySection(char section) const;
 
-        // added for token count
-        int getTokenCount() const;
+        // helper function for token count
+        const int getTokenCount() const;
         
     private:
         // stores index; all 27 sections

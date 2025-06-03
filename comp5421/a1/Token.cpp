@@ -58,7 +58,7 @@ char Token::getFirstChar() const {
     return text[0];
 }
 
-char* Token::c_str() const {
+const char* Token::c_str() const {
     return this->text;
 }
 

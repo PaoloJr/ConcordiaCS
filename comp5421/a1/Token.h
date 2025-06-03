@@ -58,7 +58,7 @@ class Token {
         char getFirstChar() const;
 
         // returns `this` token's `text` as a `const char*`
-        char* c_str() const;
+        const char* c_str() const;
 
         // returns the length of token's `text` using `strlen`
         size_t length() const;

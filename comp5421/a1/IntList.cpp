@@ -108,8 +108,8 @@ bool IntList::isEmpty() const {
     }
 }
 
-// used in tests only
-int IntList::getCapacity() const {
+// helper function used in tests only
+const int IntList::getCapacity() const {
     return this->capacity;
 }
 

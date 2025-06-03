@@ -29,6 +29,7 @@ void Indexer::processTextFile(const std::string& filename) {
     int lineNumber = 1;
     int lineCount = 0;
     string line;
+    
     // read file line by line
     while(getline(file, line)) {
         if (line.empty()) {
@@ -235,8 +236,8 @@ void Indexer::displaySection(char section) const {
     }
 }
 
-// added for token count
-int Indexer::getTokenCount() const {
+// helper function for token count
+const int Indexer::getTokenCount() const {
     int count = 0;
     // this was only counting size of each section
     // for (size_t i = 0; i < NUM_SECTIONS; i++) {

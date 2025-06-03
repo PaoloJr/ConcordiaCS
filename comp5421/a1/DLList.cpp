@@ -11,7 +11,7 @@ DLList::Node::Node(const IndexedToken& data, Node* prv, Node* nxt) {
 DLList::Node* DLList::getNodeAt(size_t pos) {
     if (pos >= nodeCount) {
         // DEBUG
-        cout << "getNodeAt: Position out of range: pos=" << pos << ", nodeCount=" << nodeCount << "\t";
+        // cout << "getNodeAt: Position out of range: pos=" << pos << ", nodeCount=" << nodeCount << "\t";
         throw std::out_of_range("Position out of range");
     }
     Node* current = head;

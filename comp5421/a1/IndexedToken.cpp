@@ -39,7 +39,7 @@ int IndexedToken::compare(const char* other) const {
     return std::strcmp(token.c_str(), other);
 }
 
-// delegate to compare method
+// delegate to Token's compare method
 int IndexedToken::compare(const IndexedToken& other) const {
     return token.compare(other.token);
 }
