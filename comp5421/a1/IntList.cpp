@@ -63,6 +63,7 @@ IntList& IntList::operator = (IntList&& other) {
 }
 
 IntList::~IntList() {
+    // can just call clear() as well
     delete[] pData;
 }
 

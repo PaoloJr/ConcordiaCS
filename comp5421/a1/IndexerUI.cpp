@@ -9,11 +9,14 @@
 #include <stdexcept>  // For std::exception
 #include <string>
 
+#include <mcheck.h>
+
 // Constructor
 IndexerUI::IndexerUI() : currentFilename("") {}
 
 // Main application loop with error handling
 void IndexerUI::run() {
+  mtrace();
   int choice = 0;
   do {
     displayMenu();
