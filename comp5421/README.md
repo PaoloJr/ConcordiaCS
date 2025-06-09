@@ -24,11 +24,14 @@ error IDs are found at the end of each error output, in `[]`
 
 ---
 
-### memory leak tracking with mtrace
+### mtrace
+_memory leak tracking_
 #### add mtrace(); at the start
-- `export MALLOC_TRACE=mtrace.log`
-- `./TextIndexer`
-- `mtrace ./TextIndexer mtrace.log`
+- ensure program is compiled with debugging options; `-g`
+- add before running program (or can `export`)
+    - `LD_PRELOAD=/usr/lib64/libc_malloc_debug.so.0 MALLOC_TRACE=mtrace.out ./<ELF>`
+- `./<ELF>`
+- `mtrace ./<ELF> mtrace.out`
 
 ---
 
