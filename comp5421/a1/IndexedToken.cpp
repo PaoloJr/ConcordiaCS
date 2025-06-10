@@ -14,7 +14,7 @@ IndexedToken::IndexedToken(Token inputToken, int lineNumber) {
 
 /* 
 other special member function have specifiers `= default`
-they are in `Indexer.h` file
+they are in `IndexedToken.h` file
 */
 
 void IndexedToken::appendLineNumber(size_t lineNumber) {

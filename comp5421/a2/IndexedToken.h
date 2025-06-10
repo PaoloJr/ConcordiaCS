@@ -1,10 +1,11 @@
 #ifndef INDEXEDTOKEN_H
 #define INDEXEDTOKEN_H
 
-#include "Token.h"
-#include "IntList.h"
 #include <cstddef> // for `size_t` type
 #include <ostream> // for std::ostream
+#include <string>
+#include <vector>
+using namespace std;
 
 /*
 purpose:
@@ -14,14 +15,13 @@ representing a complete index for the token
 
 class IndexedToken {
     private:
-        // the token
-        Token token;
-        // list of line numbers
-        IntList lines;
+        // the token using std::string
+        string token;
+        // list of line numbers using std::vector
+        vector<int> lines;
 
     public:
         // default ctor
-        // doc did not show any default ctor???
         IndexedToken() = default;
         
         /*
@@ -29,7 +29,7 @@ class IndexedToken {
         the first `lineNumber` to `lines` list
         */
         IndexedToken(const char* text, int lineNumber);
-        IndexedToken(Token token, int lineNumber);
+        IndexedToken(string token, int lineNumber);
 
         // copy ctor; = default
         IndexedToken(const IndexedToken& it) = default;
@@ -49,11 +49,11 @@ class IndexedToken {
         // appends `lineNumber` to the `lines` list
         void appendLineNumber(size_t lineNumber);
 
-        // returns `token` by `const Token&`
-        const Token& getToken() const;
+        // returns `token` by `const string&`
+        const string& getToken() const;
 
-        // returns `lines` by `const IntList&`
-        const IntList& getLineNumbers() const;
+        // returns `lines` by `const vector<int>&`
+        const vector<int>& getLineNumbers() const;
 
         // writes `token` followed by `lines` to `os`
         void print(std::ostream& os) const;

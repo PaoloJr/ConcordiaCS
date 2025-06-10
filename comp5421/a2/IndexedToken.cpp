@@ -1,38 +1,45 @@
 #include "IndexedToken.h"
-#include "IntList.h"
 #include <cstring>
+#include <iostream>
 
 IndexedToken::IndexedToken(const char* text, int lineNumber) {
     token = text;
-    lines.append(lineNumber);
+    lines.push_back(lineNumber);
 }
 
-IndexedToken::IndexedToken(Token inputToken, int lineNumber) {
+IndexedToken::IndexedToken(string inputToken, int lineNumber) {
     token = inputToken;
-    lines.append(lineNumber);
+    lines.push_back(lineNumber);
 }
 
 /* 
 other special member function have specifiers `= default`
-they are in `Indexer.h` file
+they are in `IndexedToken.h` file
 */
 
 void IndexedToken::appendLineNumber(size_t lineNumber) {
-    lines.append(lineNumber);
+    lines.push_back(lineNumber);
 }
 
-const Token& IndexedToken::getToken() const {
+const string& IndexedToken::getToken() const {
     return token;
 }
 
-const IntList& IndexedToken::getLineNumbers() const {
+const vector<int>& IndexedToken::getLineNumbers() const {
     return lines;
 }
 
 void IndexedToken::print(std::ostream& os) const {
-    token.print(os);
+    os << token;
     os << ": ";
-    lines.print(os);
+    for (size_t i = 0; i < lines.size(); i++) {
+        os << lines[i];
+        if (i < lines.size() - 1) {
+            os << ", ";
+        }
+    }
+    os << "\n";
+
 }
 
 int IndexedToken::compare(const char* other) const {
