@@ -23,7 +23,6 @@ _other options_
 error IDs are found at the end of each error output, in `[]`
 - ex: `performance: Function parameter 'data' should be passed by const reference. [passedByValue]`
 
-
 ---
 
 ### mtrace
@@ -43,6 +42,7 @@ _memory leak tracking_
 
 ### valgrind
 - `valgrind --leak-check=yes <ELF>`
+- this uses the `memcheck` tool within `valgrind`
 - other options:
     - `--leak-check=full`
     - `--show-leak-kinds=all` --> `definite` and `possible`
