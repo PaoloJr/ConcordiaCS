@@ -2,8 +2,6 @@
 #include <fstream>
 #include <sstream>
 #include <iostream> // for std::cout
-using namespace std; // for cout etc.
-
 
 Indexer::Indexer() {
     // DEBUG
@@ -16,10 +14,10 @@ they are in `Indexer.h` file
 */
 
 void Indexer::processTextFile(const std::string& filename) {
-    ifstream file(filename.c_str());
+    std::ifstream file(filename.c_str());
 
     if (!file.is_open()) {
-        cerr << "File did not open: " << filename << "\n";
+        std::cerr << "File did not open: " << filename << "\n";
         return;
     }
 
@@ -27,10 +25,10 @@ void Indexer::processTextFile(const std::string& filename) {
 
     clear();
     
-    cout << "Indexing file: " << filename << "...\n";
+    std::cout << "Indexing file: " << filename << "...\n";
     int lineNumber = 1;
     int lineCount = 0;
-    string line;
+    std::string line;
     
     // read file line by line
     while(getline(file, line)) {
@@ -40,8 +38,8 @@ void Indexer::processTextFile(const std::string& filename) {
             continue;
         }
         // stringstream for tokenization
-        istringstream iss(line);
-        string token;
+        std::istringstream iss(line);
+        std::string token;
         
         // extract tokens using whitespace delimiter
         while (iss >> token) {
@@ -52,7 +50,7 @@ void Indexer::processTextFile(const std::string& filename) {
     }
     int linesProcessed = lineCount;
     int tokensProcessed = getTokenCount();
-    cout << currentFileName << " indexed successfully " << "(" << linesProcessed << " lines, " << tokensProcessed << " tokens processed)\n";
+    std::cout << currentFileName << " indexed successfully " << "(" << linesProcessed << " lines, " << tokensProcessed << " tokens processed)\n";
     file.close();
 }
 
@@ -101,7 +99,7 @@ void Indexer::processToken(const char* text, int lineNumber) {
     index[sectionIndex].push_back(newToken);
 }
 
-void Indexer::processToken(string token, int lineNumber) {
+void Indexer::processToken(std::string& token, int lineNumber) {
     if (token.empty()) {
         return;
     }
@@ -152,10 +150,11 @@ void Indexer::print(std::ostream& os) const {
             // index[i].print(os);
             // could also use `for (const auto& token : index[sectionIndex])`...
             for (auto token = section.begin(); token != section.end(); token++) {
-                cout << "      ";
-                token->print(cout);
+                std::cout << "      ";
+                token->print(std::cout);
             }
         }
+        i++;
     }
     if (!found) {
         os << " (empty index)";
@@ -164,12 +163,12 @@ void Indexer::print(std::ostream& os) const {
 }
 
 void Indexer::displayAll() const {
-    print(cout);
+    print(std::cout);
 }
 
 // loop every token of every section --> O(n^2)
 void Indexer::searchByLength(size_t length) const {
-    cout << "\n===== Tokens of length " << length << " =====\n";
+    std::cout << "\n===== Tokens of length " << length << " =====\n";
     bool found = false;
 
     // sections loop
@@ -194,15 +193,15 @@ void Indexer::searchByLength(size_t length) const {
                
                 // length check
                 if (tokenLength == length) {
-                    cout << "      ";
-                    token.print(cout);
+                    std::cout << "      ";
+                    token.print(std::cout);
                     found = true;
                 }
             }
         }
     }
     if (!found) {
-        cout << "No tokens of length " << length << " found\n";
+        std::cout << "No tokens of length " << length << " found\n";
     }
 }
 
@@ -228,20 +227,20 @@ void Indexer::displaySection(char section) const {
     }
     
     if (sectionIndex < 0 || sectionIndex >= NUM_SECTIONS) {
-        cout << "Invalid section: " << section << "\n";
+        std::cout << "Invalid section: " << section << "\n";
         return;
     }
 
     // section header
-    cout << "\n===== Section '" << displayChar << "' =====\n";
+    std::cout << "\n===== Section '" << displayChar << "' =====\n";
 
     if (index[sectionIndex].empty()) {
-        cout << "No tokens in this section\n";
+        std::cout << "No tokens in this section\n";
     } else {
         // could also use `for (const auto& token : index[sectionIndex])`...
         for (auto it = index[sectionIndex].begin(); it != index[sectionIndex].end(); it++) {
-            cout << "      ";
-            it->print(cout);
+            std::cout << "      ";
+            it->print(std::cout);
         }
     }
 }

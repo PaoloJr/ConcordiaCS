@@ -1,13 +1,14 @@
 #include "IndexedToken.h"
 #include <cstring>
 #include <iostream>
+#include <string>
 
 IndexedToken::IndexedToken(const char* text, int lineNumber) {
     token = text;
     lines.push_back(lineNumber);
 }
 
-IndexedToken::IndexedToken(string inputToken, int lineNumber) {
+IndexedToken::IndexedToken(std::string& inputToken, int lineNumber) {
     token = inputToken;
     lines.push_back(lineNumber);
 }
@@ -21,21 +22,23 @@ void IndexedToken::appendLineNumber(size_t lineNumber) {
     lines.push_back(lineNumber);
 }
 
-const string& IndexedToken::getToken() const {
+const std::string& IndexedToken::getToken() const {
     return token;
 }
 
-const vector<int>& IndexedToken::getLineNumbers() const {
+const std::vector<int>& IndexedToken::getLineNumbers() const {
     return lines;
 }
 
 void IndexedToken::print(std::ostream& os) const {
     os << token << ": ";
+    bool first = true;
     for (const auto& lineNum : lines) {
-        os << lines.at(lineNum);
-        if (lineNum < lines.at(lines.size())) {
+        if (!first) {
             os << ", ";
         }
+        os << lineNum;
+        first = false;
     }
     os << "\n";
 }

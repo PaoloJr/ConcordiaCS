@@ -21,7 +21,8 @@ void IndexerUI::run() {
   do {
     displayMenu();
     choice = getUserChoice();
-    std::string filename;
+    // unused variable, commented out???
+    // std::string filename;
 
     try {
       switch (choice) {

@@ -5,7 +5,6 @@
 #include <ostream> // for std::ostream
 #include <string>
 #include <vector>
-using namespace std;
 
 /*
 purpose:
@@ -16,9 +15,9 @@ representing a complete index for the token
 class IndexedToken {
     private:
         // the token using std::string
-        string token;
+        std::string token;
         // list of line numbers using std::vector
-        vector<int> lines;
+        std::vector<int> lines;
 
     public:
         // default ctor
@@ -29,7 +28,7 @@ class IndexedToken {
         the first `lineNumber` to `lines` list
         */
         IndexedToken(const char* text, int lineNumber);
-        IndexedToken(string token, int lineNumber);
+        IndexedToken(std::string& token, int lineNumber);
 
         // copy ctor; = default
         IndexedToken(const IndexedToken& it) = default;
@@ -50,10 +49,10 @@ class IndexedToken {
         void appendLineNumber(size_t lineNumber);
 
         // returns `token` by `const string&`
-        const string& getToken() const;
+        const std::string& getToken() const;
 
         // returns `lines` by `const vector<int>&`
-        const vector<int>& getLineNumbers() const;
+        const std::vector<int>& getLineNumbers() const;
 
         // writes `token` followed by `lines` to `os`
         void print(std::ostream& os) const;

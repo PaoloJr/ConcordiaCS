@@ -84,7 +84,7 @@ class Indexer {
         */
         void processToken(const char* text, int lineNumber);
         
-        void processToken(string token, int lineNumber);
+        void processToken(std::string& token, int lineNumber);
 };
 
 #endif  // INDEXER_H
