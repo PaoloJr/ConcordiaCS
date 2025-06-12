@@ -30,16 +30,14 @@ const vector<int>& IndexedToken::getLineNumbers() const {
 }
 
 void IndexedToken::print(std::ostream& os) const {
-    os << token;
-    os << ": ";
-    for (size_t i = 0; i < lines.size(); i++) {
-        os << lines[i];
-        if (i < lines.size() - 1) {
+    os << token << ": ";
+    for (const auto& lineNum : lines) {
+        os << lines.at(lineNum);
+        if (lineNum < lines.at(lines.size())) {
             os << ", ";
         }
     }
     os << "\n";
-
 }
 
 int IndexedToken::compare(const char* other) const {

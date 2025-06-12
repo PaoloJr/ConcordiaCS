@@ -133,10 +133,10 @@ void Indexer::print(std::ostream& os) const {
     os << "\n===== Complete Index for: " << (currentFileName.empty() ? "No file loaded" : currentFileName) << " =====\n\n";
     bool found = false;
 
-    for (size_t i = 0; i < NUM_SECTIONS; i++) {    
-        if (!index[i].empty()) {
+    int i = 0;
+    for (auto& section : index) {    
+        if (!section.empty()) {
             char sectionChar;
-            
             if (i < 26) {
                 sectionChar = toupper('a') + i;                
             } else {
@@ -151,9 +151,9 @@ void Indexer::print(std::ostream& os) const {
             // call each section's print method
             // index[i].print(os);
             // could also use `for (const auto& token : index[sectionIndex])`...
-            for (auto it = index[i].begin(); it != index[i].end(); it++) {
+            for (auto token = section.begin(); token != section.end(); token++) {
                 cout << "      ";
-                it->print(cout);
+                token->print(cout);
             }
         }
     }
@@ -173,11 +173,11 @@ void Indexer::searchByLength(size_t length) const {
     bool found = false;
 
     // sections loop
-   for (size_t i = 0; i < NUM_SECTIONS; i++) {
-        if (!index[i].empty()) {
+   for (auto& section : index) {
+        if (!section.empty()) {
             // tokens loop
-            // could also use `for (const auto& token : index[i])` ...
-            for (auto it = index[i].begin(); it != index[i].end(); it++) {
+            // could also use `for (const auto& token : section)` ...
+            for (auto it = section.begin(); it != section.end(); it++) {
                 const IndexedToken& token = *it;
                 size_t tokenLength = token.getToken().length();
 
