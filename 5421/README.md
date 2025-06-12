@@ -33,10 +33,11 @@ _memory leak tracking_
 - these hook functions record tracing information about memory allocation and deallocation (in C++: `new` and `delete`)
 - ensure program is compiled with debugging options; `-g`
 - add before running program (or can `export`)
-    - `LD_PRELOAD=/usr/lib64/libc_malloc_debug.so.0 MALLOC_TRACE=mtrace.out ./<ELF>`
-    - `LD_PRELOAD` may be in `/usr/lib/x86_64-linux-gnu/libc_malloc_debug.so.0`
+    - `LD_PRELOAD=/usr/lib64/libc_malloc_debug.so.0 MALLOC_TRACE=mtrace.log ./<ELF>`
+    - could also be: `LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libc_malloc_debug.so.0 MALLOC_TRACE=mtrace.log ./<ELF>`
 - `./<ELF>`
 - `mtrace ./<ELF> mtrace.out`
+- mtrace may report "Free was never alloc'd" warnings for memory allocated before the `mtrace()` call or for internal C library operations. These are usually not bugs in your application.
 
 ---
 
