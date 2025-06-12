@@ -23,6 +23,8 @@ void Indexer::processTextFile(const std::string& filename) {
         return;
     }
 
+    currentFileName = filename;
+
     clear();
     
     cout << "Indexing file: " << filename << "...\n";
@@ -50,7 +52,7 @@ void Indexer::processTextFile(const std::string& filename) {
     }
     int linesProcessed = lineCount;
     int tokensProcessed = getTokenCount();
-    cout << "File indexed successfully " << "(" << linesProcessed << " lines, " << tokensProcessed << " tokens processed)\n";
+    cout << currentFileName << " indexed successfully " << "(" << linesProcessed << " lines, " << tokensProcessed << " tokens processed)\n";
     file.close();
 }
 
@@ -71,15 +73,15 @@ void Indexer::processToken(const char* text, int lineNumber) {
     }
     
     // loop through the relevant section
-    for (size_t i = 0; i < index[sectionIndex].size(); i++) {
-        IndexedToken& existingToken = index[sectionIndex].getIndexedToken(i);
+    // could also use `for (const auto& token : index[sectionIndex])` ...
+    for (auto it = index[sectionIndex].begin(); it != index[sectionIndex].end(); it++) {
         
         /* 
         if token/text already exists, add line number and return
         if chars are equal (strcmp)
         */ 
-        if (existingToken.compare(text) == 0) {
-            existingToken.appendLineNumber(lineNumber);
+        if (it->compare(text) == 0) {
+            it->appendLineNumber(lineNumber);
             return;
         }
 
@@ -87,20 +89,20 @@ void Indexer::processToken(const char* text, int lineNumber) {
         if token/text does not already exist, create a new one and insert in sorted order
         if chars are not equal (strcmp)
          */
-        if (existingToken.compare(text) > 0) {
+        if (it->compare(text) > 0) {
             IndexedToken newToken(text, lineNumber);
-            index[sectionIndex].addBefore(newToken, i);
+            index[sectionIndex].insert(it, newToken);
             return;
         }
     }
 
     // add token/text at the end of the section
     IndexedToken newToken(text, lineNumber);
-    index[sectionIndex].addBefore(newToken, index[sectionIndex].size());
+    index[sectionIndex].push_back(newToken);
 }
 
-void Indexer::processToken(Token token, int lineNumber) {
-    if (token.length() == 0) {
+void Indexer::processToken(string token, int lineNumber) {
+    if (token.empty()) {
         return;
     }
 
@@ -109,17 +111,17 @@ void Indexer::processToken(Token token, int lineNumber) {
 } 
 
 void Indexer::clear() {
-    // loop through each DLList and call its clear()
-    for (size_t i = 0; i < NUM_SECTIONS; i++) {
-        index[i].clear();
+    // loop through each list and call its clear()
+    for (auto& section : index) {
+        section.clear();
     }
 }
 
 bool Indexer::isEmpty() const {
     // loop through each DLList and call its isEmpty()
-    for (size_t i = 0; i < NUM_SECTIONS; i++) {
+    for (auto& section : index) {
         // if any one DLList (section) is not empty, return false
-        if (!index[i].isEmpty()) {
+        if (!section.empty()) {
             return false;
         }
     }
@@ -128,11 +130,11 @@ bool Indexer::isEmpty() const {
 }
 
 void Indexer::print(std::ostream& os) const {
-    os << "\n===== Complete Index =====\n\n";
+    os << "\n===== Complete Index for: " << (currentFileName.empty() ? "No file loaded" : currentFileName) << " =====\n\n";
     bool found = false;
 
     for (size_t i = 0; i < NUM_SECTIONS; i++) {    
-        if (!index[i].isEmpty()) {
+        if (!index[i].empty()) {
             char sectionChar;
             
             if (i < 26) {
@@ -147,13 +149,17 @@ void Indexer::print(std::ostream& os) const {
             found = true;
             os << "----- Section '" << sectionChar << "' ----- \n";
             // call each section's print method
-            index[i].print(os);
+            // index[i].print(os);
+            // could also use `for (const auto& token : index[sectionIndex])`...
+            for (auto it = index[i].begin(); it != index[i].end(); it++) {
+                cout << "      ";
+                it->print(cout);
+            }
         }
     }
     if (!found) {
         os << " (empty index)";
     }
-
     os << "\n===== Done =====\n";
 }
 
@@ -168,11 +174,11 @@ void Indexer::searchByLength(size_t length) const {
 
     // sections loop
    for (size_t i = 0; i < NUM_SECTIONS; i++) {
-        if (!index[i].isEmpty()) {
+        if (!index[i].empty()) {
             // tokens loop
-            for (size_t j = 0; j < index[i].size(); j++) {
-                const IndexedToken& token = index[i].getIndexedToken(j);
-
+            // could also use `for (const auto& token : index[i])` ...
+            for (auto it = index[i].begin(); it != index[i].end(); it++) {
+                const IndexedToken& token = *it;
                 size_t tokenLength = token.getToken().length();
 
                 // DEBUG char ASCII values    
@@ -229,25 +235,26 @@ void Indexer::displaySection(char section) const {
     // section header
     cout << "\n===== Section '" << displayChar << "' =====\n";
 
-    if (index[sectionIndex].isEmpty()) {
+    if (index[sectionIndex].empty()) {
         cout << "No tokens in this section\n";
     } else {
-        index[sectionIndex].print(cout);
+        // could also use `for (const auto& token : index[sectionIndex])`...
+        for (auto it = index[sectionIndex].begin(); it != index[sectionIndex].end(); it++) {
+            cout << "      ";
+            it->print(cout);
+        }
     }
 }
 
 // helper function for token count
 const int Indexer::getTokenCount() const {
     int count = 0;
-    // this was only counting size of each section
-    // for (size_t i = 0; i < NUM_SECTIONS; i++) {
-    //     count += index[i].size();
-    // }
-    for (size_t i = 0; i < NUM_SECTIONS; i++) {
+    for (const auto& section : index) {
         // get each section's token with line number count (occurences)
-        for (size_t j = 0; j < index[i].size(); j++) {
-            count += index[i].getIndexedToken(j).getLineNumbers().getSize();
+        for (const auto& token : section) {
+            count += token.getLineNumbers().size();
         }
+
     }
     return count;
 }

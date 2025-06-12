@@ -1,8 +1,9 @@
 #ifndef INDEXER_H
 #define INDEXER_H
 
-#include "DLList.h"
-#include "Token.h"
+#include "IndexedToken.h"
+#include <array>
+#include <list>
 
 /*
 purpose:
@@ -70,7 +71,7 @@ class Indexer {
         
     private:
         // stores index; all 27 sections
-        DLList index[NUM_SECTIONS];
+        std::array<std::list<IndexedToken>, NUM_SECTIONS> index;
         std::string currentFileName;
         
         /*
@@ -83,7 +84,7 @@ class Indexer {
         */
         void processToken(const char* text, int lineNumber);
         
-        void processToken(Token token, int lineNumber);
+        void processToken(string token, int lineNumber);
 };
 
 #endif  // INDEXER_H
