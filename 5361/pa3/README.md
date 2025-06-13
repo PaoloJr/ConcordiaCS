@@ -1,7 +1,7 @@
 # Report
-[Python NLTK Project](https://github.com/PaoloJr90/ConcordiaCS/tree/main/COMP5361/pa3) \
-[Parse Tree Samples - output using `nltk.ChartParser` in ASCII format](https://github.com/PaoloJr90/ConcordiaCS/blob/main/COMP5361/pa3/IO/parseTrees_samples.txt) \
-[More Parse Tree Samples on Extracted RegEx - output using `nltk.ChartParser` in ASCII format](https://github.com/PaoloJr90/ConcordiaCS/blob/main/COMP5361/pa3/IO/parseTrees.txt)
+[Python NLTK Project](https://github.com/PaoloJr/ConcordiaCS/tree/main/5361/pa3) \
+[Parse Tree Samples - output using `nltk.ChartParser` in ASCII format](https://github.com/PaoloJr/ConcordiaCS/blob/main/5361/pa3/IO/parseTrees_samples.txt) \
+[More Parse Tree Samples on Extracted RegEx - output using `nltk.ChartParser` in ASCII format](https://github.com/PaoloJr/ConcordiaCS/blob/main/5361/pa3/IO/parseTrees.txt)
 
 ## Phone Numbers
 [Phone Number Formats - Microsoft](https://learn.microsoft.com/en-us/globalization/locale/telephone-numbers) \
