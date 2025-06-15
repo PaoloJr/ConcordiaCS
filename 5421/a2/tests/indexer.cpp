@@ -15,7 +15,7 @@ void testPrint();
 void testGetTokenCount();
 
 int main() {
-    cout << "Running Indexer tests..." << endl;
+        cout << "=== INDEXER CLASS TESTS ===" << endl;
     
     testDefaultConstructor();
     testProcessTextFile();
@@ -26,7 +26,7 @@ int main() {
     testPrint();
     testGetTokenCount();
     
-    cout << "\n=== All indexer tests passed! ===\n\n" << endl;
+    cout << "\n=== All indexer tests completed! ===\n\n" << endl;
     return 0;
 }
 

@@ -9,14 +9,22 @@
 #include <stdexcept>  // For std::exception
 #include <string>
 
-#include <mcheck.h>
+// void test_asan() {
+//     int* array = new int[10];
+//     array[10000] = 123;  // out-of-bounds access
+    // std::cout << "Testing ASAN, value: " << array[9] << std::endl;
+    // delete[] array;
+    // int *ptr = new int(42);
+    // delete ptr;
+    // *ptr = 100; // use after free
+// }
 
 // Constructor
 IndexerUI::IndexerUI() : currentFilename("") {}
 
 // Main application loop with error handling
 void IndexerUI::run() {
-  mtrace();
+  // test_asan();
   int choice = 0;
   do {
     displayMenu();

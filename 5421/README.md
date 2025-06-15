@@ -26,7 +26,7 @@ error IDs are found at the end of each error output, in `[]`
 ---
 
 ### mtrace
-_memory leak tracking_
+_memory leak tracking (mostly for pure C code)_
 #### add mtrace(); at the start
 - `mtrace()` will install hook functions for the memory allocation functions (`malloc`, `realloc`, `memalign`, `free`)
 - these hook functions record tracing information about memory allocation and deallocation (in C++: `new` and `delete`)
